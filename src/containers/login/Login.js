@@ -1,4 +1,5 @@
-import React, { useState } from 'react';import './loginStyle.css'; // Import file CSS
+import React, { useState } from 'react';
+import './loginStyle.css'; // Import file CSS
 import 'boxicons/css/boxicons.min.css'; // Import thư viện icons
 import axios from 'axios';
 import { Link } from 'react-router-dom';
@@ -6,7 +7,6 @@ import { Link } from 'react-router-dom';
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -15,7 +15,12 @@ function Login() {
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
   };
-
+  // const userData = JSON.parse(localStorage.getItem('user'))
+  //           console.log(userData)
+  //           if (userData) {
+  //               alert("Bạn đã đăng nhập, hãy đăng xuất nếu muốn đổi tài khoản.")
+  //               window.location.href = '/main';
+  //           }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -138,7 +143,7 @@ function Login() {
               </div>
               <button className="btn">Log In</button>
               <div className="create-account">
-              <p>Create A New Account? <Link to="/register" className="register-link">Sign Up</Link></p>
+              <p>Create A New Account? <Link to="/Register" className="register-link">Sign Up</Link></p>
               {/* Sử dụng Link để chuyển hướng đến trang /register */}
               </div>
             </form>
