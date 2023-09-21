@@ -69,18 +69,15 @@ const RegisterForm = () => {
             </MainUserInfo>
             <GenderTitle>Gender</GenderTitle>
             <GenderCategory>
-            <GenderLabel>
-                <input type="radio" name="gender" id="male" />
-                Male
-            </GenderLabel>
-            <GenderLabel>
-                <input type="radio" name="gender" id="female" />
-                Female
-            </GenderLabel>
-            <GenderLabel>
-                <input type="radio" name="gender" id="other" />
-                Other
-            </GenderLabel>
+                <GenderLabel>
+                    <input type="radio" name="gender" id="male" />
+                    Male
+                </GenderLabel>
+                <GenderLabel>
+                    <input type="radio" name="gender" id="female" />
+                    Female
+                </GenderLabel>
+           
             </GenderCategory>
             <FormSubmitButton>
             <SubmitInput type="submit" value="Register" />

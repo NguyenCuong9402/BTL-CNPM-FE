@@ -1,5 +1,6 @@
 // RegisterForm.js
 import styled from 'styled-components';
+import logoBackground from './backgroundregister.png';
 
 export const Body = styled.div`
   display: flex;
@@ -7,7 +8,7 @@ export const Body = styled.div`
   align-items: center;
   min-height: 100vh;
   width: 100vw; 
-  background: url();
+  background: url(${logoBackground});
   background-size: cover;
 `;
 
