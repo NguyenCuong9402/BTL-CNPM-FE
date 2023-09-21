@@ -1,9 +1,12 @@
 import React, { useState } from 'react';import './loginStyle.css'; // Import file CSS
 import 'boxicons/css/boxicons.min.css'; // Import thư viện icons
+import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -14,14 +17,62 @@ function Login() {
   };
 
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Thực hiện xử lý đăng nhập ở đây, ví dụ: kiểm tra tên người dùng và mật khẩu
-    if (email === 'user' && password === 'password') {
-      alert('Đăng nhập thành công!');
-    } else {
-      alert('Đăng nhập thất bại. Vui lòng thử lại.');
-    }
+
+    // try {
+    //   // Gửi yêu cầu POST đến API đăng nhập
+    //   const response = await axios.post('http://127.0.0.1:5000/api/v1/user/login', {
+    //     email,
+    //     password,
+    //   });
+
+    //   if (response.status === 200) {
+    //     // Đăng nhập thành công, chuyển hướng đến trang main
+    //     window.location.href = '/main'; // Bạn có thể thay đổi đường dẫn tùy ý
+    //   } else {
+    //     setError('Đăng nhập thất bại. Vui lòng thử lại.');
+    //   }
+    // } catch (error) {
+    //   // Xử lý lỗi từ API
+    //   setError('Đăng nhập thất bại. Vui lòng thử lại.');
+    // }
+    axios.post('http://127.0.0.1:5000/api/v1/user/login', {
+      email:email,
+      password:password,
+      admin: true
+  })
+  .then(function(response) {
+      if (response.data.message.status === "success") {
+          localStorage.setItem('accessToken', response.data.data.access_token);
+          localStorage.setItem('refreshToken', response.data.data.refresh_token);
+          localStorage.setItem('user', JSON.stringify(response.data.data.user));
+
+          // axios.get('http://127.0.0.1:5000/api/v1/product', {
+          //     headers: {
+          //             Authorization: `Bearer ${response.data.data.access_token}`
+          //     }
+          // })
+          // .then(function(response) {
+          //     console.log(response);
+          // })
+          // .catch(function(error) {
+          //     console.error(error);
+          // });
+          alert(response.data.message.text);
+          window.location.href = '/main';
+      }
+      if (response.data.message.status === "error") {
+          alert(response.data.message.text);
+          window.location.href = '/login';
+          
+      }
+      
+  })
+  .catch(function(error) {
+      console.error(error);
+      alert('Tài khoản không tồn tại');
+  });
   };
   return (
     <div>
@@ -87,37 +138,11 @@ function Login() {
               </div>
               <button className="btn">Log In</button>
               <div className="create-account">
-                <p>Create A New Account? <a href="#" className="register-link">Sign Up</a></p>
+              <p>Create A New Account? <Link to="/register" className="register-link">Sign Up</Link></p>
+              {/* Sử dụng Link để chuyển hướng đến trang /register */}
               </div>
             </form>
           </div>
-          {/* <div className="form-box register">
-            <form action="">
-              <h2>Sign Up</h2>
-              <div className="input-box">
-                <span className="icon"><i className='bx bxs-user'></i></span>
-                <input type="text" required />
-                <label>Username</label>
-              </div>
-              <div className="input-box">
-                <span className="icon"><i className='bx bxs-envelope'></i></span>
-                <input type="email" required />
-                <label>Email</label>
-              </div>
-              <div className="input-box">
-                <span className="icon"><i className='bx bxs-lock-alt'></i></span>
-                <input type="password" required />
-                <label>Password</label>
-              </div>
-              <div className="remember-password">
-                <label><input type="checkbox" />I agree with this statement</label>
-              </div>
-              <button className="btn">Sign Up</button>
-              <div className="create-account">
-                <p>Already Have An Account? <a href="#" className="login-link">Sign In</a></p>
-              </div>
-            </form>
-          </div> */}
         </div>
       </div>
     </div>
