@@ -144,7 +144,6 @@ function Login() {
               <button className="btn">Log In</button>
               <div className="create-account">
               <p>Create A New Account? <Link to="/Register" className="register-link">Sign Up</Link></p>
-              {/* Sử dụng Link để chuyển hướng đến trang /register */}
               </div>
             </form>
           </div>
