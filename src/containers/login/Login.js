@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import './LoginStyle.css'; // Import file CSS
-
+import './loginStyle.css'; // Import file CSS
 function Login() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -25,32 +24,42 @@ function Login() {
 
   return (
     <div className="login-container">
-      <h2>Đăng nhập</h2>
-      <form onSubmit={handleSubmit}>
-        <div className="input-container">
-          <label htmlFor="username">Tên người dùng</label>
-          <input
-            type="text"
-            id="username"
-            name="username"
-            value={username}
-            onChange={handleUsernameChange}
-            required
-          />
+      <div className="logo-container">
+        <img src="logo512.png" alt="Logo" />
+      </div>
+      <div className="form-container">
+        <h2>Word Scamble, xin chào</h2>
+        <form onSubmit={handleSubmit}>
+          <div className="input-container">
+            <label htmlFor="username">Tên người dùng</label>
+            <input
+              type="text"
+              id="username"
+              name="username"
+              value={username}
+              onChange={handleUsernameChange}
+              placeholder="Your Gmail"
+              required
+            />
+          </div>
+          <div className="input-container">
+            <label htmlFor="password">Mật khẩu</label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              value={password}
+              onChange={handlePasswordChange}
+              placeholder="Your Password"
+              required
+            />
+          </div>
+          <div className="button-container">
+          <button type="submit">Đăng nhập</button>
+          <button type="submit">Đăng ký</button>
         </div>
-        <div className="input-container">
-          <label htmlFor="password">Mật khẩu</label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            value={password}
-            onChange={handlePasswordChange}
-            required
-          />
-        </div>
-        <button type="submit">Đăng nhập</button>
-      </form>
+        </form>
+      </div>
     </div>
   );
 }

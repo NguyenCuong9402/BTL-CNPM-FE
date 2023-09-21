@@ -3,22 +3,40 @@
     background-color: #f8f9fa;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    max-width: 400px;
+    max-width: 1600px;
     margin: 0 auto;
     padding: 20px;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Đảm bảo form đứng giữa màn hình dù nội dung ít */
   }
   
   .login-container h2 {
     color: #333;
     margin-bottom: 20px;
+    background-color: #61dafb; /* Màu nền xanh */
+    padding: 10px; /* Tăng khoảng cách từ nội dung đến viền */
+    border-radius: 4px; /* Bo tròn góc */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); /* Đổ bóng */
   }
   
   .input-container {
     margin-bottom: 15px;
     text-align: left;
   }
+  .logo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
   
+  .logo-container img {
+    max-width: 100px; /* Đặt kích thước tối đa của ảnh là 100px */
+    height: auto; /* Giữ tỷ lệ khung hình */
+  }
   label {
     display: block;
     font-weight: bold;
@@ -43,8 +61,17 @@
     font-size: 18px;
     cursor: pointer;
     transition: background-color 0.2s;
+    transform: translateY(0); /* Ban đầu không có hiệu ứng */
+    transition: background-color 0.2s, transform 0.2s, box-shadow 0.2s;
   }
   
   button:hover {
     background-color: #2188d4;
+    transform: translateY(-3px); /* Dịch nút lên 3px khi hover */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Đổ bóng nhẹ */
   }
+  button:nth-child(1) {
+    margin-right: 50px; /* Thêm khoảng cách bên phải cho nút đầu tiên */
+  }
+
+  
