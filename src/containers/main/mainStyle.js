@@ -238,7 +238,11 @@ export const Label = styled.label`
 // Thêm styled cho ButtonContainer và Button
 export const ButtonContainer = styled.div`
   display: flex;
+  flex-direction: column; 
   gap: 20px;
+  justify-content: center; 
+  align-items: center;
+  height: 80vh;  
 `;
 
 export const Button = styled.button`
