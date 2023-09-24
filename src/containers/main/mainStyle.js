@@ -271,18 +271,64 @@ export const UserName = styled.h4`
   color: #fff; /* Màu chữ cho tên người dùng */
 `;
 
-export const Avatar = styled.img`
-  width: 60px; 
-  height: 60px; 
-  border-radius: 50%; 
+export const AvatarContainer = styled.div`
+  position: relative;
+  display: inline-block;
+`;
+
+export const AvatarImage = styled.img`
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
   margin-right: 10px;
-  transition: filter 0.3s ease; /* Thêm hiệu ứng chuyển đổi trong 0.3 giây */
+  transition: filter 0.3s ease;
+
+  &:hover {
+    filter: brightness(1.2);
+    transform: scale(1.1);
+  }
+`;
+
+export const DropdownMenu = styled.div`
+  position: absolute;
+  width:100px;
+  top: 100%;
+  right: 0;
+  display: none;
+  flex-direction: column;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+
+  ${AvatarContainer}:hover & {
+    display: block;
+  }
+`;
+
+export const DropdownItem = styled.div`
+  padding: 10px;
+  color: #333;
+  text-decoration: none;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #f2f2f2;
+  }
+  img {
+    width: 40px; 
+    height: 40px; 
+    border-radius: 50%; 
+    margin-right: 10px;
+    transition: filter 0.3s ease; /* Thêm hiệu ứng chuyển đổi trong 0.3 giây */
   
   &:hover {
     filter: brightness(1.2); /* Tăng độ sáng lên 20% khi hover */
     transform: scale(1.1);
   }
-`
+  }
+`;
 export const LogoutButton = styled.img`
   width: 60px; 
   height: 60px; 

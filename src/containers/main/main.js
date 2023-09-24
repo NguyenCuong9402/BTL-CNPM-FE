@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import 'boxicons/css/boxicons.min.css'; 
 import {
   UserInfoContainer , UserName, LogoutButton,
-  Background, Avatar,
+  Background, Avatar, AvatarImage, AvatarContainer, DropdownMenu , DropdownItem ,
   Header,
   Navbar,
   Container,
@@ -44,9 +44,17 @@ function Main() {
           <a href="#">Help</a>
         </Navbar>
         <UserInfoContainer>
-          <Avatar src={avatarUrl} alt="Avatar" />
-          <UserName>{name_user}</UserName>
-          <LogoutButton src={logout} alt="Logout" onClick={handleLogout}></LogoutButton>
+        <UserName>{name_user}</UserName>
+
+        <AvatarContainer>
+            <AvatarImage src={avatarUrl} alt="Avatar" />
+            <DropdownMenu>
+              <DropdownItem>Cài Đặt</DropdownItem>
+              <DropdownItem>Tài Khoản</DropdownItem>
+              <DropdownItem onClick={handleLogout}>
+              <img src={logout} alt="Logout" /></DropdownItem>
+            </DropdownMenu>
+          </AvatarContainer>
         </UserInfoContainer>
       </Header>
       <Background></Background>
