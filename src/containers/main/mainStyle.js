@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+import logoBackground from './backgroundmain.png';
+import background1 from './backgroundform.png';
 
 // Styled Components
 export const GlobalStyles = styled.div`
@@ -117,9 +119,9 @@ export const Container = styled.div`
   width: 75%;
   height: 550px;
   margin-top: 20px;
-  background: url(background.png) no-repeat;
-  background-position: center;
+  background: url(${logoBackground});
   background-size: cover;
+  background-position: center;  
   border-radius: 20px;
   overflow: hidden;
 `;
@@ -176,7 +178,6 @@ export const LoginSection = styled.div`
   width: calc(100% - 58%);
   height: 100%;
   color: #fff;
-  backdrop-filter: blur(10px);
 `;
 
 export const FormBox = styled.div`
@@ -232,5 +233,20 @@ export const Input = styled.input`
 export const Label = styled.label`
   position: absolute;
   top: 50%;
-  left: 0;`
+  left: 0`;
 
+// Thêm styled cho ButtonContainer và Button
+export const ButtonContainer = styled.div`
+  display: flex;
+  gap: 20px;
+`;
+
+export const Button = styled.button`
+  background-color: #f72d7a;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+`;

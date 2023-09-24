@@ -5,17 +5,11 @@ import {
   Background,
   Header,
   Navbar,
-  SearchBar,
   Container,
   LoginSection,
   FormBox,
   RegisterForm,
-  ActiveRegisterForm,
-  LoginForm,
-  ActiveLoginForm,
-  InputBox,
-  Input,
-  Label,
+  LoginForm, Button, ButtonContainer,
   Item, SocialIcon, TextItem
 } from './mainStyle';
 import 'boxicons/css/boxicons.min.css'; // Import thư viện icons
@@ -33,26 +27,13 @@ function Main() {
           <a href="#">Help</a>
         </Navbar>
       </Header>
-
       <Background></Background>
       <Container>
-        
         <LoginSection>
-          <FormBox>
-            <RegisterForm>
-              <div className="remember-password">
-                <label><input type="checkbox" />Remember Me</label>
-                <a href="#">Forget Password</a>
-              </div>
-              <button className="btn">Log In</button>
-              <div className="create-account">
-                <p>Create A New Account? <Link to="/Register" className="register-link">Sign Up</Link></p>
-              </div>
-            </RegisterForm>
-            <LoginForm>
-              {/* ... */}
-            </LoginForm>
-          </FormBox>
+            <ButtonContainer>
+            <Button>Play</Button>
+            <Button>History</Button>
+          </ButtonContainer>
         </LoginSection>
         
         <Item>
