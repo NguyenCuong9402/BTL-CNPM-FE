@@ -42,13 +42,14 @@ function Login() {
     //   // Xử lý lỗi từ API
     //   setError('Đăng nhập thất bại. Vui lòng thử lại.');
     // }
+
     axios.post('http://127.0.0.1:5000/api/v1/user/login', {
-      email:email,
-      password:password,
+      email: email,
+      password: password,
       admin: true
-  })
-  .then(function(response) {
-      if (response.data.message.status === "success") {
+    })
+      .then(function (response) {
+        if (response.data.message.status === "success") {
           localStorage.setItem('accessToken', response.data.data.access_token);
           localStorage.setItem('refreshToken', response.data.data.refresh_token);
           localStorage.setItem('user', JSON.stringify(response.data.data.user));
@@ -66,18 +67,18 @@ function Login() {
           // });
           alert(response.data.message.text);
           window.location.href = '/main';
-      }
-      if (response.data.message.status === "error") {
+        }
+        if (response.data.message.status === "error") {
           alert(response.data.message.text);
           window.location.href = '/login';
-          
-      }
-      
-  })
-  .catch(function(error) {
-      console.error(error);
-      alert('Tài khoản không tồn tại');
-  });
+
+        }
+
+      })
+      .catch(function (error) {
+        console.error(error);
+        alert('Tài khoản không tồn tại');
+      });
   };
   return (
     <div>
@@ -143,7 +144,7 @@ function Login() {
               </div>
               <button className="btn">Log In</button>
               <div className="create-account">
-              <p>Create A New Account? <Link to="/Register" className="register-link">Sign Up</Link></p>
+                <p>Create A New Account? <Link to="/Register" className="register-link">Sign Up</Link></p>
               </div>
             </form>
           </div>
