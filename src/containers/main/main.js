@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import 'boxicons/css/boxicons.min.css'; 
 import {
-  GlobalStyles,
-  Background,
+  GlobalStyles, UserInfoContainer , UserName, LogoutButton,
+  Background, 
   Header,
   Navbar,
   Container,
@@ -17,6 +17,17 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 
 function Main() {
+  const [userData, setUserData] = useState(null);
+
+  useEffect(() => {
+    // Lấy userData từ localStorage khi component được tạo
+    const userDataFromLocalStorage = JSON.parse(localStorage.getItem('user'));
+    setUserData(userDataFromLocalStorage);
+  }, []); // Sử dụng [] để đảm bảo useEffect chỉ chạy một lần khi component được tạo
+
+  const handleLogout = () => {
+    // Xử lý đăng xuất ở đây
+  };
   return (
     <div>
       <Header>
@@ -26,6 +37,10 @@ function Main() {
           <a href="#">Contact</a>
           <a href="#">Help</a>
         </Navbar>
+        <UserInfoContainer>
+          <UserName>{userData.name_user}</UserName>
+          <LogoutButton onClick={handleLogout}>Logout</LogoutButton>
+        </UserInfoContainer>
       </Header>
       <Background></Background>
       <Container>

@@ -254,3 +254,22 @@ export const Button = styled.button`
   font-size: 16px;
   cursor: pointer;
 `;
+export const UserInfoContainer = styled.div`
+  display: flex;
+  align-items: center;
+  margin-right: 20px; /* Khoảng cách giữa tên người dùng và nút đăng xuất */
+`;
+
+export const UserName = styled.h4`
+  margin-right: 10px;
+  color: #fff; /* Màu chữ cho tên người dùng */
+`;
+
+export const LogoutButton = styled.button`
+  background-color: transparent;
+  color: #fff; /* Màu chữ cho nút đăng xuất */
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  outline: none;
+`;
