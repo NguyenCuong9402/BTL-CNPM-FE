@@ -253,6 +253,12 @@ export const Button = styled.button`
   padding: 10px 20px;
   font-size: 16px;
   cursor: pointer;
+  
+  &:hover {
+    filter: brightness(1.2); /* Tăng độ sáng lên 20% khi hover */
+    transform: scale(1.1);
+  }
+
 `;
 export const UserInfoContainer = styled.div`
   display: flex;
@@ -278,5 +284,11 @@ export const Avatar = styled.img`
   height: 60px; 
   border-radius: 50%; 
   margin-right: 10px;
-`;
+  transition: filter 0.3s ease; /* Thêm hiệu ứng chuyển đổi trong 0.3 giây */
+  
+  &:hover {
+    filter: brightness(1.2); /* Tăng độ sáng lên 20% khi hover */
+    transform: scale(1.1);
+  }
+`
 

@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import {
+import {LoginLink,
     Body, Container,FormTitle,MainUserInfo, UserInput,UserInputBox, UserInputLabel, GenderLabel, GenderCategory, GenderTitle, FormSubmitButton, SubmitInput
   } from './registerStyle'
 import 'react-datepicker/dist/react-datepicker.css';
+import { hover } from '@testing-library/user-event/dist/hover';
 
 
   
@@ -162,9 +163,11 @@ const RegisterForm = () => {
             <FormSubmitButton>
             <SubmitInput type="submit" value="Register" onClick={handleRegister} />
             </FormSubmitButton>
-            <div style={{ textAlign: 'right' }}>
+            <div style={{ textAlign: 'left' }}>
                 <p style={{ color: 'white' }}>
-                    Already have an account? <Link to="/login" style={{color:'red'}} >Login</Link>
+                    Already have an account? <Link to="/login" style={{color: 'red', textDecoration: 'none',
+                        transition: 'color 0.3s'}} onMouseOver={(e) => {e.target.style.color = 'red'; e.target.style.fontSize = '18px';}}
+                        onMouseOut={(e) => {e.target.style.color = 'darkred';e.target.style.fontSize = '16px';}} >Login</Link>
                 </p>
             </div>
         </Container>

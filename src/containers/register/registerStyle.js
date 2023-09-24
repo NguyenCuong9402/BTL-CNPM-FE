@@ -1,6 +1,7 @@
 // RegisterForm.js
 import styled from 'styled-components';
 import logoBackground from './backgroundregister.png';
+import { Link } from 'react-router-dom';
 
 export const Body = styled.div`
   display: flex;
@@ -85,20 +86,26 @@ export const FormSubmitButton = styled.div`
 
 export const SubmitInput = styled.input`
   display: block;
-  width: 100%;
+  width: 40%;
   margin-top: 10px;
   font-size: 20px;
   padding: 10px;
   border: none;
+  text-align: center;
   border-radius: 3px;
   color: rgb(209, 209, 209);
   background: rgba(63, 114, 76, 0.7);
   cursor: pointer;
+  &:hover {
+    filter: brightness(1.2); /* Tăng độ sáng lên 20% khi hover */
+    transform: scale(1.1);
+  }
 `;
 
 export const SubmitInputHover = styled(SubmitInput)`
   &:hover {
     background: rgba(56, 204, 93, 0.7);
     color: rgb(255, 255, 255);
+    
   }
 `;
