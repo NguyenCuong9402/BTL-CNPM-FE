@@ -1,15 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import 'boxicons/css/boxicons.min.css'; 
 import {
-  GlobalStyles, UserInfoContainer , UserName, LogoutButton,
-  Background, 
+  UserInfoContainer , UserName, LogoutButton,
+  Background, Avatar,
   Header,
   Navbar,
   Container,
   LoginSection,
-  FormBox,
-  RegisterForm,
-  LoginForm, Button, ButtonContainer,
+  Button, ButtonContainer,
   Item, SocialIcon, TextItem
 } from './mainStyle';
 import 'boxicons/css/boxicons.min.css'; // Import thư viện icons
@@ -18,13 +16,15 @@ import { Link } from 'react-router-dom';
 
 function Main() {
   const [name_user, setUserData] = useState(null);
+  const [user_id, setUserDataId] = useState(null);
 
   useEffect(() => {
     // Lấy userData từ localStorage khi component được tạo
     const userDataFromLocalStorage = JSON.parse(localStorage.getItem('user'));
     setUserData(userDataFromLocalStorage.name_user);
+    setUserDataId(userDataFromLocalStorage.id)
   }, []); // Sử dụng [] để đảm bảo useEffect chỉ chạy một lần khi component được tạo
-
+  const avatarUrl = `http://127.0.0.1:5000/api/v1/picture/avatar/${user_id}`;
   const handleLogout = () => {
     localStorage.removeItem('user')
     localStorage.removeItem('accessToken')
@@ -42,6 +42,7 @@ function Main() {
           <a href="#">Help</a>
         </Navbar>
         <UserInfoContainer>
+          <Avatar src={avatarUrl} alt="Avatar" />
           <UserName>{name_user}</UserName>
           <LogoutButton onClick={handleLogout}>Logout</LogoutButton>
         </UserInfoContainer>

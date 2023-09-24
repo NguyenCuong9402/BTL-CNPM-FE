@@ -273,3 +273,9 @@ export const LogoutButton = styled.button`
   font-size: 16px;
   outline: none;
 `;
+export const Avatar = styled.img`
+  width: 60px; 
+  height: 60px; 
+  border-radius: 50%; 
+  margin-right: 10px;
+`;
