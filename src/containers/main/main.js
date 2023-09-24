@@ -46,7 +46,7 @@ function Main() {
         <UserInfoContainer>
           <Avatar src={avatarUrl} alt="Avatar" />
           <UserName>{name_user}</UserName>
-          <Avatar src={logout} alt="Logout" onClick={handleLogout}></Avatar>
+          <LogoutButton src={logout} alt="Logout" onClick={handleLogout}></LogoutButton>
         </UserInfoContainer>
       </Header>
       <Background></Background>

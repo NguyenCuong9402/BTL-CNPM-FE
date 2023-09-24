@@ -271,15 +271,19 @@ export const UserName = styled.h4`
   color: #fff; /* Màu chữ cho tên người dùng */
 `;
 
-export const LogoutButton = styled.button`
-  background-color: transparent;
-  color: #fff; /* Màu chữ cho nút đăng xuất */
-  border: none;
-  cursor: pointer;
-  font-size: 16px;
-  outline: none;
-`;
 export const Avatar = styled.img`
+  width: 60px; 
+  height: 60px; 
+  border-radius: 50%; 
+  margin-right: 10px;
+  transition: filter 0.3s ease; /* Thêm hiệu ứng chuyển đổi trong 0.3 giây */
+  
+  &:hover {
+    filter: brightness(1.2); /* Tăng độ sáng lên 20% khi hover */
+    transform: scale(1.1);
+  }
+`
+export const LogoutButton = styled.img`
   width: 60px; 
   height: 60px; 
   border-radius: 50%; 
