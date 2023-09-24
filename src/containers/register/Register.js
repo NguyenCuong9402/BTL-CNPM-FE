@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import DatePicker from 'react-datepicker';
 import { Link } from 'react-router-dom';
 import {
     Body, Container,FormTitle,MainUserInfo, UserInput,UserInputBox, UserInputLabel, GenderLabel, GenderCategory, GenderTitle, FormSubmitButton, SubmitInput
@@ -10,16 +9,58 @@ import 'react-datepicker/dist/react-datepicker.css';
 
   
 const RegisterForm = () => {
-    const [birthdate, setBirthdate] = useState(null);
-
-    const handleBirthdateChange = (date) => {
-        setBirthdate(date);
+    const [formData, setFormData] = useState({
+        fullName: '',
+        email: '',
+        phoneNumber: '',
+        address: '',
+        password: '',
+        confirmPassword: '',
+        gender: 'male', 
+    });
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+        setFormData({
+            ...formData,
+            [name]: value,
+        });
     };
+    const handleRegister = () => {
+        const requestData = {
+            fullName: formData.fullName,
+            email: formData.email,
+            phoneNumber: formData.phoneNumber,
+            address: formData.address,
+            password: formData.password,
+            confirmPassword: formData.confirmPassword,
+            gender: formData.gender,
+        };
+
+        // Gọi API /register và gửi dữ liệu requestData lên server
+        axios.post('http://127.0.0.1:5000/api/v1/user/register', formData)
+      .then(function (response) {
+        if (response.data.message.status === "success") {
+          alert(response.data.message.text);
+          window.location.href = '/login';
+        }
+        if (response.data.message.status === "error") {
+          alert(response.data.message.text);
+          window.location.href = '/register';
+
+        }
+
+      })
+      .catch(function (error) {
+        console.error(error);
+        alert('Error');
+      });
+  };
+
 
     return (
         <Body>
         <Container>
-            <FormTitle>Register Account</FormTitle>
+            <FormTitle >Register Account</FormTitle>
             <MainUserInfo>
             <UserInputBox>
                 <UserInputLabel htmlFor="fullName">Full Name</UserInputLabel>
@@ -29,18 +70,8 @@ const RegisterForm = () => {
                 name="fullName"
                 placeholder="Enter Full Name"
                 required
-                />
-            </UserInputBox>
-            
-            <UserInputBox>
-                <UserInputLabel htmlFor="Email">Email</UserInputLabel>
-                <UserInput
-                type="email"
-                id="Email"
-                name="Email"
-                placeholder="Enter Email"
-                required
-
+                value={formData.fullName}
+                onChange={handleInputChange}
                 />
             </UserInputBox>
             <UserInputBox>
@@ -51,43 +82,39 @@ const RegisterForm = () => {
                 name="phoneNumber"
                 placeholder="Enter Phone Number"
                 required
+                value={formData.phoneNumber}
+                onChange={handleInputChange}
 
                 />
             </UserInputBox>
+            <UserInputBox>
+                <UserInputLabel htmlFor="email">Email</UserInputLabel>
+                <UserInput
+                type="email"
+                id="email"
+                name="email"
+                placeholder="Enter Email"
+                required
+                value={formData.email}
+                onChange={handleInputChange}
+
+                />
+            </UserInputBox>
+           
             <UserInputBox>
                 <UserInputLabel htmlFor="address">Address</UserInputLabel>
                 <UserInput
                 type="text"
                 id="address"
                 name="address"
-                placeholder="Enter User Name"
+                placeholder="Enter Address"
                 required
+                value={formData.address}
+                onChange={handleInputChange}
 
                 />
             </UserInputBox>
-            <UserInputBox>
-                <UserInputLabel htmlFor="userName">User Name</UserInputLabel>
-                <UserInput
-                type="text"
-                id="userName"
-                name="userName"
-                placeholder="Enter User Name"
-                required
-
-                />
-            </UserInputBox>
-            <UserInputBox>
-                    <UserInputLabel htmlFor="year">BirthDay</UserInputLabel>
-                    <DatePicker // Thay thế <DatePicker /> bằng component StyledComponents
-                        id="year"
-                        selected={birthdate}
-                        onChange={handleBirthdateChange}
-                        placeholderText="Select Year Of Birth"
-                        required
-                        showYearDropdown
-                        scrollableYearDropdown
-                    />
-            </UserInputBox>
+            
             <UserInputBox>
                 <UserInputLabel htmlFor="password">Enter Password</UserInputLabel>
                 <UserInput
@@ -96,16 +123,20 @@ const RegisterForm = () => {
                 name="password"
                 placeholder="Enter Password"
                 required
+                value={formData.password}
+                onChange={handleInputChange}
                 />
             </UserInputBox>
             <UserInputBox>
-                <UserInputLabel htmlFor="repassword">Confirm Password</UserInputLabel>
+                <UserInputLabel htmlFor="confirmPassword">Confirm Password</UserInputLabel>
                 <UserInput
                 type="text"
-                id="repassword"
-                name="repassword"
+                id="confirmPassword"
+                name="confirmPassword"
                 placeholder="Enter Confirm Password"
                 required
+                value={formData.confirmPassword}
+                onChange={handleInputChange}
                 />
             </UserInputBox>
             {/* Thêm các UserInputBox khác tại đây */}
@@ -113,17 +144,23 @@ const RegisterForm = () => {
             <GenderTitle>Gender</GenderTitle>
             <GenderCategory>
                 <GenderLabel>
-                    <input type="radio" name="gender" id="male" required />
+                    <input type="radio" name="gender" id="male" required 
+                    value="male" 
+                    checked={formData.gender === 'male'}
+                    onChange={handleInputChange}/>
                     Male
                 </GenderLabel>
                 <GenderLabel>
-                    <input type="radio" name="gender" id="female" required />
+                    <input type="radio" name="gender" id="female" required 
+                    value="female" 
+                    checked={formData.gender === 'female'}
+                    onChange={handleInputChange}/>
                     Female
                 </GenderLabel>
            
             </GenderCategory>
             <FormSubmitButton>
-            <SubmitInput type="submit" value="Register" />
+            <SubmitInput type="submit" value="Register" onClick={handleRegister} />
             </FormSubmitButton>
             <div style={{ textAlign: 'right' }}>
                 <p style={{ color: 'white' }}>
