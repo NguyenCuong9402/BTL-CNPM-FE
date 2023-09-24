@@ -13,6 +13,8 @@ import {
 import 'boxicons/css/boxicons.min.css'; // Import thư viện icons
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import logout from './logout.png';
+
 
 function Main() {
   const [name_user, setUserData] = useState(null);
@@ -44,7 +46,7 @@ function Main() {
         <UserInfoContainer>
           <Avatar src={avatarUrl} alt="Avatar" />
           <UserName>{name_user}</UserName>
-          <LogoutButton onClick={handleLogout}>Logout</LogoutButton>
+          <Avatar src={logout} alt="Logout" onClick={handleLogout}></Avatar>
         </UserInfoContainer>
       </Header>
       <Background></Background>

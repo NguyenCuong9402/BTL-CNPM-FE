@@ -279,3 +279,4 @@ export const Avatar = styled.img`
   border-radius: 50%; 
   margin-right: 10px;
 `;
+

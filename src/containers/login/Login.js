@@ -53,19 +53,6 @@ function Login() {
           localStorage.setItem('accessToken', response.data.data.access_token);
           localStorage.setItem('refreshToken', response.data.data.refresh_token);
           localStorage.setItem('user', JSON.stringify(response.data.data.user));
-
-          // axios.get('http://127.0.0.1:5000/api/v1/product', {
-          //     headers: {
-          //             Authorization: `Bearer ${response.data.data.access_token}`
-          //     }
-          // })
-          // .then(function(response) {
-          //     console.log(response);
-          // })
-          // .catch(function(error) {
-          //     console.error(error);
-          // });
-          alert(response.data.message.text);
           window.location.href = '/main';
         }
         if (response.data.message.status === "error") {
