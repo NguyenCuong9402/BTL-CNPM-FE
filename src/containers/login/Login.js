@@ -46,7 +46,7 @@ function Login() {
     axios.post('http://127.0.0.1:5000/api/v1/user/login', {
       email: email,
       password: password,
-      admin: true
+      admin: false
     })
       .then(function (response) {
         if (response.data.message.status === "success") {

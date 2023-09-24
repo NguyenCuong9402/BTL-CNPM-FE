@@ -17,16 +17,20 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 
 function Main() {
-  const [userData, setUserData] = useState(null);
+  const [name_user, setUserData] = useState(null);
 
   useEffect(() => {
     // Lấy userData từ localStorage khi component được tạo
     const userDataFromLocalStorage = JSON.parse(localStorage.getItem('user'));
-    setUserData(userDataFromLocalStorage);
+    setUserData(userDataFromLocalStorage.name_user);
   }, []); // Sử dụng [] để đảm bảo useEffect chỉ chạy một lần khi component được tạo
 
   const handleLogout = () => {
-    // Xử lý đăng xuất ở đây
+    localStorage.removeItem('user')
+    localStorage.removeItem('accessToken')
+    localStorage.removeItem('refreshToken')
+
+    window.location.href = '/login'
   };
   return (
     <div>
@@ -38,7 +42,7 @@ function Main() {
           <a href="#">Help</a>
         </Navbar>
         <UserInfoContainer>
-          <UserName>{userData.name_user}</UserName>
+          <UserName>{name_user}</UserName>
           <LogoutButton onClick={handleLogout}>Logout</LogoutButton>
         </UserInfoContainer>
       </Header>
