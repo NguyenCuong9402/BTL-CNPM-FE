@@ -6,7 +6,7 @@ import {
 } from './mainStyle';
 import 'boxicons/css/boxicons.min.css';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import logout from './logout.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlay } from '@fortawesome/free-solid-svg-icons';
@@ -16,12 +16,17 @@ import WordSearch from './wordsearch.png'
 function Main() {
   const [name_user, setUserData] = useState(null);
   const [user_id, setUserDataId] = useState(null);
+  const history = useHistory();
 
   useEffect(() => {
     // Lấy userData từ localStorage khi component được tạo
     const userDataFromLocalStorage = JSON.parse(localStorage.getItem('user'));
-    setUserData(userDataFromLocalStorage.name_user);
-    setUserDataId(userDataFromLocalStorage.id)
+    if (userDataFromLocalStorage) {
+      setUserData(userDataFromLocalStorage.name_user);
+      setUserDataId(userDataFromLocalStorage.id);
+    } else {
+      history.push('/login'); // Điều hướng đến màn hình đăng nhập
+    }
   }, []); // Sử dụng [] để đảm bảo useEffect chỉ chạy một lần khi component được tạo
   const avatarUrl = `http://127.0.0.1:5000/api/v1/picture/avatar/${user_id}`;
   const handleLogout = () => {

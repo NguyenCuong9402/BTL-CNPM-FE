@@ -57,10 +57,7 @@ function Login() {
     <div>
       <header className="header">
         <nav className="navbar">
-          <a href="#">Home</a>
-          <a href="#">About</a>
-          <a href="#">Contact</a>
-          <a href="#">Help</a>
+        <a href="/main"><i className='bx bxl-xing'></i>Word Scamble</a>
         </nav>
       </header>
 
