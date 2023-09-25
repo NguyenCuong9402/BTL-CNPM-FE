@@ -73,7 +73,6 @@ function Login() {
       <header className="header">
         <nav className="navbar">
           <a href="#">Home</a>
-          <a href="#">Portfolio</a>
           <a href="#">About</a>
           <a href="#">Contact</a>
           <a href="#">Help</a>
@@ -94,10 +93,10 @@ function Login() {
             <p>Tận hưởng niềm vui cùng chúng tôi</p>
             <div className="social-icon">
               <a href="https://www.facebook.com/cuong.9402/"><i className='bx bxl-facebook'></i></a>
-              <a href="#"><i className='bx bxl-twitter'></i></a>
+              <a href="https://www.facebook.com/cuong.9402/"><i className='bx bxl-twitter'></i></a>
               <a href="https://www.youtube.com/watch?v=fLRf8JqSX8A"><i className='bx bxl-youtube'></i></a>
               <a href="https://www.instagram.com/cuong.9402/"><i className='bx bxl-instagram'></i></a>
-              <a href="#"><i className='bx bxl-linkedin'></i></a>
+              <a href="https://www.facebook.com/cuong.9402/"><i className='bx bxl-linkedin'></i></a>
             </div>
           </div>
         </div>
