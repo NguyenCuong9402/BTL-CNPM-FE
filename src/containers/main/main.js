@@ -67,10 +67,10 @@ function Main() {
             <p>Tận hưởng niềm vui cùng chúng tôi</p>
             <SocialIcon>
               <a href="https://www.facebook.com/cuong.9402/"><i className='bx bxl-facebook'></i></a>
-              <a href="#"><i className='bx bxl-twitter'></i></a>
+              <a href="https://www.facebook.com/cuong.9402/"><i className='bx bxl-twitter'></i></a>
               <a href="https://www.youtube.com/watch?v=fLRf8JqSX8A"><i className='bx bxl-youtube'></i></a>
               <a href="https://www.instagram.com/cuong.9402/"><i className='bx bxl-instagram'></i></a>
-              <a href="#"><i className='bx bxl-linkedin'></i></a>
+              <a href="https://www.facebook.com/cuong.9402/"><i className='bx bxl-linkedin'></i></a>
             </SocialIcon>
           </TextItem>
         </Item>
