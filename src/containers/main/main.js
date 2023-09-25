@@ -17,7 +17,6 @@ function Main() {
   const [name_user, setUserData] = useState(null);
   const [user_id, setUserDataId] = useState(null);
   const history = useHistory();
-  const [cauDo, setData] = useState([]);
   useEffect(() => {
     // Lấy userData từ localStorage khi component được tạo
     const userDataFromLocalStorage = JSON.parse(localStorage.getItem('user'));
@@ -36,6 +35,7 @@ function Main() {
 
     window.location.href = '/login'
   };
+  const [TurnAndCauDo, setData] = useState({});
 
   const handlePlayClick = async () => {
     try {
@@ -49,7 +49,7 @@ function Main() {
       const respon = response.data.data;
       setData(respon);
 
-      history.push(`/playgame`, { cauDo });
+      history.push(`/playgame`, {TurnAndCauDo});
     } catch (error) {
       console.error('Error:', error);
     }
