@@ -35,10 +35,8 @@ function Main() {
     <div>
       <Header>
         <Navbar>
-          <a href="#">Home</a>
-          <a href="#">About</a>
-          <a href="#">Contact</a>
-          <a href="#">Help</a>
+          <a href="#"><i className='bx bxl-xing'></i>Word Scamble</a>
+          
         </Navbar>
         <UserInfoContainer>
         <UserName>{name_user}</UserName>
