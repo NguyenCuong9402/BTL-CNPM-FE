@@ -17,7 +17,7 @@ function Main() {
   const [name_user, setUserData] = useState(null);
   const [user_id, setUserDataId] = useState(null);
   const history = useHistory();
-
+  const [cauDo, setData] = useState([]);
   useEffect(() => {
     // Lấy userData từ localStorage khi component được tạo
     const userDataFromLocalStorage = JSON.parse(localStorage.getItem('user'));
@@ -35,6 +35,34 @@ function Main() {
     localStorage.removeItem('refreshToken')
 
     window.location.href = '/login'
+  };
+
+  const handlePlayClick = async () => {
+    try {
+      const access_token = JSON.parse(localStorage.getItem('accessToken'));
+      // Thực hiện yêu cầu POST đến API để lấy danh sách 5 id
+      const response = await axios.post(
+        'http://127.0.0.1:5000/api/v1/luotchoi',
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${access_token}`,
+          },
+        }
+      );
+
+      // Lấy danh sách 5 id từ response
+      const respon = response.data.data.idList;
+
+      // Lưu danh sách id vào state
+      setData(respon);
+
+      // Chuyển hướng đến trang /playgame và truyền danh sách id thông qua state hoặc query param
+      history.push(`/playgame`, { cauDo });
+    } catch (error) {
+      // Xử lý lỗi ở đây
+      console.error('Error:', error);
+    }
   };
   return (
     <div>
@@ -61,7 +89,7 @@ function Main() {
         <LoginSection>
             <ButtonContainer>
             <FlashingImage src={arrowIcon} alt="Mũi tên" width="50" />
-            <Button>Play <FontAwesomeIcon icon={faPlay} className="play-icon" /></Button>
+            <Button onClick={handlePlayClick}>Play <FontAwesomeIcon icon={faPlay} className="play-icon" /></Button>
             <Button>History<FontAwesomeIcon icon={faPlay} className="play-icon" /></Button>
           </ButtonContainer>
         </LoginSection>
