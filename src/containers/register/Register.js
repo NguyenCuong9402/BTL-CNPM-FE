@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import {LoginLink,
     Body, Container,FormTitle,MainUserInfo, UserInput,UserInputBox, UserInputLabel, GenderLabel, GenderCategory, GenderTitle, FormSubmitButton, SubmitInput
   } from './registerStyle'
@@ -10,6 +10,8 @@ import { hover } from '@testing-library/user-event/dist/hover';
 
   
 const RegisterForm = () => {
+    const history = useHistory();
+
     const [formData, setFormData] = useState({
         fullName: '',
         email: '',
@@ -26,6 +28,13 @@ const RegisterForm = () => {
             [name]: value,
         });
     };
+    useEffect(() => {
+        // Kiểm tra xem trong localStorage có user không
+        const userData = JSON.parse(localStorage.getItem('user'));
+        if (userData) {
+          history.push('/main');
+        }
+      }, [history]);
     const handleRegister = () => {
         const requestData = {
             fullName: formData.fullName,

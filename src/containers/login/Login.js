@@ -1,12 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './loginStyle.css'; // Import file CSS
 import 'boxicons/css/boxicons.min.css'; // Import thư viện icons
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link, useHistory  } from 'react-router-dom';
 
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const history = useHistory();
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -15,12 +16,14 @@ function Login() {
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
   };
-  // const userData = JSON.parse(localStorage.getItem('user'))
-  //           console.log(userData)
-  //           if (userData) {
-  //               alert("Bạn đã đăng nhập, hãy đăng xuất nếu muốn đổi tài khoản.")
-  //               window.location.href = '/main';
-  //           }
+  useEffect(() => {
+    // Kiểm tra xem trong localStorage có user không
+    const userData = JSON.parse(localStorage.getItem('user'));
+    if (userData) {
+      history.push('/main');
+    }
+  }, [history]);
+ 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
