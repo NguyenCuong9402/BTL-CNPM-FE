@@ -11,6 +11,7 @@ import logout from './logout.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlay } from '@fortawesome/free-solid-svg-icons';
 import arrowIcon from './arrow.png'; 
+import WordSearch from './wordsearch.png'
 
 function Main() {
   const [name_user, setUserData] = useState(null);
@@ -65,8 +66,7 @@ function Main() {
         <Item>
           <h2 className="logo"><i className='bx bxl-xing'></i>Word Scamble</h2>
           <TextItem>
-            <h2>Welcome! <br /><span>To Our Game</span></h2>
-            <p>Tận hưởng niềm vui cùng chúng tôi</p>
+            <img width="350" height="250" src={WordSearch} alt="Word Search" />
             <SocialIcon>
               <a href="https://www.facebook.com/cuong.9402/"><i className='bx bxl-facebook'></i></a>
               <a href="https://www.facebook.com/cuong.9402/"><i className='bx bxl-twitter'></i></a>

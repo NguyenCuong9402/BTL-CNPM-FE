@@ -3,6 +3,8 @@ import './loginStyle.css'; // Import file CSS
 import 'boxicons/css/boxicons.min.css'; // Import thư viện icons
 import axios from 'axios';
 import { Link, useHistory  } from 'react-router-dom';
+import WordSearch from './wordsearch.png'
+
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -68,6 +70,7 @@ function Login() {
         <div className="item">
           <h2 className="logo"><i className='bx bxl-xing'></i>Word Scamble</h2>
           <div className="text-item">
+            <img  width="500" height="250" src={WordSearch} alt="Word Search" />
             <h2>Welcome! <br /><span>To Our Game</span></h2>
             <p>Tận hưởng niềm vui cùng chúng tôi</p>
             <div className="social-icon">
