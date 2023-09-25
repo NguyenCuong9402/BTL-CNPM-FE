@@ -13,7 +13,7 @@ import { faPlay } from '@fortawesome/free-solid-svg-icons';
 import arrowIcon from './arrow.png'; 
 import WordSearch from './wordsearch.png'
 
-function Main() {
+function PlayGame() {
   const [name_user, setUserData] = useState(null);
   const [user_id, setUserDataId] = useState(null);
   const history = useHistory();
@@ -83,4 +83,4 @@ function Main() {
   );
 }
 
-export default Main;
+export default PlayGame;
