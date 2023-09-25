@@ -35,8 +35,7 @@ function Main() {
     <div>
       <Header>
         <Navbar>
-          <a href="#"><i className='bx bxl-xing'></i>Word Scamble</a>
-          
+          <a href="/main"><i className='bx bxl-xing'></i>Word Scamble</a>
         </Navbar>
         <UserInfoContainer>
         <UserName>{name_user}</UserName>
