@@ -39,10 +39,10 @@ function Main() {
 
   const handlePlayClick = async () => {
     try {
-      const access_token = JSON.parse(localStorage.getItem('accessToken'));
+      const access_token = localStorage.getItem('accessToken');
       // Thực hiện yêu cầu POST đến API để lấy danh sách 5 id
       const response = await axios.post(
-        'http://127.0.0.1:5000/api/v1/luotchoi',
+        'http://127.0.0.1:5000/api/v1/luot_choi',
         {},
         {
           headers: {
