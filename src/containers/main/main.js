@@ -50,11 +50,7 @@ function Main() {
           },
         }
       );
-
-      // Lấy danh sách 5 id từ response
       const respon = response.data.data;
-
-      // Lưu danh sách id vào state
       setData(respon);
 
       // Chuyển hướng đến trang /playgame và truyền danh sách id thông qua state hoặc query param
