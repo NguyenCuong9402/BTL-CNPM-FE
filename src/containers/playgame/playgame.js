@@ -134,12 +134,7 @@ function PlayGame() {
             ))}
           </div>
 
-          <div
-            style={{
-              display: "flex",
-              gap: 10,
-            }}
-          >
+          <div style={{display: "flex", gap: 10,}}>
             {currentQuestion.de_bai.map((_, index) => {
               const currentText = currentAnswer[index];
 
