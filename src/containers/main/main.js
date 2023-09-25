@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import 'boxicons/css/boxicons.min.css'; 
 import {
-  UserInfoContainer , UserName, Background, AvatarImage, AvatarContainer, DropdownMenu , DropdownItem ,
-  Header, Navbar, Container, LoginSection, Button, ButtonContainer, Item, SocialIcon, TextItem, ArrowIcon
+  UserInfoContainer , UserName, Background, AvatarImage, AvatarContainer, DropdownMenu , DropdownItem , FlashingImage,
+  Header, Navbar, Container, LoginSection, Button, ButtonContainer, Item, SocialIcon, TextItem
 } from './mainStyle';
 import 'boxicons/css/boxicons.min.css';
 import axios from 'axios';
@@ -57,7 +57,7 @@ function Main() {
       <Container>
         <LoginSection>
             <ButtonContainer>
-            <img src={arrowIcon} alt="Mũi tên"  width="50" />
+            <FlashingImage src={arrowIcon} alt="Mũi tên" width="50" />
             <Button>Play <FontAwesomeIcon icon={faPlay} className="play-icon" /></Button>
             <Button>History<FontAwesomeIcon icon={faPlay} className="play-icon" /></Button>
           </ButtonContainer>

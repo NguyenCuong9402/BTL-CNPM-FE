@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import logoBackground from './backgroundmain1.png';
 import background1 from './backgroundform.png';
 
@@ -242,7 +242,7 @@ export const ButtonContainer = styled.div`
   gap: 20px;
   justify-content: center; 
   align-items: center;
-  height: 60vh;  
+  height: 50vh;  
 `;
 
 export const Button = styled.button`
@@ -274,20 +274,6 @@ export const Button = styled.button`
   &:hover {
     filter: brightness(1.2);
     transform: scale(1.1);
-  }
-`;
-export const ArrowIcon = styled.img`
-  position: absolute; /* Để làm cho mũi tên có vị trí tương đối */
-  top: 50%; /* Đưa mũi tên lên giữa theo chiều dọc */
-  right: -30px; /* Điều chỉnh khoảng cách của mũi tên từ nút */
-  transform: translateY(-50%); /* Đưa mũi tên lên giữa theo chiều dọc */
-  width: 1000px; 
-  height: auto; 
-  opacity: 0; /* Ẩn mũi tên ban đầu */
-  transition: opacity 0.3s; /* Hiệu ứng nhấp nháy */
-
-  ${Button}:hover & {
-    opacity: 1; /* Hiển thị mũi tên khi hover */
   }
 `;
 
@@ -372,4 +358,21 @@ export const LogoutButton = styled.img`
     transform: scale(1.1);
   }
 `
+
+export const flashAnimation = keyframes`
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+`;
+
+// Sử dụng styled-components để áp dụng animation
+export const FlashingImage = styled.img`
+  animation: ${flashAnimation} 1s infinite; // Sử dụng animation với vô hạn lặp lại
+`;
 
