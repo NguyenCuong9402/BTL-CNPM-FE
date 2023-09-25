@@ -24,25 +24,6 @@ function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    // try {
-    //   // Gửi yêu cầu POST đến API đăng nhập
-    //   const response = await axios.post('http://127.0.0.1:5000/api/v1/user/login', {
-    //     email,
-    //     password,
-    //   });
-
-    //   if (response.status === 200) {
-    //     // Đăng nhập thành công, chuyển hướng đến trang main
-    //     window.location.href = '/main'; // Bạn có thể thay đổi đường dẫn tùy ý
-    //   } else {
-    //     setError('Đăng nhập thất bại. Vui lòng thử lại.');
-    //   }
-    // } catch (error) {
-    //   // Xử lý lỗi từ API
-    //   setError('Đăng nhập thất bại. Vui lòng thử lại.');
-    // }
-
     axios.post('http://127.0.0.1:5000/api/v1/user/login', {
       email: email,
       password: password,
@@ -69,7 +50,6 @@ function Login() {
   };
   return (
     <div>
-      {/* NAVBAR CREATION */}
       <header className="header">
         <nav className="navbar">
           <a href="#">Home</a>

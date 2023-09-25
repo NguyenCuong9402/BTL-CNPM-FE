@@ -1,0 +1,433 @@
+import React from 'react';
+import styled from 'styled-components';
+import logoBackground from './background.png';
+
+export const GlobalStyles = styled.div`
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;1,500&display=swap');
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+  }
+
+  body {
+    height: 100vh;
+    width: 100%;
+    background: #000;
+  }
+`;
+
+export const Background = styled.div`
+  background: url(${logoBackground});
+  background-position: center;
+  background-size: cover;
+  height: 100vh;
+  width: 100%;
+  filter: blur(10px);
+`;
+
+export const Header = styled.header`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 25px 13%;
+  background: transparent;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 100;
+`;
+
+export const Navbar = styled.nav`
+  a {
+    position: relative;
+    font-size: 16px;
+    color: #fff;
+    margin-right: 30px;
+    text-decoration: none;
+
+    &::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: #fff;
+      bottom: -5px;
+      border-radius: 5px;
+      transform: translateY(10px);
+      opacity: 0;
+      transition: .5s ease;
+    }
+
+    &:hover::after {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+`;
+
+export const SearchBar = styled.form`
+  width: 250px;
+  height: 45px;
+  background-color: transparent;
+  border: 2px solid #fff;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+`;
+
+export const SearchInput = styled.input`
+  width: 100%;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  color: #fff;
+  font-size: 16px;
+  padding-left: 10px;
+
+  &::placeholder {
+    color: #fff;
+  }
+`;
+
+export const SearchButton = styled.button`
+  width: 40px;
+  height: 100%;
+  background: transparent;
+  outline: none;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+
+  i {
+    font-size: 22px;
+  }
+`;
+
+
+export const Container = styled.div`
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 75%;
+  height: 550px;
+  margin-top: 20px;
+  background: url(${logoBackground});
+  background-size: cover;
+  background-position: center;  
+  border-radius: 20px;
+  overflow: hidden;
+`;
+
+export const Item = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 58%;
+  height: 100%;
+  color: #fff;
+  background: transparent;
+  padding: 80px;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+`;
+
+export const TextItem = styled.div`
+  h2 {
+    font-size: 40px;
+    line-height: 1;
+  }
+
+  p {
+    font-size: 16px;
+    margin: 20px 0;
+  }
+`;
+
+
+export const LoginSection = styled.div`
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: calc(100% - 58%);
+  height: 100%;
+  color: #fff;
+`;
+
+export const FormBox = styled.div`
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+`;
+
+export const RegisterForm = styled.div`
+  transform: translateX(430px);
+  transition: transform .6s ease;
+  transition-delay: 0s;
+`;
+
+export const ActiveRegisterForm = styled.div`
+  transform: translateX(0px);
+  transition-delay: .7s;
+`;
+
+export const LoginForm = styled.div`
+  transform: translateX(0px);
+  transition: transform .6s ease;
+  transition-delay: 0.7s;
+`;
+
+export const ActiveLoginForm = styled.div`
+  transform: translateX(430px);
+  transition-delay: 0s;
+`;
+
+export const InputBox = styled.div`
+  width: 340px;
+  height: 50px;
+  border-bottom: 2px solid #fff;
+  margin: 30px 0;
+  position: relative;
+`;
+
+export const Input = styled.input`
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  padding-right: 28px;
+  color: #fff;
+`;
+
+export const Label = styled.label`
+  position: absolute;
+  top: 50%;
+  left: 0`;
+
+// Thêm styled cho ButtonContainer và Button
+export const ButtonContainer = styled.div`
+  display: flex;
+  flex-direction: column; 
+  gap: 20px;
+  justify-content: center; 
+  align-items: center;
+  height: 80vh;  
+`;
+
+export const Button = styled.button`
+  background-color: #f72d7a;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  
+  &:hover {
+    filter: brightness(1.2); /* Tăng độ sáng lên 20% khi hover */
+    transform: scale(1.1);
+  }
+
+`;
+export const UserInfoContainer = styled.div`
+  display: flex;
+  align-items: center;
+  margin-right: 20px; /* Khoảng cách giữa tên người dùng và nút đăng xuất */
+`;
+
+export const UserName = styled.h4`
+  margin-right: 10px;
+  color: #fff; /* Màu chữ cho tên người dùng */
+`;
+
+export const AvatarContainer = styled.div`
+  position: relative;
+  display: inline-block;
+`;
+
+export const AvatarImage = styled.img`
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  margin-right: 10px;
+  transition: filter 0.3s ease;
+
+  &:hover {
+    filter: brightness(1.2);
+    transform: scale(1.1);
+  }
+`;
+
+export const DropdownMenu = styled.div`
+  position: absolute;
+  width:100px;
+  top: 100%;
+  right: 0;
+  display: none;
+  flex-direction: column;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+
+  ${AvatarContainer}:hover & {
+    display: block;
+  }
+`;
+
+export const DropdownItem = styled.div`
+  padding: 10px;
+  color: #333;
+  text-decoration: none;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #f2f2f2;
+  }
+  img {
+    width: 40px; 
+    height: 40px; 
+    border-radius: 50%; 
+    margin-right: 10px;
+    transition: filter 0.3s ease; /* Thêm hiệu ứng chuyển đổi trong 0.3 giây */
+  
+  &:hover {
+    filter: brightness(1.2); /* Tăng độ sáng lên 20% khi hover */
+    transform: scale(1.1);
+  }
+  }
+`;
+export const LogoutButton = styled.img`
+  width: 60px; 
+  height: 60px; 
+  border-radius: 50%; 
+  margin-right: 10px;
+  transition: filter 0.3s ease; /* Thêm hiệu ứng chuyển đổi trong 0.3 giây */
+  
+  &:hover {
+    filter: brightness(1.2); /* Tăng độ sáng lên 20% khi hover */
+    transform: scale(1.1);
+  }
+`
+// Styled Components
+
+
+export const Logo = styled.h2`
+  font-size: 30px;
+  color: #fff;
+  margin-bottom: 20px;
+`;
+
+export const WelcomeText = styled.h2`
+  font-size: 40px;
+  line-height: 1;
+  color: #fff;
+  margin-bottom: 10px;
+
+  span {
+    font-weight: bold;
+    color: #fff;
+  }
+`;
+
+export const Description = styled.p`
+  font-size: 16px;
+  color: #fff;
+  margin-bottom: 20px;
+`;
+
+export const SocialIcon = styled.div`
+  display: flex;
+  justify-content: left;
+  align-items: left;
+
+  a {
+    color: #fff;
+    font-size: 24px;
+    margin: 0 10px;
+    text-decoration: none;
+    transition: transform 0.5s ease;
+
+    :hover {
+      transform: scale(1.2);
+    }
+  }
+`;
+
+export const FormTitle = styled.h2`
+  font-size: 25px;
+  color: #fff;
+  margin-bottom: 20px;
+`;
+
+export const Icon = styled.span`
+  position: absolute;
+  top: 13px;
+  right: 0;
+  font-size: 19px;
+`;
+
+export const RememberPassword = styled.div`
+  font-size: 14px;
+  font-weight: 500;
+  margin: -15px 0 15px;
+  display: flex;
+  justify-content: space-between;
+
+  label {
+    input {
+      accent-color: #fff;
+      margin-right: 3px;
+    }
+  }
+
+  a {
+    color: #fff;
+    text-decoration: none;
+
+    :hover {
+      text-decoration: underline;
+    }
+  }
+`;
+
+export const Btn = styled.button`
+  width: 100%;
+  height: 45px;
+  outline: none;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  background: #f72d7a;
+  font-size: 16px;
+  color: #fff;
+  box-shadow: rgba(0, 0, 0, 0.4);
+`;
+
+export const CreateAccount = styled.div`
+  font-size: 14.5px;
+  text-align: right;
+  margin: 25px;
+
+  p a {
+    color: #fff;
+    font-weight: 600px;
+    text-decoration: none;
+
+    :hover {
+      text-decoration: underline;
+    }
+  }
+`;
