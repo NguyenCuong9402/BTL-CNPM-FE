@@ -53,10 +53,8 @@ function Main() {
       const respon = response.data.data;
       setData(respon);
 
-      // Chuyển hướng đến trang /playgame và truyền danh sách id thông qua state hoặc query param
       history.push(`/playgame`, { cauDo });
     } catch (error) {
-      // Xử lý lỗi ở đây
       console.error('Error:', error);
     }
   };
