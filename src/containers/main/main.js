@@ -2,13 +2,15 @@ import React, { useState, useEffect } from 'react';
 import 'boxicons/css/boxicons.min.css'; 
 import {
   UserInfoContainer , UserName, Background, AvatarImage, AvatarContainer, DropdownMenu , DropdownItem ,
-  Header, Navbar, Container, LoginSection, Button, ButtonContainer, Item, SocialIcon, TextItem
+  Header, Navbar, Container, LoginSection, Button, ButtonContainer, Item, SocialIcon, TextItem, ArrowIcon
 } from './mainStyle';
 import 'boxicons/css/boxicons.min.css';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import logout from './logout.png';
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlay } from '@fortawesome/free-solid-svg-icons';
+import arrowIcon from './arrow.png'; 
 
 function Main() {
   const [name_user, setUserData] = useState(null);
@@ -55,11 +57,11 @@ function Main() {
       <Container>
         <LoginSection>
             <ButtonContainer>
-            <Button>Play</Button>
-            <Button>History</Button>
+            <img src={arrowIcon} alt="Mũi tên"  width="50" />
+            <Button>Play <FontAwesomeIcon icon={faPlay} className="play-icon" /></Button>
+            <Button>History<FontAwesomeIcon icon={faPlay} className="play-icon" /></Button>
           </ButtonContainer>
         </LoginSection>
-        
         <Item>
           <h2 className="logo"><i className='bx bxl-xing'></i>Word Scamble</h2>
           <TextItem>

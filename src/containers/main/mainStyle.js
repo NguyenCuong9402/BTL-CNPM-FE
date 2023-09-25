@@ -242,10 +242,11 @@ export const ButtonContainer = styled.div`
   gap: 20px;
   justify-content: center; 
   align-items: center;
-  height: 80vh;  
+  height: 60vh;  
 `;
 
 export const Button = styled.button`
+  width: 150px;
   background-color: #f72d7a;
   color: #fff;
   border: none;
@@ -254,12 +255,42 @@ export const Button = styled.button`
   font-size: 16px;
   cursor: pointer;
   
-  &:hover {
-    filter: brightness(1.2); /* Tăng độ sáng lên 20% khi hover */
-    transform: scale(1.1);
+  position: relative; /* Thêm thuộc tính này để xác định vị trí của biểu tượng */
+
+  /* Định dạng biểu tượng bằng CSS */
+  .play-icon {
+    position: absolute;
+    right: 10px; /* Điều chỉnh vị trí của biểu tượng */
+    top: 50%; /* Đưa biểu tượng vào giữa theo chiều dọc */
+    transform: translateY(-50%); /* Dịch biểu tượng lên trên để căn giữa */
+    opacity: 0; /* Ẩn biểu tượng ban đầu */
+    transition: opacity 0.3s; /* Hiệu ứng nhấp nháy */
   }
 
+  &:hover .play-icon {
+    opacity: 1; /* Hiển thị biểu tượng khi hover */
+  }
+
+  &:hover {
+    filter: brightness(1.2);
+    transform: scale(1.1);
+  }
 `;
+export const ArrowIcon = styled.img`
+  position: absolute; /* Để làm cho mũi tên có vị trí tương đối */
+  top: 50%; /* Đưa mũi tên lên giữa theo chiều dọc */
+  right: -30px; /* Điều chỉnh khoảng cách của mũi tên từ nút */
+  transform: translateY(-50%); /* Đưa mũi tên lên giữa theo chiều dọc */
+  width: 1000px; 
+  height: auto; 
+  opacity: 0; /* Ẩn mũi tên ban đầu */
+  transition: opacity 0.3s; /* Hiệu ứng nhấp nháy */
+
+  ${Button}:hover & {
+    opacity: 1; /* Hiển thị mũi tên khi hover */
+  }
+`;
+
 export const UserInfoContainer = styled.div`
   display: flex;
   align-items: center;
