@@ -60,22 +60,13 @@ function PlayGame() {
       <Container>
         <LoginSection>
             <ButtonContainer>
-            <FlashingImage src={arrowIcon} alt="Mũi tên" width="50" />
-            <Button>Play <FontAwesomeIcon icon={faPlay} className="play-icon" /></Button>
-            <Button>History<FontAwesomeIcon icon={faPlay} className="play-icon" /></Button>
-          </ButtonContainer>
+              <FlashingImage src={arrowIcon} alt="Mũi tên" width="50" />
+            </ButtonContainer>
         </LoginSection>
         <Item>
           <h2 className="logo"><i className='bx bxl-xing'></i>Word Scamble</h2>
           <TextItem>
             <img width="350" height="250" src={WordSearch} alt="Word Search" />
-            <SocialIcon>
-              <a href="https://www.facebook.com/cuong.9402/"><i className='bx bxl-facebook'></i></a>
-              <a href="https://www.facebook.com/cuong.9402/"><i className='bx bxl-twitter'></i></a>
-              <a href="https://www.youtube.com/watch?v=fLRf8JqSX8A"><i className='bx bxl-youtube'></i></a>
-              <a href="https://www.instagram.com/cuong.9402/"><i className='bx bxl-instagram'></i></a>
-              <a href="https://www.facebook.com/cuong.9402/"><i className='bx bxl-linkedin'></i></a>
-            </SocialIcon>
           </TextItem>
         </Item>
       </Container>
