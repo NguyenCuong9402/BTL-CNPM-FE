@@ -82,12 +82,13 @@ export const GenderLabel = styled.label`
 
 export const FormSubmitButton = styled.div`
   margin-top: 40px;
+  text-align: center;
 `;
 
 export const SubmitInput = styled.input`
   display: block;
-  width: 40%;
-  margin-top: 10px;
+  width: 50%; /* Đặt độ rộng 50% */
+  margin: 0 auto; /* Căn giữa theo chiều ngang */
   font-size: 20px;
   padding: 10px;
   border: none;

@@ -169,10 +169,10 @@ const RegisterForm = () => {
                 </GenderLabel>
            
             </GenderCategory>
-            <FormSubmitButton>
+            <FormSubmitButton style={{}}>
             <SubmitInput type="submit" value="Register" onClick={handleRegister} />
             </FormSubmitButton>
-            <div style={{ textAlign: 'left' }}>
+            <div style={{ textAlign: 'center' }}>
                 <p style={{ color: 'white' }}>
                     Already have an account? <Link to="/login" style={{color: 'red', textDecoration: 'none',
                         transition: 'color 0.3s'}} onMouseOver={(e) => {e.target.style.color = 'red'; e.target.style.fontSize = '18px';}}
