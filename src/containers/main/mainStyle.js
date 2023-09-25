@@ -22,8 +22,8 @@ export const GlobalStyles = styled.div`
 `;
 
 export const Background = styled.div`
-  background: url(background.png) no-repeat;
-  background-position: center;
+background: url(${background1});
+background-position: center;
   background-size: cover;
   height: 100vh;
   width: 100%;
