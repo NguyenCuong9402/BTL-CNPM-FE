@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import logoBackground from './backgroundmain.png';
+import logoBackground from './backgroundmain1.png';
 import background1 from './backgroundform.png';
 
 // Styled Components
