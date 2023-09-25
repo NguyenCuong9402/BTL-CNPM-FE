@@ -57,10 +57,6 @@ function Login() {
           <a href="#">Contact</a>
           <a href="#">Help</a>
         </nav>
-        <form action="" className="search-bar">
-          <input type="text" placeholder="Search..." />
-          <button><i className='bx bx-search'></i></button>
-        </form>
       </header>
 
       {/* LOGIN FORM CREATION */}
