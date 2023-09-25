@@ -1,16 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import 'boxicons/css/boxicons.min.css'; 
 import {
-  UserInfoContainer , UserName, LogoutButton,
-  Background, Avatar, AvatarImage, AvatarContainer, DropdownMenu , DropdownItem ,
-  Header,
-  Navbar,
-  Container,
-  LoginSection,
-  Button, ButtonContainer,
-  Item, SocialIcon, TextItem
+  UserInfoContainer , UserName, Background, AvatarImage, AvatarContainer, DropdownMenu , DropdownItem ,
+  Header, Navbar, Container, LoginSection, Button, ButtonContainer, Item, SocialIcon, TextItem
 } from './mainStyle';
-import 'boxicons/css/boxicons.min.css'; // Import thư viện icons
+import 'boxicons/css/boxicons.min.css';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import logout from './logout.png';
