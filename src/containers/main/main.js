@@ -41,15 +41,11 @@ function Main() {
     try {
       const access_token = localStorage.getItem('accessToken');
       // Thực hiện yêu cầu POST đến API để lấy danh sách 5 id
-      const response = await axios.get(
-        'http://127.0.0.1:5000/api/v1/luot_choi',
-        {},
-        {
+      const response = await axios.get('http://127.0.0.1:5000/api/v1/luot_choi',{
           headers: {
-            Authorization: `Bearer ${access_token}`,
+          Authorization: `Bearer ${access_token}`,
           },
-        }
-      );
+        },{});
       const respon = response.data.data;
       setData(respon);
 
