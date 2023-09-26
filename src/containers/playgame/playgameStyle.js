@@ -426,8 +426,10 @@ export const ClickableText = styled.span`
   background: red;
   border-radius: 5px;
   cursor: pointer;
+  width: 50px; /* Cố định chiều rộng của ô chứa văn bản */
+  height: 50px; /* Cố định chiều cao của ô chứa văn bản */
   text-align: center; /* Căn giữa nội dung theo chiều ngang */
-    margin-bottom: 10px;
+  margin-bottom: 10px;
 
   /* Thêm các kiểu CSS cho ClickableText ở đây (nếu cần) */
 `;
@@ -438,6 +440,8 @@ export const TextAnswer = styled.span`
   background: blue;
   border-radius: 5px;
   cursor: pointer
+  width: 100px; /* Cố định chiều rộng của ô chứa văn bản */
+  height: 50px; /* Cố định chiều cao của ô chứa văn bản */
   min-width: 50px; /* Cố định kích thước tối thiểu */
   text-align: center; /* Căn giữa nội dung theo chiều ngang */
   `;
