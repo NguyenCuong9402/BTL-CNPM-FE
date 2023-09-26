@@ -24,6 +24,7 @@ import anhvui from "./anhvui.png"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlay } from "@fortawesome/free-solid-svg-icons";
 import { useLocation } from "react-router-dom/cjs/react-router-dom.min";
+import Modal from "../../modal";
 
 function setCharAt(str, index, chr) {
   if (index > str.length - 1) return str;
@@ -77,6 +78,58 @@ function PlayGame() {
     });
   };
   const currentQuestion = listQuestions[currentQuestionIndex];
+
+  const [isModalOpen, setModalOpen] = useState(false);
+  const [modalMessage, setModalMessage] = useState('');
+  
+  const handleLoseButtonClick = async () => {
+    try {
+      const requestBody = {
+        'cau_tra_loi': 'toi_dau_hang', // Thay 'toi_dau_hang' bằng câu trả lời thực tế
+      };
+      const access_token = localStorage.getItem("accessToken");
+      const response = await axios.post(
+        `http://127.0.0.1:5000/api/v1/luot_choi/${turn_id}/${currentQuestion.id}`,requestBody,
+        {
+          headers: {
+            Authorization: `Bearer ${access_token}`,
+          },
+        }
+      );
+      setModalMessage(response.data.message.text);
+      setModalOpen(true);
+      setCurrentQuestionIndex(prevIndex => prevIndex + 1);
+      // Reset currentAnswer
+      setCurrentAnswer('');
+    } catch (error) {
+      console.error('Yêu cầu POST thất bại:', error);
+    }
+  };
+
+  const handleSubmitButtonClick = async () => {
+    try {
+      const requestBody = {
+        'cau_tra_loi': currentAnswer,
+      };
+      const access_token = localStorage.getItem("accessToken");
+      const response = await axios.post(
+        `http://127.0.0.1:5000/api/v1/luot_choi/${turn_id}/${currentQuestion.id}`,requestBody,
+        {
+          headers: {
+            Authorization: `Bearer ${access_token}`,
+          },
+        }
+      );
+      setModalMessage(response.data.message.text);
+      setModalOpen(true);
+      setCurrentQuestionIndex(prevIndex => prevIndex + 1);
+      // Reset currentAnswer
+      setCurrentAnswer('');
+    } catch (error) {
+      console.error('Yêu cầu POST thất bại:', error);
+    }
+  };
+  
   return (
     <div>
       <Header>
@@ -125,12 +178,13 @@ function PlayGame() {
             ))}
           </TextContainer>
           <ButtonContainer2>
-            <Button>Submit</Button>
-            <Button>Lose</Button>
+            <Button onClick={handleSubmitButtonClick}>Submit</Button>
+            <Button  onClick={handleLoseButtonClick}>Lose</Button>
+            
           </ButtonContainer2>
           <Note>* Use the letters to spell the Word</Note>
         </Item>
-        
+        <Modal isOpen={isModalOpen} message={modalMessage} onClose={() => setModalOpen(false)} />
       </Container>
     </div>
   );
