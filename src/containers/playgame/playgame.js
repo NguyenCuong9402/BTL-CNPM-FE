@@ -124,7 +124,7 @@ function PlayGame() {
       setModalMessage(response.data.message.text);
       setModalOpen(true);
       setCurrentQuestionIndex(prevIndex => {
-        // Kiểm tra xem prevIndex có bằng độ dài của listQuestions - 1 hay không
+        // Kiểm tra xem prevIndex có bằng độ dài của listQuestions - 1 hay không oke oke oke
         if (prevIndex === listQuestions.length - 1) {
           // Nếu có, thực hiện Axios GET request để lấy dữ liệu mới
           axios.get(`http://127.0.0.1:5000/api/v1/luot_choi/get-diem/${turn_id}`,{
