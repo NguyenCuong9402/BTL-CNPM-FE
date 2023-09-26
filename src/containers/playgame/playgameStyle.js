@@ -247,6 +247,14 @@ export const Item = styled.div`
   flex-direction: column;
   
 `;
+export const bounce = keyframes`
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+`;
 
 export const Button = styled.button`
   width: 150px;
@@ -276,9 +284,11 @@ export const Button = styled.button`
 
   &:hover {
     filter: brightness(1.2);
-    transform: scale(1.1);
+    animation: ${bounce} 0.5s infinite;
   }
 `;
+
+
 
 export const UserInfoContainer = styled.div`
   display: flex;
@@ -482,6 +492,15 @@ export const HeaderText = styled.div`
   color: #FAFAD2; /* Đổi màu chữ thành màu bạn muốn */
   font-style: italic; /* Đặt kiểu chữ đặc biệt (nghiêng) */
   font-family: 'Pacifico', cursive;
+`;
+
+export const ButtonContainer2 = styled.div`
+  position: absolute;
+  bottom: 100px; /* Điều chỉnh khoảng cách với đáy container */
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 20px; /* Khoảng cách giữa hai nút */
 `;
 
 

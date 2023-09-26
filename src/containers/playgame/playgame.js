@@ -5,7 +5,7 @@ import {
   UserName, HintImageContainer, HintImage,
   Background, QuickTipImage,AnhVuiImage, Note, HeaderText,
   AvatarImage, TextContainer, TextAnswer, ClickableText,
-  AvatarContainer,
+  AvatarContainer, ButtonContainer2,
   DropdownMenu,
   DropdownItem,
   Header,
@@ -13,10 +13,7 @@ import {
   Container,
   LoginSection,
   Button,
-  ButtonContainer,
   Item,
-  SocialIcon,
-  TextItem,
 } from "./playgameStyle";
 import "boxicons/css/boxicons.min.css";
 import axios from "axios";
@@ -106,7 +103,6 @@ function PlayGame() {
       <Background></Background>
       <Container>
         <LoginSection>
-        <ButtonContainer>
           <QuickTipImage src={quicktip} alt="Gợi í"/>
 
           <HintImageContainer>
@@ -115,7 +111,6 @@ function PlayGame() {
             alt="Gợi í"
             />
           </HintImageContainer>
-        </ButtonContainer>
         </LoginSection>
         <Item>
           <HeaderText>Spelling Word Scramble</HeaderText>   
@@ -129,8 +124,13 @@ function PlayGame() {
               <TextAnswer key={index} onClick={() => handleClickTextAnswer(index)}>{currentAnswer[index]}</TextAnswer>
             ))}
           </TextContainer>
+          <ButtonContainer2>
+            <Button>Submit</Button>
+            <Button>Lose</Button>
+          </ButtonContainer2>
           <Note>* Use the letters to spell the Word</Note>
         </Item>
+        
       </Container>
     </div>
   );
