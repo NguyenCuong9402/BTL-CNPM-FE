@@ -38,7 +38,6 @@ function PlayGame() {
   const location = useLocation();
 
   const { de_bai, turn_id } = location.state.TurnAndCauDo;
-  console.log(location.state.TurnAndCauDo)
   const [listQuestions, setListQuestions] = useState(de_bai);
 
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
