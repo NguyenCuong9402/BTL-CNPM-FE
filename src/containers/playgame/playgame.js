@@ -65,7 +65,6 @@ function PlayGame() {
   const [listQuestions, setListQuestions] = useState(de_bai);
 
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-
   const [currentAnswer, setCurrentAnswer] = useState("");
   const handleClickText = (text) => {
     setCurrentAnswer((prev) => (prev += text));
@@ -80,7 +79,7 @@ function PlayGame() {
   };
 
   const currentQuestion = listQuestions[currentQuestionIndex];
-
+  console.log(currentQuestion.id)
   return (
     <div>
       <Header>
@@ -108,7 +107,7 @@ function PlayGame() {
       <Container>
         <LoginSection>
           <ButtonContainer>
-            <FlashingImage src={arrowIcon} alt="Mũi tên" width="50" />
+            <FlashingImage src={`http://127.0.0.1:5000/api/v1/picture/${currentQuestion.id}`} alt="Mũi tên" width="400" />
           </ButtonContainer>
         </LoginSection>
         <Item>
