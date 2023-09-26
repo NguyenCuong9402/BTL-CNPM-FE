@@ -123,14 +123,37 @@ function PlayGame() {
       );
       setModalMessage(response.data.message.text);
       setModalOpen(true);
-      setCurrentQuestionIndex(prevIndex => prevIndex + 1);
+      setCurrentQuestionIndex(prevIndex => {
+        // Kiểm tra xem prevIndex có bằng độ dài của listQuestions - 1 hay không
+        if (prevIndex === listQuestions.length - 1) {
+          // Nếu có, thực hiện Axios GET request để lấy dữ liệu mới
+          axios.get(`http://127.0.0.1:5000/api/v1/luot_choi/get-diem/${turn_id}`,{
+            headers: {
+              Authorization: `Bearer ${access_token}`,
+            },
+          })
+            .then((getResponse) => {
+              // Xử lý dữ liệu từ GET response ở đây
+              // Hiển thị popup với response.data.message.text
+              setModalMessage(getResponse.data.message.text);
+              setModalOpen(true);
+            })
+            .catch((error) => {
+              console.error('Yêu cầu GET thất bại:', error);
+            });
+          // Chuyển hướng đến /main sau khi đóng popup
+          return prevIndex;
+        } else {
+          // Nếu prevIndex không bằng độ dài của listQuestions - 1, tăng prevIndex lên 1
+          return prevIndex + 1;
+        }
+      });
       // Reset currentAnswer
       setCurrentAnswer('');
     } catch (error) {
       console.error('Yêu cầu POST thất bại:', error);
     }
   };
-  console.log(currentQuestion.de_bai)
   return (
     <div>
       <Header>
