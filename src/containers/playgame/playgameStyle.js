@@ -370,21 +370,11 @@ export const flashAnimation = keyframes`
   }
 `;
 
-export const HintText = styled.div`
-  font-size: 18px;
-  color: #333; /* Màu chữ */
-  justify-content: center; /* Căn giữa ngang */
-  align-items: center; /* Căn giữa dọc */
-  animation: fadeIn 2s ease-in-out; /* Hiệu ứng hiển thị chữ */
-  margin-top: 10px; /* Khoảng cách giữa chữ và ảnh */
-`;
-
 // Tạo styled component cho container ảnh
 export const HintImageContainer = styled.div`
-  margin-top: 10px; /* Khoảng cách giữa chữ và ảnh */
+  margin-top: 50px; /* Khoảng cách giữa chữ và ảnh */
   border-radius: 8px; /* Độ cong viền */
   overflow: hidden; /* Ẩn phần ngoài của ảnh */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Đổ bóng cho ảnh */
 `;
 
 // Tạo styled component cho ảnh
@@ -406,6 +396,13 @@ export const fadeIn = keyframes`
   100% {
     opacity: 1;
   }
+`;
+
+export const QuickTipImage = styled.img`
+  position: absolute; /* Đặt vị trí tuyệt đối để nằm trên ảnh */
+  width: 100px; /* Đặt kích thước phù hợp cho ảnh nhỏ */
+  top: 0; /* Đặt vị trí top ở đầu container */
+  left: 0; /* Đặt vị trí left ở đầu container */
 `;
 
 

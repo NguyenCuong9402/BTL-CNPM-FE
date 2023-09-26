@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import "boxicons/css/boxicons.min.css";
 import {
   UserInfoContainer,
-  UserName, HintText, HintImageContainer, HintImage,
-  Background,
+  UserName, HintImageContainer, HintImage,
+  Background, QuickTipImage,
   AvatarImage,
   AvatarContainer,
   DropdownMenu,
@@ -22,6 +22,7 @@ import "boxicons/css/boxicons.min.css";
 import axios from "axios";
 import { Link, useHistory } from "react-router-dom";
 import logout from "./logout.png";
+import quicktip from "./quicktip.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlay } from "@fortawesome/free-solid-svg-icons";
 import { useLocation } from "react-router-dom/cjs/react-router-dom.min";
@@ -70,13 +71,11 @@ function PlayGame() {
   const handleClickTextAnswer = (index) => {
     setCurrentAnswer((prev) => {
       const newText = setCharAt(prev, index, "");
-      console.log(prev, index, newText);
       return newText;
     });
   };
 
   const currentQuestion = listQuestions[currentQuestionIndex];
-  console.log(currentQuestion.id)
   return (
     <div>
       <Header>
@@ -104,14 +103,15 @@ function PlayGame() {
       <Container>
         <LoginSection>
         <ButtonContainer>
-          <HintText>Gợi ý</HintText>   
+          <QuickTipImage src={quicktip} alt="Gợi í"/>
+
           <HintImageContainer>
             <HintImage
             src={`http://127.0.0.1:5000/api/v1/picture/${currentQuestion.id}`}
             alt="Gợi í"
             />
           </HintImageContainer>
-          </ButtonContainer>
+        </ButtonContainer>
         </LoginSection>
         <Item>
           <div
