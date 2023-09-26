@@ -24,8 +24,6 @@ import { Link, useHistory } from "react-router-dom";
 import logout from "./logout.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlay } from "@fortawesome/free-solid-svg-icons";
-import arrowIcon from "./arrow.png";
-import WordSearch from "./wordsearch.png";
 import { useLocation } from "react-router-dom/cjs/react-router-dom.min";
 
 function setCharAt(str, index, chr) {

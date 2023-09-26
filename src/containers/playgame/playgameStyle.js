@@ -1,7 +1,6 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
 import backgrounplay from './backgroundplay.png';
-import background1 from './backgroundform.png';
 
 // Styled Components
 export const GlobalStyles = styled.div`
@@ -22,7 +21,7 @@ export const GlobalStyles = styled.div`
 `;
 
 export const Background = styled.div`
-background: url(${background1});
+background: url(${backgrounplay});
 background-position: center;
   background-size: cover;
   height: 100vh;
