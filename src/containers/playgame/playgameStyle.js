@@ -407,6 +407,9 @@ export const QuickTipImage = styled.img`
   width: 100px; /* Đặt kích thước phù hợp cho ảnh nhỏ */
   top: 0; /* Đặt vị trí top ở đầu container */
   left: 0; /* Đặt vị trí left ở đầu container */
+  &:hover {
+    transform: scale(1.1); /* Phóng to ảnh khi hover vào */
+  }
 `;
 
 
