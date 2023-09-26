@@ -125,19 +125,7 @@ export const Container = styled.div`
   overflow: hidden;
 `;
 
-export const Item = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 58%;
-  height: 100%;
-  color: #fff;
-  background: transparent;
-  padding: 80px;
-  display: flex;
-  justify-content: space-between;
-  flex-direction: column;
-`;
+
 
 export const Logo = styled.h2`
   color: #fff;
@@ -242,6 +230,22 @@ export const ButtonContainer = styled.div`
   justify-content: center; 
   align-items: center;
   height: 50vh;  
+`;
+
+export const Item = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 58%;
+  height: 100%;
+  color: #fff;
+  background: transparent;
+  padding: 80px;
+  display: flex;
+  justify-content: center; 
+  align-items: center;
+  flex-direction: column;
+  
 `;
 
 export const Button = styled.button`
@@ -405,9 +409,15 @@ export const QuickTipImage = styled.img`
   left: 0; /* Đặt vị trí left ở đầu container */
 `;
 
+
+
 export const TextContainer = styled.div`
   display: flex;
   gap: 10px;
+  justify-content: center; /* Cân giữa các ô theo chiều ngang */
+  align-items: center; /* Cân giữa các ô theo chiều dọc */
+  margin-bottom: 50px; /* Cân khoảng cách giữa ô đề và trả lời */
+  
 `;
 
 export const ClickableText = styled.span`
@@ -416,6 +426,8 @@ export const ClickableText = styled.span`
   background: red;
   border-radius: 5px;
   cursor: pointer;
+  text-align: center; /* Căn giữa nội dung theo chiều ngang */
+    margin-bottom: 10px;
 
   /* Thêm các kiểu CSS cho ClickableText ở đây (nếu cần) */
 `;
@@ -426,6 +438,8 @@ export const TextAnswer = styled.span`
   background: blue;
   border-radius: 5px;
   cursor: pointer
+  min-width: 50px; /* Cố định kích thước tối thiểu */
+  text-align: center; /* Căn giữa nội dung theo chiều ngang */
   `;
 
 
