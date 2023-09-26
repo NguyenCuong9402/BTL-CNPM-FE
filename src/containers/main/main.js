@@ -115,7 +115,7 @@ function Main() {
             <i className="bx bxl-xing"></i>Word Scamble
           </h2>
           <TextItem>
-            <img width="350" height="250" src={WordSearch} alt="Word Search" />
+            <img width="800" height="500" src={WordSearch} alt="Word Search" />
             <SocialIcon>
               <a href="https://www.facebook.com/cuong.9402/">
                 <i className="bx bxl-facebook"></i>
