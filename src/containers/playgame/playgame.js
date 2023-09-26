@@ -133,6 +133,7 @@ function PlayGame() {
             },
           })
             .then((getResponse) => {
+              
               // Xử lý dữ liệu từ GET response ở đây
               // Hiển thị popup với response.data.message.text
               setModalMessage(getResponse.data.message.text);
