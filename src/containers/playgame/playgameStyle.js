@@ -116,7 +116,7 @@ export const Container = styled.div`
   top: 50%;
   transform: translate(-50%, -50%);
   width: 75%;
-  height: 550px;
+  height: 650px;
   margin-top: 20px;
   background: url(${backgrounplay});
   background-size: cover;
@@ -378,6 +378,8 @@ export const flashAnimation = keyframes`
 export const HintImageContainer = styled.div`
   margin-top: 50px; /* Khoảng cách giữa chữ và ảnh */
   border-radius: 8px; /* Độ cong viền */
+  width: 600px;
+  height: 600px;
   overflow: hidden; /* Ẩn phần ngoài của ảnh */
 `;
 
@@ -448,6 +450,39 @@ export const TextAnswer = styled.span`
   min-width: 50px; /* Cố định kích thước tối thiểu */
   text-align: center; /* Căn giữa nội dung theo chiều ngang */
   `;
+
+  export const AnhVuiImage = styled.img`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 200px; /* Điều chỉnh kích thước của hình ảnh */
+  height: auto; /* Để đảm bảo tỷ lệ khung hình không bị thay đổi */
+  z-index: -1; /* Đặt z-index để đặt hình ảnh phía dưới nội dung */
+`;
+
+export const Note = styled.div`
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  padding: 10px;
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  border-radius: 5px;
+  font-size: 14px;
+  font-style: italic; /* Đặt kiểu chữ đặc biệt (nghiêng) */
+`;
+
+export const HeaderText = styled.div`
+  position: absolute;
+  top: 120px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 35px;
+  font-weight: bold;
+  color: #FAFAD2; /* Đổi màu chữ thành màu bạn muốn */
+  font-style: italic; /* Đặt kiểu chữ đặc biệt (nghiêng) */
+  font-family: 'Pacifico', cursive;
+`;
 
 
 

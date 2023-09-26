@@ -3,7 +3,7 @@ import "boxicons/css/boxicons.min.css";
 import {
   UserInfoContainer,
   UserName, HintImageContainer, HintImage,
-  Background, QuickTipImage,
+  Background, QuickTipImage,AnhVuiImage, Note, HeaderText,
   AvatarImage, TextContainer, TextAnswer, ClickableText,
   AvatarContainer,
   DropdownMenu,
@@ -23,6 +23,7 @@ import axios from "axios";
 import { Link, useHistory } from "react-router-dom";
 import logout from "./logout.png";
 import quicktip from "./quicktip.png";
+import anhvui from "./anhvui.png"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlay } from "@fortawesome/free-solid-svg-icons";
 import { useLocation } from "react-router-dom/cjs/react-router-dom.min";
@@ -117,7 +118,9 @@ function PlayGame() {
         </ButtonContainer>
         </LoginSection>
         <Item>
-          <TextContainer>   
+          <HeaderText>Spelling Word Scramble</HeaderText>   
+          <AnhVuiImage src={anhvui} alt="Anh Vui" />
+          <TextContainer>
             {currentQuestion.de_bai.map((text) => (
               <ClickableText key={text} onClick={() => handleClickText(text)}>{text}</ClickableText>))}
           </TextContainer>
@@ -126,6 +129,7 @@ function PlayGame() {
               <TextAnswer key={index} onClick={() => handleClickTextAnswer(index)}>{currentAnswer[index]}</TextAnswer>
             ))}
           </TextContainer>
+          <Note>* Use the letters to spell the Word</Note>
         </Item>
       </Container>
     </div>
