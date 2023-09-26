@@ -101,6 +101,7 @@ function PlayGame() {
       setCurrentQuestionIndex(prevIndex => prevIndex + 1);
       // Reset currentAnswer
       setCurrentAnswer('');
+      
     } catch (error) {
       console.error('Yêu cầu POST thất bại:', error);
     }
@@ -129,7 +130,7 @@ function PlayGame() {
       console.error('Yêu cầu POST thất bại:', error);
     }
   };
-  
+  console.log(currentQuestion.de_bai)
   return (
     <div>
       <Header>
@@ -169,8 +170,8 @@ function PlayGame() {
           <HeaderText>Spelling Word Scramble</HeaderText>   
           <AnhVuiImage src={anhvui} alt="Anh Vui" />
           <TextContainer>
-            {currentQuestion.de_bai.map((text) => (
-              <ClickableText key={text} onClick={() => handleClickText(text)}>{text}</ClickableText>))}
+            {currentQuestion.de_bai.map((text, index) => (
+              <ClickableText key={index} onClick={() => handleClickText(text)}>{text}</ClickableText>))}
           </TextContainer>
           <TextContainer>
             {currentQuestion.de_bai.map((_, index) => (
