@@ -1,6 +1,6 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
-import logoBackground from './backgroundmain1.png';
+import backgrounplay from './backgroundplay.png';
 import background1 from './backgroundform.png';
 
 // Styled Components
@@ -119,7 +119,7 @@ export const Container = styled.div`
   width: 75%;
   height: 550px;
   margin-top: 20px;
-  background: url(${logoBackground});
+  background: url(${backgrounplay});
   background-size: cover;
   background-position: center;  
   border-radius: 20px;

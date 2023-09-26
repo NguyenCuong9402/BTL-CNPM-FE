@@ -38,7 +38,7 @@ function PlayGame() {
   const location = useLocation();
 
   const { de_bai, turn_id } = location.state.TurnAndCauDo;
-
+  console.log(location.state.TurnAndCauDo)
   const [listQuestions, setListQuestions] = useState(de_bai);
 
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
@@ -114,32 +114,12 @@ function PlayGame() {
         </LoginSection>
         <Item>
           <div
-            style={{
-              display: "flex",
-              gap: 10,
-            }}
-          >
+            style={{display: "flex",gap: 10,}}>
             {currentQuestion.de_bai.map((text) => (
-              <span
-                style={{
-                  display: "inline-block",
-                  padding: "10px",
-                  background: "red",
-                  borderRadius: 5,
-                }}
-                onClick={() => handleClickText(text)}
-              >
-                {text}
-              </span>
-            ))}
-          </div>
-
-          <div
-            style={{
-              display: "flex",
-              gap: 10,
-            }}
-          >
+              <span style={{display: "inline-block",padding: "10px",background: "red",borderRadius: 5,}}
+                onClick={() => handleClickText(text)}>{text}</span>
+            ))}</div>
+            <div style={{display: "flex",gap: 10,}}>
             {currentQuestion.de_bai.map((_, index) => {
               const currentText = currentAnswer[index];
 
@@ -159,7 +139,7 @@ function PlayGame() {
             })}
           </div>
           <TextItem>
-            <img width="350" height="250" src={WordSearch} alt="Word Search" />
+            
           </TextItem>
         </Item>
       </Container>
