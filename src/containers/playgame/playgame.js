@@ -35,14 +35,7 @@ function setCharAt(str, index, chr) {
 }
 
 function PlayGame() {
-  const location = useLocation();
-
-  const { de_bai, turn_id } = location.state.TurnAndCauDo;
-  const [listQuestions, setListQuestions] = useState(de_bai);
-
-  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-
-  const [currentAnswer, setCurrentAnswer] = useState("");
+  
 
   const [name_user, setUserData] = useState(null);
   const [user_id, setUserDataId] = useState(null);
@@ -66,7 +59,14 @@ function PlayGame() {
 
     window.location.href = "/login";
   };
+  const location = useLocation();
 
+  const { de_bai, turn_id } = location.state.TurnAndCauDo;
+  const [listQuestions, setListQuestions] = useState(de_bai);
+
+  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+
+  const [currentAnswer, setCurrentAnswer] = useState("");
   const handleClickText = (text) => {
     setCurrentAnswer((prev) => (prev += text));
   };
