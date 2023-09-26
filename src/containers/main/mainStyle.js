@@ -117,7 +117,7 @@ export const Container = styled.div`
   top: 50%;
   transform: translate(-50%, -50%);
   width: 75%;
-  height: 550px;
+  height: 750px;
   margin-top: 20px;
   background: url(${logoBackground});
   background-size: cover;
