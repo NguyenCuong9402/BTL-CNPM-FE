@@ -142,7 +142,7 @@ function PlayGame() {
             .catch((error) => {
               console.error('Yêu cầu GET thất bại:', error);
             });
-          // Chuyển hướng đến /main sau khi đóng popup
+          // Chuyển hướng đến /main sau khi đóng popup  oke
           return prevIndex;
         } else {
           // Nếu prevIndex không bằng độ dài của listQuestions - 1, tăng prevIndex lên 1
