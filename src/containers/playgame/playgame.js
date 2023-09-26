@@ -65,16 +65,19 @@ function PlayGame() {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [currentAnswer, setCurrentAnswer] = useState("");
   const handleClickText = (text) => {
-    setCurrentAnswer((prev) => (prev += text));
+
+    if (currentAnswer.length < currentQuestion.de_bai.length){
+      setCurrentAnswer((prev) => (prev += text));
+    }
   };
 
   const handleClickTextAnswer = (index) => {
     setCurrentAnswer((prev) => {
       const newText = setCharAt(prev, index, "");
       return newText;
+      
     });
   };
-
   const currentQuestion = listQuestions[currentQuestionIndex];
   return (
     <div>
@@ -119,29 +122,15 @@ function PlayGame() {
             {currentQuestion.de_bai.map((text) => (
               <span style={{display: "inline-block",padding: "10px",background: "red",borderRadius: 5,}}
                 onClick={() => handleClickText(text)}>{text}</span>
-            ))}</div>
-            <div style={{display: "flex",gap: 10,}}>
-            {currentQuestion.de_bai.map((_, index) => {
+            ))}
+            </div>
+            <div style={{display: "flex",gap: 10,}}>{currentQuestion.de_bai.map((_, index) => {
               const currentText = currentAnswer[index];
-
               return (
-                <span
-                  style={{
-                    display: "inline-block",
-                    padding: "10px",
-                    background: "blue",
-                    borderRadius: 5,
-                  }}
-                  onClick={() => handleClickTextAnswer(index)}
-                >
-                  {currentText}
-                </span>
-              );
-            })}
-          </div>
-          <TextItem>
-            
-          </TextItem>
+                <span style={{display: "inline-block",padding: "10px",background: "blue",borderRadius: 5,}}
+                onClick={() => handleClickTextAnswer(index)}>{currentText}</span>);})
+                }
+            </div>
         </Item>
       </Container>
     </div>
