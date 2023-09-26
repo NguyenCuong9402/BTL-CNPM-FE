@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Main from "./containers/main/main";
 import Login from "./containers/login/Login";
 import Register from "./containers/register/Register";
-import PlayGame from "./containers/playgame/playGame";
+import PlayGame from "./containers/playgame/playgame";
 import NotFound from "./containers/notFound/NotFound";
 
 
