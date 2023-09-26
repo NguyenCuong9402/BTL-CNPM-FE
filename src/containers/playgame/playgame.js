@@ -2,13 +2,12 @@ import React, { useState, useEffect } from "react";
 import "boxicons/css/boxicons.min.css";
 import {
   UserInfoContainer,
-  UserName,
+  UserName, HintText, HintImageContainer, HintImage,
   Background,
   AvatarImage,
   AvatarContainer,
   DropdownMenu,
   DropdownItem,
-  FlashingImage,
   Header,
   Navbar,
   Container,
@@ -106,8 +105,14 @@ function PlayGame() {
       <Background></Background>
       <Container>
         <LoginSection>
-          <ButtonContainer>
-            <FlashingImage src={`http://127.0.0.1:5000/api/v1/picture/${currentQuestion.id}`} alt="Mũi tên" width="400" />
+        <ButtonContainer>
+          <HintText>Gợi ý</HintText>   
+          <HintImageContainer>
+            <HintImage
+            src={`http://127.0.0.1:5000/api/v1/picture/${currentQuestion.id}`}
+            alt="Gợi í"
+            />
+          </HintImageContainer>
           </ButtonContainer>
         </LoginSection>
         <Item>

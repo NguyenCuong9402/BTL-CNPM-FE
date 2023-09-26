@@ -371,8 +371,42 @@ export const flashAnimation = keyframes`
   }
 `;
 
-// Sử dụng styled-components để áp dụng animation
-export const FlashingImage = styled.img`
-  animation: ${flashAnimation} 1s infinite; // Sử dụng animation với vô hạn lặp lại
+export const HintText = styled.div`
+  font-size: 18px;
+  color: #333; /* Màu chữ */
+  justify-content: center; /* Căn giữa ngang */
+  align-items: center; /* Căn giữa dọc */
+  animation: fadeIn 2s ease-in-out; /* Hiệu ứng hiển thị chữ */
+  margin-top: 10px; /* Khoảng cách giữa chữ và ảnh */
 `;
+
+// Tạo styled component cho container ảnh
+export const HintImageContainer = styled.div`
+  margin-top: 10px; /* Khoảng cách giữa chữ và ảnh */
+  border-radius: 8px; /* Độ cong viền */
+  overflow: hidden; /* Ẩn phần ngoài của ảnh */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Đổ bóng cho ảnh */
+`;
+
+// Tạo styled component cho ảnh
+export const HintImage = styled.img`
+  max-height: 100%;
+  max-width: 90%; /* Đảm bảo ảnh không vượt quá kích thước của container */
+  transition: transform 0.3s ease-in-out; /* Hiệu ứng khi hover vào ảnh */
+
+  &:hover {
+    transform: scale(1.1); /* Phóng to ảnh khi hover vào */
+  }
+`;
+
+// Tạo styled component cho hiệu ứng fadeIn
+export const fadeIn = keyframes`
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+`;
+
 
