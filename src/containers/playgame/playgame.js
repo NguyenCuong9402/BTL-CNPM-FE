@@ -4,7 +4,7 @@ import {
   UserInfoContainer,
   UserName, HintImageContainer, HintImage,
   Background, QuickTipImage,
-  AvatarImage,
+  AvatarImage, TextContainer, TextAnswer, ClickableText,
   AvatarContainer,
   DropdownMenu,
   DropdownItem,
@@ -117,20 +117,15 @@ function PlayGame() {
         </ButtonContainer>
         </LoginSection>
         <Item>
-          <div
-            style={{display: "flex",gap: 10,}}>
+          <TextContainer>   
             {currentQuestion.de_bai.map((text) => (
-              <span style={{display: "inline-block",padding: "10px",background: "red",borderRadius: 5,}}
-                onClick={() => handleClickText(text)}>{text}</span>
+              <ClickableText key={text} onClick={() => handleClickText(text)}>{text}</ClickableText>))}
+          </TextContainer>
+          <TextContainer>
+            {currentQuestion.de_bai.map((_, index) => (
+              <TextAnswer key={index} onClick={() => handleClickTextAnswer(index)}>{currentAnswer[index]}</TextAnswer>
             ))}
-            </div>
-            <div style={{display: "flex",gap: 10,}}>{currentQuestion.de_bai.map((_, index) => {
-              const currentText = currentAnswer[index];
-              return (
-                <span style={{display: "inline-block",padding: "10px",background: "blue",borderRadius: 5,}}
-                onClick={() => handleClickTextAnswer(index)}>{currentText}</span>);})
-                }
-            </div>
+          </TextContainer>
         </Item>
       </Container>
     </div>

@@ -405,4 +405,28 @@ export const QuickTipImage = styled.img`
   left: 0; /* Đặt vị trí left ở đầu container */
 `;
 
+export const TextContainer = styled.div`
+  display: flex;
+  gap: 10px;
+`;
+
+export const ClickableText = styled.span`
+  display: inline-block;
+  padding: 10px;
+  background: red;
+  border-radius: 5px;
+  cursor: pointer;
+
+  /* Thêm các kiểu CSS cho ClickableText ở đây (nếu cần) */
+`;
+
+export const TextAnswer = styled.span`
+  display: inline-block;
+  padding: 10px;
+  background: blue;
+  border-radius: 5px;
+  cursor: pointer
+  `;
+
+
 
