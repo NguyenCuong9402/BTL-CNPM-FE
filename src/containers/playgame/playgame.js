@@ -84,6 +84,7 @@ function PlayGame() {
   const [completed, setCompleted] = useState(false);
   const [ketQua, setKetQua] = useState('');
 
+
   const handleLoseButtonClick = async () => {
     try {
       const requestBody = {
@@ -127,6 +128,7 @@ function PlayGame() {
       console.error('Yêu cầu POST thất bại:', error);
     }
   };
+  const [diem, setDiem] = useState(0);
 
   const handleCloseModal = () => {
     setModalOpen(false);
@@ -142,6 +144,7 @@ function PlayGame() {
           .then(response => {
             
             setKetQua(response.data.message.text);
+            setDiem(response.data.data.diem)
             setCompleted(true);
           })
           .catch(error => {
@@ -155,6 +158,10 @@ function PlayGame() {
       }
     });
     setCurrentAnswer('');
+  };
+
+  const navigateToMain = () => {
+    history.push('/main');
   };
   return (
     <div>
@@ -182,7 +189,15 @@ function PlayGame() {
       <Background></Background>
       <Container>
       {completed ? (
-        <HeaderText>{ketQua}</HeaderText>
+        <>
+        <HeaderText>
+            {diem < listQuestions.length / 2
+              ? 'Xin chia buồn'
+              : 'Xin chúc mừng'}
+          </HeaderText>
+        <HeaderText style={{ marginTop: '100px', right:50 }} >{ketQua}</HeaderText>
+        <Button onClick={navigateToMain}> Quay trở lại trang chủ </Button>
+        </>
       ) : (
         <>
         <LoginSection>
