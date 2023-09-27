@@ -82,6 +82,7 @@ function PlayGame() {
   const [isModalOpen, setModalOpen] = useState(false);
   const [modalMessage, setModalMessage] = useState('');
   const [completed, setCompleted] = useState(false);
+  const [ketQua, setKetQua] = useState('');
 
   const handleLoseButtonClick = async () => {
     try {
@@ -99,9 +100,6 @@ function PlayGame() {
       );
       setModalMessage(response.data.message.text);
       setModalOpen(true);
-      setCurrentQuestionIndex(prevIndex => prevIndex + 1);
-      // Reset currentAnswer
-      setCurrentAnswer('');
       
     } catch (error) {
       console.error('Yêu cầu POST thất bại:', error);
@@ -132,20 +130,30 @@ function PlayGame() {
 
   const handleCloseModal = () => {
     setModalOpen(false);
-    console.log(currentQuestionIndex)
-    console.log(listQuestions.length)
-    console.log(completed)
     setCurrentQuestionIndex(prevIndex => {
       if (prevIndex === listQuestions.length - 1) {
-        
-        setCompleted(true);
+        const access_token = localStorage.getItem("accessToken");
+        axios
+          .get(`http://127.0.0.1:5000/api/v1/luot_choi/get-diem/${turn_id}`, {
+            headers: {
+              Authorization: `Bearer ${access_token}`,
+            },
+          })
+          .then(response => {
+            
+            setKetQua(response.data.message.text);
+            setCompleted(true);
+          })
+          .catch(error => {
+            console.error('Yêu cầu GET thất bại:', error);
+          });
+  
         return prevIndex;
       } else {
         
         return prevIndex + 1;
       }
     });
-    // Reset currentAnswer
     setCurrentAnswer('');
   };
   return (
@@ -174,7 +182,7 @@ function PlayGame() {
       <Background></Background>
       <Container>
       {completed ? (
-        <HeaderText>Đã hoàn thành bài thi</HeaderText>
+        <HeaderText>{ketQua}</HeaderText>
       ) : (
         <>
         <LoginSection>
@@ -203,7 +211,7 @@ function PlayGame() {
           </TextContainer>
           <ButtonContainer2>
             <Button onClick={handleSubmitButtonClick}>Submit</Button>
-            <Button  onClick={handleLoseButtonClick}>Lose</Button>
+            <Button  onClick={handleLoseButtonClick}>Skip</Button>
             
           </ButtonContainer2>
           <Note>* Use the letters to spell the Word</Note>
