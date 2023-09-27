@@ -484,7 +484,7 @@ export const Note = styled.div`
 
 export const HeaderText = styled.div`
   position: absolute;
-  top: 120px;
+  top: 70px;
   left: 50%;
   transform: translateX(-50%);
   font-size: 35px;
