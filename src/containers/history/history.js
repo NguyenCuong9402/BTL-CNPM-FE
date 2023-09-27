@@ -71,14 +71,7 @@ function History() {
       </Header>
       <Background></Background>
       <Container>
-        <Item>
-          <h2 className="logo">
-            <i className="bx bxl-xing"></i>Word Scamble
-          </h2>
-          <TextItem>
-            
-          </TextItem>
-        </Item>
+          
       </Container>
     </div>
   );
