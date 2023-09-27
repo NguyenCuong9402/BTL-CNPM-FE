@@ -504,4 +504,17 @@ export const ButtonContainer2 = styled.div`
 `;
 
 
+export const HeaderTextKetQua = styled.div`
+  position: absolute;
+  top: 190px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 60px;
+  font-weight: bold;
+  color: #FAFAD2; /* Đổi màu chữ thành màu bạn muốn */
+  font-style: italic; /* Đặt kiểu chữ đặc biệt (nghiêng) */
+  font-family: 'Pacifico', cursive;
+`;
+
+
 

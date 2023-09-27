@@ -9,7 +9,7 @@ import {
   DropdownMenu,
   DropdownItem,
   Header,
-  Navbar,
+  Navbar, HeaderTextKetQua,
   Container,
   LoginSection,
   Button,
@@ -21,6 +21,12 @@ import { Link, useHistory } from "react-router-dom";
 import logout from "./logout.png";
 import quicktip from "./quicktip.png";
 import anhvui from "./anhvui.png"
+import win from "./winner.png"
+import lose from "./lose.png"
+import backhome from "./backhome.png"
+
+
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlay } from "@fortawesome/free-solid-svg-icons";
 import { useLocation } from "react-router-dom/cjs/react-router-dom.min";
@@ -190,13 +196,18 @@ function PlayGame() {
       <Container>
       {completed ? (
         <>
-        <HeaderText>
+        <HeaderTextKetQua>
             {diem < listQuestions.length / 2
               ? 'Xin chia buồn'
               : 'Xin chúc mừng'}
-          </HeaderText>
-        <HeaderText style={{ marginTop: '100px', right:50 }} >{ketQua}</HeaderText>
-        <Button onClick={navigateToMain}> Quay trở lại trang chủ </Button>
+          </HeaderTextKetQua>
+          {diem < listQuestions.length / 2 ? (
+            <img style={{width:450}} src={lose} alt="Lose" />
+          ) : (
+            <img style={{width:500}} src={win} alt="Win" />
+          )}
+        <HeaderTextKetQua style={{ marginTop: '180px'}} >{ketQua}</HeaderTextKetQua>
+        <Button style={{left:550,width:300, bottom: '-80px'}} onClick={navigateToMain}> Quay trở lại trang chủ </Button>
         </>
       ) : (
         <>

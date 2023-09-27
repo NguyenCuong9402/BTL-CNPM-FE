@@ -241,17 +241,18 @@ export const ButtonContainer = styled.div`
   gap: 20px;
   justify-content: center; 
   align-items: center;
-  height: 50vh;  
+  height: 70vh;  
 `;
 
 export const Button = styled.button`
-  width: 150px;
+  width: 300px;
+  height: 100px;
   background-color: #f72d7a;
   color: #fff;
   border: none;
   border-radius: 4px;
   padding: 10px 20px;
-  font-size: 16px;
+  font-size: 40px;
   cursor: pointer;
   
   position: relative; /* Thêm thuộc tính này để xác định vị trí của biểu tượng */
