@@ -81,7 +81,7 @@ function PlayGame() {
 
   const [isModalOpen, setModalOpen] = useState(false);
   const [modalMessage, setModalMessage] = useState('');
-  const [showApiResult, setShowApiResult] = useState(false);
+  const [completed, setCompleted] = useState(false);
 
   const handleLoseButtonClick = async () => {
     try {
@@ -125,28 +125,12 @@ function PlayGame() {
       setModalMessage(response.data.message.text);
       setModalOpen(true);
       setCurrentQuestionIndex(prevIndex => {
-        // Kiểm tra xem prevIndex có bằng độ dài của listQuestions - 1 hay không oke oke oke
         if (prevIndex === listQuestions.length - 1) {
-          // // Nếu có, thực hiện Axios GET request để lấy dữ liệu mới
-          // axios.get(`http://127.0.0.1:5000/api/v1/luot_choi/get-diem/${turn_id}`,{
-          //   headers: {
-          //     Authorization: `Bearer ${access_token}`,
-          //   },
-          // })
-          //   .then((getResponse) => {
-              
-          //     // Xử lý dữ liệu từ GET response ở đâyrewrwe
-          //     // Hiển thị popup với response.data.message.text oke  oke
-          //     // setModalMessage(getResponse.data.message.text);
-          //     // setModalOpen(true);
-          //   })
-          //   .catch((error) => {
-          //     console.error('Yêu cầu GET thất bại:', error);
-          //   });
-          // // Chuyển hướng đến /main sau khi đóng popup  oke  oke oke
+          
+          setCompleted(true);
           return prevIndex;
         } else {
-          // Nếu prevIndex không bằng độ dài của listQuestions - 1, tăng prevIndex lên 1
+          
           return prevIndex + 1;
         }
       });
@@ -181,6 +165,10 @@ function PlayGame() {
       </Header>
       <Background></Background>
       <Container>
+      {completed ? (
+        <HeaderText>Đã hoàn thành bài thi</HeaderText>
+      ) : (
+        <>
         <LoginSection>
           <QuickTipImage src={quicktip} alt="Gợi í"/>
 
@@ -213,7 +201,10 @@ function PlayGame() {
           <Note>* Use the letters to spell the Word</Note>
         </Item>
         <Modal isOpen={isModalOpen} message={modalMessage} onClose={() => setModalOpen(false)} />
-      </Container>
+        </>
+      )}
+        </Container>
+      
     </div>
   );
 }
