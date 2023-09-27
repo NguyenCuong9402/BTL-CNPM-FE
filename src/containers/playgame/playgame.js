@@ -124,21 +124,29 @@ function PlayGame() {
       );
       setModalMessage(response.data.message.text);
       setModalOpen(true);
-      setCurrentQuestionIndex(prevIndex => {
-        if (prevIndex === listQuestions.length - 1) {
-          
-          setCompleted(true);
-          return prevIndex;
-        } else {
-          
-          return prevIndex + 1;
-        }
-      });
-      // Reset currentAnswer
-      setCurrentAnswer('');
+      
     } catch (error) {
       console.error('Yêu cầu POST thất bại:', error);
     }
+  };
+
+  const handleCloseModal = () => {
+    setModalOpen(false);
+    console.log(currentQuestionIndex)
+    console.log(listQuestions.length)
+    console.log(completed)
+    setCurrentQuestionIndex(prevIndex => {
+      if (prevIndex === listQuestions.length - 1) {
+        
+        setCompleted(true);
+        return prevIndex;
+      } else {
+        
+        return prevIndex + 1;
+      }
+    });
+    // Reset currentAnswer
+    setCurrentAnswer('');
   };
   return (
     <div>
@@ -181,7 +189,7 @@ function PlayGame() {
         </LoginSection>
         <Item>
           <HeaderText >Spelling Word Scramble</HeaderText>   
-          <HeaderText style={{ marginTop: '50px' }} >Câu {currentQuestionIndex}/{listQuestions.length}</HeaderText>   
+          <HeaderText style={{ marginTop: '50px' }} >Câu {currentQuestionIndex + 1}/{listQuestions.length}</HeaderText>   
 
           <AnhVuiImage src={anhvui} alt="Anh Vui" />
           <TextContainer>
@@ -200,11 +208,10 @@ function PlayGame() {
           </ButtonContainer2>
           <Note>* Use the letters to spell the Word</Note>
         </Item>
-        <Modal isOpen={isModalOpen} message={modalMessage} onClose={() => setModalOpen(false)} />
+        <Modal isOpen={isModalOpen} message={modalMessage} onClose={handleCloseModal} />
         </>
       )}
-        </Container>
-      
+      </Container>
     </div>
   );
 }
