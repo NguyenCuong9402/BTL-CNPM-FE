@@ -51,6 +51,7 @@ function Main() {
     window.location.href = "/login";
   };
   const [TurnAndCauDo, setData] = useState({});
+  const [lichSu, setLichSu] = useState({});
 
   const handlePlayClick = async () => {
     try {
@@ -72,6 +73,10 @@ function Main() {
     } catch (error) {
       console.error("Error:", error);
     }
+  };
+
+  const handleHistoryClick = async () =>{
+    history.push(`/history`, { });
   };
   return (
     <div>
@@ -104,7 +109,7 @@ function Main() {
             <Button onClick={handlePlayClick}>
               Play <FontAwesomeIcon icon={faPlay} className="play-icon" />
             </Button>
-            <Button>
+            <Button onClick={handleHistoryClick}>
               History
               <FontAwesomeIcon icon={faPlay} className="play-icon" />
             </Button>
