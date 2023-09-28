@@ -176,7 +176,7 @@ export const PaginationContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 50px;
+  margin-top: 20px;
 `;
 
 export const PaginationButton = styled.button`
@@ -220,7 +220,7 @@ export const TableHeaderContainer = styled.div`
 `;
 
 export const TableBodyContainer = styled.div`
-  max-height: 400px; /* Increase the maximum height as needed */
+  max-height: 500px; /* Increase the maximum height as needed */
   min-height: 500px;
   overflow-y: auto; /* Enable vertical scrolling */
   border: 1px solid #ccc; /* Add a border for a better look */
