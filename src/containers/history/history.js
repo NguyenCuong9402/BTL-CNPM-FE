@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "boxicons/css/boxicons.min.css";
 import {
   UserInfoContainer,
-  UserName,
+  UserName, TableCell, TableHeader, CustomTable,
   Background,
   AvatarImage,
   AvatarContainer,
@@ -11,8 +11,6 @@ import {
   Header,
   Navbar,
   Container,
-  Item,
-  TextItem,
 } from "./historyStyle";
 import "boxicons/css/boxicons.min.css";
 import axios from "axios";
@@ -124,34 +122,35 @@ function History() {
       </Header>
       <Background></Background>
       <Container>
-      <Table striped bordered hover>
-        <thead>
-          <tr>
-            <th>STT</th>
-            <th>Số câu đúng</th>
-            <th>Tổng số câu</th>
-            <th>
-              Thời gian chơi{' '}
-              <span
-                onClick={toggleSortDirection}
-                style={{ cursor: 'pointer' }}
-              >
-                {sortDirection === 'asc' ? '↑' : '↓'}
-              </span>
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          {data.map((item, index) => (
-            <tr key={item.id}>
-              <td>{index + 1}</td>
-              <td>{item.so_cau_dung}</td>
-              <td>{item.so_cau}</td>
-              <td>{item.created_date}</td>
-            </tr>
-          ))}
-        </tbody>
-      </Table>
+      <CustomTable striped bordered hover>
+    <thead>
+      <tr>
+        <TableHeader>STT</TableHeader>
+        <TableHeader>Số câu đúng</TableHeader>
+        <TableHeader>Tổng số câu</TableHeader>   
+        <TableHeader>
+          Thời gian chơi{' '}
+          <span
+            onClick={toggleSortDirection}
+            style={{ cursor: 'pointer' }}
+            className={`sort-icon ${sortDirection === 'asc' ? 'asc' : 'desc'}`}
+          >
+            {sortDirection === 'asc' ? '↑' : '↓'}
+          </span>
+        </TableHeader>
+      </tr>
+    </thead>
+    <tbody>
+      {data.map((item, index) => (
+        <tr key={item.id}>
+          <TableCell>{index + 1}</TableCell>
+          <TableCell>{item.so_cau_dung}</TableCell>
+          <TableCell>{item.so_cau}</TableCell>
+          <TableCell>{item.created_date}</TableCell>
+        </tr>
+      ))}
+    </tbody>
+  </CustomTable>
       </Container>
     </div>
   );

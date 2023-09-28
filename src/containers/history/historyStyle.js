@@ -114,6 +114,7 @@ export const Container = styled.div`
   position: absolute;
   left: 50%;
   top: 50%;
+  
   transform: translate(-50%, -50%);
   width: 75%;
   height: 750px;
@@ -123,7 +124,49 @@ export const Container = styled.div`
   background-position: center;  
   border-radius: 20px;
   overflow: hidden;
+  display: flex;
+  justify-content: center; /* Horizontally center the content */
 `;
+
+export const CustomTable = styled.table`
+  width: 80%;
+  left: 50%;
+
+  border-collapse: collapse;
+  margin-top: 20px;
+`;
+
+export const TableHeader = styled.th`
+  padding: 8px 12px;
+  text-align: center;
+  background-color: #f0f0f0;
+  position: relative;
+  cursor: pointer;
+
+  .sort-icon {
+    position: absolute;
+    top: 50%;
+    right: 8px;
+    transform: translateY(-50%);
+    font-size: 14px;
+    font-weight: bold;
+  }
+
+  .asc::before {
+    content: '↑';
+  }
+
+  .desc::before {
+    content: '↓';
+  }
+`;
+
+export const TableCell = styled.td`
+  padding: 8px 12px;
+  text-align: center;
+`;
+
+
 
 export const Item = styled.div`
   position: absolute;
