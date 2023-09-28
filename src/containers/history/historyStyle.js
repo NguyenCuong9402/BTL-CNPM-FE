@@ -1,6 +1,7 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
 import background1 from './backgroundform.png';
+import background2 from './backgound2.jpg';
 
 // Styled Components
 export const GlobalStyles = styled.div`
@@ -119,25 +120,30 @@ export const Container = styled.div`
   width: 75%;
   height: 750px;
   margin-top: 20px;
-  background: url(${background1});
+  background: url(${background2});
   background-size: cover;
   background-position: center;  
   border-radius: 20px;
   overflow: hidden;
-  display: flex;
-  justify-content: center; /* Horizontally center the content */
 `;
 
 export const CustomTable = styled.table`
-  width: 80%;
+  width: 100%;
   left: 50%;
 
   border-collapse: collapse;
   margin-top: 20px;
+  
+`;
+export const CustomTableContainer = styled.div`
+  width: 100%;
+  max-height: 400px; /* Set the maximum height as needed */
+  overflow-y: auto; /* Enable vertical scrolling */
+  border: 1px solid #ccc; /* Add a border for a better look */
 `;
 
 export const TableHeader = styled.th`
-  padding: 8px 12px;
+  padding: 22px;
   text-align: center;
   background-color: #f0f0f0;
   position: relative;
@@ -166,6 +172,39 @@ export const TableCell = styled.td`
   text-align: center;
 `;
 
+export const PaginationContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  // margin-top: 180px;
+`;
+
+export const PaginationButton = styled.button`
+  padding: 8px 16px;
+  margin: 0 5px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  outline: none;
+
+  &:hover {
+    background-color: #0056b3;
+  }
+
+  &:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+`;
+
+export const PaginationInfo = styled.div`
+  margin: 0 10px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #008000;
+`;
 
 
 export const Item = styled.div`

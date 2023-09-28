@@ -2,14 +2,14 @@ import React, { useState, useEffect } from "react";
 import "boxicons/css/boxicons.min.css";
 import {
   UserInfoContainer,
-  UserName, TableCell, TableHeader, CustomTable,
+  UserName, TableCell, TableHeader, CustomTable, CustomTableContainer,
   Background,
   AvatarImage,
   AvatarContainer,
   DropdownMenu,
   DropdownItem,
-  Header,
-  Navbar,
+  Header, PaginationContainer, PaginationButton, PaginationInfo,
+  Navbar, 
   Container,
 } from "./historyStyle";
 import "boxicons/css/boxicons.min.css";
@@ -37,12 +37,15 @@ function formatDate(created_date) {
   return formattedCreatedDate;
 }
 
+
 function History() {
   const [name_user, setUserData] = useState(null);
   const [user_id, setUserDataId] = useState(null);
   const history = useHistory();
   const [data, setData] = useState([]);
   const [sortDirection, setSortDirection] = useState('desc');
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
   useEffect(() => {
     // Lấy userData từ localStorage khi component được tạo
     const userDataFromLocalStorage = JSON.parse(localStorage.getItem("user"));
@@ -62,40 +65,56 @@ function History() {
     window.location.href = "/login";
   };
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const access_token = localStorage.getItem("accessToken");
-        const response = await axios.get(
-          `http://127.0.0.1:5000/api/v1/luot_choi/get-lich-su?page=1&page_size=10&order=${sortDirection}`,
-          {
-            headers: {
-              Authorization: `Bearer ${access_token}`,
-            },
-          }
-        );
+  
 
-        if (response.data.code === 200) {
-          const formattedData = response.data.data.items.map((item) => ({
-            ...item,
-            created_date: formatDate(item.created_date), // Format the timestamp
-          }));
-          setData(formattedData);
-        } else {
-          console.error("Error fetching history data.");
+  const fetchData = async (page) => {
+    try {
+      const access_token = localStorage.getItem("accessToken");
+      const response = await axios.get(
+        `http://127.0.0.1:5000/api/v1/luot_choi/get-lich-su?page=${page}&page_size=10&order=${sortDirection}`,
+        {
+          headers: {
+            Authorization: `Bearer ${access_token}`,
+          },
         }
-      } catch (error) {
-        console.error("Error calling history API:", error);
-      }
-    };
+      );
 
-    fetchData();
-  }, [sortDirection]);
+      if (response.data.code === 200) {
+        const formattedData = response.data.data.items.map((item) => ({
+          ...item,
+          created_date: formatDate(item.created_date), // Format the timestamp
+        }));
+        setData(formattedData);
+        setTotalPages(response.data.data.total_pages);
+      } else {
+        console.error("Error fetching history data.");
+      }
+    } catch (error) {
+      console.error("Error calling history API:", error);
+    }
+  };
+
+  // Call fetchData when the component mounts
+  useEffect(() => {
+    fetchData(currentPage);
+  }, [currentPage, sortDirection]);
 
   const toggleSortDirection = () => {
     setSortDirection(sortDirection === 'asc' ? 'desc' : 'asc');
   };
-
+  const handleNextPage = () => {
+    if (currentPage < totalPages) {
+      const nextPage = currentPage + 1;
+      setCurrentPage(nextPage);
+    }
+  };
+  
+  const handlePrevPage = () => {
+    if (currentPage > 1) {
+      const prevPage = currentPage - 1;
+      setCurrentPage(prevPage);
+    }
+  };
   
   return (
     <div>
@@ -122,37 +141,50 @@ function History() {
       </Header>
       <Background></Background>
       <Container>
+
       <CustomTable striped bordered hover>
-    <thead>
-      <tr>
-        <TableHeader>STT</TableHeader>
-        <TableHeader>Số câu đúng</TableHeader>
-        <TableHeader>Tổng số câu</TableHeader>   
-        <TableHeader>
-          Thời gian chơi{' '}
-          <span
-            onClick={toggleSortDirection}
-            style={{ cursor: 'pointer' }}
-            className={`sort-icon ${sortDirection === 'asc' ? 'asc' : 'desc'}`}
-          >
-            {sortDirection === 'asc' ? '↑' : '↓'}
-          </span>
-        </TableHeader>
-      </tr>
-    </thead>
-    <tbody>
-      {data.map((item, index) => (
-        <tr key={item.id}>
-          <TableCell>{index + 1}</TableCell>
-          <TableCell>{item.so_cau_dung}</TableCell>
-          <TableCell>{item.so_cau}</TableCell>
-          <TableCell>{item.created_date}</TableCell>
+      <thead>
+        <tr>
+          <TableHeader>STT</TableHeader>
+          <TableHeader>Số câu đúng</TableHeader>
+          <TableHeader>Tổng số câu</TableHeader>   
+          <TableHeader>
+            Thời gian chơi{' '}
+            <span
+              onClick={toggleSortDirection}
+              style={{ cursor: 'pointer' }}
+              className={`sort-icon ${sortDirection === 'asc' ? 'asc' : 'desc'}`}
+            >
+              {sortDirection === 'asc' ? '↑' : '↓'}
+            </span>
+          </TableHeader>
         </tr>
-      ))}
-    </tbody>
-  </CustomTable>
-      </Container>
-    </div>
+      </thead>
+      <tbody>
+        {data.map((item, index) => (
+          <tr key={item.id}>
+            <TableCell>{(currentPage-1)*10+index + 1}</TableCell>
+            <TableCell>{item.so_cau_dung}</TableCell>
+            <TableCell>{item.so_cau}</TableCell>
+            <TableCell>{item.created_date}</TableCell>
+          </tr>
+        ))}
+      </tbody>
+    </CustomTable>
+
+    <PaginationContainer>  
+      <PaginationButton onClick={handlePrevPage} disabled={currentPage === 1}>
+        Previous
+      </PaginationButton>
+      <PaginationInfo>
+        Page {currentPage} of {totalPages}
+      </PaginationInfo>
+      <PaginationButton onClick={handleNextPage} disabled={currentPage === totalPages}>
+        Next
+      </PaginationButton>
+    </PaginationContainer>
+  </Container>
+  </div>
   );
 }
 
