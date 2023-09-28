@@ -172,6 +172,28 @@ export const TableCell = styled.td`
   text-align: center;
 `;
 
+
+export const TableContainer = styled.div`
+  width: 100%;
+  max-height: 600px; /* Increase the maximum height as needed */
+  min-height: 600px;
+  overflow: hidden; /* Hide vertical scrollbar */
+`;
+
+export const TableHeaderContainer = styled.div`
+  position: sticky;
+  top: 0;
+  background-color: #f0f0f0;
+  z-index: 1;
+`;
+
+export const TableBodyContainer = styled.div`
+  max-height: 500px; /* Increase the maximum height as needed */
+  min-height: 500px;
+  overflow-y: auto; /* Enable vertical scrolling */
+  border: 1px solid #ccc; /* Add a border for a better look */
+`;
+
 export const PaginationContainer = styled.div`
   display: flex;
   justify-content: center;
@@ -204,26 +226,6 @@ export const PaginationInfo = styled.div`
   font-size: 16px;
   font-weight: bold;
   color: #008000;
-`;
-export const TableContainer = styled.div`
-  width: 100%;
-  max-height: 600px; /* Increase the maximum height as needed */
-  min-height: 600px;
-  overflow: hidden; /* Hide vertical scrollbar */
-`;
-
-export const TableHeaderContainer = styled.div`
-  position: sticky;
-  top: 0;
-  background-color: #f0f0f0;
-  z-index: 1;
-`;
-
-export const TableBodyContainer = styled.div`
-  max-height: 500px; /* Increase the maximum height as needed */
-  min-height: 500px;
-  overflow-y: auto; /* Enable vertical scrolling */
-  border: 1px solid #ccc; /* Add a border for a better look */
 `;
 
 
