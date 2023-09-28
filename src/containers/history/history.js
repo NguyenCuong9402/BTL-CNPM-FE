@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import "boxicons/css/boxicons.min.css";
 import {
   UserInfoContainer,
-  UserName, TableCell, TableHeader, CustomTable, CustomTableContainer,
-  Background,
+  UserName, TableCell, TableHeader, CustomTable,
+  Background, TableBodyContainer, TableContainer, TableHeaderContainer,
   AvatarImage,
   AvatarContainer,
   DropdownMenu,
@@ -46,6 +46,8 @@ function History() {
   const [sortDirection, setSortDirection] = useState('desc');
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
+  const [pageSize, setpageSize] = useState(15);
+
   useEffect(() => {
     // Lấy userData từ localStorage khi component được tạo
     const userDataFromLocalStorage = JSON.parse(localStorage.getItem("user"));
@@ -71,7 +73,7 @@ function History() {
     try {
       const access_token = localStorage.getItem("accessToken");
       const response = await axios.get(
-        `http://127.0.0.1:5000/api/v1/luot_choi/get-lich-su?page=${page}&page_size=10&order=${sortDirection}`,
+        `http://127.0.0.1:5000/api/v1/luot_choi/get-lich-su?page=${page}&page_size=${pageSize}&order=${sortDirection}`,
         {
           headers: {
             Authorization: `Bearer ${access_token}`,
@@ -142,35 +144,43 @@ function History() {
       <Background></Background>
       <Container>
 
-      <CustomTable striped bordered hover>
-      <thead>
-        <tr>
-          <TableHeader>STT</TableHeader>
-          <TableHeader>Số câu đúng</TableHeader>
-          <TableHeader>Tổng số câu</TableHeader>   
-          <TableHeader>
-            Thời gian chơi{' '}
-            <span
-              onClick={toggleSortDirection}
-              style={{ cursor: 'pointer' }}
-              className={`sort-icon ${sortDirection === 'asc' ? 'asc' : 'desc'}`}
-            >
-              {sortDirection === 'asc' ? '↑' : '↓'}
-            </span>
-          </TableHeader>
-        </tr>
-      </thead>
-      <tbody>
-        {data.map((item, index) => (
-          <tr key={item.id}>
-            <TableCell>{(currentPage-1)*10+index + 1}</TableCell>
-            <TableCell>{item.so_cau_dung}</TableCell>
-            <TableCell>{item.so_cau}</TableCell>
-            <TableCell>{item.created_date}</TableCell>
-          </tr>
-        ))}
-      </tbody>
-    </CustomTable>
+      <TableContainer>   
+        <TableHeaderContainer>
+          <CustomTable striped bordered hover>
+            <thead>
+              <tr>
+                <TableHeader>STT</TableHeader>
+                <TableHeader>Số câu đúng</TableHeader>
+                <TableHeader>Tổng số câu</TableHeader>   
+                <TableHeader>
+                  Thời gian chơi{' '}
+                  <span
+                    onClick={toggleSortDirection}
+                    style={{ cursor: 'pointer' }}
+                    className={`sort-icon ${sortDirection === 'asc' ? 'asc' : 'desc'}`}
+                  >
+                    {sortDirection === 'asc' ? '↑' : '↓'}
+                  </span>
+                </TableHeader>
+              </tr>
+            </thead>
+          </CustomTable>
+        </TableHeaderContainer>
+        <TableBodyContainer>
+          <CustomTable striped bordered hover>
+            <tbody>
+              {data.map((item, index) => (
+                <tr key={item.id}>
+                  <TableCell>{(currentPage-1)*pageSize+index + 1}</TableCell>
+                  <TableCell>{item.so_cau_dung}</TableCell>
+                  <TableCell>{item.so_cau}</TableCell>
+                  <TableCell>{item.created_date}</TableCell>
+                </tr>
+              ))}
+            </tbody>
+          </CustomTable>
+        </TableBodyContainer>
+      </TableContainer>
 
     <PaginationContainer>  
       <PaginationButton onClick={handlePrevPage} disabled={currentPage === 1}>
