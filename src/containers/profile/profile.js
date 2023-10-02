@@ -3,7 +3,7 @@ import "boxicons/css/boxicons.min.css";
 import {
   UserInfoContainer,
   UserName,
-  Background,
+  Background, CloseButtonStyled,
   AvatarImage,
   AvatarContainer,
   DropdownMenu,
@@ -125,7 +125,7 @@ function Profile() {
         <ButtonContainer>
         {showSelectedImage ? (
         <div>
-          <button onClick={handleRemoveImage}>X</button>
+          <CloseButtonStyled onClick={handleRemoveImage}>X</CloseButtonStyled>
           <AvatarImageSet src={URL.createObjectURL(selectedImage)} alt="Selected Image" />
         </div>
       ) : (

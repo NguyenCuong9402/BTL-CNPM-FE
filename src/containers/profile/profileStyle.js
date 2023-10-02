@@ -405,3 +405,17 @@ export const AvatarContainerSet = styled.div`
     display: none; /* Ẩn input để tùy chỉnh giao diện */
   }
 `;
+
+export const CloseButtonStyled = styled.button`
+  font-size: 20px;
+  padding: 5px 10px;
+  border: 1px solid transparent;
+  background-color: black;
+  color: white;
+  cursor: pointer;
+  transition: border-color 0.3s ease;
+
+  &:hover {
+    background-color: red;
+  }
+`;
