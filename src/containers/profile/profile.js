@@ -30,7 +30,9 @@ import WordSearch from "./wordsearch.png";
 function Profile() {
   const [name_user, setUserData] = useState(null);
   const [user_id, setUserDataId] = useState(null);
-  const [selectedImage, setSelectedImage] = useState(null);  const history = useHistory();
+  const [selectedImage, setSelectedImage] = useState(null);
+  const [showSelectedImage, setShowSelectedImage] = useState(false);
+  const history = useHistory();
   useEffect(() => {
     // Lấy userData từ localStorage khi component được tạo
     const userDataFromLocalStorage = JSON.parse(localStorage.getItem("user"));
@@ -41,7 +43,7 @@ function Profile() {
       history.push("/login"); // Điều hướng đến màn hình đăng nhập
     }
   }, []); // Sử dụng [] để đảm bảo useEffect chỉ chạy một lần khi component được tạo
-  const avatarUrl = `http://127.0.0.1:5000/api/v1/picture/avatar/${user_id}`;
+  const avatar = `http://127.0.0.1:5000/api/v1/picture/avatar/${user_id}`;
   const handleLogout = () => {
     localStorage.removeItem("user");
     localStorage.removeItem("accessToken");
@@ -79,11 +81,17 @@ function Profile() {
     if (file) {
       const reader = new FileReader();
       reader.onload = (e) => {
-        const imageBlobUrl = e.target.result;
-        setSelectedImage(imageBlobUrl);
+        const previewUrl = e.target.result;
+        setSelectedImage(file); // Lưu ảnh đã chọn để có thể xóa nó nếu cần
+        setShowSelectedImage(true); 
       };
       reader.readAsDataURL(file);
     }
+  };
+
+  const handleRemoveImage = () => {
+    setSelectedImage(null); // Xóa ảnh đã chọn bằng cách đặt trạng thái về null
+    setShowSelectedImage(false); 
   };
 
   return (
@@ -98,7 +106,7 @@ function Profile() {
           <UserName>{name_user}</UserName>
 
           <AvatarContainer>
-            <AvatarImage src={avatarUrl} alt="Avatar" />
+            <AvatarImage src={avatar} alt="Avatar" />
             <DropdownMenu>
               <DropdownItem>Cài Đặt</DropdownItem>
               <DropdownItem onClick={handleLogout}>
@@ -112,15 +120,17 @@ function Profile() {
       <Container>
         <LoginSection>
         <ButtonContainer>
-        <AvatarContainerSet>
-          <AvatarImageSet src={avatarUrl} alt="Avatar" />
-          <div>
-          <input type="file" accept="image/*" onChange={handleImageChange} />
-          {selectedImage && (
-            <AvatarImageSet src={selectedImage} alt="Selected Image" />
-          )}
+        {showSelectedImage ? (
+        <div>
+          <button onClick={handleRemoveImage}>X</button>
+          <AvatarImageSet src={URL.createObjectURL(selectedImage)} alt="Selected Image" />
         </div>
-        </AvatarContainerSet>
+      ) : (
+        <AvatarImageSet src={avatar} alt="Avatar" />
+      )}
+      <div>
+        <input type="file" accept="image/*" onChange={handleImageChange} />
+      </div>
         </ButtonContainer> 
         </LoginSection>
         <Item>
