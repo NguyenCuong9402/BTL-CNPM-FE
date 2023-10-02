@@ -43,7 +43,6 @@ function Profile() {
       history.push("/login"); // Điều hướng đến màn hình đăng nhập
     }
   }, []); // Sử dụng [] để đảm bảo useEffect chỉ chạy một lần khi component được tạo
-  const avatar = `http://127.0.0.1:5000/api/v1/picture/avatar/${user_id}`;
   const handleLogout = () => {
     localStorage.removeItem("user");
     localStorage.removeItem("accessToken");
@@ -75,6 +74,7 @@ function Profile() {
       console.error("Error:", error);
     }
   };
+  const avatar = `http://127.0.0.1:5000/api/v1/picture/avatar/${user_id}`;
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
