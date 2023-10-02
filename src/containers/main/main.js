@@ -50,6 +50,10 @@ function Main() {
 
     window.location.href = "/login";
   };
+
+  const handleProfile = ()=>{
+    window.location.href = "/profile";
+  }
   const [TurnAndCauDo, setData] = useState({});
   const [lichSu, setLichSu] = useState({});
 
@@ -93,7 +97,7 @@ function Main() {
             <AvatarImage src={avatarUrl} alt="Avatar" />
             <DropdownMenu>
               <DropdownItem>Cài Đặt</DropdownItem>
-              <DropdownItem>Tài Khoản</DropdownItem>
+              <DropdownItem onClick={handleProfile}>Tài Khoản</DropdownItem>
               <DropdownItem onClick={handleLogout}>
                 <img src={logout} alt="Logout" />
               </DropdownItem>
