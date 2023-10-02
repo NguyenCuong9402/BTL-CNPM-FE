@@ -144,6 +144,7 @@ export const CustomTableContainer = styled.div`
 
 export const TableHeader = styled.th`
   padding: 22px;
+  width: 120px;
   text-align: center;
   background-color: #f0f0f0;
   position: relative;
@@ -157,19 +158,12 @@ export const TableHeader = styled.th`
     font-size: 14px;
     font-weight: bold;
   }
-
-  .asc::before {
-    content: '↑';
-  }
-
-  .desc::before {
-    content: '↓';
-  }
 `;
 
 export const TableCell = styled.td`
   padding: 8px 12px;
   text-align: center;
+  width: 120px;
 `;
 
 
