@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef  } from "react";
 import "boxicons/css/boxicons.min.css";
 import {
   UserInfoContainer,
@@ -75,7 +75,7 @@ function Profile() {
     }
   };
   const avatar = `http://127.0.0.1:5000/api/v1/picture/avatar/${user_id}`;
-
+  const fileInputRef = useRef(null);
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     if (file) {
@@ -91,7 +91,10 @@ function Profile() {
 
   const handleRemoveImage = () => {
     setSelectedImage(null); // Xóa ảnh đã chọn bằng cách đặt trạng thái về null
-    setShowSelectedImage(false); 
+    setShowSelectedImage(false);
+    if (fileInputRef.current) {
+      fileInputRef.current.value = null; // Đặt giá trị của input file về null
+    }
   };
 
   return (
@@ -129,7 +132,8 @@ function Profile() {
         <AvatarImageSet src={avatar} alt="Avatar" />
       )}
       <div>
-        <input type="file" accept="image/*" onChange={handleImageChange} />
+      <input ref={fileInputRef} type="file" accept="image/*" onChange={handleImageChange}
+      />
       </div>
         </ButtonContainer> 
         </LoginSection>
