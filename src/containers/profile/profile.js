@@ -7,7 +7,7 @@ import {
   AvatarImage,
   AvatarContainer,
   DropdownMenu,
-  DropdownItem,
+  DropdownItem, AvatarImageSet,
   FlashingImage,
   Header,
   Navbar,
@@ -16,7 +16,7 @@ import {
   Button,
   ButtonContainer,
   Item,
-  SocialIcon,
+  SocialIcon, AvatarContainerSet,
   TextItem,
 } from "./profileStyle";
 import "boxicons/css/boxicons.min.css";
@@ -30,7 +30,7 @@ import WordSearch from "./wordsearch.png";
 function Profile() {
   const [name_user, setUserData] = useState(null);
   const [user_id, setUserDataId] = useState(null);
-  const history = useHistory();
+  const [selectedImage, setSelectedImage] = useState(null);  const history = useHistory();
   useEffect(() => {
     // Lấy userData từ localStorage khi component được tạo
     const userDataFromLocalStorage = JSON.parse(localStorage.getItem("user"));
@@ -74,9 +74,18 @@ function Profile() {
     }
   };
 
-  const handleHistoryClick = async () =>{
-    history.push(`/history`, { });
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const imageBlobUrl = e.target.result;
+        setSelectedImage(imageBlobUrl);
+      };
+      reader.readAsDataURL(file);
+    }
   };
+
   return (
     <div>
       <Header>
@@ -102,9 +111,17 @@ function Profile() {
       <Background></Background>
       <Container>
         <LoginSection>
-          <ButtonContainer>
-            
-          </ButtonContainer>
+        <ButtonContainer>
+        <AvatarContainerSet>
+          <AvatarImageSet src={avatarUrl} alt="Avatar" />
+          <div>
+          <input type="file" accept="image/*" onChange={handleImageChange} />
+          {selectedImage && (
+            <AvatarImageSet src={selectedImage} alt="Selected Image" />
+          )}
+        </div>
+        </AvatarContainerSet>
+        </ButtonContainer> 
         </LoginSection>
         <Item>
           

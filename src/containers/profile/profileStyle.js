@@ -376,3 +376,32 @@ export const FlashingImage = styled.img`
   animation: ${flashAnimation} 1s infinite; // Sử dụng animation với vô hạn lặp lại
 `;
 
+export const AvatarImageSet = styled.img`
+  width: 500px;
+  height: 450px;
+  border-radius: 50%;
+  transition: filter 0.3s ease;
+`;
+
+export const AvatarContainerSet = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+  position: relative;
+  cursor: pointer;
+
+  .upload-button {
+    margin-top: 8px;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  #avatar-upload {
+    display: none; /* Ẩn input để tùy chỉnh giao diện */
+  }
+`;
