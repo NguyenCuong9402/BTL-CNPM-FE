@@ -92,7 +92,6 @@ function Profile() {
             <AvatarImage src={avatarUrl} alt="Avatar" />
             <DropdownMenu>
               <DropdownItem>Cài Đặt</DropdownItem>
-              <DropdownItem>Tài Khoản</DropdownItem>
               <DropdownItem onClick={handleLogout}>
                 <img src={logout} alt="Logout" />
               </DropdownItem>
