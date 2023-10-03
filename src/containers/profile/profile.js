@@ -128,13 +128,12 @@ function Profile() {
           <CloseButtonStyled onClick={handleRemoveImage}>X</CloseButtonStyled>
           <AvatarImageSet src={URL.createObjectURL(selectedImage)} alt="Selected Image" />
         </div>
-      ) : (
-        <AvatarImageSet src={avatar} alt="Avatar" />
-      )}
-      <div>
-      <input ref={fileInputRef} type="file" accept="image/*" onChange={handleImageChange}
-      />
-      </div>
+        ) : (
+          <AvatarImageSet src={avatar} alt="Avatar" />
+        )}
+        <div><input ref={fileInputRef} type="file" accept="image/*" onChange={handleImageChange}/></div>
+        <Button>set</Button>
+
         </ButtonContainer> 
         </LoginSection>
         <Item>

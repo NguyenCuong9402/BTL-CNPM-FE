@@ -245,8 +245,8 @@ export const ButtonContainer = styled.div`
 `;
 
 export const Button = styled.button`
-  width: 300px;
-  height: 100px;
+  width: 100px;
+  height: 70px;
   background-color: #f72d7a;
   color: #fff;
   border: none;
