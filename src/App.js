@@ -7,6 +7,7 @@ import PlayGame from "./containers/playgame/playgame";
 import NotFound from "./containers/notFound/NotFound";
 import History from "./containers/history/history";
 import Profile from "./containers/profile/profile";
+import Changepass from "./containers/changepass/changpass";
 
 
 
@@ -20,6 +21,7 @@ const App = () => {
         <Route path="/playgame" component={PlayGame} />
         <Route path="/history" component={History} />
         <Route path="/profile" component={Profile} />
+        <Route path="/changepass" component={Changepass} />
         <Route path="/notfound" component={NotFound} />
         <Redirect exact from="/" to="/login" />
         {/* Điều hướng mặc định từ "/" sẽ chuyển hướng đến "/login" */}

@@ -277,6 +277,9 @@ function Profile() {
       return <span>{phone_user}</span>;
     }
   };
+  const handleChangepass = async () =>{
+    history.push(`/changepass`, { });
+  };
 
   return (
     <div>
@@ -292,7 +295,7 @@ function Profile() {
           <AvatarContainer>
             <AvatarImage src={avatar} alt="Avatar" />
             <DropdownMenu>
-              <DropdownItem>Đổi mật khẩu</DropdownItem>
+              <DropdownItem onClick={handleChangepass}>Đổi mật khẩu</DropdownItem>
               <DropdownItem onClick={handleLogout}>
                 <img src={logout} alt="Logout" />
               </DropdownItem>
