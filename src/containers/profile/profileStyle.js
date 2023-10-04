@@ -128,12 +128,12 @@ export const Container = styled.div`
 export const Item = styled.div`
   position: absolute;
   top: 0;
-  left: 0;
+  left: 0%;
   width: 58%;
   height: 100%;
   color: #fff;
   background: transparent;
-  padding: 80px;
+  padding: 120px;
   display: flex;
   justify-content: space-between;
   flex-direction: column;
@@ -144,16 +144,10 @@ export const Logo = styled.h2`
   font-size: 30px;
 `;
 
-export const TextItem = styled.div`
-  h2 {
-    font-size: 40px;
-    line-height: 1;
-  }
-
-  p {
-    font-size: 16px;
-    margin: 20px 0;
-  }
+export const TextItem = styled.span`
+    font-size: 40px; /* Điều chỉnh kích thước cho đoạn văn bản (p) */
+    text-align: center; 
+    margin: 10px 0;
 `;
 
 export const SocialIcon = styled.div`

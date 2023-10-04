@@ -25,10 +25,22 @@ import { Link, useHistory } from "react-router-dom";
 import logout from "./logout.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlay } from "@fortawesome/free-solid-svg-icons";
-import WordSearch from "./wordsearch.png";
+import image_user from "./user.png";
+import image_man from "./men.png";
+import image_woman from "./women.png";
+import image_address from "./address.png";
+import image_phone from "./phone.png";
+
+
+
+
+
 
 function Profile() {
   const [name_user, setUserData] = useState(null);
+  const [phone_user, setPhoneUser] = useState('');
+  const [address_user, setAddressUser] = useState('');
+  const [gender, setGender] = useState(0);
   const [user_id, setUserDataId] = useState(null);
   const [selectedImage, setSelectedImage] = useState(null);
   const [showSelectedImage, setShowSelectedImage] = useState(false);
@@ -39,6 +51,9 @@ function Profile() {
     if (userDataFromLocalStorage) {
       setUserData(userDataFromLocalStorage.name_user);
       setUserDataId(userDataFromLocalStorage.id);
+      setPhoneUser(userDataFromLocalStorage.phone_number);
+      setAddressUser(userDataFromLocalStorage.address);
+      setGender(userDataFromLocalStorage.gender);
     } else {
       history.push("/login"); // Điều hướng đến màn hình đăng nhập
     }
@@ -50,30 +65,7 @@ function Profile() {
 
     window.location.href = "/login";
   };
-  const [TurnAndCauDo, setData] = useState({});
-  const [lichSu, setLichSu] = useState({});
-
-  const handlePlayClick = async () => {
-    try {
-      const access_token = localStorage.getItem("accessToken");
-      // Thực hiện yêu cầu POST đến API để lấy danh sách 5 id
-      const response = await axios.get(
-        "http://127.0.0.1:5000/api/v1/luot_choi",
-        {
-          headers: {
-            Authorization: `Bearer ${access_token}`,
-          },
-        },
-        {}
-      );
-      const respon = response.data.data;
-      setData(respon);
-
-      history.push(`/playgame`, { TurnAndCauDo: respon });
-    } catch (error) {
-      console.error("Error:", error);
-    }
-  };
+  
   const avatar = `http://127.0.0.1:5000/api/v1/picture/avatar/${user_id}`;
   const fileInputRef = useRef(null);
   const handleImageChange = (e) => {
@@ -172,8 +164,29 @@ function Profile() {
         </ButtonContainer> 
         </LoginSection>
         <Item>
-          
-        
+          <div>
+          <AvatarImage src={image_user} alt="Avatar" />
+          <TextItem>{name_user}</TextItem>
+          </div>
+          <div>
+            <AvatarImage src={image_address} alt="Địa chỉ" />
+            <TextItem>{address_user}</TextItem>
+          </div>
+          <div>
+            <AvatarImage src={image_phone} alt="Số điện thoại" />
+            <TextItem>{phone_user}</TextItem>
+          </div>
+            {gender === 1 ? (
+              <div>
+              <AvatarImage src={image_man} alt="Man" />
+              <TextItem>Nam</TextItem>
+              </div>
+            ) : (
+              <div>
+              <AvatarImage src={image_woman} alt="woMan" />
+              <TextItem>Nữ</TextItem>
+              </div>
+            )}
         </Item>
       </Container>
     </div>
