@@ -18,13 +18,17 @@ import { Link, useHistory } from "react-router-dom";
 import logout from "./logout.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlay } from "@fortawesome/free-solid-svg-icons";
+import Modal from "../../modal";
 
 
 function Changepass() {
   const [name_user, setUserData] = useState(null);
   const [user_id, setUserDataId] = useState(null);
   const history = useHistory();
+  const [isModalOpen, setModalOpen] = useState(false);
+  const [isPush, setPush] = useState(false);
 
+  const [modalMessage, setModalMessage] = useState('');
   const [formData, setFormData] = useState({
     new_password: '',
     confirm_password: '',
@@ -45,8 +49,8 @@ function Changepass() {
     localStorage.removeItem("accessToken");
     localStorage.removeItem("refreshToken");
 
-    window.location.href = "/login";
-  };
+    history.push('/login');
+};
   
   const avatar = `http://127.0.0.1:5000/api/v1/picture/avatar/${user_id}`;
  
@@ -62,9 +66,48 @@ function Changepass() {
     });
 };
 
-    const handleChangepass =()=> {
-        
-    }
+
+
+    const handleChangepass = () => {
+        const requestData = {
+            new_password: formData.new_password,
+            confirm_password: formData.confirm_password,
+        };
+        const access_token = localStorage.getItem("accessToken");
+        // Gọi API /register và gửi dữ liệu requestData lên server
+        axios.put('http://127.0.0.1:5000/api/v1/user/change-password', formData, {
+            headers: {
+                Authorization: `Bearer ${access_token}`,
+              }
+        })
+      .then(function (response) {
+        if (response.data.message.status === "success") {
+          setModalMessage(response.data.message.text);
+          setModalOpen(true);
+          setPush(true)
+        }
+        if (response.data.message.status === "error") {
+          setModalMessage(response.data.message.text);
+          setModalOpen(true);
+        }
+
+      })
+      .catch(function (error) {
+        console.error(error);
+        alert('Error');
+      });
+  };
+
+  const handleCloseModal = () => {
+    setModalOpen(false);
+    if (isPush === true) {
+        localStorage.removeItem("user");
+        localStorage.removeItem("accessToken");
+        localStorage.removeItem("refreshToken");
+        history.push('/login');
+      }
+
+  };
   return (
     <div>
       <Header>
@@ -116,10 +159,10 @@ function Changepass() {
                 />
             </UserInputBox>       
             <FormSubmitButton>  
-            <SubmitInput type="submit" value="Register" onClick={handleChangepass} />
+            <SubmitInput type="submit" value="Đổi Mật Khẩu" onClick={handleChangepass} />
             </FormSubmitButton>
         </Container>
-        {/* <Modal isOpen={isModalOpen} message={modalMessage} onClose={handleCloseModal} /> */}
+        <Modal isOpen={isModalOpen} message={modalMessage} onClose={handleCloseModal} />
     </Body>
     </div>
   );

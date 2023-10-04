@@ -116,6 +116,7 @@ export const Container = styled.div`
   top: 50%;
   transform: translate(-50%, -50%);
   width: 75%;
+  align-items: center;
   height: 750px;
   margin-top: 20px;
   background: url(${background1});
@@ -188,10 +189,7 @@ export const RegisterForm = styled.div`
   transition-delay: 0s;
 `;
 
-export const ActiveRegisterForm = styled.div`
-  transform: translateX(0px);
-  transition-delay: .7s;
-`;
+
 
 export const LoginForm = styled.div`
   transform: translateX(0px);
@@ -431,6 +429,7 @@ export const CloseButtonStyled = styled.button`
 
 export const FormTitle = styled.h1`
   font-size: 26px;
+  margin-top: 100px;
   height : 150px;
   font-weight: 600;
   text-align: center;
@@ -450,13 +449,17 @@ export const MainUserInfo = styled.div`
 export const UserInputBox = styled.div`
   display: flex;
   flex-wrap: wrap;
+  text-align: center;
+  align-items: center;
   width: 50%;
+  margin: 0 auto;
   padding-bottom: 15px;
 `;
 
 export const UserInputLabel = styled.label`
   width: 95%;
   color: white;
+  text-align: center;
   font-size: 20px;
   font-weight: 400;
   margin: 5px 0;
@@ -494,7 +497,7 @@ export const FormSubmitButton = styled.div`
 
 export const SubmitInput = styled.input`
   display: block;
-  width: 50%; /* Đặt độ rộng 50% */
+  width: 20%; /* Đặt độ rộng 50% */
   margin: 0 auto; /* Căn giữa theo chiều ngang */
   font-size: 20px;
   padding: 10px;
