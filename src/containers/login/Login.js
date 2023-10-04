@@ -4,13 +4,14 @@ import 'boxicons/css/boxicons.min.css'; // Import thư viện icons
 import axios from 'axios';
 import { Link, useHistory  } from 'react-router-dom';
 import WordSearch from './wordsearch.png'
-
+import Modal from "../../modal";
 
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const history = useHistory();
-
+  const [isModalOpen, setModalOpen] = useState(false);
+  const [modalMessage, setModalMessage] = useState('');
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
   };
@@ -42,9 +43,8 @@ function Login() {
           window.location.href = '/main';
         }
         if (response.data.message.status === "error") {
-          alert(response.data.message.text);
-          window.location.href = '/login';
-
+          setModalMessage(response.data.message.text);
+          setModalOpen(true);
         }
 
       })
@@ -52,6 +52,11 @@ function Login() {
         console.error(error);
         alert('Tài khoản không tồn tại');
       });
+  };
+
+
+  const handleCloseModal = () => {
+    setModalOpen(false);
   };
   return (
     <div>
@@ -115,6 +120,7 @@ function Login() {
           </div>
         </div>
       </div>
+      <Modal isOpen={isModalOpen} message={modalMessage} onClose={handleCloseModal} />
     </div>
   );
 }
