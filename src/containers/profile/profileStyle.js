@@ -245,7 +245,7 @@ export const ButtonContainer = styled.div`
 `;
 
 export const Button = styled.button`
-  width: 100px;
+  width: 200px;
   height: 70px;
   background-color: #f72d7a;
   color: #fff;
@@ -254,6 +254,8 @@ export const Button = styled.button`
   padding: 10px 20px;
   font-size: 40px;
   cursor: pointer;
+  justify-content: center; /* Căn giữa theo chiều ngang */
+  align-items: center; 
   
   position: relative; /* Thêm thuộc tính này để xác định vị trí của biểu tượng */
 

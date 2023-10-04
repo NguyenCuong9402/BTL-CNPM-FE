@@ -97,6 +97,41 @@ function Profile() {
     }
   };
 
+  const setAvatarImage = () => {
+    // Lấy reference đến input type="file"
+    const fileInput = fileInputRef.current;
+  
+    // Đảm bảo rằng người dùng đã chọn một file
+    if (fileInput.files.length > 0) {
+      const file = fileInput.files[0];
+  
+      // Tạo một FormData để gửi file
+      const formData = new FormData();
+      formData.append('file', file);
+      const access_token = localStorage.getItem("accessToken");
+      // Tạo header Authorization
+      const headers = {
+        Authorization: `Bearer ${access_token}`,
+      };
+        const config = {
+        headers: headers,
+      };
+        axios
+        .post('http://127.0.0.1:5000/api/v1/picture/avatar', formData, config)
+        .then((response) => {
+          // Xử lý khi request thành công
+          console.log('Upload ảnh avatar thành công.');
+          window.location.reload();
+        })
+        .catch((error) => {
+          // Xử lý khi request thất bại
+          console.error('Upload ảnh avatar thất bại:', error);
+        });
+    } else {
+      console.error('Chưa chọn file ảnh.');
+    }
+  };
+
   return (
     <div>
       <Header>
@@ -132,7 +167,7 @@ function Profile() {
           <AvatarImageSet src={avatar} alt="Avatar" />
         )}
         <div><input ref={fileInputRef} type="file" accept="image/*" onChange={handleImageChange}/></div>
-        <Button>set</Button>
+        <Button onClick={setAvatarImage}>avatar</Button>
 
         </ButtonContainer> 
         </LoginSection>
