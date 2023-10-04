@@ -169,6 +169,9 @@ function PlayGame() {
   const navigateToMain = () => {
     history.push('/main');
   };
+  const handleProfile = async () =>{
+    history.push(`/profile`, { });
+  };
   return (
     <div>
       <Header>
@@ -184,7 +187,7 @@ function PlayGame() {
             <AvatarImage src={avatarUrl} alt="Avatar" />
             <DropdownMenu>
               <DropdownItem>Cài Đặt</DropdownItem>
-              <DropdownItem>Tài Khoản</DropdownItem>
+              <DropdownItem onClick={handleProfile}>Tài Khoản</DropdownItem>
               <DropdownItem onClick={handleLogout}>
                 <img src={logout} alt="Logout" />
               </DropdownItem>

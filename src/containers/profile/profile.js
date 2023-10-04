@@ -292,7 +292,7 @@ function Profile() {
           <AvatarContainer>
             <AvatarImage src={avatar} alt="Avatar" />
             <DropdownMenu>
-              <DropdownItem>Cài Đặt</DropdownItem>
+              <DropdownItem>Đổi mật khẩu</DropdownItem>
               <DropdownItem onClick={handleLogout}>
                 <img src={logout} alt="Logout" />
               </DropdownItem>

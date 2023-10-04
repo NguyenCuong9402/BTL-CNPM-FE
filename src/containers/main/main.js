@@ -96,7 +96,7 @@ function Main() {
           <AvatarContainer>
             <AvatarImage src={avatarUrl} alt="Avatar" />
             <DropdownMenu>
-              <DropdownItem>Cài Đặt</DropdownItem>
+              <DropdownItem>Đổi mật khẩu</DropdownItem>
               <DropdownItem onClick={handleProfile}>Tài Khoản</DropdownItem>
               <DropdownItem onClick={handleLogout}>
                 <img src={logout} alt="Logout" />
