@@ -151,7 +151,7 @@ function Profile() {
         const updatedObjDataUser = { ...objDataUser, name_user: editedName };
         localStorage.setItem('user', JSON.stringify(updatedObjDataUser));
         setobjDataUser(updatedObjDataUser);
-        setUserData(editedName);
+        setPhoneUser(editedName);
         // window.location.reload();
 
       }
@@ -168,7 +168,7 @@ function Profile() {
       return (
         <input
           type="text"
-          value={editedName.trim()}
+          value={editedName}
           onChange={(e) => setEditedName(e.target.value)}
           onBlur={finishEditing}
           autoFocus
@@ -210,14 +210,14 @@ function Profile() {
       console.error('Error updating user data:', error);
     
   };
-}
+  }
 
   const renderAdress = () => {
     if (isEditingadress) {
       return (
         <input
           type="text"
-          value={editedAdress.trim()}
+          value={editedAdress}
           onChange={(e) => setEditedAdress(e.target.value)}
           onBlur={finishEditingAdress}
           autoFocus
@@ -225,6 +225,56 @@ function Profile() {
       );
     } else {
       return <span>{address_user}</span>;
+    }
+  };
+
+  /*edit Phone*/
+
+  const [isEditingPhone, setIsEditingPhone] = useState(false); // State để theo dõi trạng thái chỉnh sửa
+  const [editedPhone, setEditedPhone] = useState('');
+  const startEditingPhone = () => {
+    setIsEditingPhone(true);
+    setEditedPhone(phone_user); // Đặt giá trị chỉnh sửa ban đầu là tên hiện tại
+  };
+  
+  const finishEditingPhone = async () => {
+    setIsEditingPhone(false);
+
+    try {
+      const access_token = localStorage.getItem("accessToken");
+
+      const response = await axios.put('http://127.0.0.1:5000/api/v1/user/update', { phone_number: editedPhone }, {
+        headers: {
+          Authorization: `Bearer ${access_token}`,
+        },
+      });
+      console.log(response.data.message)
+      if (response.data.message.status === "success") {
+        const updatedObjDataUser = { ...objDataUser, phone_number: editedPhone };
+        localStorage.setItem('user', JSON.stringify(updatedObjDataUser));
+        setobjDataUser(updatedObjDataUser);
+        setPhoneUser(editedPhone);
+
+      }
+    } catch (error) {
+      console.error('Error updating user data:', error);
+    
+  };
+  }
+
+  const renderPhone = () => {
+    if (isEditingPhone) {
+      return (
+        <input
+          type="text"
+          value={editedPhone}
+          onChange={(e) => setEditedPhone(e.target.value)}
+          onBlur={finishEditingPhone}
+          autoFocus
+        />
+      );
+    } else {
+      return <span>{phone_user}</span>;
     }
   };
 
@@ -280,7 +330,8 @@ function Profile() {
           </div>
           <div>
             <AvatarImage src={image_phone} alt="Số điện thoại" />
-            <TextItem>{phone_user}</TextItem>
+            <TextItem>{renderPhone()}</TextItem>
+            <AvatarImagebuton src={image_put} alt="change" onClick={startEditingPhone}/>
           </div>
             {gender === 1 ? (
               <div>
