@@ -75,10 +75,7 @@ const RegisterForm = () => {
     if (isPush === true) {
         history.push('/login');
       }
-
   };
-
-
     return (
         <Body>
         <Container>
