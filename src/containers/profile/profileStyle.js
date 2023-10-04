@@ -302,6 +302,19 @@ export const AvatarImage = styled.img`
   }
 `;
 
+export const AvatarImagebuton = styled.img`
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  margin-right: 10px;
+  transition: filter 0.3s ease;
+
+  &:hover {
+    filter: brightness(1.2);
+    transform: scale(1.1);
+  }
+`;
+
 export const DropdownMenu = styled.div`
   position: absolute;
   width:100px;
@@ -415,3 +428,4 @@ export const CloseButtonStyled = styled.button`
     background-color: red;
   }
 `;
+

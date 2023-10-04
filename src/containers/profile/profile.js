@@ -8,8 +8,8 @@ import {
   AvatarContainer,
   DropdownMenu,
   DropdownItem, AvatarImageSet,
-  FlashingImage,
-  Header,
+  FlashingImage, NoFontButton,
+  Header, AvatarImagebuton,
   Navbar,
   Container,
   LoginSection,
@@ -30,6 +30,8 @@ import image_man from "./men.png";
 import image_woman from "./women.png";
 import image_address from "./address.png";
 import image_phone from "./phone.png";
+import image_put from "./pen.png";
+
 
 
 
@@ -41,6 +43,7 @@ function Profile() {
   const [phone_user, setPhoneUser] = useState('');
   const [address_user, setAddressUser] = useState('');
   const [gender, setGender] = useState(0);
+  const [objDataUser, setobjDataUser] = useState({});
   const [user_id, setUserDataId] = useState(null);
   const [selectedImage, setSelectedImage] = useState(null);
   const [showSelectedImage, setShowSelectedImage] = useState(false);
@@ -49,6 +52,7 @@ function Profile() {
     // Lấy userData từ localStorage khi component được tạo
     const userDataFromLocalStorage = JSON.parse(localStorage.getItem("user"));
     if (userDataFromLocalStorage) {
+      setobjDataUser(userDataFromLocalStorage)
       setUserData(userDataFromLocalStorage.name_user);
       setUserDataId(userDataFromLocalStorage.id);
       setPhoneUser(userDataFromLocalStorage.phone_number);
@@ -124,6 +128,106 @@ function Profile() {
     }
   };
 
+  const [isEditing, setIsEditing] = useState(false); // State để theo dõi trạng thái chỉnh sửa
+  const [editedName, setEditedName] = useState('');
+  const startEditing = () => {
+    setIsEditing(true);
+    setEditedName(name_user); // Đặt giá trị chỉnh sửa ban đầu là tên hiện tại
+  };
+  
+  const finishEditing = async () => {
+    setIsEditing(false);
+
+    try {
+      const access_token = localStorage.getItem("accessToken");
+
+      const response = await axios.put('http://127.0.0.1:5000/api/v1/user/update', { name_user: editedName }, {
+        headers: {
+          Authorization: `Bearer ${access_token}`,
+        },
+      });
+      console.log(response.data.message)
+      if (response.data.message.status === "success") {
+        const updatedObjDataUser = { ...objDataUser, name_user: editedName };
+        localStorage.setItem('user', JSON.stringify(updatedObjDataUser));
+        setobjDataUser(updatedObjDataUser);
+        setUserData(editedName);
+        // window.location.reload();
+
+      }
+    } catch (error) {
+      // Xử lý lỗi (nếu có)
+      console.error('Error updating user data:', error);
+    
+  };
+}
+
+  // Render tên dựa vào trạng thái chỉnh sửa
+  const renderName = () => {
+    if (isEditing) {
+      return (
+        <input
+          type="text"
+          value={editedName.trim()}
+          onChange={(e) => setEditedName(e.target.value)}
+          onBlur={finishEditing}
+          autoFocus
+        />
+      );
+    } else {
+      return <span>{name_user}</span>;
+    }
+  };
+
+  /*edit address*/
+  const [isEditingadress, setIsEditingAdress] = useState(false); // State để theo dõi trạng thái chỉnh sửa
+  const [editedAdress, setEditedAdress] = useState('');
+  const startEditingAdress = () => {
+    setIsEditingAdress(true);
+    setEditedAdress(address_user); // Đặt giá trị chỉnh sửa ban đầu là tên hiện tại
+  };
+  
+  const finishEditingAdress = async () => {
+    setIsEditingAdress(false);
+
+    try {
+      const access_token = localStorage.getItem("accessToken");
+
+      const response = await axios.put('http://127.0.0.1:5000/api/v1/user/update', { address: editedAdress }, {
+        headers: {
+          Authorization: `Bearer ${access_token}`,
+        },
+      });
+      console.log(response.data.message)
+      if (response.data.message.status === "success") {
+        const updatedObjDataUser = { ...objDataUser, address: editedAdress };
+        localStorage.setItem('user', JSON.stringify(updatedObjDataUser));
+        setobjDataUser(updatedObjDataUser);
+        setAddressUser(editedAdress);
+
+      }
+    } catch (error) {
+      console.error('Error updating user data:', error);
+    
+  };
+}
+
+  const renderAdress = () => {
+    if (isEditingadress) {
+      return (
+        <input
+          type="text"
+          value={editedAdress.trim()}
+          onChange={(e) => setEditedAdress(e.target.value)}
+          onBlur={finishEditingAdress}
+          autoFocus
+        />
+      );
+    } else {
+      return <span>{address_user}</span>;
+    }
+  };
+
   return (
     <div>
       <Header>
@@ -166,11 +270,13 @@ function Profile() {
         <Item>
           <div>
           <AvatarImage src={image_user} alt="Avatar" />
-          <TextItem>{name_user}</TextItem>
+          <TextItem>{renderName()}</TextItem>
+          <AvatarImagebuton src={image_put} alt="change" onClick={startEditing}/>
           </div>
           <div>
             <AvatarImage src={image_address} alt="Địa chỉ" />
-            <TextItem>{address_user}</TextItem>
+            <TextItem>{renderAdress()}</TextItem>
+            <AvatarImagebuton src={image_put} alt="change" onClick={startEditingAdress}/>
           </div>
           <div>
             <AvatarImage src={image_phone} alt="Số điện thoại" />
