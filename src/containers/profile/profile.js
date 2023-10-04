@@ -151,8 +151,7 @@ function Profile() {
         const updatedObjDataUser = { ...objDataUser, name_user: editedName };
         localStorage.setItem('user', JSON.stringify(updatedObjDataUser));
         setobjDataUser(updatedObjDataUser);
-        setPhoneUser(editedName);
-        // window.location.reload();
+        setUserData(editedName);
 
       }
     } catch (error) {
