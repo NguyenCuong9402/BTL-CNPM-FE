@@ -1,23 +1,16 @@
 import React, { useState, useEffect} from "react";
 import "boxicons/css/boxicons.min.css";
 import {
-  UserInfoContainer,
-  UserName,
-  Background, CloseButtonStyled,
+  UserInfoContainer,  FormTitle, UserInputBox, UserInputLabel, UserInput,
+  UserName,Body,
+  Background,
   AvatarImage,
   AvatarContainer,
   DropdownMenu,
-  DropdownItem, AvatarImageSet,
-  FlashingImage, NoFontButton,
-  Header, AvatarImagebuton,
+  DropdownItem,
+  Header, FormSubmitButton, SubmitInput,
   Navbar,
   Container,
-  LoginSection,
-  Button,
-  ButtonContainer,
-  Item,
-  SocialIcon, AvatarContainerSet,
-  TextItem,
 } from "./changepassStyle";
 import "boxicons/css/boxicons.min.css";
 import axios from "axios";
@@ -31,6 +24,12 @@ function Changepass() {
   const [name_user, setUserData] = useState(null);
   const [user_id, setUserDataId] = useState(null);
   const history = useHistory();
+
+  const [formData, setFormData] = useState({
+    new_password: '',
+    confirm_password: '',
+     
+});
   useEffect(() => {
     // Lấy userData từ localStorage khi component được tạo
     const userDataFromLocalStorage = JSON.parse(localStorage.getItem("user"));
@@ -54,6 +53,18 @@ function Changepass() {
   const handleProfile = ()=>{
     history.push(`/profile`, { });
   }
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+        ...formData,
+        [name]: value,
+    });
+};
+
+    const handleChangepass =()=> {
+        
+    }
   return (
     <div>
       <Header>
@@ -77,17 +88,39 @@ function Changepass() {
         </UserInfoContainer>
       </Header>
       <Background></Background>
+      <Body>
       <Container>
-        <LoginSection>
-        <ButtonContainer>
-        
-
-        </ButtonContainer> 
-        </LoginSection>
-        <Item>
-          
-        </Item>
-      </Container>
+            <FormTitle >Change password Account</FormTitle>  
+            <UserInputBox>
+                <UserInputLabel htmlFor="new_password">New PassWord</UserInputLabel>
+                <UserInput
+                type="password" 
+                id="new_password"
+                name="new_password"
+                placeholder="Enter newpassword"
+                required
+                value={formData.new_password}
+                onChange={handleInputChange}
+                />
+            </UserInputBox>
+            <UserInputBox>
+                <UserInputLabel htmlFor="confirm_password">Confirm PassWord</UserInputLabel>
+                <UserInput
+                type="password" 
+                id="confirm_password"
+                name="confirm_password"
+                placeholder="Enter confirmpassword"
+                required
+                value={formData.confirm_password}
+                onChange={handleInputChange}
+                />
+            </UserInputBox>       
+            <FormSubmitButton>  
+            <SubmitInput type="submit" value="Register" onClick={handleChangepass} />
+            </FormSubmitButton>
+        </Container>
+        {/* <Modal isOpen={isModalOpen} message={modalMessage} onClose={handleCloseModal} /> */}
+    </Body>
     </div>
   );
 }

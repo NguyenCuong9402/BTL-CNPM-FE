@@ -140,7 +140,7 @@ const RegisterForm = () => {
             <UserInputBox>
                 <UserInputLabel htmlFor="password">Enter Password</UserInputLabel>
                 <UserInput
-                type="text"
+                type="password"
                 id="password"
                 name="password"
                 placeholder="Enter Password"
@@ -152,7 +152,7 @@ const RegisterForm = () => {
             <UserInputBox>
                 <UserInputLabel htmlFor="confirmPassword">Confirm Password</UserInputLabel>
                 <UserInput
-                type="text"
+                type="password"
                 id="confirmPassword"
                 name="confirmPassword"
                 placeholder="Enter Confirm Password"
