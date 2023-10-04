@@ -6,12 +6,16 @@ import {LoginLink,
   } from './registerStyle'
 import 'react-datepicker/dist/react-datepicker.css';
 import { hover } from '@testing-library/user-event/dist/hover';
+import Modal from "../../modal";
 
 
   
 const RegisterForm = () => {
     const history = useHistory();
+    const [isModalOpen, setModalOpen] = useState(false);
+    const [isPush, setPush] = useState(false);
 
+    const [modalMessage, setModalMessage] = useState('');
     const [formData, setFormData] = useState({
         fullName: '',
         email: '',
@@ -50,13 +54,13 @@ const RegisterForm = () => {
         axios.post('http://127.0.0.1:5000/api/v1/user/register', formData)
       .then(function (response) {
         if (response.data.message.status === "success") {
-          alert(response.data.message.text);
-          window.location.href = '/login';
+          setModalMessage(response.data.message.text);
+          setModalOpen(true);
+          setPush(true)
         }
         if (response.data.message.status === "error") {
-          alert(response.data.message.text);
-          window.location.href = '/register';
-
+          setModalMessage(response.data.message.text);
+          setModalOpen(true);
         }
 
       })
@@ -64,6 +68,14 @@ const RegisterForm = () => {
         console.error(error);
         alert('Error');
       });
+  };
+
+  const handleCloseModal = () => {
+    setModalOpen(false);
+    if (isPush === true) {
+        history.push('/login');
+      }
+
   };
 
 
@@ -180,6 +192,7 @@ const RegisterForm = () => {
                 </p>
             </div>
         </Container>
+        <Modal isOpen={isModalOpen} message={modalMessage} onClose={handleCloseModal} />
         </Body>
     );
   };
