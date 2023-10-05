@@ -9,6 +9,7 @@ import Modal from "../../modal";
 function Login() {
   const [email, setEmail] = useState('');
   const [emailforget, setEmailForget] = useState('');
+  const [isPush, setPush] = useState(false);
 
   const [password, setPassword] = useState('');
   const history = useHistory();
@@ -64,6 +65,9 @@ function Login() {
 
   const handleCloseModal = () => {
     setModalOpen(false);
+    if (isPush === true) {
+      setShowForgotPassword(false)
+    }
   };
 
   const handleForgotPasswordClick = () => {
@@ -71,12 +75,15 @@ function Login() {
   };
   const handleSendPasswordEmail = () => {
     axios.post('http://127.0.0.1:5000/api/v1/user/send_pass_email', {
-      email: email,
+      email: emailforget,
     })
       .then(function (response) {
         if (response.data.message.status === "success") {
           setModalMessage(response.data.message.text);
           setModalOpen(true);
+          setPush(true)
+          setEmailForget('')
+
         }
         if (response.data.message.status === "error") {
           setModalMessage(response.data.message.text);
@@ -152,12 +159,10 @@ function Login() {
         </div>
         {showForgotPassword && (
           <div>
-              <div onClick={() => setShowForgotPassword(false)}>
-          </div>
+          <div className="overlay"></div>
           <div className="forgot-password-form">
-          <h2>Nhập Email</h2>
+          <h2 style={{ color: 'white' }}>Nhập Email</h2>          
           <div className="input-box">
-            <span className="icon"><i className='bx bxs-envelope'></i></span>
             <input
               type="email"
               required

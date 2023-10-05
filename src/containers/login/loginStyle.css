@@ -113,11 +113,11 @@ body{
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.7); /* Màu nền mờ */
-    z-index: 998; /* Đặt ít hơn z-index của phần "Forgot Password" */
-    display: none; /* Bắt đầu ẩn lớp mờ */
-    cursor: not-allowed; /* Biến con trỏ thành dấu không cho ngăn người dùng click vào */
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 999; /* Set a high z-index to cover everything */
+    cursor: not-allowed;
   }
+  
   
   /* CSS cho phần "Forgot Password" */
   .forgot-password-form {
@@ -125,7 +125,8 @@ body{
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 300px; /* Điều chỉnh chiều rộng phù hợp với thiết kế */
+    width: 500px; /* Điều chỉnh chiều rộng phù hợp với thiết kế */
+    height:300px;
     background: url(backgroundform.png) no-repeat;
     padding: 20px;
     border-radius: 5px;
