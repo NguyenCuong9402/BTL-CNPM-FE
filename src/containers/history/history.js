@@ -69,11 +69,11 @@ function History() {
 
   
 
-  const fetchData = async (page) => {
+  const fetchData = async (page, pSize) => {
     try {
       const access_token = localStorage.getItem("accessToken");
       const response = await axios.get(
-        `http://127.0.0.1:5000/api/v1/luot_choi/get-lich-su?page=${page}&page_size=${pageSize}&order=${sortDirection}`,
+        `http://127.0.0.1:5000/api/v1/luot_choi/get-lich-su?page=${page}&page_size=${pSize}&order=${sortDirection}`,
         {
           headers: {
             Authorization: `Bearer ${access_token}`,
@@ -98,8 +98,8 @@ function History() {
 
   // Call fetchData when the component mounts
   useEffect(() => {
-    fetchData(currentPage);
-  }, [currentPage, sortDirection]);
+    fetchData(currentPage, pageSize, sortDirection);
+  }, [currentPage, pageSize, sortDirection]);
 
   const toggleSortDirection = () => {
     setSortDirection(sortDirection === 'asc' ? 'desc' : 'asc');
@@ -119,6 +119,11 @@ function History() {
   };
   const handleProfile = async () =>{
     history.push(`/profile`, { });
+  };
+  const handlePageSizeChange = (e) => {
+    const newSize = parseInt(e.target.value);
+    setpageSize(newSize);
+    // You may also want to reset the current page to 1 here
   };
   return (
     <div>
@@ -184,7 +189,20 @@ function History() {
         </TableBodyContainer>
       </TableContainer>
 
-    <PaginationContainer>  
+    <PaginationContainer>
+    <div>
+      <label htmlFor="pageSizeSelect" style={{ fontWeight: 'bold', color: 'green' }}>PageSize: </label>
+          <select
+            id="pageSizeSelect"
+            value={pageSize}
+            onChange={handlePageSizeChange}
+          >
+            <option value={5}>5</option>
+            <option value={10}>10</option>
+            <option value={15}>15</option>
+            <option value={20}>20</option>
+          </select>
+        </div>  
       <PaginationButton onClick={handlePrevPage} disabled={currentPage === 1}>
         Previous
       </PaginationButton>
