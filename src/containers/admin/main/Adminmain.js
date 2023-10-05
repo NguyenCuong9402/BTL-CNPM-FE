@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "boxicons/css/boxicons.min.css";
 import {
-  UserInfoContainer,
+  UserInfoContainer, ImageInTableCell,
   UserName, TableCell, TableHeader, CustomTable,
   Background, TableBodyContainer, TableContainer, TableHeaderContainer,
   AvatarImage,
@@ -182,7 +182,7 @@ function AdminMain() {
                 <tr key={item.id}>
                   <TableCell>{(currentPage-1)*pageSize+index + 1}</TableCell>
                   <TableCell>{item.dap_an}</TableCell>
-                  <image src={`http://127.0.0.1:5000/api/v1/picture/${item.id}`}alt="Gợi í"/>
+                  <TableCell><ImageInTableCell src={`http://127.0.0.1:5000/api/v1/picture/${item.id}`} alt="Gợi í" /></TableCell>
                   <TableCell>{item.created_date}</TableCell>
                 </tr>
               ))}

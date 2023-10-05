@@ -166,6 +166,10 @@ export const TableCell = styled.td`
   width: 120px;
 `;
 
+export const ImageInTableCell = styled.img`
+  width: 30%; /* This makes the image take up the full width of the table cell */
+`;
+
 
 export const TableContainer = styled.div`
   width: 100%;
