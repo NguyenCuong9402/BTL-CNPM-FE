@@ -131,8 +131,10 @@ function AdminMain() {
 
 
   /* Tạo select Row */
-
+/*Delete*/
+const [isDeleteButtonVisible, setIsDeleteButtonVisible] = useState(false);
 const [selectedRows, setSelectedRows] = useState([]);
+console.log(selectedRows)
 
 // Function to handle row selection
 const handleRowSelect = (itemId) => {
@@ -144,6 +146,7 @@ const handleRowSelect = (itemId) => {
     // If not selected, add it to the selectedRows array
     setSelectedRows([...selectedRows, itemId]);
   }
+  setIsDeleteButtonVisible(selectedRows.length > 0);
 };
 
 const [selectAll, setSelectAll] = useState(false);
@@ -158,8 +161,12 @@ const handleSelectAllClick = () => {
   }
   // Toggle the selectAll state.
   setSelectAll(!selectAll);
+  setIsDeleteButtonVisible(selectedRows.length > 0);
 };
 
+const handleDeleteButtonClick = () =>{
+  
+}
   return (
     <div>
       <Header>
@@ -237,6 +244,7 @@ const handleSelectAllClick = () => {
                     checked={selectedRows.includes(item.id)}
                     onChange={() => handleRowSelect(item.id)}
                   />
+
                   </TableCell>
                 </tr>
               ))}
@@ -269,6 +277,22 @@ const handleSelectAllClick = () => {
         Next
       </PaginationButton>
     </PaginationContainer>
+    {isDeleteButtonVisible && (
+  <button
+    style={{
+      backgroundColor: '#f72d7a',
+      color: '#fff',
+      border: 'none',
+      borderRadius: '4px',
+      padding: '5px 10px',
+      fontSize: '16px',
+      cursor: 'pointer'
+    }}
+    onClick={handleDeleteButtonClick} // Add a function to handle the delete action
+  >
+    Delete
+  </button>
+)}
   </Container>
   </div>
   );
