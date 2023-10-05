@@ -167,7 +167,7 @@ export const TableCell = styled.td`
 `;
 
 export const ImageInTableCell = styled.img`
-  width: 50%; /* This makes the image take up the full width of the table cell */
+  width: 30%; /* This makes the image take up the full width of the table cell */
 `;
 
 
