@@ -205,7 +205,16 @@ const handleSelectAllClick = () => {
                   </span>
                 </TableHeader>
                 <TableHeader>
-                  <button onClick={() => handleSelectAllClick()}>Select All</button>
+                  <button style={{
+                    
+                    backgroundColor: '#f72d7a',
+                    color: '#fff',
+                    border: 'none',
+                    borderRadius: '4px',
+                    padding: '5px 10px',
+                    fontSize: '16px',
+                    cursor: 'pointer'
+                  }} onClick={() => handleSelectAllClick()}>Select All</button>
                 </TableHeader>
 
               </tr>
