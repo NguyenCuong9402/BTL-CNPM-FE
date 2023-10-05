@@ -182,7 +182,7 @@ function AdminMain() {
                 <tr key={item.id}>
                   <TableCell>{(currentPage-1)*pageSize+index + 1}</TableCell>
                   <TableCell>{item.dap_an}</TableCell>
-                  <TableCell>{item.so_cau}</TableCell>
+                  <image src={`http://127.0.0.1:5000/api/v1/picture/${item.id}`}alt="Gợi í"/>
                   <TableCell>{item.created_date}</TableCell>
                 </tr>
               ))}
