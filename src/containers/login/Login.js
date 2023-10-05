@@ -8,12 +8,19 @@ import Modal from "../../modal";
 
 function Login() {
   const [email, setEmail] = useState('');
+  const [emailforget, setEmailForget] = useState('');
+
   const [password, setPassword] = useState('');
   const history = useHistory();
   const [isModalOpen, setModalOpen] = useState(false);
   const [modalMessage, setModalMessage] = useState('');
+  const [showForgotPassword, setShowForgotPassword] = useState(false);
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
+  };
+
+  const handleEmailForgetChange = (e) => {
+    setEmailForget(e.target.value);
   };
 
   const handlePasswordChange = (e) => {
@@ -58,6 +65,30 @@ function Login() {
   const handleCloseModal = () => {
     setModalOpen(false);
   };
+
+  const handleForgotPasswordClick = () => {
+    setShowForgotPassword(true);
+  };
+  const handleSendPasswordEmail = () => {
+    axios.post('http://127.0.0.1:5000/api/v1/user/send_pass_email', {
+      email: email,
+    })
+      .then(function (response) {
+        if (response.data.message.status === "success") {
+          setModalMessage(response.data.message.text);
+          setModalOpen(true);
+        }
+        if (response.data.message.status === "error") {
+          setModalMessage(response.data.message.text);
+          setModalOpen(true);
+        }
+      })
+      .catch(function (error) {
+        console.error(error);
+        alert('Có lỗi xảy ra khi gửi email khôi phục mật khẩu');
+      });
+  };
+
   return (
     <div>
       <header className="header">
@@ -110,7 +141,7 @@ function Login() {
               </div>
               <div className="remember-password">
                 <label><input type="checkbox" />Remember Me</label>
-                <a href="#">Forget Password</a>
+                <a onClick={handleForgotPasswordClick}>Forget Password</a>
               </div>
               <button className="btn">Log In</button>
               <div className="create-account">
@@ -119,6 +150,27 @@ function Login() {
             </form>
           </div>
         </div>
+        {showForgotPassword && (
+          <div>
+              <div onClick={() => setShowForgotPassword(false)}>
+          </div>
+          <div className="forgot-password-form">
+          <h2>Nhập Email</h2>
+          <div className="input-box">
+            <span className="icon"><i className='bx bxs-envelope'></i></span>
+            <input
+              type="email"
+              required
+              value={emailforget}
+              onChange={handleEmailForgetChange}
+              placeholder="Điền email"
+            />
+          </div>
+          <button className="btn1" onClick={handleSendPasswordEmail}>Send Email</button>
+          <button className="btn1" onClick={() => setShowForgotPassword(false)}>Cancel</button>
+          </div>
+          </div>
+          )}
       </div>
       <Modal isOpen={isModalOpen} message={modalMessage} onClose={handleCloseModal} />
     </div>
