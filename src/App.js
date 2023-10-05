@@ -8,7 +8,7 @@ import NotFound from "./containers/notFound/NotFound";
 import History from "./containers/history/history";
 import Profile from "./containers/profile/profile";
 import Changepass from "./containers/changepass/changpass";
-
+import LoginAdmin from './containers/admin/login/loginAdmin';
 
 
 const App = () => {
@@ -21,6 +21,8 @@ const App = () => {
         <Route path="/playgame" component={PlayGame} />
         <Route path="/history" component={History} />
         <Route path="/profile" component={Profile} />
+        <Route path="/admin/login" component={LoginAdmin} />
+
         <Route path="/changepass" component={Changepass} />
         <Route path="/notfound" component={NotFound} />
         <Redirect exact from="/" to="/login" />
