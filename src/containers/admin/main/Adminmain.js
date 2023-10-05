@@ -19,6 +19,7 @@ import logout from "./logout.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlay } from "@fortawesome/free-solid-svg-icons";
 import Table from 'react-bootstrap/Table';
+import { Button } from "bootstrap";
 
 function formatDate(created_date) {
   // Convert timestamp (in seconds) to milliseconds
@@ -127,6 +128,38 @@ function AdminMain() {
     setpageSize(newSize);
     // You may also want to reset the current page to 1 here
   };
+
+
+  /* Tạo select Row */
+
+const [selectedRows, setSelectedRows] = useState([]);
+
+// Function to handle row selection
+const handleRowSelect = (itemId) => {
+  // Check if the row is already selected
+  if (selectedRows.includes(itemId)) {
+    // If selected, remove it from the selectedRows array
+    setSelectedRows(selectedRows.filter(id => id !== itemId));
+  } else {
+    // If not selected, add it to the selectedRows array
+    setSelectedRows([...selectedRows, itemId]);
+  }
+};
+
+const [selectAll, setSelectAll] = useState(false);
+const handleSelectAllClick = () => {
+  if (selectAll) {
+    // If all rows are currently selected, deselect all.
+    setSelectedRows([]);
+  } else {
+    // If not all rows are selected, select all.
+    const allRowIds = data.map((item) => item.id);
+    setSelectedRows(allRowIds);
+  }
+  // Toggle the selectAll state.
+  setSelectAll(!selectAll);
+};
+
   return (
     <div>
       <Header>
@@ -171,6 +204,10 @@ function AdminMain() {
                     {sortDirection === 'asc' ? '↑' : '↓'}
                   </span>
                 </TableHeader>
+                <TableHeader>
+                  <button onClick={() => handleSelectAllClick()}>Select All</button>
+                </TableHeader>
+
               </tr>
             </thead>
           </CustomTable>
@@ -184,6 +221,14 @@ function AdminMain() {
                   <TableCell>{item.dap_an}</TableCell>
                   <TableCell><ImageInTableCell src={`http://127.0.0.1:5000/api/v1/picture/${item.id}`} alt="Gợi í" /></TableCell>
                   <TableCell>{item.created_date}</TableCell>
+
+                  <TableCell>
+                  <input
+                    type="checkbox"
+                    checked={selectedRows.includes(item.id)}
+                    onChange={() => handleRowSelect(item.id)}
+                  />
+                  </TableCell>
                 </tr>
               ))}
             </tbody>
