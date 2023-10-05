@@ -36,8 +36,13 @@ function Main() {
     // Lấy userData từ localStorage khi component được tạo
     const userDataFromLocalStorage = JSON.parse(localStorage.getItem("user"));
     if (userDataFromLocalStorage) {
-      setUserData(userDataFromLocalStorage.name_user);
-      setUserDataId(userDataFromLocalStorage.id);
+      if (userDataFromLocalStorage.admin === 0) {
+        setUserData(userDataFromLocalStorage.name_user);
+        setUserDataId(userDataFromLocalStorage.id);
+      } else {
+        history.push("/admin/main");
+      }
+      
     } else {
       history.push("/login"); // Điều hướng đến màn hình đăng nhập
     }

@@ -60,7 +60,7 @@ function LoginAdmin() {
           localStorage.setItem('accessToken', response.data.data.access_token);
           localStorage.setItem('refreshToken', response.data.data.refresh_token);
           localStorage.setItem('user', JSON.stringify(response.data.data.user));
-          window.location.href = '/main';
+          window.location.href = '/admin/main';
         }
         if (response.data.message.status === "error") {
           setModalMessage(response.data.message.text);
