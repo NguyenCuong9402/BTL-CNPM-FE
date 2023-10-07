@@ -20,6 +20,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlay } from "@fortawesome/free-solid-svg-icons";
 import Table from 'react-bootstrap/Table';
 import { Button } from "bootstrap";
+import Modal from '../../../modal';
 
 function formatDate(created_date) {
   // Convert timestamp (in seconds) to milliseconds
@@ -38,6 +39,8 @@ function formatDate(created_date) {
 
 
 function AdminMain() {
+  const [isModalOpen, setModalOpen] = useState(false);
+  const [modalMessage, setModalMessage] = useState('');
   const [name_user, setUserData] = useState(null);
   const [user_id, setUserDataId] = useState(null);
   const history = useHistory();
@@ -133,6 +136,10 @@ function AdminMain() {
     // You may also want to reset the current page to 1 here
   };
 
+  const handleCloseModal = () => {
+    setModalOpen(false);
+  };
+
 
   /* Tạo select Row */
 /*Delete*/
@@ -167,9 +174,33 @@ const handleSelectAllClick = () => {
   
 };
 
-const handleDeleteButtonClick = () =>{
-  
-}
+const handleDeleteButtonClick = async () => {
+  const access_token = localStorage.getItem("accessToken");
+  try {
+    const response = await axios.delete('http://127.0.0.1:5000/api/v1/cau_do', {
+      data: { list_id: selectedRows },
+      headers: {
+        Authorization: `Bearer ${access_token}`,
+        'Content-Type': 'application/json',
+      },
+    });
+
+    if (response.data.message.status === "success") {
+      setModalMessage(response.data.message.text);
+      setModalOpen(true);
+      // Sau khi xóa thành công, cập nhật lại danh sách sản phẩm
+      fetchData(currentPage, pageSize, sortDirection);
+      setSelectedRows([]); // Đặt lại selectedRows sau khi xóa
+      setSelectAll(false); // Đặt lại selectAll sau khi xóa
+    } else if (response.data.message.status === "error") {
+      setModalMessage(response.data.message.text);
+      setModalOpen(true);
+    }
+  } catch (error) {
+    console.error(error);
+    alert('Có lỗi xảy ra khi gửi yêu cầu xóa');
+  }
+};
   return (
     <div>
       <Header>
@@ -287,6 +318,8 @@ const handleDeleteButtonClick = () =>{
     </PaginationContainer1>
     
   </Container>
+  <Modal isOpen={isModalOpen} message={modalMessage} onClose={handleCloseModal} />
+
   </div>
   );
 }
