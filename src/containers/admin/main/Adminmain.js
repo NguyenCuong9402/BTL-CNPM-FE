@@ -134,19 +134,13 @@ function AdminMain() {
 /*Delete*/
 const [isDeleteButtonVisible, setIsDeleteButtonVisible] = useState(false);
 const [selectedRows, setSelectedRows] = useState([]);
-console.log(selectedRows)
-
 // Function to handle row selection
 const handleRowSelect = (itemId) => {
-  // Check if the row is already selected
   if (selectedRows.includes(itemId)) {
-    // If selected, remove it from the selectedRows array
     setSelectedRows(selectedRows.filter(id => id !== itemId));
   } else {
-    // If not selected, add it to the selectedRows array
     setSelectedRows([...selectedRows, itemId]);
   }
-  setIsDeleteButtonVisible(selectedRows.length > 0);
 };
 
 const [selectAll, setSelectAll] = useState(false);
@@ -154,14 +148,16 @@ const handleSelectAllClick = () => {
   if (selectAll) {
     // If all rows are currently selected, deselect all.
     setSelectedRows([]);
+    setIsDeleteButtonVisible(false);
   } else {
     // If not all rows are selected, select all.
     const allRowIds = data.map((item) => item.id);
     setSelectedRows(allRowIds);
+    setIsDeleteButtonVisible(true);
   }
   // Toggle the selectAll state.
   setSelectAll(!selectAll);
-  setIsDeleteButtonVisible(selectedRows.length > 0);
+  
 };
 
 const handleDeleteButtonClick = () =>{
