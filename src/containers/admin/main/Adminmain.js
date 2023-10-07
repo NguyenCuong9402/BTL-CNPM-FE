@@ -136,10 +136,18 @@ const [isDeleteButtonVisible, setIsDeleteButtonVisible] = useState(false);
 const [selectedRows, setSelectedRows] = useState([]);
 // Function to handle row selection
 const handleRowSelect = (itemId) => {
+  // Check if the row is already selected
   if (selectedRows.includes(itemId)) {
+    // If selected, remove it from the selectedRows array
     setSelectedRows(selectedRows.filter(id => id !== itemId));
   } else {
+    // If not selected, add it to the selectedRows array
     setSelectedRows([...selectedRows, itemId]);
+  }
+  if (selectedRows.length > 0){
+    setIsDeleteButtonVisible(true);
+  } else {
+    setIsDeleteButtonVisible(false);
   }
 };
 
