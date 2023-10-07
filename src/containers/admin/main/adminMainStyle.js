@@ -199,6 +199,25 @@ export const PaginationContainer = styled.div`
   margin-top: 20px;
 `;
 
+export const PaginationContainer1 = styled.div`
+  display: flex;
+  justify-content: right;
+  magin-right: 500;
+  align-items: center;
+  margin-top: 20px;
+`;
+
+export const DeleteButton = styled.button`
+  background-color: #f72d7a;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 5px 10px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-right: 100px; /* Đặt khoảng lề phải là 50px */
+`;
+
 export const PaginationButton = styled.button`
   padding: 8px 16px;
   margin: 0 5px;

@@ -5,7 +5,7 @@ import {
   UserName, TableCell, TableHeader, CustomTable,
   Background, TableBodyContainer, TableContainer, TableHeaderContainer,
   AvatarImage,
-  AvatarContainer,
+  AvatarContainer,PaginationContainer1, DeleteButton,
   DropdownMenu,
   DropdownItem,
   Header, PaginationContainer, PaginationButton, PaginationInfo,
@@ -255,7 +255,6 @@ const handleDeleteButtonClick = () =>{
           </CustomTable>
         </TableBodyContainer>
       </TableContainer>
-
     <PaginationContainer>
     <div>
       <label htmlFor="pageSizeSelect" style={{ fontWeight: 'bold', color: 'green' }}>PageSize: </label>
@@ -280,18 +279,12 @@ const handleDeleteButtonClick = () =>{
         Next
       </PaginationButton>
     </PaginationContainer>
-    {isDeleteButtonVisible && (
-  <button
-    style={{
-      backgroundColor: '#f72d7a',
-      color: '#fff',
-      border: 'none',
-      borderRadius: '4px',
-      padding: '5px 10px',
-      fontSize: '16px',
-      cursor: 'pointer'
-    }} vonClick={handleDeleteButtonClick}>Delete</button>
-)}
+    <PaginationContainer1>
+      {isDeleteButtonVisible && (
+        <DeleteButton onClick={handleDeleteButtonClick}>Delete</DeleteButton>
+      )}
+    </PaginationContainer1>
+    
   </Container>
   </div>
   );
