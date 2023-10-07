@@ -241,6 +241,7 @@ const handleDeleteButtonClick = () =>{
                   <TableCell><ImageInTableCell src={`http://127.0.0.1:5000/api/v1/picture/${item.id}`} alt="Gợi í" /></TableCell>
                   <TableCell>{item.created_date}</TableCell>
 
+
                   <TableCell>
                   <input
                     type="checkbox"
