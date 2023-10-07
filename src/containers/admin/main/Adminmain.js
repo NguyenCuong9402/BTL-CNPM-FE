@@ -98,11 +98,15 @@ function AdminMain() {
       console.error("Error calling history API:", error);
     }
   };
-
+  const [isDeleteButtonVisible, setIsDeleteButtonVisible] = useState(false);
+  const [selectedRows, setSelectedRows] = useState([]);
   // Call fetchData when the component mounts
   useEffect(() => {
     fetchData(currentPage, pageSize, sortDirection);
-  }, [currentPage, pageSize, sortDirection]);
+
+    setIsDeleteButtonVisible(selectedRows.length > 0);
+
+  }, [currentPage, pageSize, sortDirection, selectedRows]);
 
   const toggleSortDirection = () => {
     setSortDirection(sortDirection === 'asc' ? 'desc' : 'asc');
@@ -132,8 +136,7 @@ function AdminMain() {
 
   /* Tạo select Row */
 /*Delete*/
-const [isDeleteButtonVisible, setIsDeleteButtonVisible] = useState(false);
-const [selectedRows, setSelectedRows] = useState([]);
+
 // Function to handle row selection
 const handleRowSelect = (itemId) => {
   // Check if the row is already selected
@@ -144,11 +147,7 @@ const handleRowSelect = (itemId) => {
     // If not selected, add it to the selectedRows array
     setSelectedRows([...selectedRows, itemId]);
   }
-  if (selectedRows.length > 0){
-    setIsDeleteButtonVisible(true);
-  } else {
-    setIsDeleteButtonVisible(false);
-  }
+  
 };
 
 const [selectAll, setSelectAll] = useState(false);
@@ -291,11 +290,7 @@ const handleDeleteButtonClick = () =>{
       padding: '5px 10px',
       fontSize: '16px',
       cursor: 'pointer'
-    }}
-    onClick={handleDeleteButtonClick} // Add a function to handle the delete action
-  >
-    Delete
-  </button>
+    }} vonClick={handleDeleteButtonClick}>Delete</button>
 )}
   </Container>
   </div>
