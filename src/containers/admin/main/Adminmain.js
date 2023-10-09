@@ -16,6 +16,10 @@ import "boxicons/css/boxicons.min.css";
 import axios from "axios";
 import { Link, useHistory } from "react-router-dom";
 import logout from "./logout.png";
+import additem from "./additem.png";
+import fixitem from "./fixitem.png";
+
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlay } from "@fortawesome/free-solid-svg-icons";
 import Table from 'react-bootstrap/Table';
@@ -232,6 +236,7 @@ const handleDeleteButtonClick = async () => {
           <CustomTable striped bordered hover>
             <thead>
               <tr>
+               
                 <TableHeader>STT</TableHeader>
                 <TableHeader>Đáp án đúng</TableHeader>
                 <TableHeader>Hình Ảnh</TableHeader>   
@@ -239,15 +244,24 @@ const handleDeleteButtonClick = async () => {
                   Thời gian{' '}
                   <span
                     onClick={toggleSortDirection}
-                    style={{ cursor: 'pointer' }}
+                    style={{ cursor: 'pointer',
+                    fontSize: '30px', // Đặt kích thước của biểu tượng
+                    margin: '0 4px', // Khoảng cách giữa biểu tượng và văn bản
+                    lineHeight: '1', // Để căn giữa biểu tượng theo chiều dọc
+                   }}
                     className={`sort-icon ${sortDirection === 'asc' ? 'asc' : 'desc'}`}
                   >
                     {sortDirection === 'asc' ? '↑' : '↓'}
                   </span>
                 </TableHeader>
-                <TableHeader>
+                <TableHeader><img src={additem} alt="additem" style={{
+                  maxWidth: '30%', 
+                  maxHeight: '100%', 
+                  display: 'block', 
+                  margin: '0 auto',
+                }} /></TableHeader>
+                <TableHeader> 
                   <button style={{
-                    
                     backgroundColor: '#f72d7a',
                     color: '#fff',
                     border: 'none',
@@ -267,11 +281,13 @@ const handleDeleteButtonClick = async () => {
             <tbody>
               {data.map((item, index) => (
                 <tr key={item.id}>
+
                   <TableCell>{(currentPage-1)*pageSize+index + 1}</TableCell>
                   <TableCell>{item.dap_an}</TableCell>
                   <TableCell><ImageInTableCell src={`http://127.0.0.1:5000/api/v1/picture/${item.id}`} alt="Gợi í" /></TableCell>
                   <TableCell>{item.created_date}</TableCell>
 
+                  <TableCell><ImageInTableCell src={fixitem} alt="fixitem" /></TableCell>
 
                   <TableCell>
                   <input
@@ -280,7 +296,7 @@ const handleDeleteButtonClick = async () => {
                     onChange={() => handleRowSelect(item.id)}
                   />
 
-                  </TableCell>
+                  </TableCell>  
                 </tr>
               ))}
             </tbody>
