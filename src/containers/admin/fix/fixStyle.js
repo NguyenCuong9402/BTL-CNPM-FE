@@ -127,9 +127,9 @@ export const Container = styled.div`
 
 export const Item = styled.div`
   position: absolute;
-  top: 0;
+  top: 100;
   left: 0%;
-  width: 58%;
+  width: 70%;
   height: 100%;
   color: #fff;
   background: transparent;
