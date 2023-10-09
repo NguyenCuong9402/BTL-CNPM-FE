@@ -248,6 +248,10 @@ const handleFixClick = async(id) => {
             <i className="bx bxl-xing"></i>Word Scamble
           </a>
         </Navbar>
+        <form action="" className="search-bar">
+          <input type="text" placeholder="Search..." />
+          <button><i className='bx bx-search'></i></button>
+        </form>
         <UserInfoContainer>
           <UserName>{name_user}</UserName>
 
