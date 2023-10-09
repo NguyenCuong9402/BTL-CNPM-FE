@@ -292,11 +292,11 @@ function Fix() {
         </LoginSection>
         <Item>
           <div>
-          <TextItem>Đáp án: {renderName()}</TextItem>
+          <TextItem><span style={{ color: 'blue', fontSize: '50px' }}>Đáp Án: </span>{renderName()}</TextItem>
           <AvatarImagebuton src={image_put} alt="change" onClick={startEditing}/>
           </div>
           <div>
-          <TextItem>Đề bài: {de_bai_cau_do}</TextItem>
+          <TextItem><span style={{ color: 'blue', fontSize: '50px' }}>Đề bài: </span>{de_bai_cau_do}</TextItem>
           <AvatarImagebuton src={image_change} alt="change" onClick={handleChangeButtonClick}/>
           </div>
         </Item>
