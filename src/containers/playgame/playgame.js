@@ -63,32 +63,53 @@ function PlayGame() {
     window.location.href = "/login";
   };
   const location = useLocation();
-
+  
   const { de_bai, turn_id } = location.state.TurnAndCauDo;
   const [listQuestions, setListQuestions] = useState(de_bai);
 
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [currentAnswer, setCurrentAnswer] = useState("");
-  const handleClickText = (text) => {
+   // const currentQuestion = listQuestions[currentQuestionIndex];
+   const [currentQuestion, setCurrentQuestion] = useState(listQuestions[currentQuestionIndex]);
 
+   const [isModalOpen, setModalOpen] = useState(false);
+   const [modalMessage, setModalMessage] = useState('');
+   const [completed, setCompleted] = useState(false);
+   const [ketQua, setKetQua] = useState('');
+  const handleClickText = (index, text) => {
     if (currentAnswer.length < currentQuestion.de_bai.length){
+      const newQuestion = [...currentQuestion.de_bai];
+      
+      // Xóa phần tử tại vị trí index
+      newQuestion.splice(index, 1);
+
+      // Thêm một phần tử trống vào cuối mảng
+      newQuestion.push("");
+
+      // Cập nhật câu hỏi và câu trả lời
+      setCurrentQuestion({ ...currentQuestion, de_bai: newQuestion });
+
+
       setCurrentAnswer((prev) => (prev += text));
     }
   };
 
   const handleClickTextAnswer = (index) => {
-    setCurrentAnswer((prev) => {
-      const newText = setCharAt(prev, index, "");
-      return newText;
-      
-    });
+    if (currentAnswer[index] !== null && currentAnswer[index] !== undefined && currentAnswer[index] !== "") {
+      const emptyIndex = currentQuestion.de_bai.indexOf("");
+  
+      if (emptyIndex !== -1) {
+        // Thay thế "" bằng currentAnswer[index] nếu tìm thấy ""
+        currentQuestion.de_bai[emptyIndex] = currentAnswer[index];
+      }
+  
+      setCurrentAnswer((prev) => {
+        const newText = setCharAt(prev, index, "");
+        return newText;
+      });
+    }
   };
-  const currentQuestion = listQuestions[currentQuestionIndex];
-
-  const [isModalOpen, setModalOpen] = useState(false);
-  const [modalMessage, setModalMessage] = useState('');
-  const [completed, setCompleted] = useState(false);
-  const [ketQua, setKetQua] = useState('');
+ 
 
 
   const handleLoseButtonClick = async () => {
@@ -159,7 +180,7 @@ function PlayGame() {
   
         return prevIndex;
       } else {
-        
+        setCurrentQuestion(listQuestions[prevIndex + 1])
         return prevIndex + 1;
       }
     });
@@ -231,7 +252,7 @@ function PlayGame() {
           <AnhVuiImage src={anhvui} alt="Anh Vui" />
           <TextContainer>
             {currentQuestion.de_bai.map((text, index) => (
-              <ClickableText key={index} onClick={() => handleClickText(text)}>{text}</ClickableText>))}
+              <ClickableText key={index} onClick={() => handleClickText(index,text)}>{text}</ClickableText>))}
           </TextContainer>
           <TextContainer>
             {currentQuestion.de_bai.map((_, index) => (
