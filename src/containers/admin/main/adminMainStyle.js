@@ -216,7 +216,7 @@ export const DeleteButton = styled.button`
   padding: 5px 10px;
   font-size: 16px;
   cursor: pointer;
-  margin-right: 100px; /* Đặt khoảng lề phải là 50px */
+  margin-right: 10px; /* Đặt khoảng lề phải là 50px */
 `;
 
 export const PaginationButton = styled.button`

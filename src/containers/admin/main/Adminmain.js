@@ -78,7 +78,7 @@ function AdminMain() {
   };
 
   
-
+  console.log(data)
   const fetchData = async (page, pSize) => {
     try {
       const access_token = localStorage.getItem("accessToken");
@@ -205,6 +205,37 @@ const handleDeleteButtonClick = async () => {
     alert('Có lỗi xảy ra khi gửi yêu cầu xóa');
   }
 };
+
+const handleChangeButtonClick = async () => {
+  const access_token = localStorage.getItem("accessToken");
+  try {
+    const response = await axios.put(
+      'http://127.0.0.1:5000/api/v1/cau_do',
+      { list_id: selectedRows },
+      {
+        headers: {
+          Authorization: `Bearer ${access_token}`,
+          'Content-Type': 'application/json',
+        },
+      }
+    );
+
+    if (response.data.message.status === "success") {
+      setModalMessage(response.data.message.text);
+      setModalOpen(true);
+      // Sau khi xóa thành công, cập nhật lại danh sách sản phẩm
+      fetchData(currentPage, pageSize, sortDirection);
+      setSelectedRows([]); 
+      setSelectAll(false); 
+    } else if (response.data.message.status === "error") {
+      setModalMessage(response.data.message.text);
+      setModalOpen(true);
+    }
+  } catch (error) {
+    console.error(error);
+    alert('Có lỗi xảy ra khi gửi yêu cầu thay đổi');
+  }
+}
   return (
     <div>
       <Header>
@@ -238,6 +269,8 @@ const handleDeleteButtonClick = async () => {
               <tr>
                
                 <TableHeader>STT</TableHeader>
+                <TableHeader>Đề</TableHeader>   
+
                 <TableHeader>Đáp án đúng</TableHeader>
                 <TableHeader>Hình Ảnh</TableHeader>   
                 <TableHeader>
@@ -281,8 +314,9 @@ const handleDeleteButtonClick = async () => {
             <tbody>
               {data.map((item, index) => (
                 <tr key={item.id}>
-
                   <TableCell>{(currentPage-1)*pageSize+index + 1}</TableCell>
+                  <TableCell>{item.de_bai}</TableCell>
+
                   <TableCell>{item.dap_an}</TableCell>
                   <TableCell><ImageInTableCell src={`http://127.0.0.1:5000/api/v1/picture/${item.id}`} alt="Gợi í" /></TableCell>
                   <TableCell>{item.created_date}</TableCell>
@@ -328,6 +362,9 @@ const handleDeleteButtonClick = async () => {
       </PaginationButton>
     </PaginationContainer>
     <PaginationContainer1>
+      {isDeleteButtonVisible && (
+        <DeleteButton onClick={handleChangeButtonClick}>Thay đổi đề</DeleteButton>
+      )}
       {isDeleteButtonVisible && (
         <DeleteButton onClick={handleDeleteButtonClick}>Delete</DeleteButton>
       )}
