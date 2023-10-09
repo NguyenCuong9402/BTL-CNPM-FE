@@ -133,7 +133,7 @@ export const Item = styled.div`
   height: 100%;
   color: #fff;
   background: transparent;
-  padding: 180px;
+  padding: 100px;
   display: flex;
   justify-content: space-between;
   flex-direction: column;

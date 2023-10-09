@@ -185,10 +185,9 @@ function Fix() {
       if (response.data.message.status === "success") {
         setDapAn(response.data.data.dap_an);
         setDeBai(response.data.data.de_bai)
+        setModalMessage(response.data.message.text);
+        setModalOpen(true);
       }
-      setModalMessage(response.data.message.text);
-      setModalOpen(true);
-
     } catch (error) {
       // Xử lý lỗi (nếu có)
       console.error('Error updating user data:', error);
@@ -200,8 +199,8 @@ function Fix() {
   const renderName = () => {
     if (isEditing) {
       const inputStyle = {
-        fontSize: '40px', // Điều chỉnh kích thước chữ tùy ý
-        // Các thuộc tính CSS khác nếu cần
+        fontSize: '40px', 
+        color: 'blue'
       };
       return (
         <input
@@ -293,11 +292,11 @@ function Fix() {
         </LoginSection>
         <Item>
           <div>
-          <TextItem>{renderName()}</TextItem>
+          <TextItem>Đáp án: {renderName()}</TextItem>
           <AvatarImagebuton src={image_put} alt="change" onClick={startEditing}/>
           </div>
           <div>
-          <TextItem>{de_bai_cau_do}</TextItem>
+          <TextItem>Đề bài: {de_bai_cau_do}</TextItem>
           <AvatarImagebuton src={image_change} alt="change" onClick={handleChangeButtonClick}/>
           </div>
         </Item>
