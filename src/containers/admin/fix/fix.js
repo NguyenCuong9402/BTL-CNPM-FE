@@ -8,7 +8,6 @@ import {
   AvatarContainer,
   DropdownMenu,
   DropdownItem, AvatarImageSet,
-  FlashingImage, NoFontButton,
   Header, AvatarImagebuton,
   Navbar,
   Container,
@@ -16,7 +15,6 @@ import {
   Button,
   ButtonContainer,
   Item,
-  SocialIcon, AvatarContainerSet,
   TextItem,
 } from "./fixStyle";
 import "boxicons/css/boxicons.min.css";
@@ -25,12 +23,9 @@ import { Link, useHistory } from "react-router-dom";
 import logout from "./logout.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlay } from "@fortawesome/free-solid-svg-icons";
-import image_user from "./user.png";
-import image_man from "./men.png";
-import image_woman from "./women.png";
-import image_address from "./address.png";
-import image_phone from "./phone.png";
 import image_put from "./pen.png";
+import { useLocation } from "react-router-dom/cjs/react-router-dom.min";
+import Modal from '../../../modal';
 
 
 
@@ -39,38 +34,68 @@ import image_put from "./pen.png";
 
 
 function Fix() {
+  const location = useLocation();
+  
+  const cau_do_id = location.state.cau_do_id
   const [name_user, setUserData] = useState(null);
-  const [phone_user, setPhoneUser] = useState('');
-  const [address_user, setAddressUser] = useState('');
-  const [gender, setGender] = useState(0);
-  const [objDataUser, setobjDataUser] = useState({});
+  const [dap_an_cau_do, setDapAn] = useState('');
+  const [isModalOpen, setModalOpen] = useState(false);
+  const [modalMessage, setModalMessage] = useState('');
   const [user_id, setUserDataId] = useState(null);
   const [selectedImage, setSelectedImage] = useState(null);
   const [showSelectedImage, setShowSelectedImage] = useState(false);
   const history = useHistory();
+  const getProductName = () => {
+    const access_token = localStorage.getItem("accessToken");
+    
+    // Tạo header Authorization
+    const headers = {
+      Authorization: `Bearer ${access_token}`,
+    };
+  
+    // Tạo config object với các headers
+    const config = {
+      headers: headers,
+    };
+  
+    // Gọi API GET để lấy tên sản phẩm
+    axios
+      .get(`http://127.0.0.1:5000/api/v1/cau_do/${cau_do_id}`, config)
+      .then((response) => {
+        if( response.data.message.status === 'success'){
+          setDapAn(response.data.data.dap_an)
+        }
+      })
+      .catch((error) => {
+        // Xử lý khi request thất bại
+        console.error('Lỗi khi lấy tên sản phẩm:', error);
+      });
+  };
   useEffect(() => {
+    getProductName();
     // Lấy userData từ localStorage khi component được tạo
     const userDataFromLocalStorage = JSON.parse(localStorage.getItem("user"));
     if (userDataFromLocalStorage) {
-      setobjDataUser(userDataFromLocalStorage)
       setUserData(userDataFromLocalStorage.name_user);
       setUserDataId(userDataFromLocalStorage.id);
-      setPhoneUser(userDataFromLocalStorage.phone_number);
-      setAddressUser(userDataFromLocalStorage.address);
-      setGender(userDataFromLocalStorage.gender);
+      
     } else {
       history.push("/login"); // Điều hướng đến màn hình đăng nhập
     }
-  }, []); // Sử dụng [] để đảm bảo useEffect chỉ chạy một lần khi component được tạo
+    
+  }, []); // Sử dụng [] để đảm bảo useEffect chỉ chạy một lần khi component được 
+  console.log(dap_an_cau_do)
   const handleLogout = () => {
     localStorage.removeItem("user");
     localStorage.removeItem("accessToken");
     localStorage.removeItem("refreshToken");
 
-    window.location.href = "/login";
+    window.location.href = "/admin/login";
   };
   
   const avatar = `http://127.0.0.1:5000/api/v1/picture/avatar/${user_id}`;
+  const anh_cau_do = `http://127.0.0.1:5000/api/v1/picture/${cau_do_id}`;
+
   const fileInputRef = useRef(null);
   const handleImageChange = (e) => {
     const file = e.target.files[0];
@@ -113,11 +138,14 @@ function Fix() {
         headers: headers,
       };
         axios
-        .post('http://127.0.0.1:5000/api/v1/picture/avatar', formData, config)
+        .put(`http://127.0.0.1:5000/api/v1/picture/${cau_do_id}`, formData, config)
         .then((response) => {
           // Xử lý khi request thành công
-          console.log('Upload ảnh avatar thành công.');
-          window.location.reload();
+          if( response.data.message.status === 'success'){
+            window.location.reload();
+          }
+          setModalMessage(response.data.message.text);
+          setModalOpen(true);
         })
         .catch((error) => {
           // Xử lý khi request thất bại
@@ -127,12 +155,14 @@ function Fix() {
       console.error('Chưa chọn file ảnh.');
     }
   };
-
+  const handleCloseModal = () => {
+    setModalOpen(false);
+  };
   const [isEditing, setIsEditing] = useState(false); // State để theo dõi trạng thái chỉnh sửa
-  const [editedName, setEditedName] = useState('');
+  const [editedCauDo, setEditedCauDo] = useState('');
   const startEditing = () => {
     setIsEditing(true);
-    setEditedName(name_user); // Đặt giá trị chỉnh sửa ban đầu là tên hiện tại
+    setEditedCauDo(dap_an_cau_do);
   };
   
   const finishEditing = async () => {
@@ -141,19 +171,16 @@ function Fix() {
     try {
       const access_token = localStorage.getItem("accessToken");
 
-      const response = await axios.put('http://127.0.0.1:5000/api/v1/user/update', { name_user: editedName }, {
+      const response = await axios.put(`http://127.0.0.1:5000/api/v1/cau_do/${cau_do_id}`, { dap_an: editedCauDo }, {
         headers: {
           Authorization: `Bearer ${access_token}`,
         },
       });
       console.log(response.data.message)
       if (response.data.message.status === "success") {
-        const updatedObjDataUser = { ...objDataUser, name_user: editedName };
-        localStorage.setItem('user', JSON.stringify(updatedObjDataUser));
-        setobjDataUser(updatedObjDataUser);
-        setUserData(editedName);
-
+        setDapAn(editedCauDo);
       }
+
     } catch (error) {
       // Xử lý lỗi (nếu có)
       console.error('Error updating user data:', error);
@@ -167,115 +194,18 @@ function Fix() {
       return (
         <input
           type="text"
-          value={editedName}
-          onChange={(e) => setEditedName(e.target.value)}
+          value={editedCauDo}
+          onChange={(e) => setEditedCauDo(e.target.value)}
           onBlur={finishEditing}
           autoFocus
         />
       );
     } else {
-      return <span>{name_user}</span>;
+      return <span>{dap_an_cau_do}</span>;
     }
   };
 
-  /*edit address*/
-  const [isEditingadress, setIsEditingAdress] = useState(false); // State để theo dõi trạng thái chỉnh sửa
-  const [editedAdress, setEditedAdress] = useState('');
-  const startEditingAdress = () => {
-    setIsEditingAdress(true);
-    setEditedAdress(address_user); // Đặt giá trị chỉnh sửa ban đầu là tên hiện tại
-  };
   
-  const finishEditingAdress = async () => {
-    setIsEditingAdress(false);
-
-    try {
-      const access_token = localStorage.getItem("accessToken");
-
-      const response = await axios.put('http://127.0.0.1:5000/api/v1/user/update', { address: editedAdress }, {
-        headers: {
-          Authorization: `Bearer ${access_token}`,
-        },
-      });
-      console.log(response.data.message)
-      if (response.data.message.status === "success") {
-        const updatedObjDataUser = { ...objDataUser, address: editedAdress };
-        localStorage.setItem('user', JSON.stringify(updatedObjDataUser));
-        setobjDataUser(updatedObjDataUser);
-        setAddressUser(editedAdress);
-
-      }
-    } catch (error) {
-      console.error('Error updating user data:', error);
-    
-  };
-  }
-
-  const renderAdress = () => {
-    if (isEditingadress) {
-      return (
-        <input
-          type="text"
-          value={editedAdress}
-          onChange={(e) => setEditedAdress(e.target.value)}
-          onBlur={finishEditingAdress}
-          autoFocus
-        />
-      );
-    } else {
-      return <span>{address_user}</span>;
-    }
-  };
-
-  /*edit Phone*/
-
-  const [isEditingPhone, setIsEditingPhone] = useState(false); // State để theo dõi trạng thái chỉnh sửa
-  const [editedPhone, setEditedPhone] = useState('');
-  const startEditingPhone = () => {
-    setIsEditingPhone(true);
-    setEditedPhone(phone_user); // Đặt giá trị chỉnh sửa ban đầu là tên hiện tại
-  };
-  
-  const finishEditingPhone = async () => {
-    setIsEditingPhone(false);
-
-    try {
-      const access_token = localStorage.getItem("accessToken");
-
-      const response = await axios.put('http://127.0.0.1:5000/api/v1/user/update', { phone_number: editedPhone }, {
-        headers: {
-          Authorization: `Bearer ${access_token}`,
-        },
-      });
-      console.log(response.data.message)
-      if (response.data.message.status === "success") {
-        const updatedObjDataUser = { ...objDataUser, phone_number: editedPhone };
-        localStorage.setItem('user', JSON.stringify(updatedObjDataUser));
-        setobjDataUser(updatedObjDataUser);
-        setPhoneUser(editedPhone);
-
-      }
-    } catch (error) {
-      console.error('Error updating user data:', error);
-    
-  };
-  }
-
-  const renderPhone = () => {
-    if (isEditingPhone) {
-      return (
-        <input
-          type="text"
-          value={editedPhone}
-          onChange={(e) => setEditedPhone(e.target.value)}
-          onBlur={finishEditingPhone}
-          autoFocus
-        />
-      );
-    } else {
-      return <span>{phone_user}</span>;
-    }
-  };
   const handleChangepass = async () =>{
     history.push(`/changepass`, { });
   };
@@ -312,21 +242,22 @@ function Fix() {
           <AvatarImageSet src={URL.createObjectURL(selectedImage)} alt="Selected Image" />
         </div>
         ) : (
-          <AvatarImageSet src={avatar} alt="Avatar" />
+          <AvatarImageSet src={anh_cau_do} alt="Avatar" />
         )}
         <div><input ref={fileInputRef} type="file" accept="image/*" onChange={handleImageChange}/></div>
-        <Button onClick={setAvatarImage}>avatar</Button>
+        <Button onClick={setAvatarImage}>Đổi ảnh</Button>
 
         </ButtonContainer> 
         </LoginSection>
         <Item>
           <div>
-          <AvatarImage src={image_user} alt="Avatar" />
           <TextItem>{renderName()}</TextItem>
           <AvatarImagebuton src={image_put} alt="change" onClick={startEditing}/>
           </div>
         </Item>
       </Container>
+      <Modal isOpen={isModalOpen} message={modalMessage} onClose={handleCloseModal} />
+
     </div>
   );
 }
