@@ -236,6 +236,10 @@ const handleChangeButtonClick = async () => {
     alert('Có lỗi xảy ra khi gửi yêu cầu thay đổi');
   }
 }
+
+const handleFixClick = async(id) => {
+  history.push(`/admin/fix`, { cau_do_id: id });
+}
   return (
     <div>
       <Header>
@@ -321,8 +325,9 @@ const handleChangeButtonClick = async () => {
                   <TableCell><ImageInTableCell src={`http://127.0.0.1:5000/api/v1/picture/${item.id}`} alt="Gợi í" /></TableCell>
                   <TableCell>{item.created_date}</TableCell>
 
-                  <TableCell><ImageInTableCell src={fixitem} alt="fixitem" /></TableCell>
-
+                  <TableCell>
+                    <ImageInTableCell onClick={() => handleFixClick(item.id)} src={fixitem} alt="fixitem" />
+                  </TableCell>
                   <TableCell>
                   <input
                     type="checkbox"

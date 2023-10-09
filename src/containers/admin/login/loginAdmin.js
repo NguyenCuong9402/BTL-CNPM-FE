@@ -25,7 +25,7 @@ function LoginAdmin() {
         history.push("/main")
       }
       else{
-        history.push("/Admin")
+        history.push("/Admin/main")
       }
     }
   }, []);

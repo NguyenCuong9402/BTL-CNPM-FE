@@ -10,6 +10,7 @@ import Profile from "./containers/profile/profile";
 import Changepass from "./containers/changepass/changpass";
 import LoginAdmin from './containers/admin/login/loginAdmin';
 import AdminMain from './containers/admin/main/Adminmain';
+import Fix from './containers/admin/fix/fix';
 
 
 const App = () => {
@@ -25,6 +26,8 @@ const App = () => {
         <Route path="/admin/login" component={LoginAdmin} />
         <Route path="/admin/main" component={AdminMain} />
         <Route path="/changepass" component={Changepass} />
+        <Route path="/admin/fix" component={Fix} />
+
         <Route path="/notfound" component={NotFound} />
         <Redirect exact from="/" to="/login" />
         <Redirect exact from="/admin" to="/admin/login" />
