@@ -24,6 +24,8 @@ import logout from "./logout.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlay } from "@fortawesome/free-solid-svg-icons";
 import image_put from "./pen.png";
+import image_change from "./change.png";
+
 import { useLocation } from "react-router-dom/cjs/react-router-dom.min";
 import Modal from '../../../modal';
 
@@ -37,8 +39,11 @@ function Fix() {
   const location = useLocation();
   
   const cau_do_id = location.state.cau_do_id
+  const list_id = [cau_do_id];
   const [name_user, setUserData] = useState(null);
   const [dap_an_cau_do, setDapAn] = useState('');
+  const [de_bai_cau_do, setDeBai] = useState('');
+  
   const [isModalOpen, setModalOpen] = useState(false);
   const [modalMessage, setModalMessage] = useState('');
   const [user_id, setUserDataId] = useState(null);
@@ -64,6 +69,7 @@ function Fix() {
       .then((response) => {
         if( response.data.message.status === 'success'){
           setDapAn(response.data.data.dap_an)
+          setDeBai(response.data.data.de_bai)
         }
       })
       .catch((error) => {
@@ -84,7 +90,6 @@ function Fix() {
     }
     
   }, []); // Sử dụng [] để đảm bảo useEffect chỉ chạy một lần khi component được 
-  console.log(dap_an_cau_do)
   const handleLogout = () => {
     localStorage.removeItem("user");
     localStorage.removeItem("accessToken");
@@ -178,7 +183,8 @@ function Fix() {
       });
       console.log(response.data.message)
       if (response.data.message.status === "success") {
-        setDapAn(response.data.data);
+        setDapAn(response.data.data.dap_an);
+        setDeBai(response.data.data.de_bai)
       }
       setModalMessage(response.data.message.text);
       setModalOpen(true);
@@ -216,6 +222,35 @@ function Fix() {
   const handleChangepass = async () =>{
     history.push(`/changepass`, { });
   };
+
+  const handleChangeButtonClick = async () => {
+    const access_token = localStorage.getItem("accessToken");
+    try {
+      const response = await axios.put(
+        'http://127.0.0.1:5000/api/v1/cau_do',
+        { list_id: list_id },
+        {
+          headers: {
+            Authorization: `Bearer ${access_token}`,
+            'Content-Type': 'application/json',
+          },
+        }
+      );
+  
+      if (response.data.message.status === "success") {
+        getProductName()
+        setModalMessage(response.data.message.text);
+        setModalOpen(true);
+        // Sau khi xóa thành công, cập nhật lại danh sách sản phẩm
+      } else if (response.data.message.status === "error") {
+        setModalMessage(response.data.message.text);
+        setModalOpen(true);
+      }
+    } catch (error) {
+      console.error(error);
+      alert('Có lỗi xảy ra khi gửi yêu cầu thay đổi');
+    }
+  }
 
   return (
     <div>
@@ -260,6 +295,10 @@ function Fix() {
           <div>
           <TextItem>{renderName()}</TextItem>
           <AvatarImagebuton src={image_put} alt="change" onClick={startEditing}/>
+          </div>
+          <div>
+          <TextItem>{de_bai_cau_do}</TextItem>
+          <AvatarImagebuton src={image_change} alt="change" onClick={handleChangeButtonClick}/>
           </div>
         </Item>
       </Container>
