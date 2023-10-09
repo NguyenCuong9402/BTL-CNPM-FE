@@ -145,7 +145,7 @@ export const Logo = styled.h2`
 `;
 
 export const TextItem = styled.span`
-    font-size: 40px; /* Điều chỉnh kích thước cho đoạn văn bản (p) */
+    font-size: 100px; /* Điều chỉnh kích thước cho đoạn văn bản (p) */
     text-align: center; 
     margin: 10px 0;
 `;

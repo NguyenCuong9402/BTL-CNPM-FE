@@ -193,6 +193,10 @@ function Fix() {
   // Render tên dựa vào trạng thái chỉnh sửa
   const renderName = () => {
     if (isEditing) {
+      const inputStyle = {
+        fontSize: '40px', // Điều chỉnh kích thước chữ tùy ý
+        // Các thuộc tính CSS khác nếu cần
+      };
       return (
         <input
           type="text"
@@ -200,6 +204,7 @@ function Fix() {
           onChange={(e) => setEditedCauDo(e.target.value)}
           onBlur={finishEditing}
           autoFocus
+          style={inputStyle} 
         />
       );
     } else {
