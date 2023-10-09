@@ -178,8 +178,10 @@ function Fix() {
       });
       console.log(response.data.message)
       if (response.data.message.status === "success") {
-        setDapAn(editedCauDo);
+        setDapAn(response.data.data);
       }
+      setModalMessage(response.data.message.text);
+      setModalOpen(true);
 
     } catch (error) {
       // Xử lý lỗi (nếu có)
