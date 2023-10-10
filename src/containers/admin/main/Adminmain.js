@@ -313,14 +313,17 @@ const handleFixClick = async(id) => {
             'Authorization': `Bearer ${access_token}`
           },
         });
-  
-        // Xử lý phản hồi từ máy chủ ở đây
-        console.log('Phản hồi từ máy chủ:', response.data);
+        setModalMessage(response.data.message.text);
+        setModalOpen(true);
+        
       } catch (error) {
         // Xử lý lỗi ở đây
         console.error('Lỗi:', error);
       }
     }
+  };
+  const handleChangepass = async () =>{
+    history.push(`/changepass`, { });
   };
 
   return (
@@ -332,7 +335,7 @@ const handleFixClick = async(id) => {
           </a>
         </Navbar>
         <div>
-          <button onClick={handleImportClick}>Import</button>
+          <ButtonClose onClick={handleImportClick}>Import</ButtonClose>
           <input type="file" style={{ display: 'none' }} ref={fileInputRef} multiple onChange={handleFileSelect} />
         </div>
         {!isTableVisible && (
@@ -352,7 +355,7 @@ const handleFixClick = async(id) => {
           <AvatarContainer>
             <AvatarImage src={avatarUrl} alt="Avatar" />
             <DropdownMenu>
-              <DropdownItem>Đổi mật khẩu</DropdownItem>
+            <DropdownItem onClick={handleChangepass}>Đổi mật khẩu</DropdownItem>
               <DropdownItem onClick={handleProfile}>Tài Khoản</DropdownItem>
               <DropdownItem onClick={handleLogout}>
                 <img src={logout} alt="Logout" />

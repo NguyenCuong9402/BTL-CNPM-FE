@@ -185,6 +185,8 @@ function Fix() {
       if (response.data.message.status === "success") {
         setDapAn(response.data.data.dap_an);
         setDeBai(response.data.data.de_bai)
+        setModalMessage(response.data.message.text);
+        setModalOpen(true);
       }
       if (response.data.message.status === "error"){
         setModalMessage(response.data.message.text);
@@ -252,6 +254,9 @@ function Fix() {
       alert('Có lỗi xảy ra khi gửi yêu cầu thay đổi');
     }
   }
+  const handleProfile = async () =>{
+    history.push(`/profile`, { });
+  };
 
 
   return (
@@ -268,7 +273,10 @@ function Fix() {
           <AvatarContainer>
             <AvatarImage src={avatar} alt="Avatar" />
             <DropdownMenu>
+              <DropdownItem onClick={handleProfile}>Tài Khoản</DropdownItem>
+
               <DropdownItem onClick={handleChangepass}>Đổi mật khẩu</DropdownItem>
+
               <DropdownItem onClick={handleLogout}>
                 <img src={logout} alt="Logout" />
               </DropdownItem>
