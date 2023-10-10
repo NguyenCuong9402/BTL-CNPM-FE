@@ -516,5 +516,15 @@ export const HeaderTextKetQua = styled.div`
   font-family: 'Pacifico', cursive;
 `;
 
+export const Clock = styled.div`
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 24px;
+  background-color: #333;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 5px;
+`;
 
 

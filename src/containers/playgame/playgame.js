@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "boxicons/css/boxicons.min.css";
 import {
-  UserInfoContainer,
+  UserInfoContainer, Clock,
   UserName, HintImageContainer, HintImage,
   Background, QuickTipImage,AnhVuiImage, Note, HeaderText,
   AvatarImage, TextContainer, TextAnswer, ClickableText,
@@ -38,22 +38,57 @@ function setCharAt(str, index, chr) {
 }
 
 function PlayGame() {
-  
-
   const [name_user, setUserData] = useState(null);
   const [user_id, setUserDataId] = useState(null);
   const history = useHistory();
+  const [hours, setHours] = useState(0);
+  const [minutes, setMinutes] = useState(0);
+  const [seconds, setSeconds] = useState(0);
+  const [gameStarted, setGameStarted] = useState(false);
 
+  // Thêm state mới để lưu trữ thời gian bắt đầu
+  const [startTime, setStartTime] = useState(null);
   useEffect(() => {
     // Lấy userData từ localStorage khi component được tạo
     const userDataFromLocalStorage = JSON.parse(localStorage.getItem("user"));
     if (userDataFromLocalStorage) {
       setUserData(userDataFromLocalStorage.name_user);
       setUserDataId(userDataFromLocalStorage.id);
+      if (!gameStarted) {
+        // Bắt đầu đếm thời gian chỉ khi game chưa bắt đầu và startTime chưa được thiết lập
+        setStartTime(new Date());
+        setGameStarted(true);
+      }
     } else {
       history.push("/login"); // Điều hướng đến màn hình đăng nhập
     }
-  }, []); // Sử dụng [] để đảm bảo useEffect chỉ chạy một lần khi component được tạo
+  }, [gameStarted]);
+  useEffect(() => {
+    // Sử dụng một interval riêng để cập nhật thời gian
+    const interval = setInterval(() => {
+      if (startTime) {
+        const currentTime = new Date();
+        const elapsedMilliseconds = currentTime - startTime;
+        const elapsedSeconds = Math.floor(elapsedMilliseconds / 1000);
+
+        const nextHours = Math.floor(elapsedSeconds / 3600);
+        const nextMinutes = Math.floor((elapsedSeconds % 3600) / 60);
+        const nextSeconds = elapsedSeconds % 60;
+
+        setHours(nextHours);
+        setMinutes(nextMinutes);
+        setSeconds(nextSeconds);
+      }
+    }, 1000);
+
+    // Dừng đếm thời gian khi cần (ví dụ: khi trò chơi kết thúc)
+    // Ví dụ: clearInterval(interval); khi trò chơi kết thúc
+
+    return () => {
+      // Dừng interval khi component bị unmount
+      clearInterval(interval);
+    };
+  }, [startTime]);
   const avatarUrl = `http://127.0.0.1:5000/api/v1/picture/avatar/${user_id}`;
   const handleLogout = () => {
     localStorage.removeItem("user");
@@ -156,7 +191,7 @@ function PlayGame() {
     }
   };
   const [diem, setDiem] = useState(0);
-
+  const [time, setTimeChoi] = useState('00:00:00')
   const handleCloseModal = () => {
     setModalOpen(false);
     setCurrentQuestionIndex(prevIndex => {
@@ -172,6 +207,7 @@ function PlayGame() {
             
             setKetQua(response.data.message.text);
             setDiem(response.data.data.diem)
+            setTimeChoi(response.data.data.time)
             setCompleted(true);
           })
           .catch(error => {
@@ -193,6 +229,7 @@ function PlayGame() {
   const handleProfile = async () =>{
     history.push(`/profile`, { });
   };
+
   return (
     <div>
       <Header>
@@ -220,7 +257,8 @@ function PlayGame() {
       <Container>
       {completed ? (
         <>
-        <HeaderTextKetQua>
+        <HeaderTextKetQua > {time}</HeaderTextKetQua>
+        <HeaderTextKetQua style={{ marginTop: '90px'}} >
             {diem < listQuestions.length / 2
               ? 'Xin chia buồn'
               : 'Xin chúc mừng'}
@@ -237,7 +275,7 @@ function PlayGame() {
         <>
         <LoginSection>
           <QuickTipImage src={quicktip} alt="Gợi í"/>
-
+          <Clock>{`${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`}</Clock>
           <HintImageContainer>
             <HintImage
             src={`http://127.0.0.1:5000/api/v1/picture/${currentQuestion.id}`}
