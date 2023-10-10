@@ -526,7 +526,7 @@ export const UserInputBox = styled.div`
   flex-wrap: wrap;
   text-align: center;
   align-items: center;
-  width: 50%;
+  width: 30%;
   margin: 0 auto;
   padding-bottom: 15px;
 `;
@@ -553,7 +553,7 @@ export const FormSubmitButton = styled.div`
   margin-top: 40px;
   text-align: center;
   button {
-    margin: 30px 0; /* Adjust the margin as needed */
+    margin: 20px 0; /* Adjust the margin as needed */
   }
 `;
 export const SubmitInput = styled.input`
@@ -579,5 +579,25 @@ export const SubmitInputHover = styled(SubmitInput)`
     background: rgba(56, 204, 93, 0.7);
     color: rgb(255, 255, 255);
     
+  }
+`;
+
+export const ImagePreview = styled.img`  
+  max-width: 100%;
+  max-height: 300px;
+  margin: 10px auto;
+  display: block;
+  border-radius: 10px;
+`;
+
+export const ChooseFileButton = styled.label`
+  cursor: pointer;
+  color: white;
+`;
+
+export const FileInputContainer = styled.div`
+  text-align: center;
+  input[type="file"] {
+    color: white;
   }
 `;

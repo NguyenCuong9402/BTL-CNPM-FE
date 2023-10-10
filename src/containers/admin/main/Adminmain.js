@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import "boxicons/css/boxicons.min.css";
 import {
-  UserInfoContainer, ImageInTableCell, Container1,
+  UserInfoContainer, ImageInTableCell, Container1, FileInputContainer,
   UserName, TableCell, TableHeader, CustomTable,
   Background, TableBodyContainer, TableContainer, TableHeaderContainer,
-  AvatarImage, ButtonClose,
+  AvatarImage, ButtonClose, ImagePreview,
   AvatarContainer,PaginationContainer1, DeleteButton,
   DropdownMenu,
   DropdownItem,
@@ -257,6 +257,12 @@ const handleFixClick = async(id) => {
   };
 
 
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    setSelectedImage(file);
+  };
+
+
   console.log("kết quả",isTableVisible)
   return (
     <div>
@@ -295,9 +301,18 @@ const handleFixClick = async(id) => {
       <Background></Background>
       {isTableVisible ? (
         <Container1>
-          <FormTitle >Thêm Câu Đố</FormTitle>  
+          <FormTitle >Thêm Câu Đố</FormTitle>
+          {selectedImage ? (
+            <ImagePreview src={URL.createObjectURL(selectedImage)} alt="Selected Image" />
+          ) : (
+            <ImagePreview src={addpicture} alt="Add Item" />
+          )}
+             <FileInputContainer>
+            <input type="file" accept="image/*" onChange={handleImageChange} />
+            </FileInputContainer>
+
             <UserInputBox>
-                <UserInputLabel htmlFor="dap_an">Đáp án</UserInputLabel>
+                <UserInputLabel htmlFor="dap_an"></UserInputLabel>
                 <UserInput
                 type="dap_an" 
                 id="dap_an"
