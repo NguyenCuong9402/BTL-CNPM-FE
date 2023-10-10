@@ -184,7 +184,24 @@ export const TableCell = styled.td`
 
 
 export const ImageInTableCell = styled.img`
-  width: 30%; /* This makes the image take up the full width of the table cell */
+  width: 40%; 
+  transition: transform 0.3s; 
+
+  &:hover {
+    transform: scale(1.2);
+  }
+`;
+
+export const HoverZoomImage = styled.img`
+  max-width: 30%;
+  max-height: 100%;
+  display: block;
+  margin: 0 auto;
+  transition: transform 0.3s; /* Add a transition for the transform property */
+
+  &:hover {
+    transform: scale(1.2); /* Scale the image to 120% on hover */
+  }
 `;
 
 

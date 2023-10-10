@@ -6,7 +6,7 @@ import {
   Background, TableBodyContainer, TableContainer, TableHeaderContainer,
   AvatarImage, ButtonClose, ImagePreview,
   AvatarContainer,PaginationContainer1, DeleteButton,
-  DropdownMenu,
+  DropdownMenu, HoverZoomImage,
   DropdownItem,
   Header, PaginationContainer, PaginationButton, PaginationInfo,
   Navbar, 
@@ -383,12 +383,13 @@ const handleFixClick = async(id) => {
                     {sortDirection === 'asc' ? '↑' : '↓'}
                   </span>
                 </TableHeader>
-                <TableHeader><img src={additem} alt="additem" style={{
-                  maxWidth: '30%', 
-                  maxHeight: '100%', 
-                  display: 'block', 
-                  margin: '0 auto',
-                }}  onClick={openTable} /></TableHeader>
+                <TableHeader>
+                  <HoverZoomImage
+                    src={additem}
+                    alt="additem"
+                    onClick={openTable}
+                  />
+                </TableHeader>
                 <TableHeader> 
                   <button style={{
                     backgroundColor: '#f72d7a',
