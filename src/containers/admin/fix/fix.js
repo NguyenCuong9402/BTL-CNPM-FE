@@ -185,9 +185,9 @@ function Fix() {
       if (response.data.message.status === "success") {
         setDapAn(response.data.data.dap_an);
         setDeBai(response.data.data.de_bai)
-        setModalMessage(response.data.message.text);
-        setModalOpen(true);
       }
+      setModalMessage(response.data.message.text);
+      setModalOpen(true);
     } catch (error) {
       // Xử lý lỗi (nếu có)
       console.error('Error updating user data:', error);
@@ -250,6 +250,8 @@ function Fix() {
       alert('Có lỗi xảy ra khi gửi yêu cầu thay đổi');
     }
   }
+
+  
 
   return (
     <div>
