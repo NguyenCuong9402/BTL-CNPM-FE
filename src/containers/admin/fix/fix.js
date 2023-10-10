@@ -186,8 +186,10 @@ function Fix() {
         setDapAn(response.data.data.dap_an);
         setDeBai(response.data.data.de_bai)
       }
-      setModalMessage(response.data.message.text);
-      setModalOpen(true);
+      if (response.data.message.status === "error"){
+        setModalMessage(response.data.message.text);
+        setModalOpen(true);
+      }
     } catch (error) {
       // Xử lý lỗi (nếu có)
       console.error('Error updating user data:', error);
@@ -251,7 +253,6 @@ function Fix() {
     }
   }
 
-  
 
   return (
     <div>
@@ -261,9 +262,9 @@ function Fix() {
             <i className="bx bxl-xing"></i>Word Scamble
           </a>
         </Navbar>
+        
         <UserInfoContainer>
           <UserName>{name_user}</UserName>
-
           <AvatarContainer>
             <AvatarImage src={avatar} alt="Avatar" />
             <DropdownMenu>

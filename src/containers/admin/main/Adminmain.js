@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "boxicons/css/boxicons.min.css";
 import {
   UserInfoContainer, ImageInTableCell, Container1, FileInputContainer,
@@ -289,7 +289,39 @@ const handleFixClick = async(id) => {
       console.error('Error:', error);
     }
   };
+  const fileInputRef = useRef(null);
+  
 
+  const handleImportClick = () => {
+    fileInputRef.current.click();
+  };
+
+  const handleFileSelect = async (e) => {
+    const selectedFiles = Array.from(e.target.files);
+  
+    if (selectedFiles.length > 0) {
+      const formData = new FormData();
+      selectedFiles.forEach((file) => {
+        formData.append('files[]', file);
+      });
+      const access_token = localStorage.getItem("accessToken");
+      try {
+        // Thực hiện cuộc gọi API bằng Axios
+        const response = await axios.post('http://127.0.0.1:5000/api/v1/cau_do/import', formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+            'Authorization': `Bearer ${access_token}`
+          },
+        });
+  
+        // Xử lý phản hồi từ máy chủ ở đây
+        console.log('Phản hồi từ máy chủ:', response.data);
+      } catch (error) {
+        // Xử lý lỗi ở đây
+        console.error('Lỗi:', error);
+      }
+    }
+  };
 
   return (
     <div>
@@ -299,6 +331,10 @@ const handleFixClick = async(id) => {
             <i className="bx bxl-xing"></i>Word Scamble
           </a>
         </Navbar>
+        <div>
+          <button onClick={handleImportClick}>Import</button>
+          <input type="file" style={{ display: 'none' }} ref={fileInputRef} multiple onChange={handleFileSelect} />
+        </div>
         {!isTableVisible && (
         <form action="" className="search-bar">
         <input
