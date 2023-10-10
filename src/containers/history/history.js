@@ -158,12 +158,13 @@ function History() {
               <tr>
                 <TableHeader>STT</TableHeader>
                 <TableHeader>Số câu đúng</TableHeader>
-                <TableHeader>Tổng số câu</TableHeader>   
+                <TableHeader>Tổng số câu</TableHeader>
+                <TableHeader>Thời gian chơi</TableHeader>   
                 <TableHeader>
-                  Thời gian chơi{' '}
+                  Ngày chơi{' '}
                   <span
                     onClick={toggleSortDirection}
-                    style={{ cursor: 'pointer' }}
+                    style={{ cursor: 'pointer',  fontSize: '40px', }}
                     className={`sort-icon ${sortDirection === 'asc' ? 'asc' : 'desc'}`}
                   >
                     {sortDirection === 'asc' ? '↑' : '↓'}
@@ -181,7 +182,9 @@ function History() {
                   <TableCell>{(currentPage-1)*pageSize+index + 1}</TableCell>
                   <TableCell>{item.so_cau_dung}</TableCell>
                   <TableCell>{item.so_cau}</TableCell>
+                  <TableCell>{item.time_delta}</TableCell>
                   <TableCell>{item.created_date}</TableCell>
+
                 </tr>
               ))}
             </tbody>
