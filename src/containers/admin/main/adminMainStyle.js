@@ -127,6 +127,22 @@ export const Container = styled.div`
   overflow: hidden;
 `;
 
+export const Container1 = styled.div`
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 75%;
+  align-items: center;
+  height: 750px;
+  margin-top: 20px;
+  background: url(${background1});
+  background-size: cover;
+  background-position: center;  
+  border-radius: 20px;
+  overflow: hidden;
+`;
+
 export const CustomTable = styled.table`
   width: 100%;
   left: 50%;
@@ -366,15 +382,15 @@ export const ButtonContainer = styled.div`
   height: 70vh;  
 `;
 
-export const Button = styled.button`
-  width: 300px;
-  height: 100px;
+export const ButtonClose = styled.button`
+  width: 145px;
+  height: 50px;
   background-color: #f72d7a;
   color: #fff;
   border: none;
   border-radius: 4px;
   padding: 10px 20px;
-  font-size: 40px;
+  font-size: 20px;
   cursor: pointer;
   
   position: relative; /* Thêm thuộc tính này để xác định vị trí của biểu tượng */
@@ -493,8 +509,75 @@ export const flashAnimation = keyframes`
   }
 `;
 
-// Sử dụng styled-components để áp dụng animation
-export const FlashingImage = styled.img`
-  animation: ${flashAnimation} 1s infinite; // Sử dụng animation với vô hạn lặp lại
+export const FormTitle = styled.h1`
+  font-size: 26px;
+  margin-top: 50px;
+  height : 70px;
+  font-weight: 600;
+  text-align: center;
+  padding-bottom: 6px;
+  color: white;
+  text-shadow: 2px 2px 2px black;
+  border-bottom: solid 1px white;
 `;
 
+export const UserInputBox = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  text-align: center;
+  align-items: center;
+  width: 50%;
+  margin: 0 auto;
+  padding-bottom: 15px;
+`;
+
+
+export const UserInputLabel = styled.label`
+  width: 95%;
+  color: white;
+  text-align: center;
+  font-size: 20px;
+  font-weight: 400;
+  margin: 5px 0;
+`;
+
+export const UserInput = styled.input`
+  height: 40px;
+  width: 95%;
+  border-radius: 7px;
+  outline: none;
+  border: 1px solid grey;
+  padding: 0 10px;
+`;
+export const FormSubmitButton = styled.div`
+  margin-top: 40px;
+  text-align: center;
+  button {
+    margin: 30px 0; /* Adjust the margin as needed */
+  }
+`;
+export const SubmitInput = styled.input`
+  display: block;
+  width: 10%; /* Đặt độ rộng 50% */
+  margin: 0 auto; /* Căn giữa theo chiều ngang */
+  font-size: 20px;
+  padding: 10px;
+  border: none;
+  text-align: center;
+  border-radius: 3px;
+  color: rgb(209, 209, 209);
+  background: rgba(63, 114, 76, 0.7);
+  cursor: pointer;
+  &:hover {
+    filter: brightness(1.2); /* Tăng độ sáng lên 20% khi hover */
+    transform: scale(1.1);
+  }
+`;
+
+export const SubmitInputHover = styled(SubmitInput)`
+  &:hover {
+    background: rgba(56, 204, 93, 0.7);
+    color: rgb(255, 255, 255);
+    
+  }
+`;

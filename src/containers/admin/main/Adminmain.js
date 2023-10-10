@@ -1,16 +1,17 @@
 import React, { useState, useEffect } from "react";
 import "boxicons/css/boxicons.min.css";
 import {
-  UserInfoContainer, ImageInTableCell,
+  UserInfoContainer, ImageInTableCell, Container1,
   UserName, TableCell, TableHeader, CustomTable,
   Background, TableBodyContainer, TableContainer, TableHeaderContainer,
-  AvatarImage,
+  AvatarImage, ButtonClose,
   AvatarContainer,PaginationContainer1, DeleteButton,
   DropdownMenu,
   DropdownItem,
   Header, PaginationContainer, PaginationButton, PaginationInfo,
   Navbar, 
-  Container,
+  Container,FormSubmitButton, UserInput, UserInputBox, FormTitle , UserInputLabel, SubmitInput
+
 } from "./adminMainStyle";
 import "boxicons/css/boxicons.min.css";
 import axios from "axios";
@@ -19,11 +20,12 @@ import logout from "./logout.png";
 import additem from "./additem.png";
 import fixitem from "./fixitem.png";
 
+import addpicture from "./add_picture.png";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlay } from "@fortawesome/free-solid-svg-icons";
 import Table from 'react-bootstrap/Table';
-import { Button } from "bootstrap";
+import {Button } from "bootstrap";
 import Modal from '../../../modal';
 
 function formatDate(created_date) {
@@ -79,7 +81,6 @@ function AdminMain() {
   };
 
   
-  console.log(data)
   const fetchData = async (page, pSize, sortDirection, text_search) => {
     try {
       const access_token = localStorage.getItem("accessToken");
@@ -241,6 +242,22 @@ const handleChangeButtonClick = async () => {
 const handleFixClick = async(id) => {
   history.push(`/admin/fix`, { cau_do_id: id });
 }
+
+/* code thêm sản phẩm*/
+  const [isTableVisible, setTableVisible] = useState(false);
+  const [selectedImage, setSelectedImage] = useState(null);
+  const [inputValue, setInputValue] = useState('');
+
+  const openTable = () => {
+    setTableVisible(true);
+  };
+
+  const closeTable = () => {
+    setTableVisible(false);
+  };
+
+
+  console.log("kết quả",isTableVisible)
   return (
     <div>
       <Header>
@@ -249,6 +266,7 @@ const handleFixClick = async(id) => {
             <i className="bx bxl-xing"></i>Word Scamble
           </a>
         </Navbar>
+        {!isTableVisible && (
         <form action="" className="search-bar">
         <input
           type="text"
@@ -257,7 +275,8 @@ const handleFixClick = async(id) => {
           onChange={(e) => setTextSearch(e.target.value)}
         />
         <button><i className='bx bx-search'></i></button>
-      </form>
+        </form>
+        )}
         <UserInfoContainer>
           <UserName>{name_user}</UserName>
 
@@ -274,6 +293,25 @@ const handleFixClick = async(id) => {
         </UserInfoContainer>
       </Header>
       <Background></Background>
+      {isTableVisible ? (
+        <Container1>
+          <FormTitle >Thêm Câu Đố</FormTitle>  
+            <UserInputBox>
+                <UserInputLabel htmlFor="dap_an">Đáp án</UserInputLabel>
+                <UserInput
+                type="dap_an" 
+                id="dap_an"
+                name="dap_an"
+                placeholder="Điền đáp án"
+                required
+                />
+            </UserInputBox>
+            <FormSubmitButton>  
+            <SubmitInput type="submit" value="Thêm"/>
+            <ButtonClose onClick={closeTable}>Close</ButtonClose>
+            </FormSubmitButton>
+        </Container1>
+      ):(
       <Container>
 
       <TableContainer>   
@@ -306,7 +344,7 @@ const handleFixClick = async(id) => {
                   maxHeight: '100%', 
                   display: 'block', 
                   margin: '0 auto',
-                }} /></TableHeader>
+                }}  onClick={openTable} /></TableHeader>
                 <TableHeader> 
                   <button style={{
                     backgroundColor: '#f72d7a',
@@ -386,7 +424,8 @@ const handleFixClick = async(id) => {
     </PaginationContainer1>
     
   </Container>
-  <Modal isOpen={isModalOpen} message={modalMessage} onClose={handleCloseModal} />
+    )}
+    <Modal isOpen={isModalOpen} message={modalMessage} onClose={handleCloseModal} />
 
   </div>
   );
