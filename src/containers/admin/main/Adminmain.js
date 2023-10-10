@@ -262,8 +262,35 @@ const handleFixClick = async(id) => {
     setSelectedImage(file);
   };
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-  console.log("kết quả",isTableVisible)
+    const access_token = localStorage.getItem("accessToken"); // Get access token from local storage
+
+    const formData = new FormData();
+    formData.append('file', selectedImage); // Add the selected image to the form data
+    formData.append('dap_an', inputValue); // Add the input value as 'dap_an' to the form data
+
+    try {
+      const response = await axios.post('http://127.0.0.1:5000/api/v1/cau_do', formData, {
+        headers: {
+          Authorization: `Bearer ${access_token}`, // Set the access token in the headers
+          'Content-Type': 'multipart/form-data', // Set content type for file upload
+        },
+      });
+      if (response.data.message.status === 'success'){
+        setSelectedImage(null);
+        setInputValue("");
+      }
+      setModalMessage(response.data.message.text);
+      setModalOpen(true);
+    } catch (error) {
+      // Handle any errors
+      console.error('Error:', error);
+    }
+  };
+
+
   return (
     <div>
       <Header>
@@ -314,15 +341,17 @@ const handleFixClick = async(id) => {
             <UserInputBox>
                 <UserInputLabel htmlFor="dap_an"></UserInputLabel>
                 <UserInput
-                type="dap_an" 
-                id="dap_an"
-                name="dap_an"
-                placeholder="Điền đáp án"
-                required
+                  type="text"
+                  id="dap_an"
+                  name="dap_an"
+                  placeholder="Điền đáp án"
+                  value={inputValue}
+                  onChange={(e) => setInputValue(e.target.value)}
+                  required
                 />
             </UserInputBox>
             <FormSubmitButton>  
-            <SubmitInput type="submit" value="Thêm"/>
+            <SubmitInput type="submit" value="Thêm" onClick={handleSubmit}/>
             <ButtonClose onClick={closeTable}>Close</ButtonClose>
             </FormSubmitButton>
         </Container1>
