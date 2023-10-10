@@ -255,7 +255,7 @@ function Fix() {
     <div>
       <Header>
         <Navbar>
-          <a href="/main">
+          <a href="/admin/main">
             <i className="bx bxl-xing"></i>Word Scamble
           </a>
         </Navbar>

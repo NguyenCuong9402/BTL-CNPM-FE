@@ -27,7 +27,7 @@ const App = () => {
         <Route path="/admin/main" component={AdminMain} />
         <Route path="/changepass" component={Changepass} />
         <Route path="/admin/fix" component={Fix} />
-
+        
         <Route path="/notfound" component={NotFound} />
         <Redirect exact from="/" to="/login" />
         <Redirect exact from="/admin" to="/admin/login" />
