@@ -53,6 +53,7 @@ function AdminMain() {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [pageSize, setpageSize] = useState(15);
+  const [text_search, setTextSearch] = useState('');
 
   useEffect(() => {
     // Lấy userData từ localStorage khi component được tạo
@@ -79,11 +80,11 @@ function AdminMain() {
 
   
   console.log(data)
-  const fetchData = async (page, pSize) => {
+  const fetchData = async (page, pSize, sortDirection, text_search) => {
     try {
       const access_token = localStorage.getItem("accessToken");
       const response = await axios.get(
-        `http://127.0.0.1:5000/api/v1/cau_do?page=${page}&page_size=${pSize}&order=${sortDirection}`,
+        `http://127.0.0.1:5000/api/v1/cau_do?page=${page}&page_size=${pSize}&order=${sortDirection}&text_search=${text_search}`,
         {
           headers: {
             Authorization: `Bearer ${access_token}`,
@@ -109,11 +110,11 @@ function AdminMain() {
   const [selectedRows, setSelectedRows] = useState([]);
   // Call fetchData when the component mounts
   useEffect(() => {
-    fetchData(currentPage, pageSize, sortDirection);
+    fetchData(currentPage, pageSize, sortDirection, text_search);
 
     setIsDeleteButtonVisible(selectedRows.length > 0);
 
-  }, [currentPage, pageSize, sortDirection, selectedRows]);
+  }, [currentPage, pageSize, sortDirection,text_search, selectedRows]);
 
   const toggleSortDirection = () => {
     setSortDirection(sortDirection === 'asc' ? 'desc' : 'asc');
@@ -193,7 +194,7 @@ const handleDeleteButtonClick = async () => {
       setModalMessage(response.data.message.text);
       setModalOpen(true);
       // Sau khi xóa thành công, cập nhật lại danh sách sản phẩm
-      fetchData(currentPage, pageSize, sortDirection);
+      fetchData(currentPage, pageSize, sortDirection, text_search);
       setSelectedRows([]); // Đặt lại selectedRows sau khi xóa
       setSelectAll(false); // Đặt lại selectAll sau khi xóa
     } else if (response.data.message.status === "error") {
@@ -249,9 +250,14 @@ const handleFixClick = async(id) => {
           </a>
         </Navbar>
         <form action="" className="search-bar">
-          <input type="text" placeholder="Search..." />
-          <button><i className='bx bx-search'></i></button>
-        </form>
+        <input
+          type="text"
+          placeholder="Search..."
+          value={text_search}
+          onChange={(e) => setTextSearch(e.target.value)}
+        />
+        <button><i className='bx bx-search'></i></button>
+      </form>
         <UserInfoContainer>
           <UserName>{name_user}</UserName>
 
