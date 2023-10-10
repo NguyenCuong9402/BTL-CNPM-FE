@@ -200,7 +200,7 @@ function Fix() {
     if (isEditing) {
       const inputStyle = {
         fontSize: '40px', 
-        color: 'blue'
+        color: 'red'
       };
       return (
         <input
