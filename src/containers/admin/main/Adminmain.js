@@ -374,9 +374,9 @@ const handleFixClick = async(id) => {
                   <span
                     onClick={toggleSortDirection}
                     style={{ cursor: 'pointer',
-                    fontSize: '30px', // Đặt kích thước của biểu tượng
-                    margin: '0 4px', // Khoảng cách giữa biểu tượng và văn bản
-                    lineHeight: '1', // Để căn giữa biểu tượng theo chiều dọc
+                    fontSize: '30px', 
+                    margin: '0 4px', 
+                    lineHeight: '1',
                    }}
                     className={`sort-icon ${sortDirection === 'asc' ? 'asc' : 'desc'}`}
                   >
