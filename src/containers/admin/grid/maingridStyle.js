@@ -623,9 +623,10 @@ export const GridContainer = styled.div`
   display: grid;
   gap: 16px; /* Khoảng cách giữa các phần tử trong lưới */
   grid-template-columns: repeat(3, minmax(300px, 1fr));
-  gap: 16px; /* Khoảng cách giữa các phần tử trong lưới */
   max-height: 700px; /* Đặt chiều cao tối đa cho container */
   overflow-y: auto; /* Cho phép cuộn nếu nội dung vượt quá kích thước của container */
+  padding: 16px; /* Khoảng cách giữa nội dung và viền container */
+
 `;
 
 export const GridItem = styled.div`   
@@ -634,9 +635,10 @@ export const GridItem = styled.div`
   align-items: center; /* Cân giữa theo chiều ngang */
   text-align: center; /* Căn giữa nội dung theo chiều ngang */
   padding: 16px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5); /* Hiển thị đường viền khi hover */
 
   &:hover {
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5); /* Hiển thị đường viền khi hover */
+    transform: scale(1.05); /* Tăng kích thước khi hover */
     z-index: 1; /* Để nổi lên trên các ô khác */
   }
 
