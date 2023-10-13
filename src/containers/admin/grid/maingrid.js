@@ -16,8 +16,7 @@ import "boxicons/css/boxicons.min.css";
 import axios from "axios";
 import { Link, useHistory } from "react-router-dom";
 import logout from "./logout.png";
-import additem from "./additem.png";
-import fixitem from "./fixitem.png";
+ import fixitem from "./fixitem.png";
 
 import addpicture from "./add_picture.png";
 
