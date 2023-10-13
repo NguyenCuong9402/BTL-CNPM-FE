@@ -1,17 +1,16 @@
 import React, { useState, useEffect, useRef } from "react";
 import "boxicons/css/boxicons.min.css";
 import {
-  UserInfoContainer, ImageInTableCell, Container1, FileInputContainer,
-  UserName, TableCell, TableHeader, CustomTable,
-  Background, TableBodyContainer, TableContainer, TableHeaderContainer,
+  UserInfoContainer, Container1, FileInputContainer, 
+  UserName,
+  Background,Image,
   AvatarImage, ButtonClose, ImagePreview,
   AvatarContainer,PaginationContainer1, DeleteButton,
-  DropdownMenu, HoverZoomImage,
+  DropdownMenu,
   DropdownItem,
   Header, PaginationContainer, PaginationButton, PaginationInfo,
   Navbar, 
-  Container,FormSubmitButton, UserInput, UserInputBox, FormTitle , UserInputLabel, SubmitInput
-
+  Container,FormSubmitButton, UserInput, UserInputBox, FormTitle , UserInputLabel, SubmitInput, GridContainer, GridItem
 } from "./maingridStyle";
 import "boxicons/css/boxicons.min.css";
 import axios from "axios";
@@ -44,7 +43,7 @@ function formatDate(created_date) {
 }
 
 
-function AdminMain() {
+function MainGrid() {
   const [isModalOpen, setModalOpen] = useState(false);
   const [modalMessage, setModalMessage] = useState('');
   const [name_user, setUserData] = useState(null);
@@ -54,7 +53,7 @@ function AdminMain() {
   const [sortDirection, setSortDirection] = useState('desc');
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
-  const [pageSize, setpageSize] = useState(15);
+  const [pageSize, setpageSize] = useState(9);
   const [text_search, setTextSearch] = useState('');
 
   useEffect(() => {
@@ -396,84 +395,18 @@ const handleFixClick = async(id) => {
         </Container1>
       ):(
       <Container>
-
-      <TableContainer>   
-        <TableHeaderContainer>
-          <CustomTable striped bordered hover>
-            <thead>
-              <tr>
-               
-                <TableHeader>STT</TableHeader>
-                <TableHeader>Đề</TableHeader>   
-
-                <TableHeader>Đáp án đúng</TableHeader>
-                <TableHeader>Hình Ảnh</TableHeader>   
-                <TableHeader>
-                  Thời gian{' '}
-                  <span
-                    onClick={toggleSortDirection}
-                    style={{ cursor: 'pointer',
-                    fontSize: '30px', 
-                    margin: '0 4px', 
-                    lineHeight: '1',
-                   }}
-                    className={`sort-icon ${sortDirection === 'asc' ? 'asc' : 'desc'}`}
-                  >
-                    {sortDirection === 'asc' ? '↑' : '↓'}
-                  </span>
-                </TableHeader>
-                <TableHeader>
-                  <HoverZoomImage
-                    src={additem}
-                    alt="additem"
-                    onClick={openTable}
-                  />
-                </TableHeader>
-                <TableHeader> 
-                  <button style={{
-                    backgroundColor: '#f72d7a',
-                    color: '#fff',
-                    border: 'none',
-                    borderRadius: '4px',
-                    padding: '5px 10px',
-                    fontSize: '16px',
-                    cursor: 'pointer'
-                  }} onClick={() => handleSelectAllClick()}>Select All</button>
-                </TableHeader>
-
-              </tr>
-            </thead>
-          </CustomTable>
-        </TableHeaderContainer>
-        <TableBodyContainer>
-          <CustomTable striped bordered hover>
-            <tbody>
-              {data.map((item, index) => (
-                <tr key={item.id}>
-                  <TableCell>{(currentPage-1)*pageSize+index + 1}</TableCell>
-                  <TableCell>{item.de_bai}</TableCell>
-
-                  <TableCell>{item.dap_an}</TableCell>
-                  <TableCell><ImageInTableCell src={`http://127.0.0.1:5000/api/v1/picture/${item.id}`} alt="Gợi í" /></TableCell>
-                  <TableCell>{item.created_date}</TableCell>
-
-                  <TableCell>
-                    <ImageInTableCell onClick={() => handleFixClick(item.id)} src={fixitem} alt="fixitem" />
-                  </TableCell>
-                  <TableCell>
-                  <input
-                    type="checkbox"
-                    checked={selectedRows.includes(item.id)}
-                    onChange={() => handleRowSelect(item.id)}
-                  />
-
-                  </TableCell>  
-                </tr>
-              ))}
-            </tbody>
-          </CustomTable>
-        </TableBodyContainer>
-      </TableContainer>
+      <Container1>
+      <GridContainer>
+      {data.map(item => (
+        <GridItem key={item.id} onClick={() => handleFixClick(item.id)}>
+          <Image src={`http://127.0.0.1:5000/api/v1/picture/${item.id}`} alt="Hình ảnh" />
+          <h3>{item.dap_an}</h3>
+          <p>Đề bài: {item.de_bai}</p>
+          <p>{item.created_date}</p>
+        </GridItem>
+      ))}
+    </GridContainer>
+    </Container1>
     <PaginationContainer>
     <div>
       <label htmlFor="pageSizeSelect" style={{ fontWeight: 'bold', color: 'green' }}>PageSize: </label>
@@ -481,13 +414,15 @@ const handleFixClick = async(id) => {
             id="pageSizeSelect"
             value={pageSize}
             onChange={handlePageSizeChange}
-          >
-            <option value={5}>5</option>
-            <option value={10}>10</option>
+          > 
+            <option value={3}>3</option>
+            <option value={9}>9</option>
+            <option value={12}>12</option>
             <option value={15}>15</option>
-            <option value={20}>20</option>
+            <option value={30}>30</option>
           </select>
-        </div>  
+        </div>
+       
       <PaginationButton onClick={handlePrevPage} disabled={currentPage === 1}>
         Previous
       </PaginationButton>
@@ -498,14 +433,14 @@ const handleFixClick = async(id) => {
         Next
       </PaginationButton>
     </PaginationContainer>
-    <PaginationContainer1>
+    {/* <PaginationContainer1>
       {isDeleteButtonVisible && (
         <DeleteButton onClick={handleChangeButtonClick}>Thay đổi đề</DeleteButton>
       )}
       {isDeleteButtonVisible && (
         <DeleteButton onClick={handleDeleteButtonClick}>Delete</DeleteButton>
       )}
-    </PaginationContainer1>
+    </PaginationContainer1> */}
     
   </Container>
     )}
@@ -515,4 +450,4 @@ const handleFixClick = async(id) => {
   );
 }
 
-export default AdminMain;
+export default MainGrid;

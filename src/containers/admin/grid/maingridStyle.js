@@ -1,7 +1,7 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
 import background1 from './backgroundform.png';
-import background2 from './backgound2.jpg';
+import background2 from './background2.png';
 
 // Styled Components
 export const GlobalStyles = styled.div`
@@ -117,30 +117,28 @@ export const Container = styled.div`
   top: 50%;
   
   transform: translate(-50%, -50%);
-  width: 75%;
-  height: 750px;
+  width: 95%;
+  height: 800px;
   margin-top: 20px;
   background: url(${background2});
   background-size: cover;
   background-position: center;  
   border-radius: 20px;
   overflow: hidden;
+  overflow: auto;
 `;
 
 export const Container1 = styled.div`
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  width: 75%;
-  align-items: center;
-  height: 750px;
-  margin-top: 20px;
-  background: url(${background1});
-  background-size: cover;
-  background-position: center;  
-  border-radius: 20px;
-  overflow: hidden;
+position: relative;
+width: 100%;
+height: 700px;
+margin-top: 20px;
+background: url(${background2});
+background-size: cover;
+background-position: center;  
+border-radius: 20px;
+overflow: hidden;
+overflow: auto;
 `;
 
 export const CustomTable = styled.table`
@@ -617,4 +615,34 @@ export const FileInputContainer = styled.div`
   input[type="file"] {
     color: white;
   }
+`;
+
+
+
+export const GridContainer = styled.div`
+  display: grid;
+  gap: 16px; /* Khoảng cách giữa các phần tử trong lưới */
+  grid-template-columns: repeat(3, minmax(300px, 1fr));
+  gap: 16px; /* Khoảng cách giữa các phần tử trong lưới */
+  max-height: 700px; /* Đặt chiều cao tối đa cho container */
+  overflow-y: auto; /* Cho phép cuộn nếu nội dung vượt quá kích thước của container */
+`;
+
+export const GridItem = styled.div`   
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Cân giữa theo chiều ngang */
+  text-align: center; /* Căn giữa nội dung theo chiều ngang */
+  padding: 16px;
+
+  &:hover {
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5); /* Hiển thị đường viền khi hover */
+    z-index: 1; /* Để nổi lên trên các ô khác */
+  }
+
+`;
+
+export const Image = styled.img`
+  width: 30%; /* Đặt chiều rộng tối đa cho ảnh là 100% để đảm bảo kích thước cố định */
+  height: 100px; /* Để giữ nguyên tỷ lệ khung hình */
 `;
