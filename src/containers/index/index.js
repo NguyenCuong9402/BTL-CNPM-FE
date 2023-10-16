@@ -1,30 +1,26 @@
 import React, { useState, useEffect, useRef } from "react";
 import "boxicons/css/boxicons.min.css";
 import {
-  UserInfoContainer, Container1, FileInputContainer, 
+  UserInfoContainer, Container1,
   UserName,
   Background,Image,
-  AvatarImage, ButtonClose, ImagePreview,
-  AvatarContainer,PaginationContainer1, DeleteButton,
+  AvatarImage,
+  AvatarContainer,
   DropdownMenu,
   DropdownItem,
   Header, PaginationContainer, PaginationButton, PaginationInfo,
   Navbar, 
-  Container,FormSubmitButton, UserInput, UserInputBox, FormTitle , UserInputLabel, SubmitInput, GridContainer, GridItem
+  Container, GridContainer, GridItem
 } from "./indexStyle";
 import "boxicons/css/boxicons.min.css";
 import axios from "axios";
 import { Link, useHistory } from "react-router-dom";
 import logout from "./logout.png";
- import fixitem from "./fixitem.png";
-
-import addpicture from "./add_picture.png";
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlay } from "@fortawesome/free-solid-svg-icons";
 import Table from 'react-bootstrap/Table';
 import {Button } from "bootstrap";
-import Modal from '../../../modal';
+import Modal from '../../modal';
 
 function formatDate(created_date) {
   // Convert timestamp (in seconds) to milliseconds
@@ -42,7 +38,7 @@ function formatDate(created_date) {
 }
 
 
-function MainGrid() {
+function Index() {
   const [isModalOpen, setModalOpen] = useState(false);
   const [modalMessage, setModalMessage] = useState('');
   const [name_user, setUserData] = useState(null);
@@ -59,14 +55,13 @@ function MainGrid() {
     // Lấy userData từ localStorage khi component được tạo
     const userDataFromLocalStorage = JSON.parse(localStorage.getItem("user"));
     if (userDataFromLocalStorage) {
-      if (userDataFromLocalStorage.admin === 1) {
+      if (userDataFromLocalStorage.admin === 0) {
         setUserData(userDataFromLocalStorage.name_user);
         setUserDataId(userDataFromLocalStorage.id);
       } else {
-        history.push("/main"); // Điều hướng đến màn hình đăng nhập
       }
     } else {
-      history.push("/admin/login"); // Điều hướng đến màn hình đăng nhập
+      history.push("/login"); // Điều hướng đến màn hình đăng nhập
     }
   }, []); // Sử dụng [] để đảm bảo useEffect chỉ chạy một lần khi component được tạo
   const avatarUrl = `http://127.0.0.1:5000/api/v1/picture/avatar/${user_id}`;
@@ -74,21 +69,14 @@ function MainGrid() {
     localStorage.removeItem("user");
     localStorage.removeItem("accessToken");
     localStorage.removeItem("refreshToken");
-
-    window.location.href = "/admin/login";
+    window.location.href = "/login";
   };
 
   
   const fetchData = async (page, pSize, sortDirection, text_search) => {
     try {
-      const access_token = localStorage.getItem("accessToken");
       const response = await axios.get(
-        `http://127.0.0.1:5000/api/v1/cau_do?page=${page}&page_size=${pSize}&order=${sortDirection}&text_search=${text_search}`,
-        {
-          headers: {
-            Authorization: `Bearer ${access_token}`,
-          },
-        }
+        `http://127.0.0.1:5000/api/v1/product?page=${page}&page_size=${pSize}&order=${sortDirection}&text_search=${text_search}`
       );
 
       if (response.data.code === 200) {
@@ -206,120 +194,12 @@ const handleDeleteButtonClick = async () => {
   }
 };
 
-const handleChangeButtonClick = async () => {
-  const access_token = localStorage.getItem("accessToken");
-  try {
-    const response = await axios.put(
-      'http://127.0.0.1:5000/api/v1/cau_do',
-      { list_id: selectedRows },
-      {
-        headers: {
-          Authorization: `Bearer ${access_token}`,
-          'Content-Type': 'application/json',
-        },
-      }
-    );
-
-    if (response.data.message.status === "success") {
-      setModalMessage(response.data.message.text);
-      setModalOpen(true);
-      // Sau khi xóa thành công, cập nhật lại danh sách sản phẩm
-      fetchData(currentPage, pageSize, sortDirection);
-      setSelectedRows([]); 
-      setSelectAll(false); 
-    } else if (response.data.message.status === "error") {
-      setModalMessage(response.data.message.text);
-      setModalOpen(true);
-    }
-  } catch (error) {
-    console.error(error);
-    alert('Có lỗi xảy ra khi gửi yêu cầu thay đổi');
-  }
-}
 
 const handleFixClick = async(id) => {
   history.push(`/admin/fix`, { cau_do_id: id });
 }
 
-/* code thêm sản phẩm*/
-  const [isTableVisible, setTableVisible] = useState(false);
-  const [selectedImage, setSelectedImage] = useState(null);
-  const [inputValue, setInputValue] = useState('');
 
-  const openTable = () => {
-    setTableVisible(true);
-  };
-
-  const closeTable = () => {
-    setTableVisible(false);
-  };
-
-
-  const handleImageChange = (e) => {
-    const file = e.target.files[0];
-    setSelectedImage(file);
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    const access_token = localStorage.getItem("accessToken"); // Get access token from local storage
-
-    const formData = new FormData();
-    formData.append('file', selectedImage); // Add the selected image to the form data
-    formData.append('dap_an', inputValue); // Add the input value as 'dap_an' to the form data
-
-    try {
-      const response = await axios.post('http://127.0.0.1:5000/api/v1/cau_do', formData, {
-        headers: {
-          Authorization: `Bearer ${access_token}`, // Set the access token in the headers
-          'Content-Type': 'multipart/form-data', // Set content type for file upload
-        },
-      });
-      if (response.data.message.status === 'success'){
-        setSelectedImage(null);
-        setInputValue("");
-      }
-      setModalMessage(response.data.message.text);
-      setModalOpen(true);
-    } catch (error) {
-      // Handle any errors
-      console.error('Error:', error);
-    }
-  };
-  const fileInputRef = useRef(null);
-  
-
-  const handleImportClick = () => {
-    fileInputRef.current.click();
-  };
-
-  const handleFileSelect = async (e) => {
-    const selectedFiles = Array.from(e.target.files);
-  
-    if (selectedFiles.length > 0) {
-      const formData = new FormData();
-      selectedFiles.forEach((file) => {
-        formData.append('files[]', file);
-      });
-      const access_token = localStorage.getItem("accessToken");
-      try {
-        // Thực hiện cuộc gọi API bằng Axios
-        const response = await axios.post('http://127.0.0.1:5000/api/v1/cau_do/import', formData, {
-          headers: {
-            'Content-Type': 'multipart/form-data',
-            'Authorization': `Bearer ${access_token}`
-          },
-        });
-        setModalMessage(response.data.message.text);
-        setModalOpen(true);
-        
-      } catch (error) {
-        // Xử lý lỗi ở đây
-        console.error('Lỗi:', error);
-      }
-    }
-  };
   const handleChangepass = async () =>{
     history.push(`/changepass`, { });
   };
@@ -328,15 +208,10 @@ const handleFixClick = async(id) => {
     <div>
       <Header>
         <Navbar>
-          <a href="/admin/main">
-            <i className="bx bxl-xing"></i>Word Scamble
+          <a href="/index">
+            <i className="bx bxl-xing"></i>Home
           </a>
         </Navbar>
-        <div>
-          <ButtonClose onClick={handleImportClick}>Import</ButtonClose>
-          <input type="file" style={{ display: 'none' }} ref={fileInputRef} multiple onChange={handleFileSelect} />
-        </div>
-        {!isTableVisible && (
         <form action="" className="search-bar">
         <input
           type="text"
@@ -346,7 +221,6 @@ const handleFixClick = async(id) => {
         />
         <button><i className='bx bx-search'></i></button>
         </form>
-        )}
         <UserInfoContainer>
           <UserName>{name_user}</UserName>
 
@@ -363,45 +237,14 @@ const handleFixClick = async(id) => {
         </UserInfoContainer>
       </Header>
       <Background></Background>
-      {isTableVisible ? (
-        <Container1>
-          <FormTitle >Thêm Câu Đố</FormTitle>
-          {selectedImage ? (
-            <ImagePreview src={URL.createObjectURL(selectedImage)} alt="Selected Image" />
-          ) : (
-            <ImagePreview src={addpicture} alt="Add Item" />
-          )}
-             <FileInputContainer>
-            <input type="file" accept="image/*" onChange={handleImageChange} />
-            </FileInputContainer>
-
-            <UserInputBox>
-                <UserInputLabel htmlFor="dap_an"></UserInputLabel>
-                <UserInput
-                  type="text"
-                  id="dap_an"
-                  name="dap_an"
-                  placeholder="Điền đáp án"
-                  value={inputValue}
-                  onChange={(e) => setInputValue(e.target.value)}
-                  required
-                />
-            </UserInputBox>
-            <FormSubmitButton>  
-            <SubmitInput type="submit" value="Thêm" onClick={handleSubmit}/>
-            <ButtonClose onClick={closeTable}>Close</ButtonClose>
-            </FormSubmitButton>
-        </Container1>
-      ):(
       <Container>
       <Container1>
       <GridContainer>
       {data.map(item => (
         <GridItem key={item.id} onClick={() => handleFixClick(item.id)}>
           <Image src={`http://127.0.0.1:5000/api/v1/picture/${item.id}`} alt="Hình ảnh" />
-          <h3>{item.dap_an}</h3>
-          <p>Đề bài: {item.de_bai}</p>
-          <p>{item.created_date}</p>
+          <h3>{item.price}</h3>
+          <p>{item.name}</p>
         </GridItem>
       ))}
     </GridContainer>
@@ -432,21 +275,11 @@ const handleFixClick = async(id) => {
         Next
       </PaginationButton>
     </PaginationContainer>
-    {/* <PaginationContainer1>
-      {isDeleteButtonVisible && (
-        <DeleteButton onClick={handleChangeButtonClick}>Thay đổi đề</DeleteButton>
-      )}
-      {isDeleteButtonVisible && (
-        <DeleteButton onClick={handleDeleteButtonClick}>Delete</DeleteButton>
-      )}
-    </PaginationContainer1> */}
-    
-  </Container>
-    )}
+    </Container>
     <Modal isOpen={isModalOpen} message={modalMessage} onClose={handleCloseModal} />
 
   </div>
   );
 }
 
-export default MainGrid;
+export default Index;

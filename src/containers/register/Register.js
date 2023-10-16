@@ -36,7 +36,7 @@ const RegisterForm = () => {
         // Kiểm tra xem trong localStorage có user không
         const userData = JSON.parse(localStorage.getItem('user'));
         if (userData) {
-          history.push('/main');
+          history.push('/index');
         }
       }, [history]);
     const handleRegister = () => {

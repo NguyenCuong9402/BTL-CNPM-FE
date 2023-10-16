@@ -3,7 +3,6 @@ import './loginStyle.css'; // Import file CSS   okeeeeee
 import 'boxicons/css/boxicons.min.css'; // Import thư viện icons
 import axios from 'axios';
 import { Link, useHistory  } from 'react-router-dom';
-import WordSearch from './wordsearch.png'
 import Modal from "../../modal";
 
 function Login() {
@@ -31,7 +30,7 @@ function Login() {
     // Kiểm tra xem trong localStorage có user không
     const userData = JSON.parse(localStorage.getItem('user'));
     if (userData) {
-      history.push('/main');
+      history.push('/index');
     }
   }, [history]);
  
@@ -48,7 +47,7 @@ function Login() {
           localStorage.setItem('accessToken', response.data.data.access_token);
           localStorage.setItem('refreshToken', response.data.data.refresh_token);
           localStorage.setItem('user', JSON.stringify(response.data.data.user));
-          window.location.href = '/main';
+          window.location.href = '/index';
         }
         if (response.data.message.status === "error") {
           setModalMessage(response.data.message.text);
@@ -100,7 +99,7 @@ function Login() {
     <div>
       <header className="header">
         <nav className="navbar">
-        <a href="/main"><i className='bx bxl-xing'></i>Word Scamble</a>
+        <a href="/main"><i className='bx bxl-xing'></i>Home</a>
         </nav>
       </header>
 
@@ -108,10 +107,9 @@ function Login() {
       <div className="background"></div>
       <div className="container">
         <div className="item">
-          <h2 className="logo"><i className='bx bxl-xing'></i>Word Scamble</h2>
+          <h2 className="logo"><i className='bx bxl-xing'></i>Mua Sắm thả ga</h2>
           <div className="text-item">
-            <img  width="500" height="250" src={WordSearch} alt="Word Search" />
-            <h2>Welcome! <br /><span>To Our Game</span></h2>
+            <h2>Welcome! <br /><span>To Our Shop</span></h2>
             <p>Tận hưởng niềm vui cùng chúng tôi</p>
             <div className="social-icon">
               <a href="https://www.facebook.com/cuong.9402/"><i className='bx bxl-facebook'></i></a>
