@@ -30,7 +30,6 @@ const App = () => {
         <Route path="/notfound" component={NotFound} />
         <Redirect exact from="/" to="/login" />
         <Redirect exact from="/admin" to="/admin/login" />
-        {/* Điều hướng mặc định từ "/" sẽ chuyển hướng đến "/login" */}
       </Switch>
     </Router>
   );
