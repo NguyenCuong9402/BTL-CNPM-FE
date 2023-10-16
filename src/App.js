@@ -11,8 +11,6 @@ import Changepass from "./containers/changepass/changpass";
 import LoginAdmin from './containers/admin/login/loginAdmin';
 import AdminMain from './containers/admin/main/Adminmain';
 import Fix from './containers/admin/fix/fix';
-import MainGrid from './containers/admin/grid/maingrid';
-
 
 const App = () => {
   return (
@@ -28,7 +26,6 @@ const App = () => {
         <Route path="/admin/main" component={AdminMain} />
         <Route path="/changepass" component={Changepass} />
         <Route path="/admin/fix" component={Fix} />
-        <Route path="/admin/grid" component={MainGrid} />
 
         <Route path="/notfound" component={NotFound} />
         <Redirect exact from="/" to="/login" />
