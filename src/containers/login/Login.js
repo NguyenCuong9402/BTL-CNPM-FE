@@ -118,7 +118,7 @@ function Login() {
       <Header>
         <Navbar>
           <a href="/main">
-            <i className="bx bxl-xing"></i>Word Scamble
+            <i className="bx bxl-xing"></i>Home
           </a>
         </Navbar>
       </Header>
