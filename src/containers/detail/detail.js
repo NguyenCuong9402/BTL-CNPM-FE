@@ -107,7 +107,7 @@ function Detail() {
         </UserInfoContainer>
         ) : (
           <Navbar>
-          <a href="/index"  style={{ fontSize: '20px' }}>Login</a>
+          <a href="/login"  style={{ fontSize: '20px' }}>Login</a>
           </Navbar>
 
         )}

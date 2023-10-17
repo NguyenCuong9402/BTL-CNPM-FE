@@ -4,7 +4,25 @@ import 'boxicons/css/boxicons.min.css'; // Import thư viện icons
 import axios from 'axios';
 import { Link, useHistory  } from 'react-router-dom';
 import Modal from "../../modal";
-
+import {
+  UserInfoContainer,
+  UserName,
+  Background,
+  AvatarImage,
+  AvatarContainer,
+  DropdownMenu,
+  DropdownItem,
+  FlashingImage,
+  Header,
+  Navbar,
+  Container,
+  LoginSection,
+  Button,
+  ButtonContainer,
+  Item,
+  SocialIcon,
+  TextItem,
+} from "./loginStyle";
 function Login() {
   const [email, setEmail] = useState('');
   const [emailforget, setEmailForget] = useState('');
@@ -97,29 +115,40 @@ function Login() {
 
   return (
     <div>
-      <header className="header">
-        <nav className="navbar">
-        <a href="/main"><i className='bx bxl-xing'></i>Home</a>
-        </nav>
-      </header>
-
+      <Header>
+        <Navbar>
+          <a href="/main">
+            <i className="bx bxl-xing"></i>Word Scamble
+          </a>
+        </Navbar>
+      </Header>
       {/* LOGIN FORM CREATION */}
-      <div className="background"></div>
-      <div className="container">
-        <div className="item">
-          <h2 className="logo"><i className='bx bxl-xing'></i>Mua Sắm thả ga</h2>
-          <div className="text-item">
-            <h2>Welcome! <br /><span>To Our Shop</span></h2>
+      <Background></Background>
+      <Container>
+        <Item>
+        <h2 className="logo"><i className='bx bxl-xing'></i>Mua Sắm thả ga</h2>
+          <TextItem>
+          <h2>Welcome! <br /><span>To Our Shop</span></h2>
             <p>Tận hưởng niềm vui cùng chúng tôi</p>
-            <div className="social-icon">
-              <a href="https://www.facebook.com/cuong.9402/"><i className='bx bxl-facebook'></i></a>
-              <a href="https://www.facebook.com/cuong.9402/"><i className='bx bxl-twitter'></i></a>
-              <a href="https://www.youtube.com/watch?v=fLRf8JqSX8A"><i className='bx bxl-youtube'></i></a>
-              <a href="https://www.instagram.com/cuong.9402/"><i className='bx bxl-instagram'></i></a>
-              <a href="https://www.facebook.com/cuong.9402/"><i className='bx bxl-linkedin'></i></a>
-            </div>
-          </div>
-        </div>
+            <SocialIcon>
+              <a href="https://www.facebook.com/cuong.9402/">
+                <i className="bx bxl-facebook"></i>
+              </a>
+              <a href="https://www.facebook.com/cuong.9402/">
+                <i className="bx bxl-twitter"></i>
+              </a>
+              <a href="https://www.youtube.com/watch?v=fLRf8JqSX8A">
+                <i className="bx bxl-youtube"></i>
+              </a>
+              <a href="https://www.instagram.com/cuong.9402/">
+                <i className="bx bxl-instagram"></i>
+              </a>
+              <a href="https://www.facebook.com/cuong.9402/">
+                <i className="bx bxl-linkedin"></i>
+              </a>
+            </SocialIcon>
+          </TextItem>
+        </Item>
         <div className="login-section">
           <div className="form-box login">
             <form action="" onSubmit={handleSubmit}>
@@ -155,7 +184,7 @@ function Login() {
             </form>
           </div>
         </div>
-        {showForgotPassword && (
+        {/* {showForgotPassword && (
           <div>
           <div className="overlay"></div>
           <div className="forgot-password-form">
@@ -173,8 +202,8 @@ function Login() {
           <button className="btn1" onClick={() => setShowForgotPassword(false)}>Cancel</button>
           </div>
           </div>
-          )}
-      </div>
+          )} */}
+      </Container>
       <Modal isOpen={isModalOpen} message={modalMessage} onClose={handleCloseModal} />
     </div>
   );
