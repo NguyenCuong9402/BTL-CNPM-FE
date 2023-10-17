@@ -18,7 +18,7 @@ import { Link, useHistory } from "react-router-dom";
 import logout from "./logout.png";
 import { useParams } from 'react-router-dom';
 import "./style.css"
-
+import { Ionicon } from 'react-ionicons';
 
 
 
@@ -29,6 +29,7 @@ function Detail() {
   const [user_id, setUserDataId] = useState(null);
   const history = useHistory();
   const { id } = useParams();
+  const [sl, setSL] = useState(1)
   const [product_data, setProductData] = useState({})
   const fetchData = async (id) => {
     try {
@@ -71,7 +72,16 @@ function Detail() {
   const handleChangepass = async () =>{
     history.push(`/changepass`, { });
   };
+  const handlePlus = () => {
+    setSL(sl + 1);
+  };
 
+  // Hàm xử lý giảm giá trị
+  const handleMinus = () => {
+    if (sl > 1) {
+      setSL(sl - 1);
+    }
+  };
   return (
     <div>
       <Header>
@@ -140,14 +150,14 @@ function Detail() {
 
             <div class="counter-wrapper">
 
-              <button class="counter-btn" data-qty-minus>
-                <ion-icon name="remove-outline"></ion-icon>
+              <button class="counter-btn" data-qty-minus onClick={handleMinus}>
+                <ion-icon name="remove-outline">-</ion-icon>
               </button>
 
-              <span class="span" data-qty>1</span>
+              <span class="span" data-qty>{sl}</span>
 
-              <button class="counter-btn" data-qty-plus>
-                <ion-icon name="add-outline"></ion-icon>
+              <button class="counter-btn" data-qty-plus onClick={handlePlus}>
+                <ion-icon name="add-outline">+</ion-icon>
               </button>
 
             </div>
