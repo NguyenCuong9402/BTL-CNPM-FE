@@ -113,7 +113,6 @@ function Detail() {
       <div class="container">
 
         <div class="product-slides">
-
           <div class="slider-banner" data-slider>
             <img src={`http://127.0.0.1:5000/api/v1/picture/${id}`} style={{ width: '500px', height: '400px' }}/>
           </div>
@@ -125,49 +124,32 @@ function Detail() {
           <button class="slide-btn next" aria-label="Next image" data-next>
             <ion-icon name="chevron-forward" aria-hidden="true"></ion-icon>
           </button> */}
-
         </div>
-
         <div class="product-content">
-
           {/* <p class="product-subtitle">Nike Company</p> */}
-
           <h1 class="h1 product-title">{product_data.name}</h1>
-
           <p class="product-text">{product_data.describe}</p>
-
           <div class="wrapper">
-
             <span class="price" data-total-price>${product_data.price}</span>
-
             <span class="badge">{product_data.giam_gia}%</span>
-
             <del class="del">${product_data.old_price}</del>
-
           </div>
-
           <div class="btn-group">
-
             <div class="counter-wrapper">
-
               <button class="counter-btn" data-qty-minus onClick={handleMinus}>
                 <ion-icon name="remove-outline">-</ion-icon>
               </button>
-
               <span class="span" data-qty>{sl}</span>
 
               <button class="counter-btn" data-qty-plus onClick={handlePlus}>
                 <ion-icon name="add-outline">+</ion-icon>
               </button>
-
             </div>
-
             <button class="cart-btn">
               <ion-icon name="bag-handle-outline" aria-hidden="true"></ion-icon>
 
               <span class="span">Add to cart</span>
             </button>
-
           </div>
 
         </div>
