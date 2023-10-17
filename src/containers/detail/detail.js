@@ -16,7 +16,7 @@ import "boxicons/css/boxicons.min.css";
 import axios from "axios";
 import { Link, useHistory } from "react-router-dom";
 import logout from "./logout.png";
-
+import { useParams } from 'react-router-dom';
 
 
 
@@ -28,6 +28,22 @@ function Detail() {
   const [name_user, setUserData] = useState(null);
   const [user_id, setUserDataId] = useState(null);
   const history = useHistory();
+  const { id } = useParams();
+  const [product_data, setProductData] = useState({})
+  const fetchData = async (id) => {
+    try {
+      const response = await axios.get(
+        `http://127.0.0.1:5000/api/v1/product/${id}`
+      );
+
+      if (response.data.message.status === "success") {
+        setProductData(response.data.data)
+      }
+    } catch (error) {
+      console.error("Error calling history API:", error);
+    }
+  };
+  console.log(product_data)
   useEffect(() => {
     // Lấy userData từ localStorage khi component được tạo
     const userDataFromLocalStorage = JSON.parse(localStorage.getItem("user"));
@@ -38,6 +54,7 @@ function Detail() {
     } else {
       history.push("/login"); // Điều hướng đến màn hình đăng nhập
     }
+    fetchData(id)
   }, []); // Sử dụng [] để đảm bảo useEffect chỉ chạy một lần khi component được tạo
   const handleLogout = () => {
     localStorage.removeItem("user");
