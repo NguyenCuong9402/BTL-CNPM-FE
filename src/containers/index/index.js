@@ -93,19 +93,15 @@ function Index() {
       console.error("Error calling history API:", error);
     }
   };
-  const [isDeleteButtonVisible, setIsDeleteButtonVisible] = useState(false);
-  const [selectedRows, setSelectedRows] = useState([]);
   // Call fetchData when the component mounts
   useEffect(() => {
     fetchData(currentPage, pageSize, sortDirection, text_search);
 
-    setIsDeleteButtonVisible(selectedRows.length > 0);
+   
 
-  }, [currentPage, pageSize, sortDirection,text_search, selectedRows]);
+  }, [currentPage, pageSize, sortDirection,text_search]);
 
-  const toggleSortDirection = () => {
-    setSortDirection(sortDirection === 'asc' ? 'desc' : 'asc');
-  };
+
   const handleNextPage = () => {
     if (currentPage < totalPages) {
       const nextPage = currentPage + 1;
@@ -125,78 +121,15 @@ function Index() {
   const handlePageSizeChange = (e) => {
     const newSize = parseInt(e.target.value);
     setpageSize(newSize);
-    // You may also want to reset the current page to 1 here
+    
   };
 
   const handleCloseModal = () => {
     setModalOpen(false);
   };
 
-
-  /* Tạo select Row */
-/*Delete*/
-
-// Function to handle row selection
-const handleRowSelect = (itemId) => {
-  // Check if the row is already selected
-  if (selectedRows.includes(itemId)) {
-    // If selected, remove it from the selectedRows array
-    setSelectedRows(selectedRows.filter(id => id !== itemId));
-  } else {
-    // If not selected, add it to the selectedRows array
-    setSelectedRows([...selectedRows, itemId]);
-  }
-  
-};
-
-const [selectAll, setSelectAll] = useState(false);
-const handleSelectAllClick = () => {
-  if (selectAll) {
-    // If all rows are currently selected, deselect all.
-    setSelectedRows([]);
-    setIsDeleteButtonVisible(false);
-  } else {
-    // If not all rows are selected, select all.
-    const allRowIds = data.map((item) => item.id);
-    setSelectedRows(allRowIds);
-    setIsDeleteButtonVisible(true);
-  }
-  // Toggle the selectAll state.
-  setSelectAll(!selectAll);
-  
-};
-
-const handleDeleteButtonClick = async () => {
-  const access_token = localStorage.getItem("accessToken");
-  try {
-    const response = await axios.delete('http://127.0.0.1:5000/api/v1/cau_do', {
-      data: { list_id: selectedRows },
-      headers: {
-        Authorization: `Bearer ${access_token}`,
-        'Content-Type': 'application/json',
-      },
-    });
-
-    if (response.data.message.status === "success") {
-      setModalMessage(response.data.message.text);
-      setModalOpen(true);
-      // Sau khi xóa thành công, cập nhật lại danh sách sản phẩm
-      fetchData(currentPage, pageSize, sortDirection, text_search);
-      setSelectedRows([]); // Đặt lại selectedRows sau khi xóa
-      setSelectAll(false); // Đặt lại selectAll sau khi xóa
-    } else if (response.data.message.status === "error") {
-      setModalMessage(response.data.message.text);
-      setModalOpen(true);
-    }
-  } catch (error) {
-    console.error(error);
-    alert('Có lỗi xảy ra khi gửi yêu cầu xóa');
-  }
-};
-
-
-const handleFixClick = async(id) => {
-  history.push(`/admin/fix`, { cau_do_id: id });
+const handleDetailClick = async(id) => {
+  history.push(`/detail`, { product_id: id });
 }
 
 
@@ -241,7 +174,7 @@ const handleFixClick = async(id) => {
       <Container1>
       <GridContainer>
       {data.map(item => (
-        <GridItem key={item.id} onClick={() => handleFixClick(item.id)}>
+        <GridItem key={item.id} onClick={() => handleDetailClick(item.id)}>
           <Image src={`http://127.0.0.1:5000/api/v1/picture/${item.id}`} alt="Hình ảnh" />
           <h3>{item.price}</h3>
           <p>{item.name}</p>
