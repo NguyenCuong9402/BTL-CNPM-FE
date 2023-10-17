@@ -375,3 +375,16 @@ export const flashAnimation = keyframes`
 export const FlashingImage = styled.img`
   animation: ${flashAnimation} 1s infinite; // Sử dụng animation với vô hạn lặp lại
 `;
+
+export const StyledButton = styled.button`
+  background: #f72d7a;
+  width: 50%;
+  height: 45px;
+  outline: none;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  color: #fff;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
+`;

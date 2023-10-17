@@ -5,20 +5,11 @@ import axios from 'axios';
 import { Link, useHistory  } from 'react-router-dom';
 import Modal from "../../modal";
 import {
-  UserInfoContainer,
-  UserName,
+ StyledButton,
   Background,
-  AvatarImage,
-  AvatarContainer,
-  DropdownMenu,
-  DropdownItem,
-  FlashingImage,
   Header,
   Navbar,
   Container,
-  LoginSection,
-  Button,
-  ButtonContainer,
   Item,
   SocialIcon,
   TextItem,
@@ -184,7 +175,7 @@ function Login() {
             </form>
           </div>
         </div>
-        {/* {showForgotPassword && (
+        {showForgotPassword && (
           <div>
           <div className="overlay"></div>
           <div className="forgot-password-form">
@@ -198,11 +189,11 @@ function Login() {
               placeholder="Điền email"
             />
           </div>
-          <button className="btn1" onClick={handleSendPasswordEmail}>Send Email</button>
-          <button className="btn1" onClick={() => setShowForgotPassword(false)}>Cancel</button>
+          <StyledButton onClick={handleSendPasswordEmail}>Send Email</StyledButton>
+          <StyledButton onClick={() => setShowForgotPassword(false)}>Cancel</StyledButton>
           </div>
           </div>
-          )} */}
+          )}
       </Container>
       <Modal isOpen={isModalOpen} message={modalMessage} onClose={handleCloseModal} />
     </div>
