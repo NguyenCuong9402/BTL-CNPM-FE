@@ -129,7 +129,7 @@ function Index() {
   };
 
 const handleDetailClick = async(id) => {
-  history.push(`/detail`, { product_id: id });
+  history.push(`/detail/${id}`);
 }
 
 
