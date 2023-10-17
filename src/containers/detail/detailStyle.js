@@ -32,10 +32,12 @@ background-position: center;
 export const Header = styled.header`
   position: fixed;
   top: 0;
+  
   left: 0;
   width: 100%;
   padding: 25px 13%;
-  background: transparent;
+  background: black; /* Đặt màu nền thành đen */
+  color: white;
   display: flex;
   justify-content: space-between;
   align-items: center;
