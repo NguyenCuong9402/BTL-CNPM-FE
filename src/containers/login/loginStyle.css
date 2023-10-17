@@ -6,21 +6,7 @@
     font-family: "poppins",sans-serif;
 }
 
-.container{
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%,-50%);
-    width: 75%;
-    height: 750px;
-    margin-top: 20px;
-    background-position: center;
-    background-size:cover ;
-    border-radius: 20px;
-    overflow: hidden;
-    
-    
-}
+
 
 /* CSS cho phần "Quên mật khẩu" */
 .overlay {
