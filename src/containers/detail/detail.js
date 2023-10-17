@@ -27,6 +27,8 @@ import { Ionicon } from 'react-ionicons';
 function Detail() {
   const [name_user, setUserData] = useState(null);
   const [user_id, setUserDataId] = useState(null);
+  const [onl, setOnl] = useState(false);
+
   const history = useHistory();
   const { id } = useParams();
   const [sl, setSL] = useState(1)
@@ -51,9 +53,7 @@ function Detail() {
     if (userDataFromLocalStorage) {
       setUserData(userDataFromLocalStorage.name_user);
       setUserDataId(userDataFromLocalStorage.id);
-      
-    } else {
-      history.push("/login"); // Điều hướng đến màn hình đăng nhập
+      setOnl(true)
     }
     fetchData(id)
   }, []); // Sử dụng [] để đảm bảo useEffect chỉ chạy một lần khi component được tạo
@@ -90,20 +90,27 @@ function Detail() {
             <i className="bx bxl-xing"></i>Home
           </a>
         </Navbar>
+        
+        {onl ? (
         <UserInfoContainer>
-          <UserName>{name_user}</UserName>
-
-          <AvatarContainer>
-            <AvatarImage src={avatar} alt="Avatar" />
-            <DropdownMenu>
-              <DropdownItem onClick={handleChangepass}>Đổi mật khẩu</DropdownItem>
-              <DropdownItem onClick={handleProfile}>Tài Khoản</DropdownItem>
-              <DropdownItem onClick={handleLogout}>
-                <img src={logout} alt="Logout" />
-              </DropdownItem>
-            </DropdownMenu>
-          </AvatarContainer>
+        <UserName>{name_user}</UserName>
+        <AvatarContainer>
+        <AvatarImage src={avatar} alt="Avatar" />
+        <DropdownMenu>
+          <DropdownItem onClick={handleChangepass}>Đổi mật khẩu</DropdownItem>
+          <DropdownItem onClick={handleProfile}>Tài Khoản</DropdownItem>
+          <DropdownItem onClick={handleLogout}>
+            <img src={logout} alt="Logout" />
+          </DropdownItem>
+        </DropdownMenu>
+        </AvatarContainer>
         </UserInfoContainer>
+        ) : (
+          <Navbar>
+          <a href="/index"  style={{ fontSize: '20px' }}>Login</a>
+          </Navbar>
+
+        )}
       </Header>
     <main>
     <article>
