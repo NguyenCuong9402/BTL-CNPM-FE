@@ -82,7 +82,7 @@
     scroll-behavior: smooth;
   }
   
-  body {
+  body1 {
     background-color: var(--white);
     color: var(--dark-electric-blue);
     font-size: 1.6rem;
@@ -96,7 +96,7 @@
     #REUSED STYLE
   \*-----------------------------------*/
   
-  .container { padding-inline: 15px; }
+  .container1 { padding-inline: 15px; }
   
   .img-cover {
     width: 100%;
@@ -112,29 +112,29 @@
     #HEADER
   \*-----------------------------------*/
   
-  .header {
+  .header1 {
     position: relative;
     padding-block: 20px;
     box-shadow: var(--shadow-1);
     z-index: 1;
   }
   
-  .header .container {
+  .header1 .container {
     display: flex;
     align-items: center;
     gap: 10px;
   }
   
   .nav-open-btn,
-  .header-action-btn {
+  .header1-action-btn {
     font-size: 25px;
     color: var(--dark-electric-blue);
     transition: var(--transition-1);
   }
   
-  :is(.nav-open-btn, .header-action-btn):is(:hover, :focus) { color: var(--eerie-black); }
+  :is(.nav-open-btn, .header1-action-btn):is(:hover, :focus) { color: var(--eerie-black); }
   
-  .header-action {
+  .header1-action {
     display: flex;
     align-items: center;
     gap: 20px;
@@ -143,7 +143,7 @@
   
   .profile-btn .img { width: 30px; }
   
-  .navbar {
+  .navbar1 {
     position: fixed;
     top: 0;
     left: -250px;
@@ -157,7 +157,7 @@
     visibility: hidden;
   }
   
-  .navbar.active {
+  .navbar1.active {
     visibility: visible;
     transform: translateX(250px);
     transition-duration: 0.5s;
@@ -178,7 +178,7 @@
     padding-block-end: 22px;
   }
   
-  .overlay {
+  .overlay1 {
     position: fixed;
     top: 0;
     left: 0;
@@ -191,7 +191,7 @@
     pointer-events: none;
   }
   
-  .overlay.active {
+  .overlay1.active {
     opacity: 0.75;
     pointer-events: all;
   }
@@ -354,7 +354,7 @@
      * REUSED STYLE
      */
   
-     .container{
+     .container1{
       position: absolute;
       left: 50%;
       top: 50%;
@@ -376,7 +376,7 @@
      * HEADER
      */
   
-    .header .container { max-width: 720px; }
+    .header1 .container1 { max-width: 720px; }
   
   
     
@@ -386,7 +386,7 @@
   
     .product { margin-block-start: 45px; }
   
-    .product .container {
+    .product .container1 {
       display: grid;
       gap: 20px;
     }
@@ -428,7 +428,7 @@
      * REUSED STYLE
      */
   
-    .container { max-width: 950px; }
+    .container1 { max-width: 950px; }
   
   
   
@@ -436,12 +436,12 @@
      * HEADER
      */
   
-    .header {
+    .header1 {
       padding-block: 25px;
       box-shadow: none;
     }
   
-    .header .container {
+    .header1 .container1 {
       max-width: 950px;
       gap: 60px;
     }
@@ -478,7 +478,7 @@
   
     .product { margin-block: 75px 100px; }
   
-    .product .container {
+    .product .container1 {
       grid-template-columns: 1fr 1fr;
       align-items: center;
       gap: 90px;

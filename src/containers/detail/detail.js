@@ -117,7 +117,7 @@ function Detail() {
 
 
       <section class="section product" aria-label="product">
-      <div class="container">
+      <div class="container1">
 
         <div class="product-slides">
           <div class="slider-banner" data-slider>
