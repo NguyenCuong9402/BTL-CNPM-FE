@@ -98,12 +98,6 @@ function Login() {
 
   return (
     <div>
-      <header className="header">
-        <nav className="navbar">
-        <a href="/index"><i className='bx bxl-xing'></i>Word Scamble</a>
-        </nav>
-      </header>
-
       {/* LOGIN FORM CREATION */}
       <div className="background"></div>
       <div className="container">

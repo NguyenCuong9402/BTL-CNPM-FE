@@ -82,7 +82,7 @@
     scroll-behavior: smooth;
   }
   
-  body1 {
+  body {
     background-color: var(--white);
     color: var(--dark-electric-blue);
     font-size: 1.6rem;
