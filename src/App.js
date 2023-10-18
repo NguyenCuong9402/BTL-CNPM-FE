@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch, Redirect  } from 'react-router-dom';
-import Index from "./containers/index/index";
+import Index from "./containers/home/home";
 import Login from "./containers/login/Login";
 import Register from "./containers/register/Register";
 import NotFound from "./containers/notFound/NotFound";

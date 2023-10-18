@@ -11,7 +11,7 @@ import {
   Header, PaginationContainer, PaginationButton, PaginationInfo,
   Navbar, 
   Container, GridContainer, GridItem
-} from "./indexStyle";
+} from "./homeStyle";
 import "boxicons/css/boxicons.min.css";
 import axios from "axios";
 import { Link, useHistory } from "react-router-dom";
