@@ -3,7 +3,6 @@ import './loginStyle.css'; // Import file CSS   okeeeeee
 import 'boxicons/css/boxicons.min.css'; // Import thư viện icons
 import axios from 'axios';
 import { Link, useHistory  } from 'react-router-dom';
-import WordSearch from './wordsearch.png'
 import Modal from "../../modal";
 
 function Login() {
@@ -101,13 +100,12 @@ function Login() {
       {/* LOGIN FORM CREATION */}
       <div className="background"></div>
       <div className="container">
-        <div className="item">
+        <div className="item1">
           <h2 className="logo"><i className='bx bxl-xing'></i>Mua sắm thả ga</h2>
-          <div className="text-item">
-            <img  width="500" height="250" src={WordSearch} alt="Word Search" />
-            <h2>Welcome! <br /><span>To Our Game</span></h2>
-            <p>Tận hưởng niềm vui cùng chúng tôi</p>
-            <div className="social-icon">
+          <div className="text-item1">
+            <h2>Welcome! <br /></h2>
+            <p>Hãy tiêu tới bến</p>
+            <div className="social-icon1">
               <a href="https://www.facebook.com/cuong.9402/"><i className='bx bxl-facebook'></i></a>
               <a href="https://www.facebook.com/cuong.9402/"><i className='bx bxl-twitter'></i></a>
               <a href="https://www.youtube.com/watch?v=fLRf8JqSX8A"><i className='bx bxl-youtube'></i></a>

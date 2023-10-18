@@ -97,7 +97,7 @@
     margin: 10px; /* Khoảng cách giữa các nút */
   }
 
-.item{
+.item1{
     position: absolute;
     top: 0;
     left: 0;
@@ -113,27 +113,27 @@
 
 
 }
-.item .logo{
+.item1 .logo{
     color: #fff;
     font-size: 30px;
 
 }
-.text-item h2{
+.text-item1 h2{
     font-size: 40px;
     line-height: 1;
 }
-.text-item p{
+.text-item1 p{
     font-size: 16px;
     margin: 20px 0;
 }
-.social-icon a i{
+.social-icon1 a i{
     color: #fff;
     font-size: 24px;
     margin-left: 10px;
     cursor: pointer;
     transition: .5s ease;
 }
-.social-icon a:hover i{
+.social-icon1 a:hover i{
     transform: scale(1.2);
 }
 .container .login-section{
