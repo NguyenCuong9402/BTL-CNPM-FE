@@ -102,7 +102,7 @@ function Login() {
       <div className="background"></div>
       <div className="container">
         <div className="item">
-          <h2 className="logo"><i className='bx bxl-xing'></i>Word Scamble</h2>
+          <h2 className="logo"><i className='bx bxl-xing'></i>Mua sắm thả ga</h2>
           <div className="text-item">
             <img  width="500" height="250" src={WordSearch} alt="Word Search" />
             <h2>Welcome! <br /><span>To Our Game</span></h2>
