@@ -97,6 +97,7 @@ function Login() {
 
   return (
     <div>
+      <div className='body1'>
       {/* LOGIN FORM CREATION */}
       <div className="background"></div>
       <div className="container">
@@ -170,6 +171,7 @@ function Login() {
           )}
       </div>
       <Modal isOpen={isModalOpen} message={modalMessage} onClose={handleCloseModal} />
+    </div>
     </div>
   );
 }
