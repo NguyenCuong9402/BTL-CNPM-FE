@@ -22,8 +22,8 @@ export const GlobalStyles = styled.div`
 `;
 
 export const Background = styled.div`
-background-color:white;
-background-position: center;
+  background-color: white;
+  background-position: center;
   background-size: cover;
   height: 100vh;
   width: 100%;
@@ -109,7 +109,7 @@ export const Container = styled.div`
   width: 100%;
   height: 800px;
   margin-top: 20px;
-  background: url(${background2});
+  background-color: white;
   background-size: cover;
   background-position: center;
   overflow: hidden;
@@ -120,10 +120,9 @@ position: relative;
 width: 70%;
 height: 100%; 
 margin-top: 20px;
-background: url(${background2});
+background-color: white;
 background-size: cover;
 background-position: center;
-border-radius: 20px;
 overflow: hidden;
 flex: 0.8; 
 `;
@@ -131,12 +130,11 @@ flex: 0.8;
 export const Container3 = styled.div`
 position: relative;
 width: 100%;
-height: 85%; 
+height: 86%; 
 margin-top: 20px;
-background: url(${background2});
+background-color: white;
 background-size: cover;
 background-position: center;
-border-radius: 20px;
 overflow: hidden;
 `;
 
@@ -145,10 +143,9 @@ position: relative;
 width: 100%;
 height: 100%; /* Đảm bảo Container2 chiếm toàn bộ chiều cao của Container */
 margin-top: 20px;
-background: url(${background2});
+background-color: white;
 background-size: cover;
 background-position: center;
-border-radius: 20px;
 overflow: hidden;
 flex: 0.2; /* Container2 chiếm 30% width của Container */
 `;
