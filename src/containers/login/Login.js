@@ -99,7 +99,7 @@ function Login() {
     <div>
       <div className='body1'>
       {/* LOGIN FORM CREATION */}
-      <div className="background"></div>
+      <div className="background1"></div>
       <div className="container">
         <div className="item1">
           <h2 className="logo"><i className='bx bxl-xing'></i>Mua sắm thả ga</h2>
