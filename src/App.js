@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch, Redirect  } from 'react-router-dom';
-import Index from "./containers/home/home";
+import Home from "./containers/home/home";
 import Login from "./containers/login/Login";
 import Register from "./containers/register/Register";
 import NotFound from "./containers/notFound/NotFound";
@@ -12,7 +12,7 @@ const App = () => {
     <Router>
       <Switch>
         <Route path="/login" component={Login} />
-        <Route path="/index" component={Index} />
+        <Route path="/index" component={Home} />
         <Route path="/register" component={Register} />
         <Route path="/detail/:id" component={Detail} />
         <Route path="/changepass" component={Changepass} />

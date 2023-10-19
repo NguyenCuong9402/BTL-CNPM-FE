@@ -38,7 +38,7 @@ function formatDate(created_date) {
 }
 
 
-function Index() {
+function Home() {
   const [isModalOpen, setModalOpen] = useState(false);
   const [modalMessage, setModalMessage] = useState('');
   const [name_user, setUserData] = useState(null);
@@ -215,4 +215,4 @@ const handleDetailClick = async(id) => {
   );
 }
 
-export default Index;
+export default Home;
