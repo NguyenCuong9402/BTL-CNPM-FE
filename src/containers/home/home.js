@@ -219,12 +219,12 @@ const handleDetailClick = async(id) => {
       <PaginationButton onClick={handlePrevPage} disabled={currentPage === 1}>
         Previous
       </PaginationButton>
-      <PaginationInfo>
-        Page {currentPage} of {totalPages}
-      </PaginationInfo>
       <PaginationButton onClick={handleNextPage} disabled={currentPage === totalPages}>
         Next
       </PaginationButton>
+      <PaginationInfo>
+        Page {currentPage} of {totalPages}
+      </PaginationInfo>
     </PaginationContainer>
     </Container1>
     </Container>

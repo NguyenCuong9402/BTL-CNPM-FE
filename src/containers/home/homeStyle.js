@@ -112,7 +112,6 @@ export const Container = styled.div`
   background: url(${background2});
   background-size: cover;
   background-position: center;
-  border-radius: 20px;
   overflow: hidden;
 `;
 
