@@ -49,9 +49,8 @@ function Home() {
   const [totalPages, setTotalPages] = useState(1);
   const [pageSize, setpageSize] = useState(12);
   const [text_search, setTextSearch] = useState('');
-
   const [text_search1, setTextSearch1] = useState('');
-
+  const [online, SetOnline] = useState(false)
 
   useEffect(() => {
     // Lấy userData từ localStorage khi component được tạo
@@ -60,10 +59,10 @@ function Home() {
       if (userDataFromLocalStorage.admin === 0) {
         setUserData(userDataFromLocalStorage.name_user);
         setUserDataId(userDataFromLocalStorage.id);
+        SetOnline(true)
       } else {
+        
       }
-    } else {
-      history.push("/login"); // Điều hướng đến màn hình đăng nhập
     }
   }, []); // Sử dụng [] để đảm bảo useEffect chỉ chạy một lần khi component được tạo
   const avatarUrl = `http://127.0.0.1:5000/api/v1/picture/avatar/${user_id}`;
@@ -166,9 +165,9 @@ const handleDetailClick = async(id) => {
           <i className='bx bx-search'></i>
         </SearchButton>
       </SearchBarContainer>
-        <UserInfoContainer>
-          <UserName>{name_user}</UserName>
 
+        {online ? (<UserInfoContainer>
+          <UserName>{name_user}</UserName>
           <AvatarContainer>
             <AvatarImage src={avatarUrl} alt="Avatar" />
             <DropdownMenu>
@@ -180,7 +179,11 @@ const handleDetailClick = async(id) => {
             </DropdownMenu>
           </AvatarContainer>
           <CartImage src={cart} alt="Cart" className="cart" />
-        </UserInfoContainer>
+        </UserInfoContainer>):(
+          <Navbar>
+          <a href="/login" style={{fontSize: '30px'}}>Đăng Nhập</a>
+          </Navbar>
+        )}
       </Header>
       <Background></Background>
       <Container>
