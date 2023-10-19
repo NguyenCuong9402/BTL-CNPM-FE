@@ -5,11 +5,11 @@ import {
   UserName,
   Background,Image,
   AvatarImage,
-  AvatarContainer,
+  AvatarContainer, Body,
   DropdownMenu,
   DropdownItem,
   Header, PaginationContainer, PaginationButton, PaginationInfo,
-  Navbar, 
+  Navbar, SearchBarContainer, SearchInput, SearchButton,
   Container, GridContainer, GridItem
 } from "./homeStyle";
 import "boxicons/css/boxicons.min.css";
@@ -17,6 +17,7 @@ import axios from "axios";
 import { useHistory } from "react-router-dom";
 import logout from "./logout.png";
 import Modal from '../../modal';
+
 
 function formatDate(created_date) {
   // Convert timestamp (in seconds) to milliseconds
@@ -46,6 +47,9 @@ function Home() {
   const [totalPages, setTotalPages] = useState(1);
   const [pageSize, setpageSize] = useState(9);
   const [text_search, setTextSearch] = useState('');
+
+  const [text_search1, setTextSearch1] = useState('');
+
 
   useEffect(() => {
     // Lấy userData từ localStorage khi component được tạo
@@ -133,23 +137,32 @@ const handleDetailClick = async(id) => {
     history.push(`/changepass`, { });
   };
 
+
+  const handleSearch = () => {
+    setTextSearch(text_search1)
+    setTextSearch1('')
+  };
+
   return (
     <div>
+    <Body>
       <Header>
         <Navbar>
           <a href="/index">
             <i className="bx bxl-xing"></i>Home
           </a>
         </Navbar>
-        <form action="" className="search-bar">
-        <input
+          <SearchBarContainer>
+        <SearchInput
           type="text"
           placeholder="Search..."
-          value={text_search}
-          onChange={(e) => setTextSearch(e.target.value)}
+          value={text_search1}
+          onChange={(e) => setTextSearch1(e.target.value)}
         />
-        <button><i className='bx bx-search'></i></button>
-        </form>
+        <SearchButton onClick={handleSearch}>
+          <i className='bx bx-search'></i>
+        </SearchButton>
+      </SearchBarContainer>
         <UserInfoContainer>
           <UserName>{name_user}</UserName>
 
@@ -206,7 +219,7 @@ const handleDetailClick = async(id) => {
     </PaginationContainer>
     </Container>
     <Modal isOpen={isModalOpen} message={modalMessage} onClose={handleCloseModal} />
-
+  </Body>     
   </div>
   );
 }

@@ -72,42 +72,31 @@ export const Navbar = styled.nav`
   }
 `;
 
-export const SearchBar = styled.form`
-  width: 250px;
-  height: 45px;
-  background-color: transparent;
-  border: 2px solid #fff;
-  border-radius: 6px;
+export const SearchBarContainer = styled.div`
   display: flex;
   align-items: center;
+  background-color: #f0f0f0;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 300px;
 `;
 
 export const SearchInput = styled.input`
-  width: 100%;
-  background-color: transparent;
   border: none;
+  padding: 10px;
+  flex: 1;
+  border-radius: 5px;
   outline: none;
-  color: #fff;
-  font-size: 16px;
-  padding-left: 10px;
-
-  &::placeholder {
-    color: #fff;
-  }
 `;
 
 export const SearchButton = styled.button`
-  width: 40px;
-  height: 100%;
-  background: transparent;
-  outline: none;
-  border: none;
+  background-color: black;
   color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
   cursor: pointer;
-
-  i {
-    font-size: 22px;
-  }
 `;
 
 
@@ -646,5 +635,11 @@ export const GridItem = styled.div`
 
 export const Image = styled.img`
   width: 30%; /* Đặt chiều rộng tối đa cho ảnh là 100% để đảm bảo kích thước cố định */
-  height: 100px; /* Để giữ nguyên tỷ lệ khung hình */
+  height: 100px;
+`;
+
+export const Body = styled.div`
+height: 100vh;
+width: 100%;
+background: #000;
 `;
