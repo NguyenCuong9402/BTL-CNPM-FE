@@ -655,31 +655,33 @@ export const FileInputContainer = styled.div`
 export const GridContainer = styled.div`
   display: grid;
   gap: 16px; /* Khoảng cách giữa các phần tử trong lưới */
-  grid-template-columns: repeat(4, minmax(300px, 1fr));
+  grid-template-columns: repeat(6, minmax(200px, 1fr));
   max-height: 700px; /* Đặt chiều cao tối đa cho container */
-  overflow-y: auto; /* Cho phép cuộn nếu nội dung vượt quá kích thước của container */
+  overflow: auto; /* Cho phép cuộn nếu nội dung vượt quá kích thước của container */
   padding: 16px; /* Khoảng cách giữa nội dung và viền container */
-
+  width: 100%;
 `;
 
 export const GridItem = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center; /* Cân giữa theo chiều ngang */
-  text-align: center; /* Căn giữa nội dung theo chiều ngang */
+  align-items: center; 
+  text-align: center;
   padding: 25px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.5); /* Hiển thị đường viền khi hover */
-
+  height: 300px;
   &:hover {
     transform: scale(1.05); /* Tăng kích thước khi hover */
     z-index: 1; /* Để nổi lên trên các ô khác */
   }
 
-`;
+  img {
+    height: 100%;
+    max-height: 80%;
+    width: 100%; /* Tự động điều chỉnh chiều rộng để không bị biến dạng */
+    object-fit: cover; /* Đảm bảo ảnh không bị biến dạng, cân nhau bên trong */
+  }
 
-export const Image = styled.img`
-  width: 30%; /* Đặt chiều rộng tối đa cho ảnh là 100% để đảm bảo kích thước cố định */
-  height: 100px;
 `;
 
 export const Body = styled.div`
