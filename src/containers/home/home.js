@@ -151,7 +151,7 @@ const handleDetailClick = async(id) => {
     <Body>
       <Header>
         <Navbar>
-          <a href="/index">
+          <a href="/index" style={{fontSize: '40px'}}>
             <i className="bx bxl-xing"></i>Home
           </a>
         </Navbar>
