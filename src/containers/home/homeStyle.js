@@ -101,33 +101,57 @@ export const SearchButton = styled.button`
 
 
 export const Container = styled.div`
+  display: flex;
   position: absolute;
   left: 50%;
   top: 50%;
-  
   transform: translate(-50%, -50%);
   width: 100%;
   height: 800px;
   margin-top: 20px;
   background: url(${background2});
   background-size: cover;
-  background-position: center;  
+  background-position: center;
   border-radius: 20px;
   overflow: hidden;
-  overflow: auto;
 `;
 
 export const Container1 = styled.div`
 position: relative;
-width: 100%;
-height: 90%;
+width: 70%;
+height: 100%; 
 margin-top: 20px;
 background: url(${background2});
 background-size: cover;
-background-position: center;  
+background-position: center;
 border-radius: 20px;
 overflow: hidden;
-overflow: auto;
+flex: 0.8; 
+`;
+
+export const Container3 = styled.div`
+position: relative;
+width: 100%;
+height: 85%; 
+margin-top: 20px;
+background: url(${background2});
+background-size: cover;
+background-position: center;
+border-radius: 20px;
+overflow: hidden;
+`;
+
+export const Container2 = styled.div`
+position: relative;
+width: 100%;
+height: 100%; /* Đảm bảo Container2 chiếm toàn bộ chiều cao của Container */
+margin-top: 20px;
+background: url(${background2});
+background-size: cover;
+background-position: center;
+border-radius: 20px;
+overflow: hidden;
+flex: 0.2; /* Container2 chiếm 30% width của Container */
 `;
 
 export const CustomTable = styled.table`
@@ -611,14 +635,14 @@ export const FileInputContainer = styled.div`
 export const GridContainer = styled.div`
   display: grid;
   gap: 16px; /* Khoảng cách giữa các phần tử trong lưới */
-  grid-template-columns: repeat(5, minmax(300px, 1fr));
+  grid-template-columns: repeat(4, minmax(300px, 1fr));
   max-height: 700px; /* Đặt chiều cao tối đa cho container */
   overflow-y: auto; /* Cho phép cuộn nếu nội dung vượt quá kích thước của container */
   padding: 16px; /* Khoảng cách giữa nội dung và viền container */
 
 `;
 
-export const GridItem = styled.div`   
+export const GridItem = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center; /* Cân giữa theo chiều ngang */

@@ -2,11 +2,11 @@ import React, { useState, useEffect } from "react";
 import "boxicons/css/boxicons.min.css";
 import {
   UserInfoContainer, Container1,
-  UserName,
+  UserName, Container2,Container3,
   Background,Image,
   AvatarImage,
   AvatarContainer, Body,
-  DropdownMenu,
+  DropdownMenu, 
   DropdownItem,
   Header, PaginationContainer, PaginationButton, PaginationInfo,
   Navbar, SearchBarContainer, SearchInput, SearchButton,
@@ -45,7 +45,7 @@ function Home() {
   const [sortDirection, setSortDirection] = useState('desc');
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
-  const [pageSize, setpageSize] = useState(9);
+  const [pageSize, setpageSize] = useState(12);
   const [text_search, setTextSearch] = useState('');
 
   const [text_search1, setTextSearch1] = useState('');
@@ -181,7 +181,9 @@ const handleDetailClick = async(id) => {
       </Header>
       <Background></Background>
       <Container>
+      <Container2>  # Bộ lọc</Container2>
       <Container1>
+      <Container3>
       <GridContainer>
       {data.map(item => (
         <GridItem key={item.id} onClick={() => handleDetailClick(item.id)}>
@@ -191,7 +193,7 @@ const handleDetailClick = async(id) => {
         </GridItem>
       ))}
     </GridContainer>
-    </Container1>
+    </Container3>
     <PaginationContainer>
     <div>
       <label htmlFor="pageSizeSelect" style={{ fontWeight: 'bold', color: 'green' }}>PageSize: </label>
@@ -200,11 +202,11 @@ const handleDetailClick = async(id) => {
             value={pageSize}
             onChange={handlePageSizeChange}
           > 
-            <option value={3}>3</option>
-            <option value={9}>9</option>
+            <option value={4}>4</option>
             <option value={12}>12</option>
-            <option value={15}>15</option>
-            <option value={30}>30</option>
+            <option value={20}>20</option>
+            <option value={28}>28</option>
+            <option value={40}>40</option>
           </select>
         </div>
        
@@ -218,6 +220,7 @@ const handleDetailClick = async(id) => {
         Next
       </PaginationButton>
     </PaginationContainer>
+    </Container1>
     </Container>
     <Modal isOpen={isModalOpen} message={modalMessage} onClose={handleCloseModal} />
   </Body>     
