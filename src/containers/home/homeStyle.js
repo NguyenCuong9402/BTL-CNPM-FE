@@ -22,7 +22,7 @@ export const GlobalStyles = styled.div`
 `;
 
 export const Background = styled.div`
-background: url(${background1});
+background-color:white;
 background-position: center;
   background-size: cover;
   height: 100vh;
@@ -36,7 +36,7 @@ export const Header = styled.header`
   left: 0;
   width: 100%;
   padding: 25px 13%;
-  background: transparent;
+  background-color:black;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -106,7 +106,7 @@ export const Container = styled.div`
   top: 50%;
   
   transform: translate(-50%, -50%);
-  width: 95%;
+  width: 100%;
   height: 800px;
   margin-top: 20px;
   background: url(${background2});
@@ -120,7 +120,7 @@ export const Container = styled.div`
 export const Container1 = styled.div`
 position: relative;
 width: 100%;
-height: 700px;
+height: 90%;
 margin-top: 20px;
 background: url(${background2});
 background-size: cover;

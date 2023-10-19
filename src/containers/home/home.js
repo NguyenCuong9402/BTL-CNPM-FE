@@ -141,6 +141,7 @@ const handleDetailClick = async(id) => {
   const handleSearch = () => {
     setTextSearch(text_search1)
     setTextSearch1('')
+
   };
 
   return (
