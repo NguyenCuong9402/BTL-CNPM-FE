@@ -103,17 +103,15 @@ function Login() {
       <div className="container">
         <div className="item1">
           <h2 className="logo"><i className='bx bxl-xing'></i>Mua sắm thả ga</h2>
-          <div className="text-item1">
             <h2>Welcome! <br /></h2>
             <p>Hãy tiêu tới bến</p>
-            <div className="social-icon1">
+            <div className="social-icon">
               <a href="https://www.facebook.com/cuong.9402/"><i className='bx bxl-facebook'></i></a>
               <a href="https://www.facebook.com/cuong.9402/"><i className='bx bxl-twitter'></i></a>
               <a href="https://www.youtube.com/watch?v=fLRf8JqSX8A"><i className='bx bxl-youtube'></i></a>
               <a href="https://www.instagram.com/cuong.9402/"><i className='bx bxl-instagram'></i></a>
               <a href="https://www.facebook.com/cuong.9402/"><i className='bx bxl-linkedin'></i></a>
             </div>
-          </div>
         </div>
         <div className="login-section">
           <div className="form-box login">

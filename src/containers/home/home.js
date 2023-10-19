@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import "boxicons/css/boxicons.min.css";
 import {
   UserInfoContainer, Container1,
@@ -14,12 +14,8 @@ import {
 } from "./homeStyle";
 import "boxicons/css/boxicons.min.css";
 import axios from "axios";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import logout from "./logout.png";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlay } from "@fortawesome/free-solid-svg-icons";
-import Table from 'react-bootstrap/Table';
-import {Button } from "bootstrap";
 import Modal from '../../modal';
 
 function formatDate(created_date) {

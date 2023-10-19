@@ -131,14 +131,14 @@
     font-size: 16px;
     margin: 20px 0;
 }
-.social-icon1 a i{
+.social-icon a i{
     color: #fff;
     font-size: 24px;
     margin-left: 10px;
     cursor: pointer;
     transition: .5s ease;
 }
-.social-icon1 a:hover i{
+.social-icon a:hover i{
     transform: scale(1.2);
 }
 .container .login-section{
