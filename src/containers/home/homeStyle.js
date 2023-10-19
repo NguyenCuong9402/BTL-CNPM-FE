@@ -457,6 +457,17 @@ export const UserName = styled.h4`
 export const AvatarContainer = styled.div`
   position: relative;
   display: inline-block;
+  margin-right: 20px;
+`;
+export const CartImage = styled.img`
+  /* CSS cho CartImage */
+  width: 50px;
+  height: 50px;
+  cursor : pointer;
+  &:hover {
+    filter: brightness(1.2);
+    transform: scale(1.1);
+  }
 `;
 
 export const AvatarImage = styled.img`
@@ -465,6 +476,7 @@ export const AvatarImage = styled.img`
   border-radius: 50%;
   margin-right: 10px;
   transition: filter 0.3s ease;
+  cursor : pointer;
 
   &:hover {
     filter: brightness(1.2);

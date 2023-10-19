@@ -3,8 +3,8 @@ import "boxicons/css/boxicons.min.css";
 import {
   UserInfoContainer, Container1,
   UserName, Container2,Container3,
-  Background,Image,
-  AvatarImage,
+  Background,Image, 
+  AvatarImage, CartImage,
   AvatarContainer, Body,
   DropdownMenu, 
   DropdownItem,
@@ -16,6 +16,8 @@ import "boxicons/css/boxicons.min.css";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 import logout from "./logout.png";
+import cart  from "./trolley.png";
+
 import Modal from '../../modal';
 
 
@@ -177,6 +179,7 @@ const handleDetailClick = async(id) => {
               </DropdownItem>
             </DropdownMenu>
           </AvatarContainer>
+          <CartImage src={cart} alt="Cart" className="cart" />
         </UserInfoContainer>
       </Header>
       <Background></Background>
