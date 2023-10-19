@@ -304,6 +304,18 @@ export const Item = styled.div`
   flex-direction: column;
 `;
 
+export const PaginationButtonPage = styled.button`
+  /* CSS cho PaginationButton */
+  border: none;
+  background: none;
+  cursor: pointer;
+  outline: none;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  margin: 0 4px;
+`;
+
 export const Logo = styled.h2`
   color: #fff;
   font-size: 30px;

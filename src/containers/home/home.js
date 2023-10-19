@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "boxicons/css/boxicons.min.css";
 import {
-  UserInfoContainer, Container1,
+  UserInfoContainer, Container1, PaginationButtonPage,
   UserName, Container2,Container3,
   Background,Image, 
   AvatarImage, CartImage,
@@ -51,6 +51,7 @@ function Home() {
   const [text_search, setTextSearch] = useState('');
   const [text_search1, setTextSearch1] = useState('');
   const [online, SetOnline] = useState(false)
+  const [listPage, setListPage] = useState([])
 
   useEffect(() => {
     // Lấy userData từ localStorage khi component được tạo
@@ -87,6 +88,24 @@ function Home() {
         }));
         setData(formattedData);
         setTotalPages(response.data.data.total_pages);
+        const countpage = response.data.data.total_pages
+        if(page -1 === 0){
+          setListPage([page, page + 1]);
+          if (page + 1 < countpage) {
+            // Nếu trang sau trang hiện tại không vượt quá tổng số trang
+            setListPage([page, page + 1, page + 2]);
+          }
+        } else {
+          setListPage([page - 1, page]);
+          if (page < countpage) {
+            // Nếu trang hiện tại không vượt quá tổng số trang
+            setListPage((prevList) => [...prevList, page + 1]);
+          } else {
+            if (page - 2 > 0){
+              setListPage((prevList) => [page - 2, ...prevList]);
+            }
+          }
+        }
       } else {
         console.error("Error fetching history data.");
       }
@@ -144,6 +163,10 @@ const handleDetailClick = async(id) => {
     setTextSearch1('')
 
   };
+
+  const handlePageClick = async (page) => {
+    setCurrentPage(page);
+  }
 
   return (
     <div>
@@ -219,6 +242,11 @@ const handleDetailClick = async(id) => {
       <PaginationButton onClick={handlePrevPage} disabled={currentPage === 1}>
         Previous
       </PaginationButton>
+      {listPage.map((page) => (
+        <PaginationButtonPage key={page} onClick={() => handlePageClick(page)} className={page === currentPage ? 'active' : ''}>
+          {page}
+        </PaginationButtonPage>
+      ))}
       <PaginationButton onClick={handleNextPage} disabled={currentPage === totalPages}>
         Next
       </PaginationButton>
