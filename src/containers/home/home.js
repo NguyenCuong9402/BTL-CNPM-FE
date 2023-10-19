@@ -116,9 +116,6 @@ function Home() {
   // Call fetchData when the component mounts
   useEffect(() => {
     fetchData(currentPage, pageSize, sortDirection, text_search);
-
-   
-
   }, [currentPage, pageSize, sortDirection,text_search]);
 
 
