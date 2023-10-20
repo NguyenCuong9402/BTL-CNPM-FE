@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import "boxicons/css/boxicons.min.css";
 import {
-  UserInfoContainer, Container1, PaginationButtonPage,
+  UserInfoContainer, Container1, PaginationButtonPage, DiscountTag,
   UserName, Container2,Container3,
-  Background,Image, 
-  AvatarImage, CartImage,
+  Background,Image, SoldCount, Price, ItemInfo, ItemInfo1,
+  AvatarImage, CartImage, DollarSign, NameProduct,
   AvatarContainer, Body,
   DropdownMenu, 
   DropdownItem,
@@ -212,12 +212,23 @@ const handleDetailClick = async(id) => {
       <Container3>
       <GridContainer>
       {data.map(item => (
-        <GridItem key={item.id} onClick={() => handleDetailClick(item.id)}>
-          <img src={`http://127.0.0.1:5000/api/v1/picture/${item.id}`} alt="Hình ảnh" />
-          <h3>{item.price}</h3>
-          <p>{item.name}</p>
-        </GridItem>
-      ))}
+  <GridItem key={item.id} onClick={() => handleDetailClick(item.id)}>
+    <img src={`http://127.0.0.1:5000/api/v1/picture/${item.id}`} alt="Hình ảnh" />
+    {item.giam_gia > 0 && (
+      <DiscountTag>-{item.giam_gia}%</DiscountTag>
+    )}
+    <ItemInfo>
+      <NameProduct>{item.name}</NameProduct>
+      <ItemInfo1>
+        <Price>
+          <DollarSign>$</DollarSign>
+          {item.price}
+        </Price>
+        <SoldCount>đã bán: {item.sold_count}</SoldCount>
+      </ItemInfo1>
+    </ItemInfo>
+  </GridItem>
+))}
     </GridContainer>
     </Container3>
     <PaginationContainer>
