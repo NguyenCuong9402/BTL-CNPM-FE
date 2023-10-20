@@ -154,7 +154,23 @@ flex-direction: column;
 
 export const InnerContainer = styled.div`
   width: 100%;
-  height: 15%;
+  height: 20%;
+  display: flex; /* Hiển thị các phần ngang nhau */
+  align-items: flex-end; /* Đặt align-items thành 'flex-end' */
+  justify-content: center;
+`;
+
+export const InnerContainer1 = styled.div`
+  width: 100%;
+  height: 10%;
+  display: flex; /* Hiển thị các phần ngang nhau */
+  align-items: center;
+  justify-content: center; 
+`;
+
+export const InnerContainer2 = styled.div`
+  width: 100%;
+  height: 5%;
   display: flex; /* Hiển thị các phần ngang nhau */
   align-items: center;
   justify-content: center; 
@@ -169,6 +185,7 @@ background-color: white;
 font-size: 14px;
 color: #333;
 `;
+
 
 
 

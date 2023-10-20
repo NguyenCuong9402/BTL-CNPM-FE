@@ -2,10 +2,10 @@ import React, { useState, useEffect } from "react";
 import "boxicons/css/boxicons.min.css";
 import {
   UserInfoContainer, Container1, PaginationButtonPage, DiscountTag,
-  UserName, Container2,Container3, InnerContainer,
+  UserName, Container2,Container3, InnerContainer, InnerContainer2,
   Background,Image, SoldCount, Price, ItemInfo, ItemInfo1,
   AvatarImage, CartImage, DollarSign, NameProduct,
-  AvatarContainer, Body, SelectLoaiQuanAo,
+  AvatarContainer, Body, SelectLoaiQuanAo, InnerContainer1,
   DropdownMenu, 
   DropdownItem,
   Header, PaginationContainer, PaginationButton, PaginationInfo,
@@ -44,6 +44,7 @@ function Home() {
   const [user_id, setUserDataId] = useState(null);
   const history = useHistory();
   const [data, setData] = useState([]);
+  const [order_by, SetOrderBy] = useState('created_date')
   const [sortDirection, setSortDirection] = useState('desc');
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
@@ -91,10 +92,10 @@ function Home() {
     }
   }
   
-  const fetchData = async (page, pSize, sortDirection, phan_loai_id, text_search) => {
+  const fetchData = async (page, pSize, order_by, sortDirection, phan_loai_id, text_search) => {
     try {
       const response = await axios.get(
-        `http://127.0.0.1:5000/api/v1/product?page=${page}&page_size=${pSize}&order=${sortDirection}&phan_loai_id=${phan_loai_id}&type=&text_search=${text_search}`
+        `http://127.0.0.1:5000/api/v1/product?page=${page}&page_size=${pSize}&order_by=${order_by}&order=${sortDirection}&phan_loai_id=${phan_loai_id}&type=&text_search=${text_search}`
       );
 
       if (response.data.code === 200) {
@@ -137,9 +138,9 @@ function Home() {
   };
   // Call fetchData when the component mounts
   useEffect(() => {
-    fetchData(currentPage, pageSize, sortDirection, phan_loai_id, text_search);
+    fetchData(currentPage, pageSize, order_by, sortDirection, phan_loai_id, text_search);
     getType()
-  }, [currentPage, pageSize, sortDirection, phan_loai_id,text_search]);
+  }, [currentPage, pageSize,order_by, sortDirection, phan_loai_id,text_search]);
   const handleNextPage = () => {
     if (currentPage < totalPages) {
       const nextPage = currentPage + 1;
@@ -189,7 +190,15 @@ const handleDetailClick = async(id) => {
     const selectedValue = event.target.value;
     setPhan_loai_id(selectedValue);
   }
+  const handleChangeSapXep = async (event) => {
+    const selectedValue = event.target.value;
+    SetOrderBy(selectedValue);
+  }
 
+  const handleChangeSort = async (event) => {
+    const selectedValue = event.target.value;
+    setSortDirection(selectedValue);
+  }
   return (
     <div>
     <Body>
@@ -243,12 +252,24 @@ const handleDetailClick = async(id) => {
           ))}
         </SelectLoaiQuanAo>
         </InnerContainer>
-        <InnerContainer>
+         
+        <InnerContainer1>
+          <div style={{ fontWeight: 'bold', color: 'black', marginRight: '30px' }}>Sắp xếp</div>
+          <SelectLoaiQuanAo onChange={handleChangeSapXep} value={order_by}>
+                <option key={'created_date'} value={'created_date'}>Ngày</option>
+                <option key={'price'} value={'price'}>Giá</option>
+                <option key={'name'} value={'name'}>Tên</option>
+          </SelectLoaiQuanAo>
           
-        </InnerContainer>
-        <InnerContainer>
+        </InnerContainer1>
+        <InnerContainer2>
+          <div style={{ fontWeight: 'bold', color: 'black', marginRight: '22px' }}>Xếp theo</div>
+          <SelectLoaiQuanAo onChange={handleChangeSort} value={sortDirection}>
+                <option key={'desc'} value={'desc'}>Giảm dần</option>
+                <option key={'asc'} value={'asc'}>Tăng dần</option>
+          </SelectLoaiQuanAo>
           
-        </InnerContainer>
+        </InnerContainer2>
       </Container2>
       <Container1>
       <Container3>
