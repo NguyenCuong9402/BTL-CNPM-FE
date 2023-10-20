@@ -47,7 +47,7 @@ function Home() {
   const [sortDirection, setSortDirection] = useState('desc');
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
-  const [pageSize, setpageSize] = useState(12);
+  const [pageSize, setpageSize] = useState(20);
   const [text_search, setTextSearch] = useState('');
   const [text_search1, setTextSearch1] = useState('');
   const [online, SetOnline] = useState(false)
@@ -90,10 +90,16 @@ function Home() {
         setTotalPages(response.data.data.total_pages);
         const countpage = response.data.data.total_pages
         if(page -1 === 0){
+          if(countpage  -1 ===0){
+            setListPage([page]);
+          }
+          else
+          {
           setListPage([page, page + 1]);
           if (page + 1 < countpage) {
             // Nếu trang sau trang hiện tại không vượt quá tổng số trang
             setListPage([page, page + 1, page + 2]);
+          }
           }
         } else {
           setListPage([page - 1, page]);

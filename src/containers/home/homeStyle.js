@@ -107,7 +107,7 @@ export const Container = styled.div`
   top: 50%;
   transform: translate(-50%, -50%);
   width: 100%;
-  height: 800px;
+  height: 90%;
   margin-top: 20px;
   background-color: white;
   background-size: cover;
@@ -143,7 +143,7 @@ position: relative;
 width: 100%;
 height: 100%; /* Đảm bảo Container2 chiếm toàn bộ chiều cao của Container */
 margin-top: 20px;
-background-color: white;
+background-color: orange;
 background-size: cover;
 background-position: center;
 overflow: hidden;
