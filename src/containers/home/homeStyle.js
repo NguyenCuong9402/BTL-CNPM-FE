@@ -148,7 +148,16 @@ background-size: cover;
 background-position: center;
 overflow: hidden;
 flex: 0.2; /* Container2 chiếm 30% width của Container */
+display: flex; /* Đảm bảo các item nằm dọc */
+flex-direction: column;
 `;
+
+export const InnerContainer = styled.div`
+  width: 100%;
+  height: 15%;
+  background-color: lightblue; /* Màu nền của container con */
+`;
+
 
 export const CustomTable = styled.table`
   width: 100%;

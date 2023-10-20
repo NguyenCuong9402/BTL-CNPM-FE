@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "boxicons/css/boxicons.min.css";
 import {
   UserInfoContainer, Container1, PaginationButtonPage, DiscountTag,
-  UserName, Container2,Container3,
+  UserName, Container2,Container3, InnerContainer,
   Background,Image, SoldCount, Price, ItemInfo, ItemInfo1,
   AvatarImage, CartImage, DollarSign, NameProduct,
   AvatarContainer, Body,
@@ -53,6 +53,8 @@ function Home() {
   const [online, SetOnline] = useState(false)
   const [listPage, setListPage] = useState([])
 
+  const [phanloai, SetType] = useState([])
+
   useEffect(() => {
     // Lấy userData từ localStorage khi component được tạo
     const userDataFromLocalStorage = JSON.parse(localStorage.getItem("user"));
@@ -73,7 +75,21 @@ function Home() {
     localStorage.removeItem("refreshToken");
     window.location.href = "/login";
   };
+  const getType = async () =>{
+    try {
+      const response = await axios.get(
+        `http://127.0.0.1:5000/api/v1/product/get-type`
+      );
 
+      if (response.data.message.status === 'success') {
+        SetType(response.data.data)
+      } else {
+        console.error("Error fetching history data type.");
+      }
+    } catch (error) {
+      console.error("Error calling history API:", error);
+    }
+  }
   
   const fetchData = async (page, pSize, sortDirection, text_search) => {
     try {
@@ -122,9 +138,8 @@ function Home() {
   // Call fetchData when the component mounts
   useEffect(() => {
     fetchData(currentPage, pageSize, sortDirection, text_search);
+    getType()
   }, [currentPage, pageSize, sortDirection,text_search]);
-
-
   const handleNextPage = () => {
     if (currentPage < totalPages) {
       const nextPage = currentPage + 1;
@@ -213,7 +228,17 @@ const handleDetailClick = async(id) => {
       </Header>
       <Background></Background>
       <Container>
-      <Container2>  # Bộ lọc</Container2>
+      <Container2>
+        <InnerContainer>
+
+        </InnerContainer>
+        <InnerContainer>
+          
+        </InnerContainer>
+        <InnerContainer>
+          
+        </InnerContainer>
+      </Container2>
       <Container1>
       <Container3>
       <GridContainer>
