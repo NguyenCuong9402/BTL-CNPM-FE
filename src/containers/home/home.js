@@ -5,7 +5,7 @@ import {
   UserName, Container2,Container3, InnerContainer,
   Background,Image, SoldCount, Price, ItemInfo, ItemInfo1,
   AvatarImage, CartImage, DollarSign, NameProduct,
-  AvatarContainer, Body,
+  AvatarContainer, Body, SelectLoaiQuanAo,
   DropdownMenu, 
   DropdownItem,
   Header, PaginationContainer, PaginationButton, PaginationInfo,
@@ -54,7 +54,7 @@ function Home() {
   const [listPage, setListPage] = useState([])
 
   const [phanloai, SetType] = useState([])
-
+  const [phan_loai_id, setPhan_loai_id] = useState('')
   useEffect(() => {
     // Lấy userData từ localStorage khi component được tạo
     const userDataFromLocalStorage = JSON.parse(localStorage.getItem("user"));
@@ -91,10 +91,10 @@ function Home() {
     }
   }
   
-  const fetchData = async (page, pSize, sortDirection, text_search) => {
+  const fetchData = async (page, pSize, sortDirection, phan_loai_id, text_search) => {
     try {
       const response = await axios.get(
-        `http://127.0.0.1:5000/api/v1/product?page=${page}&page_size=${pSize}&order=${sortDirection}&text_search=${text_search}`
+        `http://127.0.0.1:5000/api/v1/product?page=${page}&page_size=${pSize}&order=${sortDirection}&phan_loai_id=${phan_loai_id}&type=&text_search=${text_search}`
       );
 
       if (response.data.code === 200) {
@@ -137,9 +137,9 @@ function Home() {
   };
   // Call fetchData when the component mounts
   useEffect(() => {
-    fetchData(currentPage, pageSize, sortDirection, text_search);
+    fetchData(currentPage, pageSize, sortDirection, phan_loai_id, text_search);
     getType()
-  }, [currentPage, pageSize, sortDirection,text_search]);
+  }, [currentPage, pageSize, sortDirection, phan_loai_id,text_search]);
   const handleNextPage = () => {
     if (currentPage < totalPages) {
       const nextPage = currentPage + 1;
@@ -184,6 +184,10 @@ const handleDetailClick = async(id) => {
 
   const handlePageClick = async (page) => {
     setCurrentPage(page);
+  }
+  const handleChangePhanLoai = async (event) => {
+    const selectedValue = event.target.value;
+    setPhan_loai_id(selectedValue);
   }
 
   return (
@@ -230,7 +234,14 @@ const handleDetailClick = async(id) => {
       <Container>
       <Container2>
         <InnerContainer>
-
+        <div style={{ fontWeight: 'bold', color: 'black', marginRight: '20px' }}>Phân loại</div>
+        <SelectLoaiQuanAo onChange={handleChangePhanLoai} value={phan_loai_id}>
+          {phanloai.map((item) => (
+            <option key={item.id} value={item.id}>
+              {item.name}
+            </option>
+          ))}
+        </SelectLoaiQuanAo>
         </InnerContainer>
         <InnerContainer>
           

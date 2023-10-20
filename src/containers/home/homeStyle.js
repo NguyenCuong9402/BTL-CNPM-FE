@@ -155,8 +155,21 @@ flex-direction: column;
 export const InnerContainer = styled.div`
   width: 100%;
   height: 15%;
-  background-color: lightblue; /* Màu nền của container con */
+  display: flex; /* Hiển thị các phần ngang nhau */
+  align-items: center;
+  justify-content: center; 
 `;
+
+export const SelectLoaiQuanAo = styled.select`
+width: 40%;
+padding: 8px;
+border: 1px solid #ccc;
+border-radius: 4px;
+background-color: white;
+font-size: 14px;
+color: #333;
+`;
+
 
 
 export const CustomTable = styled.table`
