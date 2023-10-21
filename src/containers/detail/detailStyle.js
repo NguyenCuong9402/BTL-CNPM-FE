@@ -111,22 +111,6 @@ export const SearchButton = styled.button`
   }
 `;
 
-
-export const Container = styled.div`
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  width: 75%;
-  height: 750px;
-  margin-top: 20px;
-  background: url(${background1});
-  background-size: cover;
-  background-position: center;  
-  border-radius: 20px;
-  overflow: hidden;
-`;
-
 export const Item = styled.div`
   position: absolute;
   top: 0;
@@ -528,3 +512,32 @@ export const CloseButtonStyled = styled.button`
   }
 `;
 
+export const Container = styled.div`
+  display: flex;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 60%;
+  margin-top: 20px;
+  background-color: white;
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+`;
+
+
+export const Container2 = styled.div`
+  display: flex; /* Xếp phần tử con theo hàng ngang */
+  justify-content: space-between; /* Canh giữa các phần tử con */
+  align-items: center; /* Canh giữa các phần tử con theo chiều dọc */
+
+  & > * {
+    margin-right: 8px; /* Khoảng cách 8px giữa các phần tử */
+  }
+
+  & > *:last-child {
+    margin-right: 0; /* Không có khoảng cách bên phải ở phần tử cuối cùng */
+  }
+`;

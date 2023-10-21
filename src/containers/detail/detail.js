@@ -4,7 +4,7 @@ import {
   UserInfoContainer,  DiscountTag,DollarSign, NameProduct, ItemInfo, ItemInfo1, Price,
   UserName,GridItem, SoldCount,
   Background, CartImage,
-  AvatarImage,
+  AvatarImage, Container,
   AvatarContainer,
   DropdownMenu,
   DropdownItem,
@@ -83,35 +83,18 @@ function Detail() {
     setSL(sl + 1);
   };
 
-  const RelatedProductsHorizontal = ({ products, handleDetailClick }) => (
-    <div className="related-products-horizontal">
-      {product_lien_quan.map((item) => (
-        <GridItem key={item.id} onClick={() => handleDetailClick(item.id)}>
-        <img src={`http://127.0.0.1:5000/api/v1/picture/${item.id}`} alt="Hình ảnh" />
-        {item.giam_gia > 0 && (
-          <DiscountTag>-{item.giam_gia}%</DiscountTag> 
-        )}
-        <ItemInfo>
-          <NameProduct>{item.name}</NameProduct>
-          <ItemInfo1>
-            <Price>
-              <DollarSign>$</DollarSign>
-              {item.price}
-            </Price>
-            <SoldCount>đã bán: {item.sold_count}</SoldCount>
-          </ItemInfo1>
-        </ItemInfo>
-      </GridItem>
-      ))}
-    </div>
-  );
-
+  
   // Hàm xử lý giảm giá trị
   const handleMinus = () => {
     if (sl > 1) {
       setSL(sl - 1);
     }
   };
+
+  const handleDetailClick = async (id) =>{
+    history.push(`/detail/${id}`);
+
+  }
   return (
     <div>
       <Header>
@@ -143,6 +126,7 @@ function Detail() {
 
         )}
       </Header>
+    <Container>
     <main>
     <article>
       <section class="section product" aria-label="product">
@@ -187,7 +171,11 @@ function Detail() {
     </section>
   </article>
   </main>
-    </div>
+  </Container>
+  </div>
+
+
+  
   );
 }
 
