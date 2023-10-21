@@ -140,6 +140,83 @@ export const Item = styled.div`
   justify-content: space-between;
   flex-direction: column;
 `;
+export const DiscountTag = styled.div`
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: #FFA500;
+  color: white;
+  padding: 5px 10px;
+  font-size: 10px;
+`;
+
+export const DollarSign = styled.span`
+  font-size: 12px; /* Điều chỉnh kích thước "$" */
+  margin-right: 2px; /* Khoảng cách giữa "$" và giá tiền */
+  position: absolute; /* Đặt vị trí tuyệt đối cho "$" */
+  top: 50%; /* Đặt "$" ở giữa theo chiều dọc */
+  transform: translateY(-50%); /* Để căn giữa "$" theo chiều dọc */
+  left: -10px; /* Đặt "$" ra xa bên trái */
+`;
+
+export const ItemInfo = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 20%;
+  width: 100%;
+  padding: 10px;
+  position: absolute;
+  bottom: 0;
+  background-color: rgba(255, 255, 255, 0.9);
+  left: 0;
+  right: 0;    
+`;
+
+export const Price = styled.h4`
+  margin: 0;
+  float: left;
+  font-size: 20px; /* Điều chỉnh kích thước chữ */
+  color: #FF3030;
+  font-family: 'Roboto', sans-serif;
+  position: relative; /* Tạo vị trí tương đối để đặt pseudo-element */
+`;
+
+
+export const ItemInfo1 = styled.div`
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+export const NameProduct = styled.p`
+  text-align: left; /* Đặt văn bản lệch trái */
+  padding-left: 0px; /* Khoảng cách từ lề trái */
+  margin: 0;
+`;
+
+export const GridItem = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 10px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+  height: 300px;
+  position: relative;
+
+  &:hover {
+    transform: scale(1.05);
+    z-index: 1;
+  }
+
+  img {
+    max-width: 100%;
+    max-height: 80%;
+    object-fit: cover;
+  }
+`;
 
 export const CartImage = styled.img`
   /* CSS cho CartImage */

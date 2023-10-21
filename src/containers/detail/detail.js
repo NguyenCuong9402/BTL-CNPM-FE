@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef  } from "react";
 import "boxicons/css/boxicons.min.css";
 import {
   UserInfoContainer,
-  UserName,
+  UserName,GridItem,
   Background, CartImage,
   AvatarImage,
   AvatarContainer,
@@ -83,6 +83,29 @@ function Detail() {
     setSL(sl + 1);
   };
 
+  const RelatedProductsHorizontal = ({ products, handleDetailClick }) => (
+    <div className="related-products-horizontal">
+      {products.map((item) => (
+        <GridItem key={item.id} onClick={() => handleDetailClick(item.id)}>
+        <img src={`http://127.0.0.1:5000/api/v1/picture/${item.id}`} alt="Hình ảnh" />
+        {item.giam_gia > 0 && (
+          <DiscountTag>-{item.giam_gia}%</DiscountTag>
+        )}
+        <ItemInfo>
+          <NameProduct>{item.name}</NameProduct>
+          <ItemInfo1>
+            <Price>
+              <DollarSign>$</DollarSign>
+              {item.price}
+            </Price>
+            <SoldCount>đã bán: {item.sold_count}</SoldCount>
+          </ItemInfo1>
+        </ItemInfo>
+      </GridItem>
+      ))}
+    </div>
+  );
+
   // Hàm xử lý giảm giá trị
   const handleMinus = () => {
     if (sl > 1) {
@@ -122,8 +145,6 @@ function Detail() {
       </Header>
     <main>
     <article>
-
-
       <section class="section product" aria-label="product">
       <div class="container1">
 
