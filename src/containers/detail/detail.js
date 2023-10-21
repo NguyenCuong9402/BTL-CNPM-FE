@@ -49,7 +49,7 @@ function Detail() {
       console.error("Error calling history API:", error);
     }
   };
-  console.log(product_data)
+  console.log(product_data.cac_mau)
   useEffect(() => {
     // Lấy userData từ localStorage khi component được tạo
     const userDataFromLocalStorage = JSON.parse(localStorage.getItem("user"));
@@ -148,7 +148,11 @@ function Detail() {
             <del class="del">${product_data.old_price}</del>
           </div>
           <select class="select-color">
-              <option value="">Chọn Color</option>
+          {/* {product_data.cac_mau.map((item) => (
+            <option key={item} value={item}>{item}
+            </option>
+            ))} */}
+              <option value="">Chọn Màu</option>
               <option value="red">Red</option>
               <option value="blue">Blue</option>
               <option value="green">Green</option>
