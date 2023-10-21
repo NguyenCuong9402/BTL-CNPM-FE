@@ -4,11 +4,11 @@ import {
   UserInfoContainer,  DiscountTag,DollarSign, NameProduct, ItemInfo, ItemInfo1, Price,
   UserName,GridItem, SoldCount,
   Background, CartImage,
-  AvatarImage, Container,
+  AvatarImage,
   AvatarContainer,
   DropdownMenu,
   DropdownItem,
-  Header, 
+  Header, Container2,
   Navbar,
   
 } from "./detailStyle";
@@ -126,7 +126,6 @@ function Detail() {
 
         )}
       </Header>
-    <Container>
     <main>
     <article>
       <section class="section product" aria-label="product">
@@ -171,11 +170,27 @@ function Detail() {
     </section>
   </article>
   </main>
-  </Container>
+  <Container2>
+  {product_lien_quan.map((item) => (
+    <GridItem key={item.id} onClick={() => handleDetailClick(item.id)}>
+      <img src={`http://127.0.0.1:5000/api/v1/picture/${item.id}`} alt="Hình ảnh" />
+      {item.giam_gia > 0 && (
+        <DiscountTag>-{item.giam_gia}%</DiscountTag>
+      )}
+      <ItemInfo>
+        <NameProduct>{item.name}</NameProduct>
+        <ItemInfo1>
+          <Price>
+            <DollarSign>$</DollarSign>
+            {item.price}
+          </Price>
+          <SoldCount>đã bán: {item.sold_count}</SoldCount>
+        </ItemInfo1>
+      </ItemInfo>
+    </GridItem>
+  ))}
+  </Container2>
   </div>
-
-
-  
   );
 }
 

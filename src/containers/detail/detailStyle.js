@@ -512,27 +512,15 @@ export const CloseButtonStyled = styled.button`
   }
 `;
 
-export const Container = styled.div`
-  display: flex;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  width: 100%;
-  height: 60%;
-  margin-top: 20px;
-  background-color: white;
-  background-size: cover;
-  background-position: center;
-  overflow: hidden;
-`;
-
 
 export const Container2 = styled.div`
-  display: flex; /* Xếp phần tử con theo hàng ngang */
-  justify-content: space-between; /* Canh giữa các phần tử con */
-  align-items: center; /* Canh giữa các phần tử con theo chiều dọc */
-
+    flex: 3;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 900px; 
+    margin-bottom: 20px;
   & > * {
     margin-right: 8px; /* Khoảng cách 8px giữa các phần tử */
   }
