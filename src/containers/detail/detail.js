@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef  } from "react";
 import "boxicons/css/boxicons.min.css";
 import {
-  UserInfoContainer,
-  UserName,GridItem,
+  UserInfoContainer,  DiscountTag,DollarSign, NameProduct, ItemInfo, ItemInfo1, Price,
+  UserName,GridItem, SoldCount,
   Background, CartImage,
   AvatarImage,
   AvatarContainer,
@@ -89,7 +89,7 @@ function Detail() {
         <GridItem key={item.id} onClick={() => handleDetailClick(item.id)}>
         <img src={`http://127.0.0.1:5000/api/v1/picture/${item.id}`} alt="Hình ảnh" />
         {item.giam_gia > 0 && (
-          <DiscountTag>-{item.giam_gia}%</DiscountTag>
+          <DiscountTag>-{item.giam_gia}%</DiscountTag> 
         )}
         <ItemInfo>
           <NameProduct>{item.name}</NameProduct>

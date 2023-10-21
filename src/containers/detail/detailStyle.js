@@ -173,6 +173,15 @@ export const ItemInfo = styled.div`
   right: 0;    
 `;
 
+export const SoldCount = styled.h5`
+  margin: 0;
+  float: right;
+  font-size: 12px; /* Điều chỉnh kích thước chữ */
+  color: #888; /* Màu xám nhạt */
+  font-family: 'Roboto', sans-serif; /* Phông chữ hiện đại (thay thế 'Roboto' bằng phông chữ bạn muốn sử dụng) */
+  /* Thêm các kiểu form hiện đại nếu cần */
+`;
+
 export const Price = styled.h4`
   margin: 0;
   float: left;
