@@ -34,6 +34,7 @@ function Detail() {
   const { id } = useParams();
   const [sl, setSL] = useState(1)
   const [product_data, setProductData] = useState({})
+  const [product_lien_quan, setProductlienquan] = useEffect([])
   const fetchData = async (id) => {
     try {
       const response = await axios.get(
@@ -42,6 +43,7 @@ function Detail() {
 
       if (response.data.message.status === "success") {
         setProductData(response.data.data.data)
+        setProductlienquan(response.data.data.lien_quan)
       }
     } catch (error) {
       console.error("Error calling history API:", error);
@@ -131,7 +133,7 @@ function Detail() {
                               width: '100%',
                               height: '100%',
                               objectFit: 'cover' }}/>
-                    </div>  
+                    </div>
         </div>
         <div class="product-content">
           {/* <p class="product-subtitle">Nike Company</p> */}
