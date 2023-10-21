@@ -127,16 +127,11 @@ function Detail() {
 
         <div class="product-slides">
           <div class="slider-banner" data-slider>
-            <img src={`http://127.0.0.1:5000/api/v1/picture/${id}`} style={{ width: '500px', height: '400px' }}/>
-          </div>
-
-          {/* <button class="slide-btn prev" aria-label="Previous image" data-prev>
-            <ion-icon name="chevron-back" aria-hidden="true"></ion-icon>
-          </button>
-
-          <button class="slide-btn next" aria-label="Next image" data-next>
-            <ion-icon name="chevron-forward" aria-hidden="true"></ion-icon>
-          </button> */}
+            <img src={`http://127.0.0.1:5000/api/v1/picture/${id}`} style={{ maxWidth: '400px',
+                              width: '100%',
+                              height: '100%',
+                              objectFit: 'cover' }}/>
+                    </div>  
         </div>
         <div class="product-content">
           {/* <p class="product-subtitle">Nike Company</p> */}
@@ -164,9 +159,7 @@ function Detail() {
               <span class="span">Add to cart</span>
             </button>
           </div>
-
         </div>
-
       </div>
     </section>
   </article>
