@@ -92,8 +92,7 @@ function Detail() {
   };
 
   const handleDetailClick = async (id) =>{
-    history.push(`/detail/${id}`);
-
+    window.location.href = `/detail/${id}`;
   }
   return (
     <div>
@@ -145,7 +144,7 @@ function Detail() {
           <p class="product-text">{product_data.describe}</p>
           <div class="wrapper">
             <span class="price" data-total-price>${product_data.price}</span>
-            <span class="badge">{product_data.giam_gia}%</span>
+            <span class="badge">-{product_data.giam_gia}%</span>
             <del class="del">${product_data.old_price}</del>
           </div>
           <div class="btn-group">
