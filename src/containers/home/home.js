@@ -6,7 +6,7 @@ import {
   Background,Image, SoldCount, Price, ItemInfo, ItemInfo1,
   AvatarImage, CartImage, DollarSign, NameProduct,
   AvatarContainer, Body, SelectLoaiQuanAo, InnerContainer1,
-  DropdownMenu, 
+  DropdownMenu, InnerContainer3,
   DropdownItem,
   Header, PaginationContainer, PaginationButton, PaginationInfo,
   Navbar, SearchBarContainer, SearchInput, SearchButton,
@@ -56,6 +56,11 @@ function Home() {
 
   const [phanloai, SetType] = useState([])
   const [phan_loai_id, setPhan_loai_id] = useState('')
+
+  const [khoangtien, Setkhoangtien] = useState({
+    start: "", end: ""
+  })
+
   useEffect(() => {
     // Lấy userData từ localStorage khi component được tạo
     const userDataFromLocalStorage = JSON.parse(localStorage.getItem("user"));
@@ -270,6 +275,36 @@ const handleDetailClick = async(id) => {
           </SelectLoaiQuanAo>
           
         </InnerContainer2>
+        <InnerContainer3>
+        <input
+          type="text"
+          placeholder="Giá đầu"
+          value={khoangtien.start}
+          onChange={(e) => {
+            const numericValue = e.target.value.replace(/\D/g, 10); // Lọc giá trị để chỉ giữ lại các ký tự số
+            Setkhoangtien({ ...khoangtien, start: numericValue });
+          }}
+          style={{
+            marginRight: '10px', // Khoảng cách giữa ô input và ô kế tiếp
+            padding: '8px', // Để làm cho ô input dễ đọc hơn
+            width: '120px'
+          }}
+          
+        />
+        <input
+          type="text"
+          placeholder="Giá cuối"
+          value={khoangtien.end}
+          onChange={(e) => {
+            const numericValue = e.target.value.replace(/\D/g, 10); // Lọc giá trị để chỉ giữ lại các ký tự số
+            Setkhoangtien({ ...khoangtien, end: numericValue });
+          }}
+          style={{
+            padding: '8px', // Để làm cho ô input dễ đọc hơn
+            width: '120px'
+          }}
+        />
+        </InnerContainer3>
       </Container2>
       <Container1>
       <Container3>

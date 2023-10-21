@@ -176,6 +176,14 @@ export const InnerContainer2 = styled.div`
   justify-content: center; 
 `;
 
+export const InnerContainer3 = styled.div`
+  width: 100%;
+  height: 10%;
+  display: flex; /* Hiển thị các phần ngang nhau */
+  align-items: center;
+  justify-content: center; 
+`;
+
 export const SelectLoaiQuanAo = styled.select`
 width: 40%;
 padding: 8px;
