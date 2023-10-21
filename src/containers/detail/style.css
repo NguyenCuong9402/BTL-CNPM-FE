@@ -88,6 +88,28 @@
     font-size: 1.6rem;
   }
   
+.select-color,
+.select-size {
+  width: 40%;
+  padding: 10px;
+  border: 2px solid #333; /* Đường viền đậm */
+  border-radius: 5px; /* Góc bo tròn */
+  font-size: 16px; /* Kích thước chữ */
+  background-color: #fff; /* Màu nền */
+  color: #333; /* Màu chữ */
+  cursor: pointer; /* Con trỏ chuột khi di chuột vào */
+  transition: border 0.3s, background-color 0.3s, color 0.3s; /* Hiệu ứng thay đổi khi hover */
+  margin: 10px; /* Thêm khoảng cách 5px giữa các ô select */
+  margin-bottom: 30px;
+
+}
+
+.select-color:hover,
+.select-size:hover {
+  border: 2px solid var(--sea-green); /* Đường viền đậm khi hover */
+  background-color: var(--sea-green); /* Màu nền khi hover */
+  color: white; /* Màu chữ khi hover */
+}
   
   
   

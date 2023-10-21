@@ -147,6 +147,20 @@ function Detail() {
             <span class="badge">-{product_data.giam_gia}%</span>
             <del class="del">${product_data.old_price}</del>
           </div>
+          <select class="select-color">
+              <option value="">Chọn Color</option>
+              <option value="red">Red</option>
+              <option value="blue">Blue</option>
+              <option value="green">Green</option>
+            </select>
+            <select class="select-size">
+            <option value="">Chọn Size</option>
+              <option value="s">S</option>
+              <option value="m">M</option>
+              <option value="l">L</option>
+              <option value="xl">XL</option>
+
+            </select>
           <div class="btn-group">
             <div class="counter-wrapper">
               <button class="counter-btn" data-qty-minus onClick={handleMinus}>
@@ -158,7 +172,6 @@ function Detail() {
                 <ion-icon name="add-outline">+</ion-icon>
               </button>
             </div>
-            
             <button class="cart-btn">
               <ion-icon name="bag-handle-outline" aria-hidden="true"></ion-icon>
 
