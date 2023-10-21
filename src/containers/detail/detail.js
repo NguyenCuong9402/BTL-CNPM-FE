@@ -158,6 +158,7 @@ function Detail() {
                 <ion-icon name="add-outline">+</ion-icon>
               </button>
             </div>
+            
             <button class="cart-btn">
               <ion-icon name="bag-handle-outline" aria-hidden="true"></ion-icon>
 
