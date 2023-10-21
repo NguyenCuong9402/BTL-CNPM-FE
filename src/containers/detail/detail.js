@@ -34,7 +34,7 @@ function Detail() {
   const { id } = useParams();
   const [sl, setSL] = useState(1)
   const [product_data, setProductData] = useState({})
-  const [product_lien_quan, setProductlienquan] = useEffect([])
+  const [product_lien_quan, setProductlienquan] = useState([])
   const fetchData = async (id) => {
     try {
       const response = await axios.get(
@@ -85,7 +85,7 @@ function Detail() {
 
   const RelatedProductsHorizontal = ({ products, handleDetailClick }) => (
     <div className="related-products-horizontal">
-      {products.map((item) => (
+      {product_lien_quan.map((item) => (
         <GridItem key={item.id} onClick={() => handleDetailClick(item.id)}>
         <img src={`http://127.0.0.1:5000/api/v1/picture/${item.id}`} alt="Hình ảnh" />
         {item.giam_gia > 0 && (
