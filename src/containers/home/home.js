@@ -97,10 +97,11 @@ function Home() {
     }
   }
   
-  const fetchData = async (page, pSize, order_by, sortDirection, phan_loai_id, text_search) => {
+  const fetchData = async (page, pSize, order_by, sortDirection, phan_loai_id, text_search, khoangtien) => {
     try {
-      const response = await axios.get(
-        `http://127.0.0.1:5000/api/v1/product?page=${page}&page_size=${pSize}&order_by=${order_by}&order=${sortDirection}&phan_loai_id=${phan_loai_id}&type=&text_search=${text_search}`
+      const response = await axios.post(
+        `http://127.0.0.1:5000/api/v1/product/get-item?page=${page}&page_size=${pSize}&order_by=${order_by}&order=${sortDirection}&phan_loai_id=${phan_loai_id}&type=&text_search=${text_search}`, 
+        khoangtien
       );
 
       if (response.data.code === 200) {
@@ -143,9 +144,9 @@ function Home() {
   };
   // Call fetchData when the component mounts
   useEffect(() => {
-    fetchData(currentPage, pageSize, order_by, sortDirection, phan_loai_id, text_search);
+    fetchData(currentPage, pageSize, order_by, sortDirection, phan_loai_id, text_search, khoangtien);
     getType()
-  }, [currentPage, pageSize,order_by, sortDirection, phan_loai_id,text_search]);
+  }, [currentPage, pageSize,order_by, sortDirection, phan_loai_id,text_search, khoangtien]);
   const handleNextPage = () => {
     if (currentPage < totalPages) {
       const nextPage = currentPage + 1;
@@ -279,9 +280,8 @@ const handleDetailClick = async(id) => {
         <input
           type="text"
           placeholder="Giá đầu"
-          value={khoangtien.start}
           onChange={(e) => {
-            const numericValue = e.target.value.replace(/\D/g, 10); // Lọc giá trị để chỉ giữ lại các ký tự số
+            const numericValue = parseInt(e.target.value.replace(/\D/g, ''), 10); // Lọc giá trị để chỉ giữ lại các ký tự số
             Setkhoangtien({ ...khoangtien, start: numericValue });
           }}
           style={{
@@ -294,9 +294,8 @@ const handleDetailClick = async(id) => {
         <input
           type="text"
           placeholder="Giá cuối"
-          value={khoangtien.end}
           onChange={(e) => {
-            const numericValue = e.target.value.replace(/\D/g, 10); // Lọc giá trị để chỉ giữ lại các ký tự số
+            const numericValue = parseInt(e.target.value.replace(/\D/g, ''), 10); // Lọc giá trị để chỉ giữ lại các ký tự số
             Setkhoangtien({ ...khoangtien, end: numericValue });
           }}
           style={{
