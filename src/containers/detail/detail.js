@@ -189,6 +189,14 @@ function Detail() {
     </GridItem>
   ))}
   </Container2>
+  <div style={{
+    marginLeft:"40%",
+    marginBottom:'30px',
+    fontSize: '24px',
+    fontWeight: 'bold',
+    color: '#333',
+    marginBottom: '10px'
+  }}>các sản phẩm liên quan</div>
   </div>
   );
 }

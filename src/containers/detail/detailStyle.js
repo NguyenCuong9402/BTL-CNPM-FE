@@ -524,7 +524,6 @@ export const Container2 = styled.div`
     margin-right: 8px; /* Khoảng cách 8px giữa các phần tử */
   }
 
-  & > *:last-child {
-    margin-right: 0; /* Không có khoảng cách bên phải ở phần tử cuối cùng */
-  }
+  & > *:first-child {
+    margin-left: 8px; /* Khoảng cách bên trái cho phần tử đầu tiên */
 `;
