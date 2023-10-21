@@ -165,6 +165,7 @@ function Home() {
   };
   const handlePageSizeChange = (e) => {
     const newSize = parseInt(e.target.value);
+    setCurrentPage(1)
     setpageSize(newSize);
     
   };
