@@ -197,6 +197,7 @@ export const GridItem = styled.div`
   padding: 10px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
   height: 300px;
+  width: 10%;
   position: relative;
 
   &:hover {
@@ -514,10 +515,8 @@ export const CloseButtonStyled = styled.button`
 
 
 export const Container2 = styled.div`
-    flex: 3;
-    width: 100%;
+    max-width: 100%;
     display: flex;
-    justify-content: space-between;
     align-items: center;
     margin-top: 900px; 
     margin-bottom: 20px;
