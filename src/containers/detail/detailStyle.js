@@ -141,6 +141,17 @@ export const Item = styled.div`
   flex-direction: column;
 `;
 
+export const CartImage = styled.img`
+  /* CSS cho CartImage */
+  width: 50px;
+  height: 50px;
+  cursor : pointer;
+  &:hover {
+    filter: brightness(1.2);
+    transform: scale(1.1);
+  }
+`;
+
 export const Logo = styled.h2`
   color: #fff;
   font-size: 30px;

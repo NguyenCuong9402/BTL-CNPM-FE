@@ -3,7 +3,7 @@ import "boxicons/css/boxicons.min.css";
 import {
   UserInfoContainer,
   UserName,
-  Background,
+  Background, CartImage,
   AvatarImage,
   AvatarContainer,
   DropdownMenu,
@@ -19,6 +19,7 @@ import logout from "./logout.png";
 import { useParams } from 'react-router-dom';
 import "./style.css"
 import { Ionicon } from 'react-ionicons';
+import cart  from "./trolley.png";
 
 
 
@@ -27,7 +28,7 @@ import { Ionicon } from 'react-ionicons';
 function Detail() {
   const [name_user, setUserData] = useState(null);
   const [user_id, setUserDataId] = useState(null);
-  const [onl, setOnl] = useState(false);
+  const [online, SetOnline] = useState(false)
 
   const history = useHistory();
   const { id } = useParams();
@@ -40,7 +41,7 @@ function Detail() {
       );
 
       if (response.data.message.status === "success") {
-        setProductData(response.data.data)
+        setProductData(response.data.data.data)
       }
     } catch (error) {
       console.error("Error calling history API:", error);
@@ -51,9 +52,13 @@ function Detail() {
     // Lấy userData từ localStorage khi component được tạo
     const userDataFromLocalStorage = JSON.parse(localStorage.getItem("user"));
     if (userDataFromLocalStorage) {
-      setUserData(userDataFromLocalStorage.name_user);
-      setUserDataId(userDataFromLocalStorage.id);
-      setOnl(true)
+      if (userDataFromLocalStorage.admin === 0) {
+        setUserData(userDataFromLocalStorage.name_user);
+        setUserDataId(userDataFromLocalStorage.id);
+        SetOnline(true)
+      } else {
+        
+      }
     }
     fetchData(id)
   }, []); // Sử dụng [] để đảm bảo useEffect chỉ chạy một lần khi component được tạo
@@ -91,7 +96,7 @@ function Detail() {
           </a>
         </Navbar>
         
-        {onl ? (
+        {online ? (
         <UserInfoContainer>
         <UserName>{name_user}</UserName>
         <AvatarContainer>
@@ -104,6 +109,7 @@ function Detail() {
           </DropdownItem>
         </DropdownMenu>
         </AvatarContainer>
+        <CartImage src={cart} alt="Cart" className="cart" />
         </UserInfoContainer>
         ) : (
           <Navbar>
