@@ -58,7 +58,7 @@ function Home() {
   const [phan_loai_id, setPhan_loai_id] = useState('')
 
   const [khoangtien, Setkhoangtien] = useState({
-    start: "", end: ""
+    start: null, end: null
   })
 
   useEffect(() => {
@@ -101,7 +101,7 @@ function Home() {
     try {
       const response = await axios.post(
         `http://127.0.0.1:5000/api/v1/product/get-item?page=${page}&page_size=${pSize}&order_by=${order_by}&order=${sortDirection}&phan_loai_id=${phan_loai_id}&type=&text_search=${text_search}`, 
-        khoangtien
+        {khoang_tien: khoangtien}
       );
 
       if (response.data.code === 200) {
