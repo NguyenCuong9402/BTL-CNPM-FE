@@ -23,7 +23,7 @@ export const Background = styled.div`
   background-color: white;
   background-position: center;
   background-size: cover;
-  height: 100vh;
+  height: 100%;
   width: 100%;
   filter: blur(10px);
 `;
@@ -121,14 +121,13 @@ export const Container1 = styled.div`
   background-position: center;
   overflow: hidden;
   width: 100%;
-  height: 16%;
+  height: 20%;
   justify-content: center; /* Căn giữa theo chiều ngang */
   align-items: center; /* Căn giữa theo chiều dọc */
-  margin-bottom: 20px;
 `;
 
 export const Container5 = styled.div`
-    margin-bottom: 4px;
+    margin-bottom: 20px;
 `;
 
 
@@ -139,6 +138,9 @@ export const Container2 = styled.div`
   height: 84%;
   display: flex;
   align-self: center;
+  flex-direction: column;
+  display: flex;
+
 `;
 
 
@@ -264,13 +266,13 @@ export const TableRow = styled.tr`
   background-color: white;
   border-radius: 3px;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2); /* Điều chỉnh giá trị để đổ bóng đậm hơn */
-  height: 100px; /* Đặt chiều cao của hàng là 100px */
+  height: 100px;
 `;
 export const TableCell = styled.tr`
   background-color: white;
   border-radius: 3px;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2); /* Điều chỉnh giá trị để đổ bóng đậm hơn */
-  height: 100px; /* Đặt chiều cao của hàng là 100px */
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.4); /* Điều chỉnh giá trị để đổ bóng đậm hơn */
+  height: 150px;
 `;
 
 
@@ -289,12 +291,10 @@ export const ButtonColumnCell = styled.td`
 export const ProductColumn = styled.td`
   width: 40%;
   padding: 8px;
-  text-align: center;
 `;
 export const ProductColumnCell = styled.td`
   width: 40%;
   padding: 8px;
-  text-align: center;
 `;
 //  viết container chia ảnh và tên sản phẩm ở đây
 

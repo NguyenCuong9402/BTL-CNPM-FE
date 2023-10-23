@@ -210,6 +210,7 @@ function Cart() {
                         onChange={() => handleRowSelect(item.id)}
                         />
                     </ButtonColumn>
+
                     <ProductColumnCell>{item.name_product}</ProductColumnCell>
                     <QuantityColumnCell>{item.quantity}</QuantityColumnCell>
                     <PriceColumnCell>{item.price}$</PriceColumnCell>
