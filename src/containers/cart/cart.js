@@ -139,7 +139,7 @@ function Cart() {
       <Body>
         <Header>
           <Navbar>
-            <a href="/index" style={{ fontSize: "40px" }}>
+            <a href="/index" style={{ fontSize: "30px" }}>
               <i className="bx bxl-xing"></i>Home
             </a>
           </Navbar>
@@ -178,7 +178,7 @@ function Cart() {
               style={{
                 color: "#FF5722",
                 fontSize: "40px",
-                marginTop: "40px",
+                marginTop: "10px",
                 marginBottom: "10px",
                 fontFamily: "Arial",
               }}
@@ -227,9 +227,8 @@ function Cart() {
                   ))}
               </TBody>
             </TableContainer>
-            <Container6><span style={{fontSize: '40px'}}>Oke</span></Container6>
           </Container2>
-
+          <Container6><span style={{fontSize: '40px'}}>Oke</span></Container6>
         </Container>
         <Modal
           isOpen={isModalOpen}

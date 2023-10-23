@@ -22,7 +22,7 @@ export const GlobalStyles = styled.div`
 export const Background = styled.div`
   background-position: center;
   background-size: cover;
-  height: 25%;
+  height:0px;
   width: 100%;
   filter: blur(10px);
 `;
@@ -32,13 +32,13 @@ export const Header = styled.header`
   top: 0;
   left: 0;
   width: 100%;
-  height: 15%;
+  height: 10%;
   padding: 25px 13%;
   background-color:black;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  z-index: 100;
+  z-index: 50;
 `;
 
 export const Navbar = styled.nav`
@@ -121,7 +121,7 @@ export const Container1 = styled.div`
   background-size: cover;
   background-position: center;
   width: 100%;
-  height: 35%;
+  height: 100px;
   justify-content: center; /* Căn giữa theo chiều ngang */
   align-items: center; /* Căn giữa theo chiều dọc */
 `;
@@ -142,7 +142,7 @@ export const Container2 = styled.div`
   background-size: cover;
   background-position: center;
   width: 60%;
-  height: 60%;
+  max-height:600px;
   display: flex;
   align-self: center;
   flex-direction: column;
@@ -251,7 +251,7 @@ export const LogoutButton = styled.img`
 export const Body = styled.div`
 height: 100vh;
 width: 100%;
-background: #000;
+background-color: #f0f0f0;
 `;
 
 
