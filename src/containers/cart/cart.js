@@ -111,8 +111,9 @@ function Cart() {
   // Call fetchData when the component mounts
   useEffect(() => {
     fetchData();
+    tinh_tong()
     setIsDeleteButtonVisible(selectedRows.length > 0);
-  }, [selectedRows]);
+  }, [selectedRows, tong_tien]);
   const handleProfile = async () => {
     history.push(`/profile`, {});
   };
@@ -155,6 +156,29 @@ function Cart() {
     } else {
       // If not selected, add it to the selectedRows array
       setSelectedRows([...selectedRows, itemId]);
+    }
+  };
+
+  const tinh_tong = async () => {
+    const access_token = localStorage.getItem("accessToken");
+    try {
+      const response = await axios.post('http://127.0.0.1:5000/api/v1/cart_items/get-total', {
+        list_id: selectedRows, // Truyền dữ liệu trực tiếp
+      }, {
+        headers: {
+          Authorization: `Bearer ${access_token}`,
+        },
+      });
+  
+      if (response.data.message.status === "success") {
+        setTongTien(response.data.data);
+      } else {
+        setModalMessage(response.data.message.text);
+        setModalOpen(true);
+      }
+    } catch (error) {
+      console.error(error);
+      alert('Có lỗi xảy ra khi gửi yêu cầu tính tổng');
     }
   };
 
