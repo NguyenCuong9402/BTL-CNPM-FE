@@ -117,34 +117,28 @@ function Detail() {
     setColor(selectedColor);
   };
 
-  const dat_hang = async (product_id, color, size, sl) => {
+  const dat_hang = () => {
     try {
       if (online === false) {
         setModalMessage('Bạn chưa đăng nhập, vui lòng đăng nhập để đặt hàng!');
         setModalOpen(true);
       } 
       const access_token = localStorage.getItem("accessToken");
-      const formData = new FormData();
-      formData.append('color', color);
-      formData.append('size', size);
-      formData.append('quantity', sl);
       const config = {
         headers: {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${access_token}`,
         },
       };
-
-      const response = await axios.post(
-        `http://127.0.0.1:5000/api/v1/cart_items/${product_id}`, formData, config
-      );
-
-      if (response.data.message.status === "success") {
-        
+      axios
+      .post(`http://127.0.0.1:5000/api/v1/cart_items/${product_id}`, { color: color, size: size, quantity : sl}, config)
+      .then((response) => {
         setModalMessage(response.data.message.text);
         setModalOpen(true);
-
-      }
+      })
+      .catch((error) => {
+        console.error('Error calling API:', error);
+  });
     } catch (error) {
       console.error("Error calling history API:", error);
     }
@@ -207,6 +201,7 @@ function Detail() {
             <del class="del">${product_data.old_price}</del>
           </div>
           <select class="select-color" onChange={handleColorChange}>
+          <option value="">Chọn màu</option>
           {cac_mau.map((item) => (
             <option key={item} value={item}>{item}
             </option>
@@ -218,10 +213,10 @@ function Detail() {
             </select>
             <select class="select-size" onChange={handleSizeChange}>
             <option value="">Chọn Size</option>
-              <option value="s">S</option>
-              <option value="m">M</option>
-              <option value="l">L</option>
-              <option value="xl">XL</option>
+              <option value="S">S</option>
+              <option value="M">M</option>
+              <option value="L">L</option>
+              <option value="XL">XL</option>
 
             </select>
           <div class="btn-group">

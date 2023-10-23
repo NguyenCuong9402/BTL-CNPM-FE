@@ -29,6 +29,12 @@ background-position: center;
   filter: blur(10px);
 `;
 
+export const Body1 = styled.div`
+height: 100vh;
+width: 100%;
+background: #000;
+`;
+
 export const Header = styled.header`
   position: fixed;
   top: 0;

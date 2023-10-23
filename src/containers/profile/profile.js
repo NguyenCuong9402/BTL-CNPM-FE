@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef  } from "react";
 import "boxicons/css/boxicons.min.css";
 import {
-  UserInfoContainer,
+  UserInfoContainer, Body,
   UserName,
   Background, CloseButtonStyled,
   AvatarImage,
@@ -171,6 +171,7 @@ function Profile() {
           onChange={(e) => setEditedName(e.target.value)}
           onBlur={finishEditing}
           autoFocus
+          style={{ fontSize: '30px'}}
         />
       );
     } else {
@@ -220,6 +221,8 @@ function Profile() {
           onChange={(e) => setEditedAdress(e.target.value)}
           onBlur={finishEditingAdress}
           autoFocus
+          style={{ fontSize: '30px'}}
+
         />
       );
     } else {
@@ -233,7 +236,7 @@ function Profile() {
   const [editedPhone, setEditedPhone] = useState('');
   const startEditingPhone = () => {
     setIsEditingPhone(true);
-    setEditedPhone(phone_user); // Đặt giá trị chỉnh sửa ban đầu là tên hiện tại
+    setEditedPhone(phone_user);
   };
   
   const finishEditingPhone = async () => {
@@ -270,6 +273,7 @@ function Profile() {
           onChange={(e) => setEditedPhone(e.target.value)}
           onBlur={finishEditingPhone}
           autoFocus
+          style={{ fontSize: '30px'}}
         />
       );
     } else {
@@ -282,10 +286,11 @@ function Profile() {
 
   return (
     <div>
+    <Body>
       <Header>
         <Navbar>
-          <a href="/index">
-            <i className="bx bxl-xing"></i>Word Scamble
+          <a href="/index"  style={{ fontSize: '30px' }}>
+            <i className="bx bxl-xing"></i>Home
           </a>
         </Navbar>
         <UserInfoContainer>
@@ -335,7 +340,7 @@ function Profile() {
             <TextItem>{renderPhone()}</TextItem>
             <AvatarImagebuton src={image_put} alt="change" onClick={startEditingPhone}/>
           </div>
-            {gender === 1 ? (
+            {/* {gender === 1 ? (
               <div>
               <AvatarImage src={image_man} alt="Man" />
               <TextItem>Nam</TextItem>
@@ -345,9 +350,10 @@ function Profile() {
               <AvatarImage src={image_woman} alt="woMan" />
               <TextItem>Nữ</TextItem>
               </div>
-            )}
+            )} */}
         </Item>
       </Container>
+      </Body>
     </div>
   );
 }

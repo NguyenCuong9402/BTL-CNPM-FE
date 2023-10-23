@@ -2,7 +2,7 @@ import React, { useState, useEffect} from "react";
 import "boxicons/css/boxicons.min.css";
 import {
   UserInfoContainer,  FormTitle, UserInputBox, UserInputLabel, UserInput,
-  UserName,Body,
+  UserName,Body, Body1,
   Background,
   AvatarImage,
   AvatarContainer,
@@ -110,6 +110,7 @@ function Changepass() {
   };
   return (
     <div>
+      <Body1>
       <Header>
         <Navbar>
           <a href="/index">
@@ -164,6 +165,7 @@ function Changepass() {
         </Container>
         <Modal isOpen={isModalOpen} message={modalMessage} onClose={handleCloseModal} />
     </Body>
+    </Body1>
     </div>
   );
 }

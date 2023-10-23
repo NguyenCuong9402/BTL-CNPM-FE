@@ -19,6 +19,11 @@ export const GlobalStyles = styled.div`
     background: #000;
   }
 `;
+export const Body = styled.div`
+height: 100vh;
+width: 100%;
+background: #000;
+`;
 
 export const Background = styled.div`
 background: url(${background1});
