@@ -35,6 +35,7 @@ function Detail() {
   const [sl, setSL] = useState(1)
   const [product_data, setProductData] = useState({})
   const [product_lien_quan, setProductlienquan] = useState([])
+  const [cac_mau, SetCacMau] = useState([])
   const fetchData = async (id) => {
     try {
       const response = await axios.get(
@@ -44,12 +45,13 @@ function Detail() {
       if (response.data.message.status === "success") {
         setProductData(response.data.data.data)
         setProductlienquan(response.data.data.lien_quan)
+        SetCacMau(response.data.data.data.cac_mau)
+
       }
     } catch (error) {
       console.error("Error calling history API:", error);
     }
   };
-  console.log(product_data.cac_mau)
   useEffect(() => {
     // Lấy userData từ localStorage khi component được tạo
     const userDataFromLocalStorage = JSON.parse(localStorage.getItem("user"));
@@ -148,14 +150,14 @@ function Detail() {
             <del class="del">${product_data.old_price}</del>
           </div>
           <select class="select-color">
-          {/* {product_data.cac_mau.map((item) => (
+          {cac_mau.map((item) => (
             <option key={item} value={item}>{item}
             </option>
-            ))} */}
-              <option value="">Chọn Màu</option>
+            ))}
+              {/* <option value="">Chọn Màu</option>
               <option value="red">Red</option>
               <option value="blue">Blue</option>
-              <option value="green">Green</option>
+              <option value="green">Green</option> */}
             </select>
             <select class="select-size">
             <option value="">Chọn Size</option>
@@ -187,6 +189,13 @@ function Detail() {
     </section>
   </article>
   </main>
+  <div style={{
+    marginLeft:"40%",
+    marginTop: '850px',
+    fontSize: '24px',
+    fontWeight: 'bold',
+    color: '#333',
+  }}>Các sản phẩm tương tự</div>
   <Container2>
   {product_lien_quan.map((item) => (
     <GridItem key={item.id} onClick={() => handleDetailClick(item.id)}>
@@ -207,14 +216,7 @@ function Detail() {
     </GridItem>
   ))}
   </Container2>
-  <div style={{
-    marginLeft:"40%",
-    marginBottom:'30px',
-    fontSize: '24px',
-    fontWeight: 'bold',
-    color: '#333',
-    marginBottom: '10px'
-  }}>các sản phẩm liên quan</div>
+  
   </div>
   );
 }

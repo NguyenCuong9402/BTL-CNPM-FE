@@ -518,7 +518,7 @@ export const Container2 = styled.div`
     max-width: 100%;
     display: flex;
     align-items: center;
-    margin-top: 900px; 
+    margin-top: 50px; 
     margin-bottom: 20px;
   & > * {
     margin-right: 8px; /* Khoảng cách 8px giữa các phần tử */
