@@ -264,7 +264,15 @@ export const TableRow = styled.tr`
   background-color: white;
   border-radius: 3px;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2); /* Điều chỉnh giá trị để đổ bóng đậm hơn */
+  height: 100px; /* Đặt chiều cao của hàng là 100px */
 `;
+export const TableCell = styled.tr`
+  background-color: white;
+  border-radius: 3px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2); /* Điều chỉnh giá trị để đổ bóng đậm hơn */
+  height: 100px; /* Đặt chiều cao của hàng là 100px */
+`;
+
 
 export const ButtonColumn = styled.td`
   width: 5%;

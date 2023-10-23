@@ -15,7 +15,7 @@ import {
   Navbar,
   SearchBarContainer,
   SearchInput, Checkbox,
-  SearchButton, QuantityColumnCell, TotalColumnCell, PriceColumnCell, ProductColumnCell, ButtonColumnCell,
+  SearchButton, QuantityColumnCell, TotalColumnCell, PriceColumnCell, ProductColumnCell, ButtonColumnCell, TableCell,
   Container, TotalColumn, QuantityColumn, PriceColumn, ProductColumn, ButtonColumn, TableRow, TableHeader, TableContainer
 } from "./cartSyle";
 import "boxicons/css/boxicons.min.css";
@@ -202,7 +202,7 @@ function Cart() {
             <Container5></Container5>
             <tbody>
                 {data.map((item) => (
-                <TableRow>
+                <TableCell>
                     <ButtonColumn>
                         <Checkbox
                         type="checkbox"
@@ -214,7 +214,7 @@ function Cart() {
                     <QuantityColumnCell>{item.quantity}</QuantityColumnCell>
                     <PriceColumnCell>{item.price}$</PriceColumnCell>
                     <TotalColumnCell>{item.total}$</TotalColumnCell>
-                </TableRow>
+                </TableCell>
                 ))}
             </tbody>
             </TableContainer>
