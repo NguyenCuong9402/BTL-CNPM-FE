@@ -444,3 +444,54 @@ height: 100vh;
 width: 100%;
 background: #000;
 `;
+
+
+
+export const TableContainer = styled.table`
+  width: 100%;
+  margin-top: 20px;
+  border-collapse: collapse;
+`;
+
+export const TableHeader = styled.thead`
+  background-color: #f0f0f0;
+`;
+
+export const TableRow = styled.tr`
+  background-color: ${props => (props.isSelected ? '#dcdcdc' : 'transparent')};
+`;
+
+export const TableCell = styled.td`
+  padding: 8px;
+  text-align: center;
+`;
+
+export const ButtonColumn = styled.td`
+  width: 5%;
+  padding: 8px;
+  text-align: center;
+`;
+
+export const ProductColumn = styled.td`
+  width: 40%;
+  padding: 8px;
+  text-align: center;
+`;
+
+export const PriceColumn = styled.td`
+  width: 15%;
+  padding: 8px;
+  text-align: center;
+`;
+
+export const QuantityColumn = styled.td`
+  width: 20%;
+  padding: 8px;
+  text-align: center;
+`;  
+
+export const TotalColumn = styled.td`
+  width: 20%;
+  padding: 8px;
+  text-align: center;
+`;

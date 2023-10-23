@@ -3,7 +3,7 @@ import "boxicons/css/boxicons.min.css";
 import {
   UserInfoContainer,
   Container1,
-  Container2,
+  Container2, Container3,
   UserName,
   Background,
   AvatarImage,
@@ -16,7 +16,7 @@ import {
   SearchBarContainer,
   SearchInput,
   SearchButton,
-  Container,
+  Container, TotalColumn, QuantityColumn, PriceColumn, ProductColumn, ButtonColumn, TableCell, TableRow, TableHeader, TableContainer
 } from "./cartSyle";
 import "boxicons/css/boxicons.min.css";
 import axios from "axios";
@@ -48,7 +48,6 @@ function Cart() {
   const history = useHistory();
   const [data, setData] = useState([]);
 
-  const [currentPage, setCurrentPage] = useState(1);
   const [text_search, setTextSearch] = useState("");
   const [text_search1, setTextSearch1] = useState("");
 
@@ -164,7 +163,34 @@ function Cart() {
               Giỏ Hàng
             </h2>
           </Container1>
-          <Container2></Container2>
+          <Container2>
+            <TableContainer>
+            <TableHeader>
+                <TableRow>
+                <ButtonColumn>Chọn</ButtonColumn>
+                <ProductColumn>Sản phẩm</ProductColumn>
+                <QuantityColumn>Số lượng</QuantityColumn>
+                <PriceColumn>Đơn giá</PriceColumn>
+                <TotalColumn>Số tiền</TotalColumn>
+                </TableRow>
+            </TableHeader>
+            <tbody>
+                {data.map((item) => (
+                <TableRow
+                    key={item.id}
+                    // isSelected={selectedRow === item.id}
+                    // onClick={() => setSelectedRow(item.id)}
+                >
+                    <ButtonColumn>{item.selected ? 'X' : ''}</ButtonColumn>
+                    <ProductColumn>{item.name_product}</ProductColumn>
+                    <QuantityColumn>{item.quantity}</QuantityColumn>
+                    <PriceColumn>{item.price}</PriceColumn>
+                    <TotalColumn>{item.total}</TotalColumn>
+                </TableRow>
+                ))}
+            </tbody>
+            </TableContainer>
+          </Container2>
         </Container>
         <Modal
           isOpen={isModalOpen}
