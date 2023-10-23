@@ -155,7 +155,7 @@ function Cart() {
   const handleSearch = () => {
     setTextSearch(text_search1)
     setTextSearch1('')
-
+  }
 
 
 
@@ -203,6 +203,6 @@ function Cart() {
   </div>
   );
 }
-}
+
 
 export default Cart;

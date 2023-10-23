@@ -206,6 +206,11 @@ const handleDetailClick = async(id) => {
     const selectedValue = event.target.value;
     setSortDirection(selectedValue);
   }
+
+  const SangGioHang = ()=>{
+    history.push(`/cart`, {});
+
+  }
   return (
     <div>
     <Body>
@@ -239,7 +244,7 @@ const handleDetailClick = async(id) => {
               </DropdownItem>
             </DropdownMenu>
           </AvatarContainer>
-          <CartImage src={cart} alt="Cart" className="cart" />
+          <CartImage src={cart} alt="Cart" className="cart" onClick={SangGioHang}/>
         </UserInfoContainer>):(
           <Navbar>
           <a href="/login" style={{fontSize: '30px'}}>Đăng Nhập</a>
