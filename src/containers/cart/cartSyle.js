@@ -300,8 +300,29 @@ export const ProductColumn = styled.td`
 export const ProductColumnCell = styled.td`
   width: 40%;
   padding: 8px;
+  display: flex;
+  flex-direction: row;
+  display: flex;
 `;
 //  viết container chia ảnh và tên sản phẩm ở đây
+export const LeftContainerProduct = styled.div`
+  width: 50%;
+  height: 100%;
+  padding: 4px;
+  img {
+    width:120px;
+    max-width: 100%;
+    height: 120px;
+    max-height: 100%;
+    object-fit: cover;
+  }
+`;
+
+export const RightContainerProduct = styled.div`
+  width: 50%;
+  height: 100%;
+  padding: 4px; /* Điều chỉnh khoảng cách và lề bên trong container */
+`;
 
 export const PriceColumn = styled.td`
   width: 15%;

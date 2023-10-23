@@ -14,7 +14,7 @@ import {
   Header,
   Navbar,
   SearchBarContainer,
-  SearchInput, Checkbox, Container6, 
+  SearchInput, Checkbox, Container6, LeftContainerProduct,RightContainerProduct,
   SearchButton, QuantityColumnCell, TotalColumnCell, PriceColumnCell, ProductColumnCell, ButtonColumnCell, TableCell,
   Container, TotalColumn, QuantityColumn, PriceColumn, ProductColumn, ButtonColumn, TableRow, TableHeader, TableContainer
 } from "./cartSyle";
@@ -211,8 +211,14 @@ function Cart() {
                         onChange={() => handleRowSelect(item.id)}
                         />
                     </ButtonColumn>
-
-                    <ProductColumnCell>{item.name_product}</ProductColumnCell>
+                    <ProductColumnCell>
+                    <LeftContainerProduct>
+                        <img src={`http://127.0.0.1:5000/api/v1/picture/${item.product_id}`} alt="Hình ảnh" />
+                    </LeftContainerProduct>
+                    <RightContainerProduct>
+                        <span>{item.name_product}</span>
+                    </RightContainerProduct>
+                    </ProductColumnCell>
                     <QuantityColumnCell>{item.quantity}</QuantityColumnCell>
                     <PriceColumnCell>{item.price}$</PriceColumnCell>
                     <TotalColumnCell>{item.total}$</TotalColumnCell>

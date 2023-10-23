@@ -315,7 +315,7 @@ const handleDetailClick = async(id) => {
       <Container3>
       <GridContainer>
       {data.map(item => (
-  <GridItem key={item.id} onClick={() => handleDetailClick(item.id)}>
+    <GridItem key={item.id} onClick={() => handleDetailClick(item.id)}>
     <img src={`http://127.0.0.1:5000/api/v1/picture/${item.id}`} alt="Hình ảnh" />
     {item.giam_gia > 0 && (
       <DiscountTag>-{item.giam_gia}%</DiscountTag>
