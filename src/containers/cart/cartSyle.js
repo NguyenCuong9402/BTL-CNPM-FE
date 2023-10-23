@@ -129,7 +129,6 @@ export const Container1 = styled.div`
 
 
 export const Container2 = styled.div`
-  background-color: white; 
   background-size: cover;
   background-position: center;
   width: 80%;
@@ -233,211 +232,8 @@ export const LogoutButton = styled.img`
   }
 `
 
-export const flashAnimation = keyframes`
-  0% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-`;
-
-export const FormTitle = styled.h1`
-  font-size: 26px;
-  margin-top: 50px;
-  height : 70px;
-  font-weight: 600;
-  text-align: center;
-  padding-bottom: 6px;
-  color: white;
-  text-shadow: 2px 2px 2px black;
-  border-bottom: solid 1px white;
-`;
-
-export const UserInputBox = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  text-align: center;
-  align-items: center;
-  width: 30%;
-  margin: 0 auto;
-  padding-bottom: 15px;
-`;
 
 
-export const UserInputLabel = styled.label`
-  width: 95%;
-  color: white;
-  text-align: center;
-  font-size: 20px;
-  font-weight: 400;
-  margin: 5px 0;
-`;
-
-export const UserInput = styled.input`
-  height: 40px;
-  width: 95%;
-  border-radius: 7px;
-  outline: none;
-  border: 1px solid grey;
-  padding: 0 10px;
-`;
-export const FormSubmitButton = styled.div`
-  margin-top: 40px;
-  text-align: center;
-  button {
-    margin: 20px 0; /* Adjust the margin as needed */
-  }
-`;
-export const SubmitInput = styled.input`
-  display: block;
-  width: 10%; /* Đặt độ rộng 50% */
-  margin: 0 auto; /* Căn giữa theo chiều ngang */
-  font-size: 20px;
-  padding: 10px;
-  border: none;
-  text-align: center;
-  border-radius: 3px;
-  color: rgb(209, 209, 209);
-  background: rgba(63, 114, 76, 0.7);
-  cursor: pointer;
-  &:hover {
-    filter: brightness(1.2); /* Tăng độ sáng lên 20% khi hover */
-    transform: scale(1.1);
-  }
-`;
-
-export const SubmitInputHover = styled(SubmitInput)`
-  &:hover {
-    background: rgba(56, 204, 93, 0.7);
-    color: rgb(255, 255, 255);
-    
-  }
-`;
-
-export const ImagePreview = styled.img`  
-  max-width: 100%;
-  max-height: 300px;
-  margin: 10px auto;
-  display: block;
-  border-radius: 10px;
-`;
-
-export const ChooseFileButton = styled.label`
-  cursor: pointer;
-  color: white;
-`;
-
-export const FileInputContainer = styled.div`
-  text-align: center;
-  input[type="file"] {
-    color: white;
-  }
-`;
-
-
-
-export const GridContainer = styled.div`
-  display: grid;
-  gap: 16px; /* Khoảng cách giữa các phần tử trong lưới */
-  grid-template-columns: repeat(6, minmax(200px, 1fr));
-  max-height: 700px; /* Đặt chiều cao tối đa cho container */
-  overflow: auto; /* Cho phép cuộn nếu nội dung vượt quá kích thước của container */
-  padding: 16px; /* Khoảng cách giữa nội dung và viền container */
-  width: 100%;
-`;
-
-export const GridItem = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  padding: 10px;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-  height: 300px;
-  position: relative;
-
-  &:hover {
-    transform: scale(1.05);
-    z-index: 1;
-  }
-
-  img {
-    max-width: 100%;
-    max-height: 80%;
-    object-fit: cover;
-  }
-`;
-
-export const ItemInfo = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 20%;
-  width: 100%;
-  padding: 10px;
-  position: absolute;
-  bottom: 0;
-  background-color: rgba(255, 255, 255, 0.9);
-  left: 0;
-  right: 0;    
-`;
-
-export const NameProduct = styled.p`
-  text-align: left; /* Đặt văn bản lệch trái */
-  padding-left: 0px; /* Khoảng cách từ lề trái */
-  margin: 0;
-`;
-
-
-
-export const ItemInfo1 = styled.div`
-  display: flex;
-  width: 100%;
-  justify-content: space-between;
-  align-items: center;
-`;
-
-export const Price = styled.h4`
-  margin: 0;
-  float: left;
-  font-size: 20px; /* Điều chỉnh kích thước chữ */
-  color: #FF3030;
-  font-family: 'Roboto', sans-serif;
-  position: relative; /* Tạo vị trí tương đối để đặt pseudo-element */
-`;
-
-export const DiscountTag = styled.div`
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background-color: #FFA500;
-  color: white;
-  padding: 5px 10px;
-  font-size: 10px;
-`;
-
-
-export const SoldCount = styled.h5`
-  margin: 0;
-  float: right;
-  font-size: 12px; /* Điều chỉnh kích thước chữ */
-  color: #888; /* Màu xám nhạt */
-  font-family: 'Roboto', sans-serif; /* Phông chữ hiện đại (thay thế 'Roboto' bằng phông chữ bạn muốn sử dụng) */
-  /* Thêm các kiểu form hiện đại nếu cần */
-`;
-
-export const DollarSign = styled.span`
-  font-size: 12px; /* Điều chỉnh kích thước "$" */
-  margin-right: 2px; /* Khoảng cách giữa "$" và giá tiền */
-  position: absolute; /* Đặt vị trí tuyệt đối cho "$" */
-  top: 50%; /* Đặt "$" ở giữa theo chiều dọc */
-  transform: translateY(-50%); /* Để căn giữa "$" theo chiều dọc */
-  left: -10px; /* Đặt "$" ra xa bên trái */
-`;
 
 export const Body = styled.div`
 height: 100vh;
@@ -451,14 +247,17 @@ export const TableContainer = styled.table`
   width: 100%;
   margin-top: 20px;
   border-collapse: collapse;
+  margin-bottom: 10px;
+
 `;
 
 export const TableHeader = styled.thead`
-  background-color: #f0f0f0;
+  background-color: white;
+
 `;
 
 export const TableRow = styled.tr`
-  background-color: ${props => (props.isSelected ? '#dcdcdc' : 'transparent')};
+  background-color: white;
 `;
 
 export const TableCell = styled.td`
@@ -472,11 +271,23 @@ export const ButtonColumn = styled.td`
   text-align: center;
 `;
 
+export const ButtonColumnCell = styled.td`
+  width: 5%;
+  padding: 8px;
+  text-align: center;
+`;
+
 export const ProductColumn = styled.td`
   width: 40%;
   padding: 8px;
   text-align: center;
 `;
+export const ProductColumnCell = styled.td`
+  width: 40%;
+  padding: 8px;
+  text-align: center;
+`;
+//  viết container chia ảnh và tên sản phẩm ở đây
 
 export const PriceColumn = styled.td`
   width: 15%;
@@ -484,7 +295,19 @@ export const PriceColumn = styled.td`
   text-align: center;
 `;
 
+export const PriceColumnCell = styled.td`
+  width: 15%;
+  padding: 8px;
+  text-align: center;
+`;
+
 export const QuantityColumn = styled.td`
+  width: 20%;
+  padding: 8px;
+  text-align: center;      
+`;
+
+export const QuantityColumnCell = styled.td`
   width: 20%;
   padding: 8px;
   text-align: center;
@@ -494,4 +317,15 @@ export const TotalColumn = styled.td`
   width: 20%;
   padding: 8px;
   text-align: center;
+`;
+
+export const TotalColumnCell = styled.td`
+  width: 20%;
+  padding: 8px;
+  text-align: center;
+`;
+
+export const Checkbox = styled.input`
+  width: 18px;
+  height: 18px;
 `;

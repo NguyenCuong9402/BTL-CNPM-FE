@@ -14,8 +14,8 @@ import {
   Header,
   Navbar,
   SearchBarContainer,
-  SearchInput,
-  SearchButton,
+  SearchInput, Checkbox,
+  SearchButton, QuantityColumnCell, TotalColumnCell, PriceColumnCell, ProductColumnCell, ButtonColumnCell,
   Container, TotalColumn, QuantityColumn, PriceColumn, ProductColumn, ButtonColumn, TableCell, TableRow, TableHeader, TableContainer
 } from "./cartSyle";
 import "boxicons/css/boxicons.min.css";
@@ -25,20 +25,6 @@ import logout from "./logout.png";
 
 import Modal from "../../modal";
 
-function formatDate(created_date) {
-  // Convert timestamp (in seconds) to milliseconds
-  const createdDate = new Date(created_date * 1000);
-  const hours = createdDate.getHours().toString().padStart(2, "0");
-  const minutes = createdDate.getMinutes().toString().padStart(2, "0");
-  const seconds = createdDate.getSeconds().toString().padStart(2, "0");
-  const day = createdDate.getDate().toString().padStart(2, "0");
-  const month = (createdDate.getMonth() + 1).toString().padStart(2, "0"); // Cộng 1 vì tháng được đếm từ 0 đến 11
-  const year = createdDate.getFullYear();
-  const formattedTime = `${hours}:${minutes}:${seconds}`;
-  const formattedDate = `${day}/${month}/${year}`;
-  const formattedCreatedDate = `${formattedTime} ${formattedDate}`;
-  return formattedCreatedDate;
-}
 
 function Cart() {
   const [isModalOpen, setModalOpen] = useState(false);
@@ -47,7 +33,7 @@ function Cart() {
   const [user_id, setUserDataId] = useState(null);
   const history = useHistory();
   const [data, setData] = useState([]);
-
+  const [online, SetOnline] = useState(false)
   const [text_search, setTextSearch] = useState("");
   const [text_search1, setTextSearch1] = useState("");
 
@@ -57,6 +43,7 @@ function Cart() {
       if (userDataFromLocalStorage.admin === 0) {
         setUserData(userDataFromLocalStorage.name_user);
         setUserDataId(userDataFromLocalStorage.id);
+        SetOnline(true)
       } else {
       }
     } else {
@@ -72,14 +59,18 @@ function Cart() {
   };
   const fetchData = async (text_search) => {
     try {
+      const access_token = localStorage.getItem("accessToken"); // Get access token from local storage
       const response = await axios.get(
-        `http://127.0.0.1:5000/api/v1/product/get-item?text_search=${text_search}`
+        `http://127.0.0.1:5000/api/v1/cart_items?text_search=${text_search}`, {
+            headers: {
+              Authorization: `Bearer ${access_token}`,
+            },
+          }
       );
-
-      if (response.data.code === 200) {
-        const formattedData = response.data.data.items.map((item) => ({
+    console.log(response)
+      if (response.data.message.status === 'success') {
+        const formattedData = response.data.data.map((item) => ({
           ...item,
-          created_date: formatDate(item.created_date), // Format the timestamp
         }));
         setData(formattedData);
       } else {
@@ -89,6 +80,7 @@ function Cart() {
       console.error("Error calling history API:", error);
     }
   };
+  console.log(data)
   // Call fetchData when the component mounts
   useEffect(() => {
     fetchData(text_search);
@@ -111,7 +103,18 @@ function Cart() {
     setTextSearch(text_search1);
     setTextSearch1("");
   };
+  const [selectedRows, setSelectedRows] = useState([]);
+  const [selectAll, setSelectAll] = useState(false);
+  const handleCheckboxChange = (id) => {
+    if (selectedRows.includes(id)) {
+      setSelectedRows(selectedRows.filter((rowId) => rowId !== id));
+    } else {
+      setSelectedRows([...selectedRows, id]);
+    }
+  };
+  const handleCheckboxAll = () =>{
 
+  }
   return (
     <div>
       <Body>
@@ -167,7 +170,10 @@ function Cart() {
             <TableContainer>
             <TableHeader>
                 <TableRow>
-                <ButtonColumn>Chọn</ButtonColumn>
+                <ButtonColumn><Checkbox
+                        type="checkbox"
+                        onChange={() => handleCheckboxAll()}
+                        /></ButtonColumn>
                 <ProductColumn>Sản phẩm</ProductColumn>
                 <QuantityColumn>Số lượng</QuantityColumn>
                 <PriceColumn>Đơn giá</PriceColumn>
@@ -176,16 +182,18 @@ function Cart() {
             </TableHeader>
             <tbody>
                 {data.map((item) => (
-                <TableRow
-                    key={item.id}
-                    // isSelected={selectedRow === item.id}
-                    // onClick={() => setSelectedRow(item.id)}
-                >
-                    <ButtonColumn>{item.selected ? 'X' : ''}</ButtonColumn>
-                    <ProductColumn>{item.name_product}</ProductColumn>
-                    <QuantityColumn>{item.quantity}</QuantityColumn>
-                    <PriceColumn>{item.price}</PriceColumn>
-                    <TotalColumn>{item.total}</TotalColumn>
+                <TableRow>
+                    <ButtonColumn>
+                        <Checkbox
+                        type="checkbox"
+                        checked={selectedRows.includes(item.id)}
+                        onChange={() => handleCheckboxChange(item.id)}
+                        />
+                    </ButtonColumn>
+                    <ProductColumnCell>{item.name_product}</ProductColumnCell>
+                    <QuantityColumnCell>{item.quantity}</QuantityColumnCell>
+                    <PriceColumnCell>{item.price}</PriceColumnCell>
+                    <TotalColumnCell>{item.total}</TotalColumnCell>
                 </TableRow>
                 ))}
             </tbody>
