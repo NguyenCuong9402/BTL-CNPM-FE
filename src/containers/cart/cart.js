@@ -113,6 +113,7 @@ function Cart() {
     fetchData();
     tinh_tong()
     setIsDeleteButtonVisible(selectedRows.length > 0);
+
   }, [selectedRows, tong_tien]);
   const handleProfile = async () => {
     history.push(`/profile`, {});
