@@ -178,7 +178,7 @@ function Cart() {
               style={{
                 color: "#FF5722",
                 fontSize: "40px",
-                marginTop: "30px",
+                marginTop: "80px",
                 marginBottom: "10px",
                 fontFamily: "Arial",
               }}

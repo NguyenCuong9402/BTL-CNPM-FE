@@ -111,7 +111,6 @@ export const Container = styled.div`
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
-  overflow: auto
 `;
 
 export const Container1 = styled.div`
@@ -119,9 +118,8 @@ export const Container1 = styled.div`
   background-color: white; 
   background-size: cover;
   background-position: center;
-  overflow: hidden;
   width: 100%;
-  height: 200;
+  height: 150px;
   justify-content: center; /* Căn giữa theo chiều ngang */
   align-items: center; /* Căn giữa theo chiều dọc */
 `;
@@ -142,11 +140,10 @@ export const Container2 = styled.div`
   background-size: cover;
   background-position: center;
   width: 60%;
-  height: 84%;
+  height: 60%;
   display: flex;
   align-self: center;
   flex-direction: column;
-
 `;
 
 
@@ -261,7 +258,6 @@ export const TableContainer = styled.table`
     border-collapse: collapse;
     margin-bottom: 10px;
     max-height: 50%;
-    overflow: auto;
 `;
 
 
