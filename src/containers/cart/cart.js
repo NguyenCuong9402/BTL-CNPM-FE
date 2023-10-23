@@ -14,7 +14,7 @@ import {
   Header,
   Navbar,
   SearchBarContainer,
-  SearchInput, Checkbox, Container6, LeftContainerProduct,RightContainerProduct,
+  SearchInput, Checkbox, Container6, LeftContainerProduct,RightContainerProduct,TBody,
   SearchButton, QuantityColumnCell, TotalColumnCell, PriceColumnCell, ProductColumnCell, ButtonColumnCell, TableCell,
   Container, TotalColumn, QuantityColumn, PriceColumn, ProductColumn, ButtonColumn, TableRow, TableHeader, TableContainer
 } from "./cartSyle";
@@ -178,7 +178,7 @@ function Cart() {
               style={{
                 color: "#FF5722",
                 fontSize: "40px",
-                marginTop: "80px",
+                marginTop: "40px",
                 marginBottom: "10px",
                 fontFamily: "Arial",
               }}
@@ -188,44 +188,44 @@ function Cart() {
           </Container1>
           <Container2>
             <TableContainer>
-            <TableHeader>
-                <TableRow>
-                <ButtonColumn><Checkbox
-                        type="checkbox"
-                        onChange={() => handleSelectAllClick()}
-                        /></ButtonColumn>
-                <ProductColumn>Sản phẩm</ProductColumn>
-                <QuantityColumn>Số lượng</QuantityColumn>
-                <PriceColumn>Đơn giá</PriceColumn>
-                <TotalColumn>Số tiền</TotalColumn>
-                </TableRow>
-            </TableHeader>
-            <Container5></Container5>
-            <tbody>
-                {data.map((item) => (
-                <TableCell>
-                    <ButtonColumn>
-                        <Checkbox
-                        type="checkbox"
-                        checked={selectedRows.includes(item.id)}
-                        onChange={() => handleRowSelect(item.id)}
-                        />
-                    </ButtonColumn>
-                    <ProductColumnCell>
-                        <LeftContainerProduct>
-                            <img src={`http://127.0.0.1:5000/api/v1/picture/${item.product_id}`} alt="Hình ảnh" />
+              <TableHeader>
+                  <TableRow>
+                  <ButtonColumn><Checkbox
+                          type="checkbox"
+                          onChange={() => handleSelectAllClick()}
+                          /></ButtonColumn>
+                  <ProductColumn>Sản phẩm</ProductColumn>
+                  <QuantityColumn>Số lượng</QuantityColumn>
+                  <PriceColumn>Đơn giá</PriceColumn>
+                  <TotalColumn>Số tiền</TotalColumn>
+                  </TableRow>
+              </TableHeader>
+              <Container5></Container5>
+              <TBody>
+                  {data.map((item) => (
+                  <TableCell>
+                      <ButtonColumn>
+                          <Checkbox
+                          type="checkbox"
+                          checked={selectedRows.includes(item.id)}
+                          onChange={() => handleRowSelect(item.id)}
+                          />
+                      </ButtonColumn>
+                      <ProductColumnCell>
+                          <LeftContainerProduct>
+                              <img src={`http://127.0.0.1:5000/api/v1/picture/${item.product_id}`} alt="Hình ảnh" />
 
-                        </LeftContainerProduct>
-                        <RightContainerProduct>
-                            <span>{item.name_product}</span>
-                        </RightContainerProduct>
-                    </ProductColumnCell>
-                    <QuantityColumnCell>{item.quantity}</QuantityColumnCell>
-                    <PriceColumnCell>{item.price}$</PriceColumnCell>
-                    <TotalColumnCell>{item.total}$</TotalColumnCell>
-                </TableCell>
-                ))}
-            </tbody>
+                          </LeftContainerProduct>
+                          <RightContainerProduct>
+                              <span>{item.name_product}</span>
+                          </RightContainerProduct>
+                      </ProductColumnCell>
+                      <QuantityColumnCell>{item.quantity}</QuantityColumnCell>
+                      <PriceColumnCell>{item.price}$</PriceColumnCell>
+                      <TotalColumnCell>{item.total}$</TotalColumnCell>
+                  </TableCell>
+                  ))}
+              </TBody>
             </TableContainer>
             <Container6><span style={{fontSize: '40px'}}>Oke</span></Container6>
           </Container2>

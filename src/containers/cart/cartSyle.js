@@ -22,7 +22,7 @@ export const GlobalStyles = styled.div`
 export const Background = styled.div`
   background-position: center;
   background-size: cover;
-  height: 40%;
+  height: 25%;
   width: 100%;
   filter: blur(10px);
 `;
@@ -32,7 +32,7 @@ export const Header = styled.header`
   top: 0;
   left: 0;
   width: 100%;
-  height: 150px;
+  height: 15%;
   padding: 25px 13%;
   background-color:black;
   display: flex;
@@ -111,6 +111,8 @@ export const Container = styled.div`
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
+  overflow-y: auto;
+
 `;
 
 export const Container1 = styled.div`
@@ -119,7 +121,7 @@ export const Container1 = styled.div`
   background-size: cover;
   background-position: center;
   width: 100%;
-  height: 150px;
+  height: 35%;
   justify-content: center; /* Căn giữa theo chiều ngang */
   align-items: center; /* Căn giữa theo chiều dọc */
 `;
@@ -132,7 +134,7 @@ export const Container6 = styled.div`
     margin-top: 40px;
     margin-bottom: 20px;
     width: 100%;
-    max-height: 30vh;
+    height: 10%;
 `;
 
 
@@ -144,6 +146,8 @@ export const Container2 = styled.div`
   display: flex;
   align-self: center;
   flex-direction: column;
+  overflow-y: auto;
+
 `;
 
 
@@ -257,7 +261,7 @@ export const TableContainer = styled.table`
     margin-top: 20px;
     border-collapse: collapse;
     margin-bottom: 10px;
-    max-height: 50%;
+    height: 90%;
 `;
 
 
@@ -362,4 +366,9 @@ export const TotalColumnCell = styled.td`
 export const Checkbox = styled.input`
   width: 18px;
   height: 18px;
+`;
+
+export const TBody = styled.tbody`
+  height: 200px;
+  overflow-y: auto;
 `;
