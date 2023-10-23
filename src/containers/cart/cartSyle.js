@@ -20,10 +20,9 @@ export const GlobalStyles = styled.div`
 `;
 
 export const Background = styled.div`
-  background-color: white;
   background-position: center;
   background-size: cover;
-  height: 100%;
+  height: 40%;
   width: 100%;
   filter: blur(10px);
 `;
@@ -33,6 +32,7 @@ export const Header = styled.header`
   top: 0;
   left: 0;
   width: 100%;
+  height: 150px;
   padding: 25px 13%;
   background-color:black;
   display: flex;
@@ -100,17 +100,18 @@ export const SearchButton = styled.button`
 
 export const Container = styled.div`
   display: flex;
-  position: absolute;
+  position: relative;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
   width: 100%;
-  height: 100%;
   flex-direction: column; 
   margin-top: 20px;
   background-color: #f0f0f0;
   background-size: cover;
   background-position: center;
+  background-attachment: fixed;
+
 `;
 
 export const Container1 = styled.div`
@@ -120,12 +121,17 @@ export const Container1 = styled.div`
   background-position: center;
   overflow: hidden;
   width: 100%;
-  height: 20%;
+  height: 200;
   justify-content: center; /* Căn giữa theo chiều ngang */
   align-items: center; /* Căn giữa theo chiều dọc */
 `;
 
 export const Container5 = styled.div`
+    margin-bottom: 20px;
+`;
+
+export const Container6 = styled.div`
+    margin-top: 40px;
     margin-bottom: 20px;
 `;
 

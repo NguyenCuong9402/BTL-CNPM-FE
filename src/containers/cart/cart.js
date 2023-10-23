@@ -14,7 +14,7 @@ import {
   Header,
   Navbar,
   SearchBarContainer,
-  SearchInput, Checkbox,
+  SearchInput, Checkbox, Container6,
   SearchButton, QuantityColumnCell, TotalColumnCell, PriceColumnCell, ProductColumnCell, ButtonColumnCell, TableCell,
   Container, TotalColumn, QuantityColumn, PriceColumn, ProductColumn, ButtonColumn, TableRow, TableHeader, TableContainer
 } from "./cartSyle";
@@ -178,8 +178,8 @@ function Cart() {
               style={{
                 color: "#FF5722",
                 fontSize: "40px",
-                marginTop: "100px",
-
+                marginTop: "30px",
+                marginBottom: "10px",
                 fontFamily: "Arial",
               }}
             >
@@ -220,6 +220,7 @@ function Cart() {
                 ))}
             </tbody>
             </TableContainer>
+            <Container6><span>Oke</span></Container6>
           </Container2>
         </Container>
         <Modal
