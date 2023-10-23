@@ -14,7 +14,7 @@ import {
   Header,
   Navbar,
   SearchBarContainer,
-  SearchInput, Checkbox, Container6,
+  SearchInput, Checkbox, Container6, 
   SearchButton, QuantityColumnCell, TotalColumnCell, PriceColumnCell, ProductColumnCell, ButtonColumnCell, TableCell,
   Container, TotalColumn, QuantityColumn, PriceColumn, ProductColumn, ButtonColumn, TableRow, TableHeader, TableContainer
 } from "./cartSyle";

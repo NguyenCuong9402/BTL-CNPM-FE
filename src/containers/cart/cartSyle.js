@@ -297,6 +297,11 @@ export const ProductColumn = styled.td`
   width: 40%;
   padding: 8px;
 `;
+export const ProductColumnCell = styled.td`
+  width: 40%;
+  padding: 8px;
+`;
+//  viết container chia ảnh và tên sản phẩm ở đây
 
 export const PriceColumn = styled.td`
   width: 15%;
@@ -304,21 +309,10 @@ export const PriceColumn = styled.td`
   text-align: center;
 `;
 
-export const ProductColumnCell = styled.td`
-  width: 40%;
+export const PriceColumnCell = styled.td`
+  width: 15%;
   padding: 8px;
-  display: flex;
-  flex-direction: row;
-`;
-
-export const LeftContainerProduct = styled.div`
-  width: 25%;   
-  padding: 4px; /* Điều chỉnh khoảng cách và lề bên trong container */
-`;
-
-export const RightContainerProduct = styled.div`
-  width: 75%;
-  padding: 4px; /* Điều chỉnh khoảng cách và lề bên trong container */
+  text-align: center;
 `;
 
 export const QuantityColumn = styled.td`
