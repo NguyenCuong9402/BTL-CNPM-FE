@@ -304,9 +304,22 @@ export const ButtonColumnCell = styled.td`
 `;
 
 export const ProductColumn = styled.td`
-  width: 40%;
+  width: 45%;
   padding: 8px;
 `;
+
+export const PhanLoaiColumn = styled.td`
+  width: 10%;
+  padding: 8px;
+`;
+
+export const PhanLoaiColumnCell = styled.td`
+  width: 5%;
+  padding: 8px;
+  text-align: center;
+`;
+
+
 export const ProductColumnCell = styled.td`
   width: 100%;
   padding: 8px;
@@ -336,37 +349,37 @@ export const RightContainerProduct = styled.div`
 
 
 export const PriceColumn = styled.td`
-  width: 15%;
+  width: 10%;
   padding: 8px;
   text-align: center;
 `;
 
 export const PriceColumnCell = styled.td`
-  width: 15%;
+  width: 10%;
   padding: 8px;
   text-align: center;
 `;
 
 export const QuantityColumn = styled.td`
-  width: 20%;
+  width: 15%;
   padding: 8px;
   text-align: center;      
 `;
 
 export const QuantityColumnCell = styled.td`
-  width: 20%;
+  width: 15%;
   padding: 8px;
   text-align: center;
 `;  
 
 export const TotalColumn = styled.td`
-  width: 20%;
+  width: 15%;
   padding: 8px;
   text-align: center;
 `;
 
 export const TotalColumnCell = styled.td`
-  width: 20%;
+  width: 15%;
   padding: 8px;
   text-align: center;
 `;

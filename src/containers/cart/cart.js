@@ -37,7 +37,7 @@ import {
   PriceColumn,
   ProductColumn,
   ButtonColumn,
-  TableRow,
+  TableRow, PhanLoaiColumn, PhanLoaiColumnCell,
   TableHeader,TotalText, TotalAmount,
   TableContainer,
 } from "./cartSyle";
@@ -237,6 +237,7 @@ function Cart() {
                   />
                 </ButtonColumn>
                 <ProductColumn>Sản phẩm</ProductColumn>
+                <PhanLoaiColumn></PhanLoaiColumn>
                 <QuantityColumn>Số lượng</QuantityColumn>
                 <PriceColumn>Đơn giá</PriceColumn>
                 <TotalColumn>Số tiền</TotalColumn>
@@ -264,6 +265,7 @@ function Cart() {
                       <span>{item.name_product}</span>
                     </RightContainerProduct>
                   </ProductColumnCell>
+                  <PhanLoaiColumnCell></PhanLoaiColumnCell>
                   <QuantityColumnCell>{item.quantity}</QuantityColumnCell>
                   <PriceColumnCell>{item.price}$</PriceColumnCell>
                   <TotalColumnCell>{item.total}$</TotalColumnCell>
