@@ -158,6 +158,34 @@ function Cart() {
     }
   };
 
+  const handleDeleteButtonClick = async () => {
+    const access_token = localStorage.getItem("accessToken");
+    try {
+      const response = await axios.delete('http://127.0.0.1:5000/api/v1/cart_items', {
+        data: { list_id: selectedRows },
+        headers: {
+          Authorization: `Bearer ${access_token}`,
+          'Content-Type': 'application/json',
+        },
+      });
+  
+      if (response.data.message.status === "success") {
+        setModalMessage(response.data.message.text);
+        setModalOpen(true);
+        // Sau khi xóa thành công, cập nhật lại danh sách sản phẩm
+        fetchData();
+        setSelectedRows([]); // Đặt lại selectedRows sau khi xóa
+        setSelectAll(false); // Đặt lại selectAll sau khi xóa
+      } else {
+        setModalMessage(response.data.message.text);
+        setModalOpen(true);
+      }
+    } catch (error) {
+      console.error(error);
+      alert('Có lỗi xảy ra khi gửi yêu cầu xóa');
+    }
+  };
+
   return (
     <Body>
       <Header>
@@ -190,7 +218,7 @@ function Cart() {
             style={{
               color: "#FF5722",
               fontSize: "40px",
-              marginTop: "10px",
+              marginTop: "30px",
               marginBottom: "10px",
               fontFamily: "Arial",
             }}
@@ -245,7 +273,7 @@ function Cart() {
           </TableContainer>
         </Container2>
         <Container6>
-          {isDeleteButtonVisible && <DeleteButton>Xóa hàng</DeleteButton>}
+          {isDeleteButtonVisible && <DeleteButton onClick={handleDeleteButtonClick}>Xóa hàng</DeleteButton>}
           <TotalText>Tổng tiền:</TotalText>
           <TotalAmount>{tong_tien} $ </TotalAmount>
           <BuyButton>Mua hàng</BuyButton>
