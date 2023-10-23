@@ -247,7 +247,7 @@ function Cart() {
         <Container6>
           {isDeleteButtonVisible && <DeleteButton>Xóa hàng</DeleteButton>}
           <TotalText>Tổng tiền:</TotalText>
-          <TotalAmount>{10000} $ </TotalAmount>
+          <TotalAmount>{tong_tien} $ </TotalAmount>
           <BuyButton>Mua hàng</BuyButton>
         </Container6>
       </Container>
