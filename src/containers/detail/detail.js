@@ -20,6 +20,7 @@ import { useParams } from 'react-router-dom';
 import "./style.css"
 import { Ionicon } from 'react-ionicons';
 import cart  from "./trolley.png";
+import Modal from '../../modal';
 
 
 
@@ -32,6 +33,7 @@ function Detail() {
 
   const history = useHistory();
   const { id } = useParams();
+  const [product_id, setProductID] = useState('')
   const [product_data, setProductData] = useState({})
   const [product_lien_quan, setProductlienquan] = useState([])
   const [cac_mau, SetCacMau] = useState([])
@@ -39,6 +41,9 @@ function Detail() {
   const [sl, setSL] = useState(1)
   const [size, setSize] = useState('');
   const [color, setColor] = useState('');
+
+  const [isModalOpen, setModalOpen] = useState(false);
+  const [modalMessage, setModalMessage] = useState('');
   const fetchData = async (id) => {
     try {
       const response = await axios.get(
@@ -46,6 +51,7 @@ function Detail() {
       );
 
       if (response.data.message.status === "success") {
+        setProductID(response.data.data.data.id)
         setProductData(response.data.data.data)
         setProductlienquan(response.data.data.lien_quan)
         SetCacMau(response.data.data.data.cac_mau)
@@ -109,6 +115,43 @@ function Detail() {
   const handleColorChange = (event) => {
     const selectedColor = event.target.value;
     setColor(selectedColor);
+  };
+
+  const dat_hang = async (product_id, color, size, sl) => {
+    try {
+      if (online === false) {
+        setModalMessage('Bạn chưa đăng nhập, vui lòng đăng nhập để đặt hàng!');
+        setModalOpen(true);
+      } 
+      const access_token = localStorage.getItem("accessToken");
+      const formData = new FormData();
+      formData.append('color', color);
+      formData.append('size', size);
+      formData.append('quantity', sl);
+      const config = {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${access_token}`,
+        },
+      };
+
+      const response = await axios.post(
+        `http://127.0.0.1:5000/api/v1/cart_items/${product_id}`, formData, config
+      );
+
+      if (response.data.message.status === "success") {
+        
+        setModalMessage(response.data.message.text);
+        setModalOpen(true);
+
+      }
+    } catch (error) {
+      console.error("Error calling history API:", error);
+    }
+  };
+
+  const handleCloseModal = () => {
+    setModalOpen(false);
   };
   return (
     <div>
@@ -192,7 +235,7 @@ function Detail() {
                 <ion-icon name="add-outline">+</ion-icon>
               </button>
             </div>
-            <button class="cart-btn">
+            <button class="cart-btn" onClick={dat_hang}>
               <ion-icon name="bag-handle-outline" aria-hidden="true"></ion-icon>
 
               <span class="span">Add to cart</span>
@@ -230,7 +273,7 @@ function Detail() {
     </GridItem>
   ))}
   </Container2>
-  
+  <Modal isOpen={isModalOpen} message={modalMessage} onClose={handleCloseModal} />
   </div>
   );
 }
