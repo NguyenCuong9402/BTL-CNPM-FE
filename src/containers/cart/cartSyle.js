@@ -111,7 +111,6 @@ export const Container = styled.div`
   background-color: #f0f0f0;
   background-size: cover;
   background-position: center;
-  overflow: auto;
 `;
 
 export const Container1 = styled.div`

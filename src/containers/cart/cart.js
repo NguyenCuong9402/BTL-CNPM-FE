@@ -179,6 +179,7 @@ function Cart() {
                 color: "#FF5722",
                 fontSize: "40px",
                 marginTop: "100px",
+
                 fontFamily: "Arial",
               }}
             >
