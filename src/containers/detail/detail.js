@@ -147,6 +147,10 @@ function Detail() {
   const handleCloseModal = () => {
     setModalOpen(false);
   };
+  const SangGioHang = ()=>{
+    history.push(`/cart`, {});
+
+  }
   return (
     <div>
       <Header>
@@ -169,7 +173,7 @@ function Detail() {
           </DropdownItem>
         </DropdownMenu>
         </AvatarContainer>
-        <CartImage src={cart} alt="Cart" className="cart" />
+        <CartImage src={cart} alt="Cart" className="cart"  onClick={SangGioHang}/>
         </UserInfoContainer>
         ) : (
           <Navbar>
