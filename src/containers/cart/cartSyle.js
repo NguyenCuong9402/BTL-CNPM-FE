@@ -111,6 +111,7 @@ export const Container = styled.div`
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
+  overflow-y: auto;
 
 `;
 
@@ -248,7 +249,7 @@ export const LogoutButton = styled.img`
 
 
 export const Body = styled.div`
-height: 100vh;
+height: 97.9vh;
 width: 100%;
 background-color: #f0f0f0;
 `;
@@ -369,5 +370,4 @@ export const Checkbox = styled.input`
 
 export const TBody = styled.tbody`
   height: 200px;
-  overflow-y: auto;
 `;

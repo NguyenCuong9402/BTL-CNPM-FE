@@ -135,7 +135,6 @@ function Cart() {
       };
 
   return (
-    <div>
       <Body>
         <Header>
           <Navbar>
@@ -236,7 +235,6 @@ function Cart() {
           onClose={handleCloseModal}
         />
       </Body>
-    </div>
   );
 }
 
