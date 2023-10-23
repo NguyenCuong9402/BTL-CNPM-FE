@@ -227,8 +227,9 @@ function Cart() {
                 ))}
             </tbody>
             </TableContainer>
-            <Container6><span>Oke</span></Container6>
+            <Container6><span style={{fontSize: '40px'}}>Oke</span></Container6>
           </Container2>
+
         </Container>
         <Modal
           isOpen={isModalOpen}

@@ -111,7 +111,7 @@ export const Container = styled.div`
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
-
+  overflow: auto
 `;
 
 export const Container1 = styled.div`
@@ -133,18 +133,19 @@ export const Container5 = styled.div`
 export const Container6 = styled.div`
     margin-top: 40px;
     margin-bottom: 20px;
+    width: 100%;
+    max-height: 30vh;
 `;
 
 
 export const Container2 = styled.div`
   background-size: cover;
   background-position: center;
-  width: 80%;
+  width: 60%;
   height: 84%;
   display: flex;
   align-self: center;
   flex-direction: column;
-  display: flex;
 
 `;
 
@@ -255,11 +256,12 @@ background: #000;
 
 
 export const TableContainer = styled.table`
-  width: 100%;
-  margin-top: 20px;
-  border-collapse: collapse;
-  margin-bottom: 10px;
-
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+    margin-bottom: 10px;
+    max-height: 50%;
+    overflow: auto;
 `;
 
 
