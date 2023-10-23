@@ -32,10 +32,13 @@ function Detail() {
 
   const history = useHistory();
   const { id } = useParams();
-  const [sl, setSL] = useState(1)
   const [product_data, setProductData] = useState({})
   const [product_lien_quan, setProductlienquan] = useState([])
   const [cac_mau, SetCacMau] = useState([])
+
+  const [sl, setSL] = useState(1)
+  const [size, setSize] = useState('');
+  const [color, setColor] = useState('');
   const fetchData = async (id) => {
     try {
       const response = await axios.get(
@@ -96,6 +99,17 @@ function Detail() {
   const handleDetailClick = async (id) =>{
     window.location.href = `/detail/${id}`;
   }
+
+  const handleSizeChange = (event) => {
+    const selectedSize = event.target.value;
+    setSize(selectedSize);
+  };
+
+  // Function to handle color selection
+  const handleColorChange = (event) => {
+    const selectedColor = event.target.value;
+    setColor(selectedColor);
+  };
   return (
     <div>
       <Header>
@@ -149,7 +163,7 @@ function Detail() {
             <span class="badge">-{product_data.giam_gia}%</span>
             <del class="del">${product_data.old_price}</del>
           </div>
-          <select class="select-color">
+          <select class="select-color" onChange={handleColorChange}>
           {cac_mau.map((item) => (
             <option key={item} value={item}>{item}
             </option>
@@ -159,7 +173,7 @@ function Detail() {
               <option value="blue">Blue</option>
               <option value="green">Green</option> */}
             </select>
-            <select class="select-size">
+            <select class="select-size" onChange={handleSizeChange}>
             <option value="">Chọn Size</option>
               <option value="s">S</option>
               <option value="m">M</option>
