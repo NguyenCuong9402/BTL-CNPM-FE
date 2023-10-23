@@ -212,12 +212,11 @@ function Cart() {
                         />
                     </ButtonColumn>
                     <ProductColumnCell>
-                    <LeftContainerProduct>
-                        <img src={`http://127.0.0.1:5000/api/v1/picture/${item.product_id}`} alt="Hình ảnh" />
-                    </LeftContainerProduct>
-                    <RightContainerProduct>
-                        <span>{item.name_product}</span>
-                    </RightContainerProduct>
+                        <LeftContainerProduct>
+                            <img src={`http://127.0.0.1:5000/api/v1/picture/${item.product_id}`} alt="Hình ảnh" />
+
+                        </LeftContainerProduct>
+                        <RightContainerProduct></RightContainerProduct>
                     </ProductColumnCell>
                     <QuantityColumnCell>{item.quantity}</QuantityColumnCell>
                     <PriceColumnCell>{item.price}$</PriceColumnCell>
