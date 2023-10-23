@@ -368,4 +368,6 @@ export const Checkbox = styled.input`
 `;
 
 export const TBody = styled.tbody`
+  height: 200px;
+  overflow-y: auto;
 `;
