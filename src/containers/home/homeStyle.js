@@ -1,7 +1,5 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
-import background1 from './backgroundform.png';
-import background2 from './background2.png';
 
 // Styled Components
 export const GlobalStyles = styled.div`

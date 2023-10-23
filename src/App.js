@@ -7,6 +7,7 @@ import NotFound from "./containers/notFound/NotFound";
 import Detail from "./containers/detail/detail"
 import Profile from './containers/profile/profile';
 import Changepass from "./containers/changepass/changpass"
+import Cart from "./containers/cart/cart"
 const App = () => {
   return (
     <Router>
@@ -16,7 +17,7 @@ const App = () => {
         <Route path="/register" component={Register} />
         <Route path="/detail/:id" component={Detail} />
         <Route path="/changepass" component={Changepass} />
-
+        <Route path="/cart" component={Cart} />
         <Route path="/profile" component={Profile} />
         <Route path="/notfound" component={NotFound} />
         <Redirect exact from="/" to="/login" />
