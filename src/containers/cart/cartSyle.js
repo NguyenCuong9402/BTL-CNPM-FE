@@ -370,7 +370,14 @@ export const QuantityColumnCell = styled.td`
   width: 15%;
   padding: 8px;
   text-align: center;
-`;  
+`; 
+export const QuantityInput = styled.input`
+  width: 60px; /* Điều chỉnh kích thước ô input */
+  height: 40px;
+  text-align: center;
+  border: 1px solid #ccc; /* Điều chỉnh đường viền của ô input */
+  border-radius: 4px; /* Điều chỉnh góc bo tròn */
+`;
 
 export const TotalColumn = styled.td`
   width: 15%;

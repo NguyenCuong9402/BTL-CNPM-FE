@@ -18,7 +18,7 @@ import {
   Header,
   Navbar,
   SearchBarContainer,
-  SearchInput,
+  SearchInput,QuantityInput,
   Checkbox,
   Container6,
   LeftContainerProduct,
@@ -56,8 +56,6 @@ function Cart() {
   const history = useHistory();
   const [data, setData] = useState([]);
   const [online, SetOnline] = useState(false);
-  const [text_search, setTextSearch] = useState("");
-  const [text_search1, setTextSearch1] = useState("");
   const [isDeleteButtonVisible, setIsDeleteButtonVisible] = useState(false);
   const [selectedRows, setSelectedRows] = useState([]);
   const [selectAll, setSelectAll] = useState(false);
@@ -83,11 +81,11 @@ function Cart() {
     localStorage.removeItem("refreshToken");
     window.location.href = "/login";
   };
-  const fetchData = async (text_search) => {
+  const fetchData = async () => {
     try {
       const access_token = localStorage.getItem("accessToken"); // Get access token from local storage
       const response = await axios.get(
-        `http://127.0.0.1:5000/api/v1/cart_items?text_search=${text_search}`,
+        `http://127.0.0.1:5000/api/v1/cart_items`,
         {
           headers: {
             Authorization: `Bearer ${access_token}`,
@@ -127,11 +125,6 @@ function Cart() {
 
   const handleChangepass = async () => {
     history.push(`/changepass`, {});
-  };
-
-  const handleSearch = () => {
-    setTextSearch(text_search1);
-    setTextSearch1("");
   };
   
   const handleSelectAllClick = () => {
@@ -208,6 +201,27 @@ function Cart() {
     } catch (error) {
       console.error(error);
       alert('Có lỗi xảy ra khi gửi yêu cầu xóa');
+    }
+  };
+
+  const handleQuantityChange = async (itemId, newQuantity) => {
+    const access_token = localStorage.getItem("accessToken");
+    try {
+      const response = await axios.put(`http://127.0.0.1:5000/api/v1/cart_items/${itemId}`, {
+        new_quantity: newQuantity, // Sử dụng giá trị newQuantity trực tiếp
+      }, {
+        headers: {
+          Authorization: `Bearer ${access_token}`,
+          'Content-Type': 'application/json',
+        },
+      });
+      if (response.data.message.status === "success"){
+
+        fetchData();
+      }
+    } catch (error) {
+      console.error(error);
+      alert('Có lỗi xảy ra khi gửi yêu cầu thay đổi gì đó');
     }
   };
 
@@ -291,7 +305,16 @@ function Cart() {
                     </RightContainerProduct>
                   </ProductColumnCell>
                   <PhanLoaiColumnCell>Loại hàng: {item.color}, {item.size}</PhanLoaiColumnCell>
-                  <QuantityColumnCell>{item.quantity}</QuantityColumnCell>
+                  <QuantityColumnCell>
+                    <QuantityInput
+                      type="number"
+                      value={item.quantity}
+                      onChange={(e) => {
+                        const numericValue = parseInt(e.target.value.replace(/\D/g, ''), 10);
+                        handleQuantityChange(item.id, numericValue); 
+                      }}
+                    />
+                  </QuantityColumnCell>
                   <PriceColumnCell>{item.price}$</PriceColumnCell>
                   <TotalColumnCell>{item.total}$</TotalColumnCell>
                 </TableCell>
