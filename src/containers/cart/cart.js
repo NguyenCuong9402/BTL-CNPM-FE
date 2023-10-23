@@ -103,18 +103,37 @@ function Cart() {
     setTextSearch(text_search1);
     setTextSearch1("");
   };
+  const [isDeleteButtonVisible, setIsDeleteButtonVisible] = useState(false);
   const [selectedRows, setSelectedRows] = useState([]);
   const [selectAll, setSelectAll] = useState(false);
-  const handleCheckboxChange = (id) => {
-    if (selectedRows.includes(id)) {
-      setSelectedRows(selectedRows.filter((rowId) => rowId !== id));
+    const handleSelectAllClick = () => {
+    if (selectAll) {
+        // If all rows are currently selected, deselect all.
+        setSelectedRows([]);
+        setIsDeleteButtonVisible(false);
     } else {
-      setSelectedRows([...selectedRows, id]);
+        // If not all rows are selected, select all.
+        const allRowIds = data.map((item) => item.id);
+        setSelectedRows(allRowIds);
+        setIsDeleteButtonVisible(true);
     }
-  };
-  const handleCheckboxAll = () =>{
+    // Toggle the selectAll state.
+    setSelectAll(!selectAll);
+    
+    };
 
-  }
+    const handleRowSelect = (itemId) => {
+        // Check if the row is already selected
+        if (selectedRows.includes(itemId)) {
+          // If selected, remove it from the selectedRows array
+          setSelectedRows(selectedRows.filter(id => id !== itemId));
+        } else {
+          // If not selected, add it to the selectedRows array
+          setSelectedRows([...selectedRows, itemId]);
+        }
+        
+      };
+
   return (
     <div>
       <Body>
@@ -172,7 +191,7 @@ function Cart() {
                 <TableRow>
                 <ButtonColumn><Checkbox
                         type="checkbox"
-                        onChange={() => handleCheckboxAll()}
+                        onChange={() => handleSelectAllClick()}
                         /></ButtonColumn>
                 <ProductColumn>Sản phẩm</ProductColumn>
                 <QuantityColumn>Số lượng</QuantityColumn>
@@ -187,7 +206,7 @@ function Cart() {
                         <Checkbox
                         type="checkbox"
                         checked={selectedRows.includes(item.id)}
-                        onChange={() => handleCheckboxChange(item.id)}
+                        onChange={() => handleRowSelect(item.id)}
                         />
                     </ButtonColumn>
                     <ProductColumnCell>{item.name_product}</ProductColumnCell>
