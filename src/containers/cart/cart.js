@@ -16,7 +16,7 @@ import {
   SearchBarContainer,
   SearchInput, Checkbox,
   SearchButton, QuantityColumnCell, TotalColumnCell, PriceColumnCell, ProductColumnCell, ButtonColumnCell,
-  Container, TotalColumn, QuantityColumn, PriceColumn, ProductColumn, ButtonColumn, TableCell, TableRow, TableHeader, TableContainer
+  Container, TotalColumn, QuantityColumn, PriceColumn, ProductColumn, ButtonColumn, TableRow, TableHeader, TableContainer
 } from "./cartSyle";
 import "boxicons/css/boxicons.min.css";
 import axios from "axios";
@@ -211,8 +211,8 @@ function Cart() {
                     </ButtonColumn>
                     <ProductColumnCell>{item.name_product}</ProductColumnCell>
                     <QuantityColumnCell>{item.quantity}</QuantityColumnCell>
-                    <PriceColumnCell>{item.price}</PriceColumnCell>
-                    <TotalColumnCell>{item.total}</TotalColumnCell>
+                    <PriceColumnCell>{item.price}$</PriceColumnCell>
+                    <TotalColumnCell>{item.total}$</TotalColumnCell>
                 </TableRow>
                 ))}
             </tbody>

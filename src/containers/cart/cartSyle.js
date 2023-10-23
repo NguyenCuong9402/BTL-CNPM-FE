@@ -260,11 +260,6 @@ export const TableRow = styled.tr`
   background-color: white;
 `;
 
-export const TableCell = styled.td`
-  padding: 8px;
-  text-align: center;
-`;
-
 export const ButtonColumn = styled.td`
   width: 5%;
   padding: 8px;
