@@ -105,12 +105,37 @@ export const Container = styled.div`
   top: 50%;
   transform: translate(-50%, -50%);
   width: 100%;
-  height: 90%;
+  height: 100%;
+  flex-direction: column; 
   margin-top: 20px;
-  background-color: white;
+  background-color: #f0f0f0;
+  background-size: cover;
+  background-position: center;
+  overflow: auto;
+`;
+
+export const Container1 = styled.div`
+  display: flex;
+  background-color: white; 
   background-size: cover;
   background-position: center;
   overflow: hidden;
+  width: 100%;
+  height: 16%;
+  justify-content: center; /* Căn giữa theo chiều ngang */
+  align-items: center; /* Căn giữa theo chiều dọc */
+  margin-bottom: 20px;
+`;
+
+
+export const Container2 = styled.div`
+  background-color: white; 
+  background-size: cover;
+  background-position: center;
+  width: 80%;
+  height: 84%;
+  display: flex;
+  align-self: center;
 `;
 
 
