@@ -127,6 +127,10 @@ export const Container1 = styled.div`
   margin-bottom: 20px;
 `;
 
+export const Container5 = styled.div`
+    margin-bottom: 4px;
+`;
+
 
 export const Container2 = styled.div`
   background-size: cover;
@@ -251,13 +255,15 @@ export const TableContainer = styled.table`
 
 `;
 
-export const TableHeader = styled.thead`
-  background-color: white;
 
+export const TableHeader = styled.thead`
+  background-color: #fffefb;
 `;
 
 export const TableRow = styled.tr`
   background-color: white;
+  border-radius: 3px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2); /* Điều chỉnh giá trị để đổ bóng đậm hơn */
 `;
 
 export const ButtonColumn = styled.td`

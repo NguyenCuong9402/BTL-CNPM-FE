@@ -3,7 +3,7 @@ import "boxicons/css/boxicons.min.css";
 import {
   UserInfoContainer,
   Container1,
-  Container2, Container3,
+  Container2, Container3, Container5,
   UserName,
   Background,
   AvatarImage,
@@ -199,6 +199,7 @@ function Cart() {
                 <TotalColumn>Số tiền</TotalColumn>
                 </TableRow>
             </TableHeader>
+            <Container5></Container5>
             <tbody>
                 {data.map((item) => (
                 <TableRow>
