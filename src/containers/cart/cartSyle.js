@@ -131,10 +131,18 @@ export const Container5 = styled.div`
 `;
 
 export const Container6 = styled.div`
-    margin-top: 40px;
-    margin-bottom: 20px;
-    width: 100%;
-    height: 10%;
+margin-top: 40px;
+margin-bottom: 20px;
+height: 10%;
+justify-content: flex-end;
+background-size: cover;
+background-position: center;
+width: 60%;
+max-height: 600px;
+align-self: center;
+display: flex;
+position: relative;
+padding: 10px;
 `;
 
 
@@ -370,4 +378,61 @@ export const Checkbox = styled.input`
 
 export const TBody = styled.tbody`
   height: 200px;
+`;
+
+export const BuyButton = styled.button`
+  background-color: orange;
+  color: white;
+  font-size: 30px;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  display: inline-block;
+  border-radius: 0;
+
+  &:hover {
+    background-color: #ff7700;
+  }
+`;
+
+
+
+export const DeleteButton = styled.button`
+  background-color: red;
+  color: white;
+  font-size: 30px;
+  padding: 10px 20px;
+  margin-right: 950px;
+  position: absolute;
+
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  display: inline-block;
+  border-radius: 0;
+
+  &:hover {
+    background-color: #ff7700;
+  }
+`;
+
+export const TotalText = styled.span`   
+  font-size: 30px;
+  margin-right: 350px;
+  margin-top:5px;
+  padding: 10px 20px;
+  color: #333; /* Màu chữ tổng tiền */
+  position: absolute;
+  
+`;
+
+export const TotalAmount = styled.span`
+  font-size: 36px;
+  padding: 10px 20px;
+
+  color: #ff7700; /* Màu số tiền */
+  margin-right: 200px;
+  margin-top:0px;
+  position: absolute;
 `;
