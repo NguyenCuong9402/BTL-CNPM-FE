@@ -114,7 +114,7 @@ function Changepass() {
       <Header>
         <Navbar>
           <a href="/index">
-            <i className="bx bxl-xing"></i>Word Scamble
+            <i className="bx bxl-xing"></i>Home
           </a>
         </Navbar>
         <UserInfoContainer>
