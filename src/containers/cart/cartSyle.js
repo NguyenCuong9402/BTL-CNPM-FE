@@ -341,8 +341,10 @@ export const LeftContainerProduct = styled.div`
 export const RightContainerProduct = styled.div`
   width: 70%;
   height: 100%;
-  padding: 4px; /* Điều chỉnh khoảng cách và lề bên trong container */
-
+  padding: 4px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Căn giữa theo chiều ngang */
 `;
 
 

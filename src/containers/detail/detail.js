@@ -197,7 +197,9 @@ function Detail() {
         </div>
         <div class="product-content">
           {/* <p class="product-subtitle">Nike Company</p> */}
-          <h1 class="h1 product-title">{product_data.name}</h1>
+          <div class="h4 product-title">
+            <h4>{product_data.name}</h4>
+          </div>
           <p class="product-text">{product_data.describe}</p>
           <div class="wrapper">
             <span class="price" data-total-price>${product_data.price}</span>

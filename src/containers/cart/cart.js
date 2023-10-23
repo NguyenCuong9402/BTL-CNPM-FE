@@ -301,7 +301,7 @@ function Cart() {
                       />
                     </LeftContainerProduct>
                     <RightContainerProduct>
-                      <span>{item.name_product}</span>
+                      <span style={{marginTop: '40px'}}>{item.name_product}</span>
                     </RightContainerProduct>
                   </ProductColumnCell>
                   <PhanLoaiColumnCell>Loại hàng: {item.color}, {item.size}</PhanLoaiColumnCell>

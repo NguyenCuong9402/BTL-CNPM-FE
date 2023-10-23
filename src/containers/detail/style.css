@@ -276,6 +276,8 @@
   }
   
   .product-content .product-title {
+    max-width: 400px; /* Độ rộng tối đa của tiêu đề */
+    white-space: normal; /* Cho phép xuống dòng */
     color: var(--eerie-black);
     font-size: var(--fs-1);
     line-height: 1.1;
