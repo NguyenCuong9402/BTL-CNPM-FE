@@ -290,7 +290,7 @@ function Cart() {
                       <span>{item.name_product}</span>
                     </RightContainerProduct>
                   </ProductColumnCell>
-                  <PhanLoaiColumnCell></PhanLoaiColumnCell>
+                  <PhanLoaiColumnCell>Loại hàng: {item.color}, {item.size}</PhanLoaiColumnCell>
                   <QuantityColumnCell>{item.quantity}</QuantityColumnCell>
                   <PriceColumnCell>{item.price}$</PriceColumnCell>
                   <TotalColumnCell>{item.total}$</TotalColumnCell>
