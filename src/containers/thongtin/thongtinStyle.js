@@ -35,8 +35,17 @@ export const Container1 = styled.div`
   flex-direction: column;
 `;
 export const Container3 = styled.div`
-  flex: 3; /* Container3 chiếm 30% chiều rộng của Container1 */
-  background-color: yellow; /* Màu nền của Container3 */
+  flex: 2; /* Container3 chiếm 30% chiều rộng của Container1 */
+  background-color: #dcdcdc; /* Màu nền của Container3 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const AvatarContainer3 = styled.img`
+  border-radius: 50%; /* Tạo hình dạng bo tròn */
+  max-width: 80%; /* Đảm bảo ảnh không vượt quá kích thước container */
+  max-height: 80%;
 `;
 
 export const Container4 = styled.div`
@@ -63,7 +72,7 @@ export const NameContainer4 = styled.div`
 `;
 
 export const Container5 = styled.div`
-  flex: 6; /* Container5 chiếm 60% chiều rộng của Container1 */
+  flex: 7; /* Container5 chiếm 60% chiều rộng của Container1 */
   background-color: white; /* Màu nền của Container5 */
 `;
 
