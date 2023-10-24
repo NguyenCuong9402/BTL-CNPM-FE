@@ -96,7 +96,7 @@ function Profile() {
         const formattedData = response.data.data;
         setData(formattedData);
         setNameUser(formattedData.name_user)
-        setPhoneUser(formattedData.phone)
+        setPhoneUser(formattedData.phone_number)
       } else {
         console.error("Error fetching history data.");
       }
@@ -119,9 +119,12 @@ function Profile() {
   const SangGioHang = () => {
     history.push(`/cart`, {});
   };
-
   const handleInputNameChange = (newName) => {
     setNameUser(newName);
+  };
+
+  const handleInputPhoneChange = (newPhone) => {
+    setNameUser(newPhone);
   };
   return (
     <Body>
@@ -254,7 +257,13 @@ function Profile() {
                     value={nameUser}
                     onChange={(e) => handleInputNameChange(e.target.value)}
                   /></ColumnProfileT2>
-                  <ColumnProfileT3></ColumnProfileT3>
+                  <ColumnProfileT3>
+                  <input
+                    type="text"
+                    value={phoneUser}
+                    onChange={(e) => handleInputPhoneChange(e.target.value)}
+                  />
+                  </ColumnProfileT3>
                   <ColumnProfileT4></ColumnProfileT4>
                   <ColumnProfileT5></ColumnProfileT5>
                   <ColumnProfileT6></ColumnProfileT6>
