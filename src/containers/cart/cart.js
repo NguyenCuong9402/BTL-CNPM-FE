@@ -44,7 +44,7 @@ import {
   TableHeader,
   TotalText,
   TotalAmount,
-  TableContainer,
+  TableContainer, XacNhanThayDoi,
 } from "./cartSyle";
 import "boxicons/css/boxicons.min.css";
 import axios from "axios";
@@ -212,6 +212,45 @@ function Cart() {
       alert("Có lỗi xảy ra khi gửi yêu cầu xóa");
     }
   };
+  const [selectedColor, setSelectedColor] = useState("");
+  const [selectedSize, setSelectedSize] = useState("");
+
+  const handleConfirm = async (itemId, color, size) => {
+    const access_token = localStorage.getItem("accessToken");
+    try {
+      const response = await axios.put(
+        `http://127.0.0.1:5000/api/v1/cart_items/change/${itemId}`,
+        {
+          size: size,
+          color: color
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${access_token}`,
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      if (response.data.message.status === "success") {
+        tinh_tong();
+        fetchData();
+      }
+    } catch (error) {
+      console.error(error);
+      alert("Có lỗi xảy ra khi gửi yêu cầu thay đổi gì đó");
+    }
+  };
+
+ 
+
+  const [openPopups, setOpenPopups] = useState({}); // Sử dụng một đối tượng để lưu trạng thái của popup cho từng ô
+
+  const togglePopup = (itemId) => {
+    setOpenPopups((prevPopups) => ({
+      [itemId]: !prevPopups[itemId],
+    }));
+  };
+
 
   const handleQuantityChange = async (itemId, newQuantity) => {
     const access_token = localStorage.getItem("accessToken");
@@ -236,26 +275,6 @@ function Cart() {
       console.error(error);
       alert("Có lỗi xảy ra khi gửi yêu cầu thay đổi gì đó");
     }
-  };
-
-  const [selectedColor, setSelectedColor] = useState(""); // Đảm bảo truyền giá trị màu ban đầu từ data
-  const [selectedSize, setSelectedSize] = useState(""); // Đảm bảo truyền giá trị size ban đầu từ data
-
-  const [openPopups, setOpenPopups] = useState({}); // Sử dụng một đối tượng để lưu trạng thái của popup cho từng ô
-
-  const togglePopup = (itemId) => {
-    setOpenPopups((prevPopups) => ({
-      ...prevPopups,
-      [itemId]: !prevPopups[itemId] || false,
-    }));
-  };
-
-  const handleColorChange = (e) => {
-    setSelectedColor(e.target.value);
-  };
-
-  const handleSizeChange = (e) => {
-    setSelectedSize(e.target.value);
   };
 
   return (
@@ -358,7 +377,7 @@ function Cart() {
                             <select
                               id="colorSelect"
                               value={item.color}
-                              onChange={handleColorChange}
+                              onChange={(e) => setSelectedColor(e.target.value)}
                               style={{
                                 width: '80px'
                               }}
@@ -373,7 +392,7 @@ function Cart() {
                             <select
                               id="sizeSelect"
                               value={item.size}
-                              onChange={handleSizeChange}
+                              onChange={(e) => setSelectedSize(e.target.value)}
                               style={{
                                 width: '80px'
                               }}
@@ -384,6 +403,9 @@ function Cart() {
                               <option value="XL">XL</option>
                               {/* Thêm tùy chọn cho các size khác tại đây */}
                             </select>
+                          </div>
+                          <div style={{ marginTop: '10px', marginLeft:'10px' }}>
+                            <XacNhanThayDoi onClick={handleConfirm(item.id, selectedColor, selectedSize)}>Xác nhận</XacNhanThayDoi>
                           </div>
                         </div>
                       )}

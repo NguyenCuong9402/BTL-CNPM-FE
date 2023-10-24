@@ -419,6 +419,25 @@ export const BuyButton = styled.button`
 `;
 
 
+export const XacNhanThayDoi = styled.button`
+  background-color: orange;
+  color: white;
+  font-size: 15px;
+  padding: 5px 10px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  display: inline-block;
+  border-radius: 0;
+
+  &:hover {
+    background-color: #ff7700;
+  }
+`;
+
+
+
+
 
 export const DeleteButton = styled.button`
   background-color: red;
