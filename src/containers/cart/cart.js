@@ -108,7 +108,6 @@ function Cart() {
       console.error("Error calling history API:", error);
     }
   };
-  console.log(data)
   // Call fetchData when the component mounts
   useEffect(() => {
     fetchData();
@@ -215,6 +214,7 @@ function Cart() {
   const [selectedColor, setSelectedColor] = useState("");
   const [selectedSize, setSelectedSize] = useState("");
 
+  console.log(selectedColor, selectedSize)
   const handleConfirm = async (itemId, color, size) => {
     const access_token = localStorage.getItem("accessToken");
     try {
@@ -237,7 +237,7 @@ function Cart() {
       }
     } catch (error) {
       console.error(error);
-      alert("Có lỗi xảy ra khi gửi yêu cầu thay đổi gì đó");
+      alert(" Lỗi gửi yêu cầu thay đổi gì đó");
     }
   };
 
@@ -405,7 +405,7 @@ function Cart() {
                             </select>
                           </div>
                           <div style={{ marginTop: '10px', marginLeft:'10px' }}>
-                            <XacNhanThayDoi onClick={handleConfirm(item.id, selectedColor, selectedSize)}>Xác nhận</XacNhanThayDoi>
+                            <XacNhanThayDoi onClick={() => handleConfirm(item.id, selectedColor, selectedSize)}>Xác nhận</XacNhanThayDoi>
                           </div>
                         </div>
                       )}
