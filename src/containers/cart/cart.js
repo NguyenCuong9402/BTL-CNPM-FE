@@ -96,7 +96,6 @@ function Cart() {
           },
         }
       );
-      console.log(response);
       if (response.data.message.status === "success") {
         const formattedData = response.data.data.map((item) => ({
           ...item,
@@ -109,7 +108,7 @@ function Cart() {
       console.error("Error calling history API:", error);
     }
   };
-
+  console.log(data)
   // Call fetchData when the component mounts
   useEffect(() => {
     fetchData();
@@ -361,12 +360,12 @@ function Cart() {
                               value={item.color}
                               onChange={handleColorChange}
                               style={{
-                                width: '50px'
+                                width: '80px'
                               }}
                             >
-                              <option value="red">Đỏ</option>
-                              <option value="blue">Xanh</option>
-                              {/* Thêm tùy chọn cho các màu khác tại đây */}
+                               {item.cac_mau.map((mau) => (
+                                <option key={mau} value={mau}>{mau}</option>
+                              ))}
                             </select>
                           </div>
                           <div>
@@ -376,7 +375,7 @@ function Cart() {
                               value={item.size}
                               onChange={handleSizeChange}
                               style={{
-                                width: '50px'
+                                width: '80px'
                               }}
                             >
                               <option value="S">S</option>
