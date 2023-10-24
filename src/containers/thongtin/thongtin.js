@@ -95,8 +95,8 @@ function Profile() {
       if (response.data.message.status === "success") {
         const formattedData = response.data.data;
         setData(formattedData);
-        setNameUser(formattedData.name_user)
-        setPhoneUser(formattedData.phone_number)
+        setNameUser(formattedData.name_user);
+        setPhoneUser(formattedData.phone_number);
       } else {
         console.error("Error fetching history data.");
       }
@@ -125,6 +125,12 @@ function Profile() {
 
   const handleInputPhoneChange = (newPhone) => {
     setNameUser(newPhone);
+  };
+
+  const [isPasswordVisible, setPasswordVisible] = useState(false);
+
+  const toggleVisibility = () => {
+    setPasswordVisible(!isPasswordVisible);
   };
   return (
     <Body>
@@ -248,21 +254,52 @@ function Profile() {
                   <ColumnProfile7></ColumnProfile7>
                 </ContainerProfileB1>
                 <ContainerProfileB2>
-                  <ColumnProfileT1><p style={{ fontSize: "20px", marginLeft: "15px", color: 'black'  }}>
+                  <ColumnProfileT1>
+                    <p
+                      style={{
+                        fontSize: "20px",
+                        marginLeft: "15px",
+                        color: "black",
+                      }}
+                    >
                       {data.email}
-                    </p></ColumnProfileT1>
+                    </p>
+                  </ColumnProfileT1>
                   <ColumnProfileT2>
-                  <input
-                    type="text"
-                    value={nameUser}
-                    onChange={(e) => handleInputNameChange(e.target.value)}
-                  /></ColumnProfileT2>
+                    <input
+                      type="text"
+                      value={nameUser}
+                      onChange={(e) => handleInputNameChange(e.target.value)}
+                      style={{
+                        width: "100%", // Đặt chiều rộng của ô Input
+                        padding: "10px", // Thêm padding để làm cho nó lớn hơn
+                        border: "1px solid #ccc", // Định dạng đường viền
+                        borderRadius: "5px", // Định dạng góc bo tròn
+                        fontSize: "20px", // Đặt kích thước chữ
+                      }}
+                    />
+                  </ColumnProfileT2>
                   <ColumnProfileT3>
-                  <input
-                    type="text"
-                    value={phoneUser}
-                    onChange={(e) => handleInputPhoneChange(e.target.value)}
-                  />
+                    <input
+                      type={isPasswordVisible ? "text" : "password"}
+                      value={phoneUser}
+                      onChange={(e) => handleInputPhoneChange(e.target.value)}
+                      style={{
+                        width: "100%", // Đặt chiều rộng của ô Input
+                        padding: "10px", // Thêm padding để làm cho nó lớn hơn
+                        border: "1px solid #ccc", // Định dạng đường viền
+                        borderRadius: "5px", // Định dạng góc bo tròn
+                        fontSize: "20px", // Đặt kích thước chữ
+                      }}
+                    />
+                    <span
+                      style={{
+                        cursor: "pointer",
+                      }}
+                      onClick={() => toggleVisibility()} // Hàm để bật/tắt hiển thị giá trị
+                    >
+                      👁️
+                    </span>
                   </ColumnProfileT3>
                   <ColumnProfileT4></ColumnProfileT4>
                   <ColumnProfileT5></ColumnProfileT5>
