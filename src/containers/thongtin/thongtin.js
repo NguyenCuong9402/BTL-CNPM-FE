@@ -3,7 +3,6 @@ import "boxicons/css/boxicons.min.css";
 import {
   UserInfoContainer,
   UserName,
-  Background,
   AvatarImage,
   AvatarContainer,
   Body,
@@ -11,7 +10,6 @@ import {
   DropdownItem,
   Header,
   Navbar,
-  Container,
 } from "./thongtinStyle";
 import "boxicons/css/boxicons.min.css";
 import axios from "axios";
@@ -104,10 +102,7 @@ function Profile() {
           </AvatarContainer>
         </UserInfoContainer>
       </Header>
-      <Container>
-        
-          
-      </Container>
+      
       <Modal
         isOpen={isModalOpen}
         message={modalMessage}

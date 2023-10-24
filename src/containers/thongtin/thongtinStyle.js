@@ -70,24 +70,6 @@ export const Navbar = styled.nav`
   }
 `;
 
-export const Container = styled.div`
-  display: flex;
-  position: relative;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  width: 100%;
-  flex-direction: column; 
-  margin-top: 20px;
-  background-color: #f0f0f0;
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
-  overflow-y: auto;
-
-`;
-
-
 export const UserInfoContainer = styled.div`
   display: flex;
   align-items: center;
