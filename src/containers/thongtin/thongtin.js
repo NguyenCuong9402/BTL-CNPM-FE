@@ -38,7 +38,14 @@ import {
   ColumnProfile4,
   ColumnProfile5,
   ColumnProfile6,
-  ColumnProfile7,SpanColumn
+  ColumnProfile7,
+  ColumnProfileT1,
+  ColumnProfileT2,
+  ColumnProfileT3,
+  ColumnProfileT4,
+  ColumnProfileT5,
+  ColumnProfileT6,
+  ColumnProfileT7,
 } from "./thongtinStyle";
 import "boxicons/css/boxicons.min.css";
 import axios from "axios";
@@ -52,6 +59,9 @@ function Profile() {
   const [isModalOpen, setModalOpen] = useState(false);
   const [modalMessage, setModalMessage] = useState("");
   const [user_id, setUserDataId] = useState(null);
+  const [nameUser, setNameUser] = useState("");
+  const [phoneUser, setPhoneUser] = useState("");
+
   const history = useHistory();
 
   const [data, setData] = useState({});
@@ -85,6 +95,8 @@ function Profile() {
       if (response.data.message.status === "success") {
         const formattedData = response.data.data;
         setData(formattedData);
+        setNameUser(formattedData.name_user)
+        setPhoneUser(formattedData.phone)
       } else {
         console.error("Error fetching history data.");
       }
@@ -95,7 +107,7 @@ function Profile() {
   // Call fetchData when the component mounts
   useEffect(() => {
     fetchData();
-  }, [data]);
+  }, []);
   const handleCloseModal = () => {
     setModalOpen(false);
   };
@@ -106,6 +118,10 @@ function Profile() {
 
   const SangGioHang = () => {
     history.push(`/cart`, {});
+  };
+
+  const handleInputNameChange = (newName) => {
+    setNameUser(newName);
   };
   return (
     <Body>
@@ -197,18 +213,53 @@ function Profile() {
               <ContainerProfileB>
                 <ContainerProfileB1>
                   <ColumnProfile1>
-                    <p style={{fontSize: '20px', marginRight: '15px'}}>Tài khoản:</p>
+                    <p style={{ fontSize: "20px", marginRight: "15px" }}>
+                      Tài khoản:
+                    </p>
                   </ColumnProfile1>
-                  <ColumnProfile6><p style={{fontSize: '20px', marginRight: '15px'}}>Họ tên:</p></ColumnProfile6>
+                  <ColumnProfile6>
+                    <p style={{ fontSize: "20px", marginRight: "15px" }}>
+                      Họ tên:
+                    </p>
+                  </ColumnProfile6>
                   <ColumnProfile2>
-                  <p style={{fontSize: '20px', marginRight: '15px'}}>Số điện thoại:</p>
+                    <p style={{ fontSize: "20px", marginRight: "15px" }}>
+                      Số điện thoại:
+                    </p>
                   </ColumnProfile2>
-                  <ColumnProfile3><p style={{fontSize: '20px', marginRight: '15px'}}>Giới tính:</p></ColumnProfile3>
-                  <ColumnProfile4><p style={{fontSize: '20px', marginRight: '15px'}}>Ngày sinh:</p></ColumnProfile4>
-                  <ColumnProfile5><p style={{fontSize: '20px', marginRight: '15px'}}>Địa chỉ:</p></ColumnProfile5>
+                  <ColumnProfile3>
+                    <p style={{ fontSize: "20px", marginRight: "15px" }}>
+                      Giới tính:
+                    </p>
+                  </ColumnProfile3>
+                  <ColumnProfile4>
+                    <p style={{ fontSize: "20px", marginRight: "15px" }}>
+                      Ngày sinh:
+                    </p>
+                  </ColumnProfile4>
+                  <ColumnProfile5>
+                    <p style={{ fontSize: "20px", marginRight: "15px" }}>
+                      Địa chỉ:
+                    </p>
+                  </ColumnProfile5>
                   <ColumnProfile7></ColumnProfile7>
                 </ContainerProfileB1>
-                <ContainerProfileB2></ContainerProfileB2>
+                <ContainerProfileB2>
+                  <ColumnProfileT1><p style={{ fontSize: "20px", marginLeft: "15px", color: 'black'  }}>
+                      {data.email}
+                    </p></ColumnProfileT1>
+                  <ColumnProfileT2>
+                  <input
+                    type="text"
+                    value={nameUser}
+                    onChange={(e) => handleInputNameChange(e.target.value)}
+                  /></ColumnProfileT2>
+                  <ColumnProfileT3></ColumnProfileT3>
+                  <ColumnProfileT4></ColumnProfileT4>
+                  <ColumnProfileT5></ColumnProfileT5>
+                  <ColumnProfileT6></ColumnProfileT6>
+                  <ColumnProfileT7></ColumnProfileT7>
+                </ContainerProfileB2>
                 <ContainerProfileB3></ContainerProfileB3>
               </ContainerProfileB>
             </React.Fragment>

@@ -233,8 +233,71 @@ export const ColumnProfile7 = styled.div`
 
 export const ContainerProfileB2 = styled.div`
   flex: 5; /* ContainerProfileB2 chiếm 60% tỷ lệ flex của ContainerProfileB */
-  background-color: green; /* Màu nền của ContainerProfileB2 */
+  background-color: white; /* Màu nền của ContainerProfileB2 */
   width: 60%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const ColumnProfileT1 = styled.div`
+  flex: 14;
+  background-color: #f0f0f0;
+  display: flex;
+  width: 100%;
+  justify-content: flex-start;
+  align-items: center;
+`;
+
+export const ColumnProfileT2 = styled.div`
+  flex: 14;
+  background-color: #f0f0f0;
+  display: flex;
+  width: 100%;
+  justify-content: flex-start;
+  align-items: center;
+`;
+export const ColumnProfileT3 = styled.div`
+  flex: 14;
+  background-color: #f0f0f0;
+  display: flex;
+  width: 100%;
+  justify-content: flex-start;
+  align-items: center;
+`;
+
+export const ColumnProfileT4 = styled.div`
+  flex: 14;
+  background-color: #f0f0f0;
+  display: flex;
+  width: 100%;
+  justify-content: flex-start;
+  align-items: center;  
+`;
+export const ColumnProfileT5 = styled.div`
+  flex: 14;
+  background-color: #f0f0f0;
+  display: flex;
+  width: 100%;
+  justify-content: flex-start;
+  align-items: center;
+`;
+export const ColumnProfileT6 = styled.div`
+  flex: 14;
+  background-color: #f0f0f0;
+  display: flex;
+  width: 100%;
+  justify-content: flex-start;
+  align-items: center;
+`;
+export const ColumnProfileT7 = styled.div`
+  flex: 16; 
+  background-color: #f0f0f0;
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+  align-items: center;
 `;
 
 export const ContainerProfileB3 = styled.div`
