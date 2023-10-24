@@ -28,7 +28,7 @@ export const Container = styled.div`
 `;
 
 export const Container1 = styled.div`
-  flex: 3; /* Container1 chiếm 30% chiều rộng của Container cha */
+  flex: 2; /* Container1 chiếm 30% chiều rộng của Container cha */
   background-color: green; /* Màu nền của Container1 */
   height: 100%; /* Chiều cao 100% */
   display: flex;
@@ -59,7 +59,7 @@ export const Container4 = styled.div`
 export const NameContainer4 = styled.div`
   text-align: left; /* Để căn trái nội dung */
   color: black; /* Màu chữ đen */
-  font-size: 20px; /* Font size 30px */
+  font-size: 15px; /* Font size 30px */
   padding: 10px;
   border-radius: 5px;
   transition: all 0.3s ease-in-out; /* Hiệu ứng thay đổi màu nền và kích thước */
@@ -133,7 +133,7 @@ export const ButtonContainer6 = styled.button`
 
 
 export const Container2 = styled.div`
-  flex: 7; /* Container2 chiếm 70% chiều rộng của Container cha */
+  flex: 8; /* Container2 chiếm 70% chiều rộng của Container cha */
   background-color: white; /* Màu nền của Container2 */
   height: 100%; /* Chiều cao 100% */
   display: flex;
@@ -154,9 +154,29 @@ export const ContainerProfileA = styled.div`
 `;
 
 export const ContainerProfileB = styled.div`
-  flex: 8; /* ContainerProfileB chiếm 80% tỷ lệ flex của Container2 */
-  background-color: red; /* Màu nền của ContainerProfileB */
+  flex: 8;
+  background-color: red;
   width: 100%;
+  display: flex;
+  flex-direction: row;
+`;
+
+export const ContainerProfileB1 = styled.div`
+  flex: 2; /* ContainerProfileB1 chiếm 20% tỷ lệ flex của ContainerProfileB */
+  background-color: yellow; /* Màu nền của ContainerProfileB1 */
+  width: 20%;
+`;
+
+export const ContainerProfileB2 = styled.div`
+  flex: 6; /* ContainerProfileB2 chiếm 60% tỷ lệ flex của ContainerProfileB */
+  background-color: green; /* Màu nền của ContainerProfileB2 */
+  width: 60%;
+`;
+
+export const ContainerProfileB3 = styled.div`
+  flex: 2; /* ContainerProfileB3 chiếm 20% tỷ lệ flex của ContainerProfileB */
+  background-color: blue; /* Màu nền của ContainerProfileB3 */
+  width: 20%;
 `;
 
 export const Header = styled.header`

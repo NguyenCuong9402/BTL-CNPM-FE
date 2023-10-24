@@ -29,6 +29,9 @@ import {
   ButtonContainer6,
   ContainerProfileA,
   ContainerProfileB,
+  ContainerProfileB1,
+  ContainerProfileB2,
+  ContainerProfileB3,
 } from "./thongtinStyle";
 import "boxicons/css/boxicons.min.css";
 import axios from "axios";
@@ -137,7 +140,7 @@ function Profile() {
           </Container4>
           <Container5>
             <IconContainer5 src={user} />
-            <TextContainer5>Tài khoản Của Tôi</TextContainer5>
+            <TextContainer5>Tài khoản</TextContainer5>
           </Container5>
           <Container6>
             <Ct1>
@@ -161,7 +164,7 @@ function Profile() {
                 active={activeButton === 3}
                 onClick={() => setActiveButton(3)}
               >
-                Lịch sử mua hàng
+                Đơn hàng
               </ButtonContainer6>
             </Ct3>
             <Ct4></Ct4>
@@ -171,24 +174,33 @@ function Profile() {
           {activeButton === 1 && (
             <React.Fragment>
               <ContainerProfileA>
-              <h2 style={{marginLeft: '25px', fontWeight: 'bold', fontSize: '30px'}}>Hồ Sơ Của Tôi</h2>
-              <p style={{marginLeft: '25px', fontSize: '16px'}}>Quản lý thông tin hồ sơ để bảo mật tài khoản</p>
+                <h2
+                  style={{
+                    marginLeft: "25px",
+                    fontWeight: "bold",
+                    fontSize: "30px",
+                  }}
+                >
+                  Hồ Sơ Của Tôi
+                </h2>
+                <p style={{ marginLeft: "25px", fontSize: "16px" }}>
+                  Quản lý thông tin hồ sơ để bảo mật tài khoản
+                </p>
               </ContainerProfileA>
-              <ContainerProfileB></ContainerProfileB>
+              <ContainerProfileB>
+                <ContainerProfileB1></ContainerProfileB1>
+                <ContainerProfileB2></ContainerProfileB2>
+                <ContainerProfileB3></ContainerProfileB3>
+              </ContainerProfileB>
             </React.Fragment>
           )}
-          {activeButton === 2 && (
-            <React.Fragment>
-              <div>Oke</div>
-              <div>Oke</div>
-            </React.Fragment>
-          )}
+          {activeButton === 2 && <React.Fragment></React.Fragment>}
           {activeButton === 3 && (
-          <React.Fragment>
-            <div>Oke1</div>
-            <div>Oke1</div>
-          </React.Fragment>
-        )}
+            <React.Fragment>
+              <div>Oke1</div>
+              <div>Oke1</div>
+            </React.Fragment>
+          )}
         </Container2>
       </Container>
       {/* <Modal
