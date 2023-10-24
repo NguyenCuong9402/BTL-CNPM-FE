@@ -216,7 +216,7 @@ function Cart() {
         },
       });
       if (response.data.message.status === "success"){
-
+        tinh_tong();
         fetchData();
       }
     } catch (error) {
