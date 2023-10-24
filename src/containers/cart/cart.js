@@ -18,7 +18,8 @@ import {
   Header,
   Navbar,
   SearchBarContainer,
-  SearchInput,QuantityInput,
+  SearchInput,
+  QuantityInput,
   Checkbox,
   Container6,
   LeftContainerProduct,
@@ -37,8 +38,12 @@ import {
   PriceColumn,
   ProductColumn,
   ButtonColumn,
-  TableRow, PhanLoaiColumn, PhanLoaiColumnCell,
-  TableHeader,TotalText, TotalAmount,
+  TableRow,
+  PhanLoaiColumn,
+  PhanLoaiColumnCell,
+  TableHeader,
+  TotalText,
+  TotalAmount,
   TableContainer,
 } from "./cartSyle";
 import "boxicons/css/boxicons.min.css";
@@ -59,7 +64,7 @@ function Cart() {
   const [isDeleteButtonVisible, setIsDeleteButtonVisible] = useState(false);
   const [selectedRows, setSelectedRows] = useState([]);
   const [selectAll, setSelectAll] = useState(false);
-  const [tong_tien, setTongTien] = useState(0)
+  const [tong_tien, setTongTien] = useState(0);
   useEffect(() => {
     const userDataFromLocalStorage = JSON.parse(localStorage.getItem("user"));
     if (userDataFromLocalStorage) {
@@ -72,7 +77,6 @@ function Cart() {
     } else {
       window.location.href = "/login";
     }
-
   }, []); // Sử dụng [] để đảm bảo useEffect chỉ chạy một lần khi component được tạo
   const avatarUrl = `http://127.0.0.1:5000/api/v1/picture/avatar/${user_id}`;
   const handleLogout = () => {
@@ -105,13 +109,12 @@ function Cart() {
       console.error("Error calling history API:", error);
     }
   };
-  
+
   // Call fetchData when the component mounts
   useEffect(() => {
     fetchData();
-    tinh_tong()
+    tinh_tong();
     setIsDeleteButtonVisible(selectedRows.length > 0);
-
   }, [selectedRows, tong_tien]);
   const handleProfile = async () => {
     history.push(`/profile`, {});
@@ -126,7 +129,7 @@ function Cart() {
   const handleChangepass = async () => {
     history.push(`/changepass`, {});
   };
-  
+
   const handleSelectAllClick = () => {
     if (selectAll) {
       // If all rows are currently selected, deselect all.
@@ -156,14 +159,18 @@ function Cart() {
   const tinh_tong = async () => {
     const access_token = localStorage.getItem("accessToken");
     try {
-      const response = await axios.post('http://127.0.0.1:5000/api/v1/cart_items/get-total', {
-        list_id: selectedRows, // Truyền dữ liệu trực tiếp
-      }, {
-        headers: {
-          Authorization: `Bearer ${access_token}`,
+      const response = await axios.post(
+        "http://127.0.0.1:5000/api/v1/cart_items/get-total",
+        {
+          list_id: selectedRows, // Truyền dữ liệu trực tiếp
         },
-      });
-  
+        {
+          headers: {
+            Authorization: `Bearer ${access_token}`,
+          },
+        }
+      );
+
       if (response.data.message.status === "success") {
         setTongTien(response.data.data);
       } else {
@@ -172,21 +179,24 @@ function Cart() {
       }
     } catch (error) {
       console.error(error);
-      alert('Có lỗi xảy ra khi gửi yêu cầu tính tổng');
+      alert("Có lỗi xảy ra khi gửi yêu cầu tính tổng");
     }
   };
 
   const handleDeleteButtonClick = async () => {
     const access_token = localStorage.getItem("accessToken");
     try {
-      const response = await axios.delete('http://127.0.0.1:5000/api/v1/cart_items', {
-        data: { list_id: selectedRows },
-        headers: {
-          Authorization: `Bearer ${access_token}`,
-          'Content-Type': 'application/json',
-        },
-      });
-  
+      const response = await axios.delete(
+        "http://127.0.0.1:5000/api/v1/cart_items",
+        {
+          data: { list_id: selectedRows },
+          headers: {
+            Authorization: `Bearer ${access_token}`,
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
       if (response.data.message.status === "success") {
         setModalMessage(response.data.message.text);
         setModalOpen(true);
@@ -200,29 +210,53 @@ function Cart() {
       }
     } catch (error) {
       console.error(error);
-      alert('Có lỗi xảy ra khi gửi yêu cầu xóa');
+      alert("Có lỗi xảy ra khi gửi yêu cầu xóa");
     }
   };
 
   const handleQuantityChange = async (itemId, newQuantity) => {
     const access_token = localStorage.getItem("accessToken");
     try {
-      const response = await axios.put(`http://127.0.0.1:5000/api/v1/cart_items/${itemId}`, {
-        new_quantity: newQuantity, // Sử dụng giá trị newQuantity trực tiếp
-      }, {
-        headers: {
-          Authorization: `Bearer ${access_token}`,
-          'Content-Type': 'application/json',
+      const response = await axios.put(
+        `http://127.0.0.1:5000/api/v1/cart_items/${itemId}`,
+        {
+          new_quantity: newQuantity, // Sử dụng giá trị newQuantity trực tiếp
         },
-      });
-      if (response.data.message.status === "success"){
+        {
+          headers: {
+            Authorization: `Bearer ${access_token}`,
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      if (response.data.message.status === "success") {
         tinh_tong();
         fetchData();
       }
     } catch (error) {
       console.error(error);
-      alert('Có lỗi xảy ra khi gửi yêu cầu thay đổi gì đó');
+      alert("Có lỗi xảy ra khi gửi yêu cầu thay đổi gì đó");
     }
+  };
+
+  const [selectedColor, setSelectedColor] = useState(""); // Đảm bảo truyền giá trị màu ban đầu từ data
+  const [selectedSize, setSelectedSize] = useState(""); // Đảm bảo truyền giá trị size ban đầu từ data
+
+  const [openPopups, setOpenPopups] = useState({}); // Sử dụng một đối tượng để lưu trạng thái của popup cho từng ô
+
+  const togglePopup = (itemId) => {
+    setOpenPopups((prevPopups) => ({
+      ...prevPopups,
+      [itemId]: !prevPopups[itemId] || false,
+    }));
+  };
+
+  const handleColorChange = (e) => {
+    setSelectedColor(e.target.value);
+  };
+
+  const handleSizeChange = (e) => {
+    setSelectedSize(e.target.value);
   };
 
   return (
@@ -301,17 +335,71 @@ function Cart() {
                       />
                     </LeftContainerProduct>
                     <RightContainerProduct>
-                      <span style={{marginTop: '40px'}}>{item.name_product}</span>
+                      <span style={{ marginTop: "40px" }}>
+                        {item.name_product}
+                      </span>
                     </RightContainerProduct>
                   </ProductColumnCell>
-                  <PhanLoaiColumnCell>Loại hàng: {item.color}, {item.size}</PhanLoaiColumnCell>
+                  <PhanLoaiColumnCell>
+                    <div style={{ position: "relative" }}>
+                    <span><button onClick={() => togglePopup(item.id)}>▼</button>Loại hàng: {item.color}, {item.size}</span>
+                
+                      {openPopups[item.id] && (
+                        <div
+                          style={{
+                            position: "absolute",
+                            top: "50px",
+                            left: "0",
+                            backgroundColor: "white",
+                            border: "1px solid #ccc",
+                          }}
+                        >
+                          <div>
+                            <label htmlFor="colorSelect" style={{marginRight:'20px'}}>Màu:</label>
+                            <select
+                              id="colorSelect"
+                              value={item.color}
+                              onChange={handleColorChange}
+                              style={{
+                                width: '50px'
+                              }}
+                            >
+                              <option value="red">Đỏ</option>
+                              <option value="blue">Xanh</option>
+                              {/* Thêm tùy chọn cho các màu khác tại đây */}
+                            </select>
+                          </div>
+                          <div>
+                            <label htmlFor="sizeSelect" style={{marginRight:'25px'}}>Size:</label>
+                            <select
+                              id="sizeSelect"
+                              value={item.size}
+                              onChange={handleSizeChange}
+                              style={{
+                                width: '50px'
+                              }}
+                            >
+                              <option value="S">S</option>
+                              <option value="M">M</option>
+                              <option value="L">L</option>
+                              <option value="XL">XL</option>
+                              {/* Thêm tùy chọn cho các size khác tại đây */}
+                            </select>
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  </PhanLoaiColumnCell>
                   <QuantityColumnCell>
                     <QuantityInput
                       type="number"
                       value={item.quantity}
                       onChange={(e) => {
-                        const numericValue = parseInt(e.target.value.replace(/\D/g, ''), 10);
-                        handleQuantityChange(item.id, numericValue); 
+                        const numericValue = parseInt(
+                          e.target.value.replace(/\D/g, ""),
+                          10
+                        );
+                        handleQuantityChange(item.id, numericValue);
                       }}
                     />
                   </QuantityColumnCell>
@@ -323,7 +411,11 @@ function Cart() {
           </TableContainer>
         </Container2>
         <Container6>
-          {isDeleteButtonVisible && <DeleteButton onClick={handleDeleteButtonClick}>Xóa hàng</DeleteButton>}
+          {isDeleteButtonVisible && (
+            <DeleteButton onClick={handleDeleteButtonClick}>
+              Xóa hàng
+            </DeleteButton>
+          )}
           <TotalText>Tổng tiền:</TotalText>
           <TotalAmount>{tong_tien} $ </TotalAmount>
           <BuyButton>Mua hàng</BuyButton>

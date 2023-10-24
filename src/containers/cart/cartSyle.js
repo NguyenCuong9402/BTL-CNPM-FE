@@ -309,12 +309,12 @@ export const ProductColumn = styled.td`
 `;
 
 export const PhanLoaiColumn = styled.td`
-  width: 10%;
+  width: 15%;
   padding: 8px;
 `;
 
 export const PhanLoaiColumnCell = styled.td`
-  width: 5%;
+  width: 15%;
   padding: 8px;
   text-align: center;
 `;
@@ -363,13 +363,13 @@ export const PriceColumnCell = styled.td`
 `;
 
 export const QuantityColumn = styled.td`
-  width: 15%;
+  width: 10%;
   padding: 8px;
   text-align: center;      
 `;
 
 export const QuantityColumnCell = styled.td`
-  width: 15%;
+  width: 10%;
   padding: 8px;
   text-align: center;
 `; 
