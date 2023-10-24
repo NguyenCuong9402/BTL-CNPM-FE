@@ -5,7 +5,7 @@ import Login from "./containers/login/Login";
 import Register from "./containers/register/Register";
 import NotFound from "./containers/notFound/NotFound";
 import Detail from "./containers/detail/detail"
-import Profile from './containers/profile/profile';
+import Profile from './containers/thongtin/thongtin';
 import Changepass from "./containers/changepass/changpass"
 import Cart from "./containers/cart/cart"
 const App = () => {
