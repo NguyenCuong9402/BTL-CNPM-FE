@@ -74,6 +74,18 @@ export const NameContainer4 = styled.div`
 export const Container5 = styled.div`
   flex: 1; /* Container5 chiếm 60% chiều rộng của Container1 */
   background-color: white; /* Màu nền của Container5 */
+  display: flex;
+  align-items: center; /* Căn giữa dọc */
+`;
+
+export const IconContainer5 = styled.img`
+  margin-left:20px;
+  width: 30px; /* Độ rộng của ảnh icon */
+  height: 30px; /* Chiều cao của ảnh icon */
+  margin-right: 10px; /* Khoảng cách giữa ảnh và dòng chữ */
+`;
+export const TextContainer5 = styled.div`
+  font-size: 16px; /* Kích thước font chữ */
 `;
 
 export const Container6 = styled.div`
