@@ -155,7 +155,7 @@ export const ContainerProfileA = styled.div`
 
 export const ContainerProfileB = styled.div`
   flex: 8;
-  background-color: red;
+  background-color: white;
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -163,20 +163,13 @@ export const ContainerProfileB = styled.div`
 
 export const ContainerProfileB1 = styled.div`
   flex: 2; /* ContainerProfileB1 chiếm 20% tỷ lệ flex của ContainerProfileB */
-  background-color: yellow; /* Màu nền của ContainerProfileB1 */
+  background-color: #f0f0f0; /* Màu nền của ContainerProfileB1 */
   width: 20%;
   display: flex;
   flex-direction: column;
-`;
+  align-items: center;
+  justify-content: center;
 
-export const ColumnProFileB1 = styled.div`
-  flex: 14;
-  background-color: #f0f0f0;
-`;
-
-export const ColumnProFileB7 = styled.div`
-  flex: 16; /* Cột 7 chiếm 22% tỷ lệ flex của ContainerProfileB1 */
-  background-color: #f0f0f0;
 `;
 
 
