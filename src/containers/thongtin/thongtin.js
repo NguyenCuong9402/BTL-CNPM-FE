@@ -19,9 +19,16 @@ import {
   Container5,
   NameContainer4,
   AvatarContainer3,
-  Container6, Ct1, Ct2, Ct3, Ct4,
+  Container6,
+  Ct1,
+  Ct2,
+  Ct3,
+  Ct4,
   TextContainer5,
-  IconContainer5, ButtonContainer6,
+  IconContainer5,
+  ButtonContainer6,
+  ContainerProfileA,
+  ContainerProfileB,
 } from "./thongtinStyle";
 import "boxicons/css/boxicons.min.css";
 import axios from "axios";
@@ -132,22 +139,54 @@ function Profile() {
             <IconContainer5 src={user} />
             <TextContainer5>Hồ Sơ Của Tôi</TextContainer5>
           </Container5>
-          <Container6>  
+          <Container6>
             <Ct1>
-              <ButtonContainer6 active={activeButton === 1} onClick={() => setActiveButton(1)}>Tài khoản
+              <ButtonContainer6
+                active={activeButton === 1}
+                onClick={() => setActiveButton(1)}
+              >
+                Tài khoản
               </ButtonContainer6>
             </Ct1>
             <Ct2>
-              <ButtonContainer6 active={activeButton === 2} onClick={() => setActiveButton(2)}>Mật khẩu</ButtonContainer6>
+              <ButtonContainer6
+                active={activeButton === 2}
+                onClick={() => setActiveButton(2)}
+              >
+                Mật khẩu
+              </ButtonContainer6>
             </Ct2>
             <Ct3>
-              <ButtonContainer6 active={activeButton === 3} onClick={() => setActiveButton(3)}>Lịch sử mua hàng</ButtonContainer6>
-
+              <ButtonContainer6
+                active={activeButton === 3}
+                onClick={() => setActiveButton(3)}
+              >
+                Lịch sử mua hàng
+              </ButtonContainer6>
             </Ct3>
             <Ct4></Ct4>
           </Container6>
         </Container1>
-        <Container2>{/* Nội dung của Container2 */}</Container2>
+        <Container2>
+          {activeButton === 1 && (
+            <React.Fragment>
+              <ContainerProfileA></ContainerProfileA>
+              <ContainerProfileB></ContainerProfileB>
+            </React.Fragment>
+          )}
+          {activeButton === 2 && (
+            <React.Fragment>
+              <div>Oke</div>
+              <div>Oke</div>
+            </React.Fragment>
+          )}
+          {activeButton === 3 && (
+          <React.Fragment>
+            <div>Oke1</div>
+            <div>Oke1</div>
+          </React.Fragment>
+        )}
+        </Container2>
       </Container>
       {/* <Modal
         isOpen={isModalOpen}

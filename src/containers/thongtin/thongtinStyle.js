@@ -134,8 +134,23 @@ export const ButtonContainer6 = styled.button`
 
 export const Container2 = styled.div`
   flex: 7; /* Container2 chiếm 70% chiều rộng của Container cha */
-  background-color: blue; /* Màu nền của Container2 */
+  background-color: white; /* Màu nền của Container2 */
   height: 100%; /* Chiều cao 100% */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+export const ContainerProfileA = styled.div`
+  flex: 2; 
+  background-color: white; 
+  width: 100%;
+`;
+
+export const ContainerProfileB = styled.div`
+  flex: 8; /* ContainerProfileB chiếm 80% tỷ lệ flex của Container2 */
+  background-color: red; /* Màu nền của ContainerProfileB */
+  width: 100%;
 `;
 
 export const Header = styled.header`
