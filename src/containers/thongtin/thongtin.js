@@ -16,14 +16,14 @@ import {
   CartImage,
   Container3,
   Container4,
-  Container5,NameContainer4, AvatarContainer3,
+  Container5,NameContainer4, AvatarContainer3,Container6
 } from "./thongtinStyle";
 import "boxicons/css/boxicons.min.css";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 import logout from "./logout.png";
 import cart from "./trolley.png";
-
+import user from "./user.png";
 import Modal from "../../modal";
 
 function Profile() {
@@ -125,6 +125,7 @@ function Profile() {
             <NameContainer4>{data.name_user}</NameContainer4>
           </Container4>
           <Container5>{/* Nội dung của Container5 */}</Container5>
+          <Container6></Container6>
         </Container1>
         <Container2>{/* Nội dung của Container2 */}</Container2>
       </Container>

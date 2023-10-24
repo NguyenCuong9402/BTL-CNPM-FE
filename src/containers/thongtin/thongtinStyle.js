@@ -72,9 +72,15 @@ export const NameContainer4 = styled.div`
 `;
 
 export const Container5 = styled.div`
-  flex: 7; /* Container5 chiếm 60% chiều rộng của Container1 */
+  flex: 1; /* Container5 chiếm 60% chiều rộng của Container1 */
   background-color: white; /* Màu nền của Container5 */
 `;
+
+export const Container6 = styled.div`
+  flex: 6; /* Container5 chiếm 60% chiều rộng của Container1 */
+  background-color: white; /* Màu nền của Container5 */
+`;
+
 
 export const Container2 = styled.div`
   flex: 7; /* Container2 chiếm 70% chiều rộng của Container cha */
