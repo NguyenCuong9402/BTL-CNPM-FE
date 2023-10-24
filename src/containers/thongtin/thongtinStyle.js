@@ -165,16 +165,29 @@ export const ContainerProfileB1 = styled.div`
   flex: 2; /* ContainerProfileB1 chiếm 20% tỷ lệ flex của ContainerProfileB */
   background-color: yellow; /* Màu nền của ContainerProfileB1 */
   width: 20%;
+  display: flex;
+  flex-direction: column;
 `;
 
+export const ColumnProFileB1 = styled.div`
+  flex: 14;
+  background-color: #f0f0f0;
+`;
+
+export const ColumnProFileB7 = styled.div`
+  flex: 16; /* Cột 7 chiếm 22% tỷ lệ flex của ContainerProfileB1 */
+  background-color: #f0f0f0;
+`;
+
+
 export const ContainerProfileB2 = styled.div`
-  flex: 6; /* ContainerProfileB2 chiếm 60% tỷ lệ flex của ContainerProfileB */
+  flex: 5; /* ContainerProfileB2 chiếm 60% tỷ lệ flex của ContainerProfileB */
   background-color: green; /* Màu nền của ContainerProfileB2 */
   width: 60%;
 `;
 
 export const ContainerProfileB3 = styled.div`
-  flex: 2; /* ContainerProfileB3 chiếm 20% tỷ lệ flex của ContainerProfileB */
+  flex: 3; /* ContainerProfileB3 chiếm 20% tỷ lệ flex của ContainerProfileB */
   background-color: blue; /* Màu nền của ContainerProfileB3 */
   width: 20%;
 `;

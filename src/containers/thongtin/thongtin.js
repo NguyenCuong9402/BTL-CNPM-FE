@@ -32,6 +32,8 @@ import {
   ContainerProfileB1,
   ContainerProfileB2,
   ContainerProfileB3,
+  ColumnProFileB1,
+  ColumnProFileB7,
 } from "./thongtinStyle";
 import "boxicons/css/boxicons.min.css";
 import axios from "axios";
@@ -188,7 +190,15 @@ function Profile() {
                 </p>
               </ContainerProfileA>
               <ContainerProfileB>
-                <ContainerProfileB1></ContainerProfileB1>
+                <ContainerProfileB1>
+                  <ColumnProFileB1></ColumnProFileB1>
+                  <ColumnProFileB1></ColumnProFileB1>
+                  <ColumnProFileB1></ColumnProFileB1>
+                  <ColumnProFileB1></ColumnProFileB1>
+                  <ColumnProFileB1></ColumnProFileB1>
+                  <ColumnProFileB1></ColumnProFileB1>
+                  <ColumnProFileB7></ColumnProFileB7>
+                </ContainerProfileB1>
                 <ContainerProfileB2></ContainerProfileB2>
                 <ContainerProfileB3></ContainerProfileB3>
               </ContainerProfileB>
