@@ -32,6 +32,13 @@ import {
   ContainerProfileB1,
   ContainerProfileB2,
   ContainerProfileB3,
+  ColumnProfile1,
+  ColumnProfile2,
+  ColumnProfile3,
+  ColumnProfile4,
+  ColumnProfile5,
+  ColumnProfile6,
+  ColumnProfile7,SpanColumn
 } from "./thongtinStyle";
 import "boxicons/css/boxicons.min.css";
 import axios from "axios";
@@ -189,7 +196,17 @@ function Profile() {
               </ContainerProfileA>
               <ContainerProfileB>
                 <ContainerProfileB1>
-                  
+                  <ColumnProfile1>
+                    <p style={{fontSize: '20px', marginRight: '15px'}}>Tài khoản:</p>
+                  </ColumnProfile1>
+                  <ColumnProfile6><p style={{fontSize: '20px', marginRight: '15px'}}>Họ tên:</p></ColumnProfile6>
+                  <ColumnProfile2>
+                  <p style={{fontSize: '20px', marginRight: '15px'}}>Số điện thoại:</p>
+                  </ColumnProfile2>
+                  <ColumnProfile3><p style={{fontSize: '20px', marginRight: '15px'}}>Giới tính:</p></ColumnProfile3>
+                  <ColumnProfile4><p style={{fontSize: '20px', marginRight: '15px'}}>Ngày sinh:</p></ColumnProfile4>
+                  <ColumnProfile5><p style={{fontSize: '20px', marginRight: '15px'}}>Địa chỉ:</p></ColumnProfile5>
+                  <ColumnProfile7></ColumnProfile7>
                 </ContainerProfileB1>
                 <ContainerProfileB2></ContainerProfileB2>
                 <ContainerProfileB3></ContainerProfileB3>
