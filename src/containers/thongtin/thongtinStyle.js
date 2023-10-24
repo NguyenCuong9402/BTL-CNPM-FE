@@ -116,7 +116,7 @@ export const Ct3 = styled.div`
 
 export const Ct4 = styled.div`
   flex: 7; /* Ct4 chiếm 40% chiều rộng của Container6 */
-  background-color: lightpink; /* Màu nền của Ct4 */
+  background-color: white; /* Màu nền của Ct4 */
   width: 100%;
 `;
 
@@ -125,8 +125,8 @@ export const ButtonContainer6 = styled.button`
   margin-left: 70px;
   font-size: 16px; /* Kích thước font chữ */
   margin-top: 10px;
-  background-color: white; /* Màu nền của nút (màu xanh) */
-  color: black; /* Màu chữ trắng */
+  background-color: white;
+  color: ${props => (props.active ? 'orange' : 'black')};
   border: none; /* Loại bỏ viền */
   cursor: pointer; /* Biểu tượng con trỏ khi hover nút */
 `;

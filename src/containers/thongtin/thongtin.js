@@ -38,7 +38,7 @@ function Profile() {
   const history = useHistory();
 
   const [data, setData] = useState({});
-
+  const [activeButton, setActiveButton] = useState(1);
   useEffect(() => {
     const userDataFromLocalStorage = JSON.parse(localStorage.getItem("user"));
     if (userDataFromLocalStorage) {
@@ -134,13 +134,14 @@ function Profile() {
           </Container5>
           <Container6>  
             <Ct1>
-              <ButtonContainer6>Tài khoản</ButtonContainer6>
+              <ButtonContainer6 active={activeButton === 1} onClick={() => setActiveButton(1)}>Tài khoản
+              </ButtonContainer6>
             </Ct1>
             <Ct2>
-              <ButtonContainer6>Mật khẩu</ButtonContainer6>
+              <ButtonContainer6 active={activeButton === 2} onClick={() => setActiveButton(2)}>Mật khẩu</ButtonContainer6>
             </Ct2>
             <Ct3>
-              <ButtonContainer6>Lịch sử mua hàng</ButtonContainer6>
+              <ButtonContainer6 active={activeButton === 3} onClick={() => setActiveButton(3)}>Lịch sử mua hàng</ButtonContainer6>
 
             </Ct3>
             <Ct4></Ct4>
