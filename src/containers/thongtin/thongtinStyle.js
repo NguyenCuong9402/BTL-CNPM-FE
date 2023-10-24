@@ -149,8 +149,8 @@ export const ContainerProfileA = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  border: 1px solid #ccc; /* Thêm viền 1px với màu xám (#ccc) */
-  box-shadow: 0 0 10px rgba(0, 1, 1, 1);
+  border: 10px solid #ccc; /* Thêm viền 1px với màu xám (#ccc) */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 1);
 `;
 
 export const ContainerProfileB = styled.div`
