@@ -16,8 +16,12 @@ import {
   CartImage,
   Container3,
   Container4,
-  Container5,NameContainer4, AvatarContainer3,Container6, TextContainer5, IconContainer5
-
+  Container5,
+  NameContainer4,
+  AvatarContainer3,
+  Container6, Ct1, Ct2, Ct3, Ct4,
+  TextContainer5,
+  IconContainer5, ButtonContainer6,
 } from "./thongtinStyle";
 import "boxicons/css/boxicons.min.css";
 import axios from "axios";
@@ -118,7 +122,6 @@ function Profile() {
       </Header>
       <Container>
         <Container1>
-          
           <Container3>
             <AvatarContainer3 src={avatarUrl} />
           </Container3>
@@ -126,10 +129,22 @@ function Profile() {
             <NameContainer4>{data.name_user}</NameContainer4>
           </Container4>
           <Container5>
-              <IconContainer5 src={user} />
-              <TextContainer5>Hồ Sơ Của Tôi</TextContainer5>
+            <IconContainer5 src={user} />
+            <TextContainer5>Hồ Sơ Của Tôi</TextContainer5>
           </Container5>
-          <Container6></Container6>
+          <Container6>  
+            <Ct1>
+              <ButtonContainer6>Tài khoản</ButtonContainer6>
+            </Ct1>
+            <Ct2>
+              <ButtonContainer6>Mật khẩu</ButtonContainer6>
+            </Ct2>
+            <Ct3>
+              <ButtonContainer6>Lịch sử mua hàng</ButtonContainer6>
+
+            </Ct3>
+            <Ct4></Ct4>
+          </Container6>
         </Container1>
         <Container2>{/* Nội dung của Container2 */}</Container2>
       </Container>

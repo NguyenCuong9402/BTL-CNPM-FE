@@ -85,12 +85,50 @@ export const IconContainer5 = styled.img`
   margin-right: 10px; /* Khoảng cách giữa ảnh và dòng chữ */
 `;
 export const TextContainer5 = styled.div`
-  font-size: 16px; /* Kích thước font chữ */
+  font-size: 26px; /* Kích thước font chữ */
 `;
 
 export const Container6 = styled.div`
-  flex: 6; /* Container5 chiếm 60% chiều rộng của Container1 */
-  background-color: white; /* Màu nền của Container5 */
+  flex: 6; /* Container6 chiếm 60% chiều rộng của Container1 */
+  background-color: white; /* Màu nền của Container6 */
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Căn giữa dọc */
+`;
+
+export const Ct1 = styled.div`
+  flex: 1; /* Ct1 chiếm 20% chiều rộng của Container6 */
+  background-color: white; /* Màu nền của Ct1 */
+  width: 100%;
+`;
+
+export const Ct2 = styled.div`
+  flex: 1; /* Ct2 chiếm 20% chiều rộng của Container6 */
+  background-color: white; /* Màu nền của Ct2 */
+  width: 100%;
+`;
+
+export const Ct3 = styled.div`
+  flex: 1; /* Ct3 chiếm 20% chiều rộng của Container6 */
+  background-color: white; /* Màu nền của Ct3 */
+  width: 100%;
+`;
+
+export const Ct4 = styled.div`
+  flex: 7; /* Ct4 chiếm 40% chiều rộng của Container6 */
+  background-color: lightpink; /* Màu nền của Ct4 */
+  width: 100%;
+`;
+
+export const ButtonContainer6 = styled.button`
+  text-align: center;
+  margin-left: 70px;
+  font-size: 16px; /* Kích thước font chữ */
+  margin-top: 10px;
+  background-color: white; /* Màu nền của nút (màu xanh) */
+  color: black; /* Màu chữ trắng */
+  border: none; /* Loại bỏ viền */
+  cursor: pointer; /* Biểu tượng con trỏ khi hover nút */
 `;
 
 
