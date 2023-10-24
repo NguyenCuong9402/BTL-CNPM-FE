@@ -41,7 +41,7 @@ export const Container3 = styled.div`
 
 export const Container4 = styled.div`
   flex: 1; /* Container4 chiếm 10% chiều rộng của Container1 */
-  background-color: orange; /* Màu nền của Container4 */
+  background-color: #dcdcdc; /* Màu nền của Container4 */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -52,7 +52,6 @@ export const NameContainer4 = styled.div`
   color: black; /* Màu chữ đen */
   font-size: 20px; /* Font size 30px */
   padding: 10px;
-  border: 2px solid black;
   border-radius: 5px;
   transition: all 0.3s ease-in-out; /* Hiệu ứng thay đổi màu nền và kích thước */
   
