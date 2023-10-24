@@ -8,13 +8,15 @@ import {
   Body,
   DropdownMenu,
   DropdownItem,
-  Header,
+  Header, 
   Navbar,
+  CartImage
 } from "./thongtinStyle";
 import "boxicons/css/boxicons.min.css";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 import logout from "./logout.png";
+import cart  from "./trolley.png";
 
 import Modal from "../../modal";
 
@@ -23,6 +25,7 @@ function Profile() {
   const [modalMessage, setModalMessage] = useState("");
   const [user_id, setUserDataId] = useState(null);
   const history = useHistory();
+  
   const [data, setData] = useState({});
   
   useEffect(() => {
@@ -77,6 +80,11 @@ function Profile() {
     history.push(`/changepass`, {});
   };
 
+  const SangGioHang = ()=>{
+    history.push(`/cart`, {});
+
+  }
+
   
   return (
     <Body>
@@ -100,6 +108,8 @@ function Profile() {
               </DropdownItem>
             </DropdownMenu>
           </AvatarContainer>
+          <CartImage src={cart} alt="Cart" className="cart"  onClick={SangGioHang}/>
+
         </UserInfoContainer>
       </Header>
       
