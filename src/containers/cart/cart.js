@@ -213,7 +213,6 @@ function Cart() {
   };
   const [selectedColor, setSelectedColor] = useState("");
   const [selectedSize, setSelectedSize] = useState("");
-
   console.log(selectedColor, selectedSize)
   const handleConfirm = async (itemId, color, size) => {
     const access_token = localStorage.getItem("accessToken");
@@ -245,7 +244,9 @@ function Cart() {
 
   const [openPopups, setOpenPopups] = useState({}); // Sử dụng một đối tượng để lưu trạng thái của popup cho từng ô
 
-  const togglePopup = (itemId) => {
+  const togglePopup = (itemId, color,size) => {
+    setSelectedColor(color);
+    setSelectedSize(size);
     setOpenPopups((prevPopups) => ({
       [itemId]: !prevPopups[itemId],
     }));
@@ -360,7 +361,7 @@ function Cart() {
                   </ProductColumnCell>
                   <PhanLoaiColumnCell>
                     <div style={{ position: "relative" }}>
-                    <span><button onClick={() => togglePopup(item.id)}>▼</button>Loại hàng: {item.color}, {item.size}</span>
+                    <span><button onClick={() => togglePopup(item.id, item.color, item.size)}>▼</button>Loại hàng: {item.color}, {item.size}</span>
                 
                       {openPopups[item.id] && (
                         <div
@@ -376,7 +377,7 @@ function Cart() {
                             <label htmlFor="colorSelect" style={{marginRight:'20px'}}>Màu:</label>
                             <select
                               id="colorSelect"
-                              value={item.color}
+                              value={selectedColor}
                               onChange={(e) => setSelectedColor(e.target.value)}
                               style={{
                                 width: '80px'
@@ -391,7 +392,7 @@ function Cart() {
                             <label htmlFor="sizeSelect" style={{marginRight:'25px'}}>Size:</label>
                             <select
                               id="sizeSelect"
-                              value={item.size}
+                              value={selectedSize}
                               onChange={(e) => setSelectedSize(e.target.value)}
                               style={{
                                 width: '80px'
