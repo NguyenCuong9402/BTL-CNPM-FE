@@ -14,6 +14,9 @@ import {
   Container2,
   Navbar,
   CartImage,
+  Container3,
+  Container4,
+  Container5,NameContainer4,
 } from "./thongtinStyle";
 import "boxicons/css/boxicons.min.css";
 import axios from "axios";
@@ -70,7 +73,7 @@ function Profile() {
   // Call fetchData when the component mounts
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [data]);
   const handleCloseModal = () => {
     setModalOpen(false);
   };
@@ -82,7 +85,6 @@ function Profile() {
   const SangGioHang = () => {
     history.push(`/cart`, {});
   };
-
   return (
     <Body>
       <Header>
@@ -93,7 +95,7 @@ function Profile() {
         </Navbar>
 
         <UserInfoContainer>
-          <UserName>{data.name}</UserName>
+          <UserName>{data.name_user}</UserName>
           <AvatarContainer>
             <AvatarImage src={avatarUrl} alt="Avatar" />
             <DropdownMenu>
@@ -114,12 +116,14 @@ function Profile() {
         </UserInfoContainer>
       </Header>
       <Container>
-      <Container1>
-        {/* Nội dung của Container1 */}
-      </Container1>
-      <Container2>
-        {/* Nội dung của Container2 */}
-      </Container2>
+        <Container1>
+          <Container4>
+            <NameContainer4>{data.name_user}</NameContainer4>
+          </Container4>
+          <Container3>{/* Nội dung của Container3 */}</Container3>
+          <Container5>{/* Nội dung của Container5 */}</Container5>
+        </Container1>
+        <Container2>{/* Nội dung của Container2 */}</Container2>
       </Container>
       {/* <Modal
         isOpen={isModalOpen}

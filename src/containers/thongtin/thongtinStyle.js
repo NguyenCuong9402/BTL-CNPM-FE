@@ -31,6 +31,41 @@ export const Container1 = styled.div`
   flex: 3; /* Container1 chiếm 30% chiều rộng của Container cha */
   background-color: green; /* Màu nền của Container1 */
   height: 100%; /* Chiều cao 100% */
+  display: flex;
+  flex-direction: column;
+`;
+export const Container3 = styled.div`
+  flex: 3; /* Container3 chiếm 30% chiều rộng của Container1 */
+  background-color: yellow; /* Màu nền của Container3 */
+`;
+
+export const Container4 = styled.div`
+  flex: 1; /* Container4 chiếm 10% chiều rộng của Container1 */
+  background-color: orange; /* Màu nền của Container4 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const NameContainer4 = styled.div`
+  text-align: left; /* Để căn trái nội dung */
+  color: black; /* Màu chữ đen */
+  font-size: 20px; /* Font size 30px */
+  padding: 10px;
+  border: 2px solid black;
+  border-radius: 5px;
+  transition: all 0.3s ease-in-out; /* Hiệu ứng thay đổi màu nền và kích thước */
+  
+  &:hover {
+    background-color: black; /* Màu nền khi hover */
+    color: white; /* Màu chữ khi hover */
+    transform: scale(1.1); /* Hiệu ứng phóng to khi hover */
+  }
+`;
+
+export const Container5 = styled.div`
+  flex: 6; /* Container5 chiếm 60% chiều rộng của Container1 */
+  background-color: white; /* Màu nền của Container5 */
 `;
 
 export const Container2 = styled.div`
