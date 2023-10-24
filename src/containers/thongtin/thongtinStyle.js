@@ -145,6 +145,10 @@ export const ContainerProfileA = styled.div`
   flex: 2; 
   background-color: white; 
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
 `;
 
 export const ContainerProfileB = styled.div`

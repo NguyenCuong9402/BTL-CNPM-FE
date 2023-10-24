@@ -137,7 +137,7 @@ function Profile() {
           </Container4>
           <Container5>
             <IconContainer5 src={user} />
-            <TextContainer5>Hồ Sơ Của Tôi</TextContainer5>
+            <TextContainer5>Tài khoản Của Tôi</TextContainer5>
           </Container5>
           <Container6>
             <Ct1>
@@ -145,7 +145,7 @@ function Profile() {
                 active={activeButton === 1}
                 onClick={() => setActiveButton(1)}
               >
-                Tài khoản
+                Hồ sơ
               </ButtonContainer6>
             </Ct1>
             <Ct2>
@@ -170,7 +170,10 @@ function Profile() {
         <Container2>
           {activeButton === 1 && (
             <React.Fragment>
-              <ContainerProfileA></ContainerProfileA>
+              <ContainerProfileA>
+              <h2 style={{marginLeft: '25px', fontWeight: 'bold', fontSize: '30px'}}>Hồ Sơ Của Tôi</h2>
+              <p style={{marginLeft: '25px', fontSize: '16px'}}>Quản lý thông tin hồ sơ để bảo mật tài khoản</p>
+              </ContainerProfileA>
               <ContainerProfileB></ContainerProfileB>
             </React.Fragment>
           )}
