@@ -8,15 +8,18 @@ import {
   Body,
   DropdownMenu,
   DropdownItem,
-  Header, 
+  Header,
+  Container,
+  Container1,
+  Container2,
   Navbar,
-  CartImage
+  CartImage,
 } from "./thongtinStyle";
 import "boxicons/css/boxicons.min.css";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 import logout from "./logout.png";
-import cart  from "./trolley.png";
+import cart from "./trolley.png";
 
 import Modal from "../../modal";
 
@@ -25,9 +28,9 @@ function Profile() {
   const [modalMessage, setModalMessage] = useState("");
   const [user_id, setUserDataId] = useState(null);
   const history = useHistory();
-  
+
   const [data, setData] = useState({});
-  
+
   useEffect(() => {
     const userDataFromLocalStorage = JSON.parse(localStorage.getItem("user"));
     if (userDataFromLocalStorage) {
@@ -49,16 +52,13 @@ function Profile() {
   const fetchData = async () => {
     try {
       const access_token = localStorage.getItem("accessToken"); // Get access token from local storage
-      const response = await axios.get(
-        `http://127.0.0.1:5000/api/v1/user`,
-        {
-          headers: {
-            Authorization: `Bearer ${access_token}`,
-          },
-        }
-      );
+      const response = await axios.get(`http://127.0.0.1:5000/api/v1/user`, {
+        headers: {
+          Authorization: `Bearer ${access_token}`,
+        },
+      });
       if (response.data.message.status === "success") {
-        const formattedData = response.data.data
+        const formattedData = response.data.data;
         setData(formattedData);
       } else {
         console.error("Error fetching history data.");
@@ -74,18 +74,15 @@ function Profile() {
   const handleCloseModal = () => {
     setModalOpen(false);
   };
-  
 
   const handleChangepass = async () => {
     history.push(`/changepass`, {});
   };
 
-  const SangGioHang = ()=>{
+  const SangGioHang = () => {
     history.push(`/cart`, {});
+  };
 
-  }
-
-  
   return (
     <Body>
       <Header>
@@ -108,16 +105,27 @@ function Profile() {
               </DropdownItem>
             </DropdownMenu>
           </AvatarContainer>
-          <CartImage src={cart} alt="Cart" className="cart"  onClick={SangGioHang}/>
-
+          <CartImage
+            src={cart}
+            alt="Cart"
+            className="cart"
+            onClick={SangGioHang}
+          />
         </UserInfoContainer>
       </Header>
-      
-      <Modal
+      <Container>
+      <Container1>
+        {/* Nội dung của Container1 */}
+      </Container1>
+      <Container2>
+        {/* Nội dung của Container2 */}
+      </Container2>
+      </Container>
+      {/* <Modal
         isOpen={isModalOpen}
         message={modalMessage}
         onClose={handleCloseModal}
-      />
+      /> */}
     </Body>
   );
 }

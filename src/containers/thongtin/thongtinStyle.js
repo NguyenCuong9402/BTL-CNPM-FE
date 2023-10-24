@@ -17,14 +17,26 @@ export const GlobalStyles = styled.div`
     width: 100%;
     background: #000;
   }
+`;  
+
+export const Container = styled.div`
+  flex: 1; /* Container cha chiếm 90% còn lại */
+  margin-top: 90px;
+  background-color: white;
+  width: 60%;
+  display: flex;
 `;
 
-export const Background = styled.div`
-  background-position: center;
-  background-size: cover;
-  height:0px;
-  width: 100%;
-  filter: blur(10px);
+export const Container1 = styled.div`
+  flex: 3; /* Container1 chiếm 30% chiều rộng của Container cha */
+  background-color: green; /* Màu nền của Container1 */
+  height: 100%; /* Chiều cao 100% */
+`;
+
+export const Container2 = styled.div`
+  flex: 7; /* Container2 chiếm 70% chiều rộng của Container cha */
+  background-color: blue; /* Màu nền của Container2 */
+  height: 100%; /* Chiều cao 100% */
 `;
 
 export const Header = styled.header`
@@ -40,6 +52,8 @@ export const Header = styled.header`
   align-items: center;
   z-index: 50;
 `;
+
+
 
 export const Navbar = styled.nav`
   a {
@@ -168,7 +182,10 @@ export const LogoutButton = styled.img`
 
 
 export const Body = styled.div`
-height: 97.9vh;
-width: 100%;
-background-color: #f0f0f0;
+  height: 97.9vh;
+  width: 100%;
+  background-color: #f0f0f0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
