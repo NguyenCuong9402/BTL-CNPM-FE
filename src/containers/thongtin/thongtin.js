@@ -104,7 +104,6 @@ function Profile() {
           </AvatarContainer>
         </UserInfoContainer>
       </Header>
-      <Background></Background>
       <Container>
         
           
