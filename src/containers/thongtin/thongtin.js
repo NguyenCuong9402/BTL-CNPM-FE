@@ -271,7 +271,7 @@ function Profile() {
                       value={nameUser}
                       onChange={(e) => handleInputNameChange(e.target.value)}
                       style={{
-                        width: "100%", // Đặt chiều rộng của ô Input
+                        width: "95%", // Đặt chiều rộng của ô Input
                         padding: "10px", // Thêm padding để làm cho nó lớn hơn
                         border: "1px solid #ccc", // Định dạng đường viền
                         borderRadius: "5px", // Định dạng góc bo tròn
