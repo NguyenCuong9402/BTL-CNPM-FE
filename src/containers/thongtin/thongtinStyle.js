@@ -354,6 +354,7 @@ export const ColumnProfileT6 = styled.div`
 
 export const SelectDiaChi = styled.select`
   border: 1px solid #ccc;
+  width: 200px;
   padding: 5px;
   border-radius: 5px;
   background-color: #f5f5f5;
