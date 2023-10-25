@@ -164,6 +164,37 @@ export const ContainerProfileB = styled.div`
   
 `;
 
+export const ContainerProfile2B1 = styled.div`
+  flex: 3; /* ContainerProfileB1 chiếm 20% tỷ lệ flex của ContainerProfileB */
+  background-color: #f0f0f0; /* Màu nền của ContainerProfileB1 */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const ColumnProfileB1 = styled.div`
+  flex: 20;
+  background-color: #f0f0f0;
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+  align-items: center;
+`;
+
+
+
+export const ContainerProfile2B2 = styled.div`
+  flex: 4; /* ContainerProfileB1 chiếm 20% tỷ lệ flex của ContainerProfileB */
+  background-color: #f0f0f0; /* Màu nền của ContainerProfileB1 */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`;
+
+
+
 export const ContainerProfileB1 = styled.div`
   flex: 2; /* ContainerProfileB1 chiếm 20% tỷ lệ flex của ContainerProfileB */
   background-color: #f0f0f0; /* Màu nền của ContainerProfileB1 */

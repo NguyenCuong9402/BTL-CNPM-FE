@@ -51,7 +51,7 @@ import {
   SelectDiaChi,
   StyledButtonSave,
   ColumnProfileT8,
-  ColumnProfile8,
+  ColumnProfile8, ContainerProfile2B1, ContainerProfile2B2, ColumnProfileB1
 } from "./thongtinStyle";
 import "boxicons/css/boxicons.min.css";
 import axios from "axios";
@@ -535,7 +535,43 @@ function Profile() {
               </ContainerProfileB>
             </React.Fragment>
           )}
-          {activeButton === 2 && <React.Fragment></React.Fragment>}
+          {activeButton === 2 && <React.Fragment>
+            <ContainerProfileA>
+                <h2
+                  style={{
+                    marginLeft: "25px",
+                    fontWeight: "bold",
+                    fontSize: "30px",
+                  }}
+                >
+                  Hãy bảo vệ tài khoản của bạn!
+                </h2>
+                <p style={{ marginLeft: "25px", fontSize: "16px" }}>
+                  Thay đổi mật khẩu để bảo mật tài khoản
+                </p>
+              </ContainerProfileA>
+              <ContainerProfileB>
+                <ContainerProfile2B1>
+                  <ColumnProfileB1></ColumnProfileB1>
+                  <ColumnProfileB1>
+                  <p style={{ fontSize: "20px", marginRight: "15px" }}>
+                      Mật khẩu hiện tại:
+                    </p>
+                    </ColumnProfileB1>
+                  <ColumnProfileB1>
+                  <p style={{ fontSize: "20px", marginRight: "15px" }}>
+                      Mật khẩu mới:
+                    </p></ColumnProfileB1>
+                  <ColumnProfileB1>
+                  <p style={{ fontSize: "20px", marginRight: "15px" }}>
+                      Xác nhận mật khẩu:
+                    </p></ColumnProfileB1>
+                  <ColumnProfileB1></ColumnProfileB1>
+                </ContainerProfile2B1>
+                <ContainerProfile2B1></ContainerProfile2B1>
+                <ContainerProfile2B2></ContainerProfile2B2>
+              </ContainerProfileB>
+              </React.Fragment>}
           {activeButton === 3 && (
             <React.Fragment>
               <div>Oke1</div>
