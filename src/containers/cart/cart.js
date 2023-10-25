@@ -71,9 +71,10 @@ function Cart() {
   const [selectedRows, setSelectedRows] = useState([]);
   const [selectAll, setSelectAll] = useState(false);
   const [tong_tien, setTongTien] = useState(0);
+  const [tong_thanh_toan, setThanhToan] = useState(0)
   const [gia_ship, setGiaShip] = useState(0);
   const [dsShip, SetDsShip] = useState([]);
-  const [ship, setShip] = useState([])
+  const [ship, setShip] = useState("")
   useEffect(() => {
     const userDataFromLocalStorage = JSON.parse(localStorage.getItem("user"));
     if (userDataFromLocalStorage) {
@@ -137,7 +138,7 @@ function Cart() {
   };
   useEffect(() => {
     fetchData();
-    tinh_tong();
+    tinh_tong(ship);
     fetchShiper();
     setIsDeleteButtonVisible(selectedRows.length > 0);
   }, [selectedRows, tong_tien]);
@@ -178,13 +179,14 @@ function Cart() {
     }
   };
 
-  const tinh_tong = async () => {
+  const tinh_tong = async (ship) => {
     const access_token = localStorage.getItem("accessToken");
     try {
       const response = await axios.post(
         "http://127.0.0.1:5000/api/v1/cart_items/get-total",
         {
           list_id: selectedRows, // Truyền dữ liệu trực tiếp
+          ship_id: ship
         },
         {
           headers: {
@@ -194,7 +196,8 @@ function Cart() {
       );
 
       if (response.data.message.status === "success") {
-        setTongTien(response.data.data);
+        setTongTien(response.data.data.tong);
+        setThanhToan(response.data.data.thanh_toan)
       } else {
         setModalMessage(response.data.message.text);
         setModalOpen(true);
@@ -255,7 +258,7 @@ function Cart() {
         }
       );
       if (response.data.message.status === "success") {
-        tinh_tong();
+        tinh_tong(ship);
         fetchData();
       }
     } catch (error) {
@@ -290,7 +293,7 @@ function Cart() {
         }
       );
       if (response.data.message.status === "success") {
-        tinh_tong();
+        tinh_tong(ship);
         fetchData();
       }
     } catch (error) {
@@ -301,6 +304,7 @@ function Cart() {
 
   const ChooseShip = async (ship_id) =>{
     setShip(ship_id)
+    tinh_tong(ship_id)
     try {
       const response = await axios.get(
         `http://127.0.0.1:5000/api/v1/cart_items/shipper/${ship_id}`
@@ -554,7 +558,7 @@ function Cart() {
                   <span style={{ fontSize: "12px", marginLeft: "5px" }}>$</span>
                 </ChildBuy3>
                 <ChildBuy3>
-                  <span style={{ color: "orange" }}>Tổng thanh toán</span>{" "}
+                  <span style={{ color: "orange" }}>{tong_thanh_toan}</span>{" "}
                   <span style={{ fontSize: "12px", marginLeft: "5px" }}>$</span>
                 </ChildBuy3>
                 <ChildBuy3>
