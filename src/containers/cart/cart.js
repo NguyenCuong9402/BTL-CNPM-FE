@@ -72,6 +72,7 @@ function Cart() {
   const [selectAll, setSelectAll] = useState(false);
   const [tong_tien, setTongTien] = useState(0);
   const [gia_ship, setGiaShip] = useState(0);
+  const [dsShip, SetDsShip] = useState([])
   useEffect(() => {
     const userDataFromLocalStorage = JSON.parse(localStorage.getItem("user"));
     if (userDataFromLocalStorage) {
@@ -115,12 +116,33 @@ function Cart() {
       console.error("Error calling history API:", error);
     }
   };
-  // Call fetchData when the component mounts
+
+  const fetchShiper = async () => {
+    try {
+      const response = await axios.get(
+        `http://127.0.0.1:5000/api/v1/cart_items/shipper`,
+        
+      );
+      if (response.data.message.status === "success") {
+        const formattedData = response.data.data.map((item) => ({
+          ...item,
+        }));
+        SetDsShip(formattedData);
+      } else {
+        console.error("Error fetching giá ship");
+      }
+    } catch (error) {
+      console.error("Error calling history API:", error);
+    }
+  };
   useEffect(() => {
     fetchData();
     tinh_tong();
+    fetchShiper();
     setIsDeleteButtonVisible(selectedRows.length > 0);
+
   }, [selectedRows, tong_tien]);
+  console.log(dsShip)
   const handleProfile = async () => {
     history.push(`/profile`, {});
   };
