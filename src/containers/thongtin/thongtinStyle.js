@@ -25,7 +25,7 @@ export const Container = styled.div`
   flex: 1; /* Container cha chiếm 90% còn lại */
   margin-top: 90px;
   background-color: white;
-  width: 60%;
+  width: 80%;
   display: flex;
 `;
 
