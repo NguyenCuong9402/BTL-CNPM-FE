@@ -145,6 +145,17 @@ export const ChildBuy5 = styled.div`
   flex-direction: row;
 `;
 
+export const ChildBuy7 = styled.div`
+  flex: 7;
+  display: flex;
+`;
+
+export const ChildBuy8 = styled.div`
+  flex: 3;
+  display: flex;
+`;
+
+
 
 export const ChildBuy6 = styled.div`
   flex: 5;

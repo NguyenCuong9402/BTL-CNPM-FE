@@ -37,12 +37,20 @@ import {
   PhanLoaiColumn,
   PhanLoaiColumnCell,
   TableHeader,
-  TotalText,
-  TotalAmount,
   TableContainer,
   XacNhanThayDoi,
   ContainerDelete,
-  ContainerBuy, Buy1, Buy2, ChildBuy1, ChildBuy2, ChildBuy3, ChildBuy4, ChildBuy5, ChildBuy6
+  ContainerBuy,
+  Buy1,
+  Buy2,
+  ChildBuy1,
+  ChildBuy2,
+  ChildBuy3,
+  ChildBuy4,
+  ChildBuy5,
+  ChildBuy6,
+  ChildBuy7,
+  ChildBuy8,
 } from "./cartSyle";
 import "boxicons/css/boxicons.min.css";
 import axios from "axios";
@@ -63,7 +71,7 @@ function Cart() {
   const [selectedRows, setSelectedRows] = useState([]);
   const [selectAll, setSelectAll] = useState(false);
   const [tong_tien, setTongTien] = useState(0);
-  const [gia_ship, setGiaShip] = useState(0)
+  const [gia_ship, setGiaShip] = useState(0);
   useEffect(() => {
     const userDataFromLocalStorage = JSON.parse(localStorage.getItem("user"));
     if (userDataFromLocalStorage) {
@@ -455,51 +463,57 @@ function Cart() {
         <Container6>
           <ContainerDelete>
             {isDeleteButtonVisible && (
-              <DeleteButton onClick={handleDeleteButtonClick}>
-                Xóa
-              </DeleteButton>
+              <DeleteButton onClick={handleDeleteButtonClick}>Xóa</DeleteButton>
             )}
           </ContainerDelete>
           <ContainerBuy>
             <Buy1>
               <ChildBuy5>
-                
+                <ChildBuy7></ChildBuy7>
+                <ChildBuy8></ChildBuy8>
               </ChildBuy5>
               <ChildBuy6></ChildBuy6>
             </Buy1>
             <Buy2>
               <ChildBuy1>
-              <ChildBuy4>
-                <span style={{marginLeft: '10px', color: 'black'}}>Tiền hàng : </span>
+                <ChildBuy4>
+                  <span style={{ marginLeft: "10px", color: "black" }}>
+                    Tiền hàng :{" "}
+                  </span>
                 </ChildBuy4>
                 <ChildBuy4>
-                <span style={{marginLeft: '10px', color: 'black'}}>Tiền ship :</span>
+                  <span style={{ marginLeft: "10px", color: "black" }}>
+                    Tiền ship :
+                  </span>
                 </ChildBuy4>
                 <ChildBuy4>
-                <span style={{marginLeft: '10px', color: 'black'}}>Tổng :</span>
+                  <span style={{ marginLeft: "10px", color: "black" }}>
+                    Tổng :
+                  </span>
                 </ChildBuy4>
                 <ChildBuy4>
-                <span></span>
+                  <span></span>
                 </ChildBuy4>
               </ChildBuy1>
               <ChildBuy2>
                 <ChildBuy3>
-                <span  style={{color: 'orange'}}>{tong_tien}</span><span style={{fontSize: '12px', marginLeft: '5px'}}>$</span>
+                  <span style={{ color: "orange" }}>{tong_tien}</span>
+                  <span style={{ fontSize: "12px", marginLeft: "5px" }}>$</span>
                 </ChildBuy3>
                 <ChildBuy3>
-                <span style={{color: 'orange'}}>2</span> <span style={{fontSize: '12px', marginLeft: '5px'}} >$</span>
+                  <span style={{ color: "orange" }}>2</span>{" "}
+                  <span style={{ fontSize: "12px", marginLeft: "5px" }}>$</span>
                 </ChildBuy3>
                 <ChildBuy3>
-                <span style={{color: 'orange'}}>Tổng thanh toán</span> <span style={{fontSize: '12px', marginLeft: '5px'}} >$</span>
+                  <span style={{ color: "orange" }}>Tổng thanh toán</span>{" "}
+                  <span style={{ fontSize: "12px", marginLeft: "5px" }}>$</span>
                 </ChildBuy3>
                 <ChildBuy3>
                   <BuyButton>Đặt hàng</BuyButton>
                 </ChildBuy3>
-
               </ChildBuy2>
             </Buy2>
           </ContainerBuy>
-          
         </Container6>
       </Container>
       <Modal
