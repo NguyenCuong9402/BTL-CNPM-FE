@@ -442,15 +442,9 @@ export const TBody = styled.tbody`
 
 export const BuyButton = styled.button`
   background-color: orange;
+  width: 100px;
+  height: 50px;
   color: white;
-  font-size: 30px;
-  padding: 10px 20px;
-  border: none;
-  cursor: pointer;
-  transition: background-color 0.3s;
-  display: inline-block;
-  border-radius: 0;
-
   &:hover {
     background-color: #ff7700;
   }
@@ -471,24 +465,4 @@ export const XacNhanThayDoi = styled.button`
   &:hover {
     background-color: #ff7700;
   }
-`;
-
-export const TotalText = styled.span`   
-  font-size: 30px;
-  margin-right: 350px;
-  margin-top:5px;
-  padding: 10px 20px;
-  color: #333; /* Màu chữ tổng tiền */
-  position: absolute;
-  
-`;
-
-export const TotalAmount = styled.span`
-  font-size: 36px;
-  padding: 10px 20px;
-
-  color: #ff7700; /* Màu số tiền */
-  margin-right: 200px;
-  margin-top:0px;
-  position: absolute;
 `;

@@ -486,14 +486,14 @@ function Cart() {
                 <ChildBuy3>
                 <span style={{color: 'orange'}}>Tổng thanh toán</span> <span style={{fontSize: '12px', marginLeft: '5px'}} >$</span>
                 </ChildBuy3>
-                <ChildBuy3></ChildBuy3>
+                <ChildBuy3>
+                  <BuyButton>Đặt hàng</BuyButton>
+                </ChildBuy3>
 
               </ChildBuy2>
             </Buy2>
           </ContainerBuy>
-          {/* <TotalText>Tổng tiền:</TotalText>
-          <TotalAmount>{tong_tien} $ </TotalAmount>
-          <BuyButton>Mua hàng</BuyButton> */}
+          
         </Container6>
       </Container>
       <Modal
