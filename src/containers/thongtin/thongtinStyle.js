@@ -175,7 +175,7 @@ export const ContainerProfileB1 = styled.div`
 `;
 
 export const ColumnProfile1 = styled.div`
-  flex: 14;
+  flex: 13;
   background-color: #f0f0f0;
   display: flex;
   width: 100%;
@@ -184,7 +184,7 @@ export const ColumnProfile1 = styled.div`
 `;
 
 export const ColumnProfile2 = styled.div`
-  flex: 14;
+  flex: 13;
   background-color: #f0f0f0;
   display: flex;
   width: 100%;
@@ -192,7 +192,7 @@ export const ColumnProfile2 = styled.div`
   align-items: center;
 `;
 export const ColumnProfile3 = styled.div`
-  flex: 14;
+  flex: 13;
   background-color: #f0f0f0;
   display: flex;
   width: 100%;
@@ -201,7 +201,7 @@ export const ColumnProfile3 = styled.div`
 `;
 
 export const ColumnProfile4 = styled.div`
-  flex: 14;
+  flex: 13;
   background-color: #f0f0f0;
   display: flex;
   width: 100%;
@@ -209,7 +209,7 @@ export const ColumnProfile4 = styled.div`
   align-items: center;  
 `;
 export const ColumnProfile5 = styled.div`
-  flex: 14;
+  flex: 13;
   background-color: #f0f0f0;
   display: flex;
   width: 100%;
@@ -217,15 +217,25 @@ export const ColumnProfile5 = styled.div`
   align-items: center;
 `;
 export const ColumnProfile6 = styled.div`
-  flex: 14;
+  flex: 13;
   background-color: #f0f0f0;
   display: flex;
   width: 100%;
   justify-content: flex-end;
   align-items: center;
 `;
+
+export const ColumnProfile8 = styled.div`
+  flex: 13;
+  background-color: #f0f0f0;
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+  align-items: center;
+`;
+
 export const ColumnProfile7 = styled.div`
-  flex: 16; 
+  flex: 9; 
   background-color: #f0f0f0;
   display: flex;
   width: 100%;
@@ -244,7 +254,7 @@ export const ContainerProfileB2 = styled.div`
 `;
 
 export const ColumnProfileT1 = styled.div`
-  flex: 14;
+  flex: 13;
   background-color: #f0f0f0;
   display: flex;
   width: 100%;
@@ -253,7 +263,7 @@ export const ColumnProfileT1 = styled.div`
 `;
 
 export const ColumnProfileT2 = styled.div`
-  flex: 14;
+  flex: 13;
   background-color: #f0f0f0;
   display: flex;
   width: 100%;
@@ -261,7 +271,7 @@ export const ColumnProfileT2 = styled.div`
   align-items: center;
 `;
 export const ColumnProfileT3 = styled.div`
-  flex: 14;
+  flex: 13;
   background-color: #f0f0f0;
   display: flex;
   width: 100%;
@@ -270,7 +280,7 @@ export const ColumnProfileT3 = styled.div`
 `;
 
 export const ColumnProfileT4 = styled.div`
-  flex: 14;
+  flex: 13;
   background-color: #f0f0f0;
   display: flex;
   width: 100%;
@@ -311,7 +321,7 @@ export const RadioButtonGioiTinh = ({ selected, onClick }) => (
 );
 
 export const ColumnProfileT5 = styled.div`
-  flex: 14;
+  flex: 13;
   background-color: #f0f0f0;
   display: flex;
   width: 100%;
@@ -342,7 +352,7 @@ export const CustomDatePicker = styled(DatePicker)`
 `;
 
 export const ColumnProfileT6 = styled.div`
-  flex: 14;
+  flex: 13;
   background-color: #f0f0f0;
   display: flex;
   width: 100%;
@@ -366,8 +376,20 @@ export const SelectDiaChi = styled.select`
   }
 `;
 
+export const ColumnProfileT8 = styled.div`
+  flex: 13;
+  background-color: #f0f0f0;
+  display: flex;
+  width: 100%;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: row;
+
+`;
+
+
 export const ColumnProfileT7 = styled.div`
-  flex: 16; 
+  flex: 9; 
   background-color: #f0f0f0;
   display: flex;
   width: 100%;

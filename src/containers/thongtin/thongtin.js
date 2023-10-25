@@ -48,7 +48,7 @@ import {
   ColumnProfileT7,
   RadioButtonGioiTinh,
   CustomDatePicker,
-  SelectDiaChi, StyledButtonSave
+  SelectDiaChi, StyledButtonSave, ColumnProfileT8, ColumnProfile8
 } from "./thongtinStyle";
 import "boxicons/css/boxicons.min.css";
 import axios from "axios";
@@ -63,6 +63,8 @@ function Profile() {
   const [modalMessage, setModalMessage] = useState("");
   const [user_id, setUserDataId] = useState(null);
   const [nameUser, setNameUser] = useState("");
+  const [address, setAddressUser] = useState("");
+
   const [phoneUser, setPhoneUser] = useState("");
   const [gioiTinh, setGioiTinh] = useState(0);
   const [selectedDate, setSelectedDate] = useState(null);
@@ -110,6 +112,7 @@ function Profile() {
         const formattedData = response.data.data;
         setData(formattedData);
         setNameUser(formattedData.name_user);
+        setAddressUser(formattedData.address);
         setPhoneUser(formattedData.phone_number);
         setGioiTinh(formattedData.gender);
         setSelectedDate(new Date(formattedData.birthday));
@@ -158,6 +161,10 @@ function Profile() {
   };
   const handleInputNameChange = (newName) => {
     setNameUser(newName);
+  };
+
+  const handleInputAddressChange = (newAddress) => {
+    setNameUser(newAddress);
   };
 
   const handleInputPhoneChange = (newPhone) => {
@@ -299,6 +306,11 @@ function Profile() {
                       Địa chỉ:
                     </p>
                   </ColumnProfile4>
+                  <ColumnProfile8>
+                    <p style={{ fontSize: "20px", marginRight: "15px" }}>
+                      Địa chỉ bổ sung:
+                    </p>
+                  </ColumnProfile8>
                   <ColumnProfile2>
                     <p style={{ fontSize: "20px", marginRight: "15px" }}>
                       Số điện thoại:
@@ -384,6 +396,20 @@ function Profile() {
 
                     
                   </ColumnProfileT6>
+                  <ColumnProfileT8>
+                  <input
+                      type="text"
+                      value={address}
+                      onChange={(e) => handleInputAddressChange(e.target.value)}
+                      style={{
+                        width: "97%", // Đặt chiều rộng của ô Input
+                        padding: "10px", // Thêm padding để làm cho nó lớn hơn
+                        border: "1px solid #ccc", // Định dạng đường viền
+                        borderRadius: "5px", // Định dạng góc bo tròn
+                        fontSize: "20px", // Đặt kích thước chữ
+                      }}
+                    />
+                  </ColumnProfileT8>
                   <ColumnProfileT3>
                     <input
                       type={isPasswordVisible ? "text" : "password"}
