@@ -47,7 +47,8 @@ import {
   ColumnProfileT6,
   ColumnProfileT7,
   RadioButtonGioiTinh,
-  CustomDatePicker
+  CustomDatePicker,
+  SelectDiaChi,
 } from "./thongtinStyle";
 import "boxicons/css/boxicons.min.css";
 import axios from "axios";
@@ -56,7 +57,6 @@ import logout from "./logout.png";
 import cart from "./trolley.png";
 import user from "./user.png";
 import Modal from "../../modal";
-
 
 function Profile() {
   const [isModalOpen, setModalOpen] = useState(false);
@@ -68,18 +68,16 @@ function Profile() {
   const [selectedDate, setSelectedDate] = useState(null);
   const history = useHistory();
 
-
   const [data, setData] = useState({});
   const [activeButton, setActiveButton] = useState(1);
 
-  const [tinh, SetTinh] = useState("")
-  const [huyen, SetHuyen] = useState("")
-  const [xa, SetXa] = useState("")
+  const [tinh, SetTinh] = useState("");
+  const [huyen, SetHuyen] = useState("");
+  const [xa, SetXa] = useState("");
 
-
-  const [DsTinh, SetDsTinh] = useState([])
-  const [DsHuyen, SetDsHuyen] = useState([])
-  const [DsXa, SetDsXa] = useState("")
+  const [DsTinh, SetDsTinh] = useState([]);
+  const [DsHuyen, SetDsHuyen] = useState([]);
+  const [DsXa, SetDsXa] = useState("");
 
   useEffect(() => {
     const userDataFromLocalStorage = JSON.parse(localStorage.getItem("user"));
@@ -91,6 +89,7 @@ function Profile() {
     } else {
       window.location.href = "/login";
     }
+    fetchData();
   }, []); // Sử dụng [] để đảm bảo useEffect chỉ chạy một lần khi component được tạo
   const avatarUrl = `http://127.0.0.1:5000/api/v1/picture/avatar/${user_id}`;
   const handleLogout = () => {
@@ -114,7 +113,24 @@ function Profile() {
         setPhoneUser(formattedData.phone_number);
         setGioiTinh(formattedData.gender);
         setSelectedDate(new Date(formattedData.birthday));
+      } else {
+        console.error("Error fetching history data.");
+      }
+    } catch (error) {
+      console.error("Error calling history API:", error);
+    }
+  };
 
+  const fetchDiaChi = async (tinh, huyen, xa) => {
+    try {
+      const response = await axios.get(
+        `http://127.0.0.1:5000/api/v1/user/tim_dia_chi?tinh=${tinh}&huyen=${huyen}&xa=${xa}`
+      );
+      if (response.data.message.status === "success") {
+        const formattedData = response.data.data;
+        SetDsTinh(formattedData.tinh);
+        SetDsHuyen(formattedData.huyen);
+        SetDsXa(formattedData.xa);
       } else {
         console.error("Error fetching history data.");
       }
@@ -124,8 +140,9 @@ function Profile() {
   };
   // Call fetchData when the component mounts
   useEffect(() => {
-    fetchData();
-  }, []);
+    fetchDiaChi(tinh, huyen, xa);
+  }, [DsTinh, DsHuyen, DsXa]);
+
   const handleCloseModal = () => {
     setModalOpen(false);
   };
@@ -337,13 +354,39 @@ function Profile() {
                       <CustomDatePicker
                         selected={selectedDate}
                         onChange={handleDateChange}
-                        dateFormat="dd/MM/yyyy" 
+                        dateFormat="dd/MM/yyyy"
                       />
                     </ColumnProfileT5>
                   </ColumnProfileT5>
-                  
-                  
-                  <ColumnProfileT6></ColumnProfileT6>
+
+                  <ColumnProfileT6>
+                    <SelectDiaChi>
+                      <option value="placeholder" disabled selected>
+                        Thành phố/Tỉnh
+                      </option>
+                      <option value="tinh1">Tỉnh 1</option>
+                      <option value="tinh2">Tỉnh 2</option>
+                      {/* Thêm các tùy chọn cho tỉnh tại đây */}
+                    </SelectDiaChi>
+
+                    <SelectDiaChi>
+                      <option value="placeholder" disabled selected>
+                        Quận/Huyện
+                      </option>
+                      <option value="huyen1">Huyện 1</option>
+                      <option value="huyen2">Huyện 2</option>
+                      {/* Thêm các tùy chọn cho huyện tại đây */}
+                    </SelectDiaChi>
+
+                    <SelectDiaChi>
+                      <option value="placeholder" disabled selected>
+                        Phường/Xã
+                      </option>
+                      <option value="phuong1">Phường 1</option>
+                      <option value="phuong2">Phường 2</option>
+                      {/* Thêm các tùy chọn cho Phường tại đây */}
+                    </SelectDiaChi>
+                  </ColumnProfileT6>
                   <ColumnProfileT4>
                     <span
                       style={{

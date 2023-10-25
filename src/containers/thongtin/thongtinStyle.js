@@ -348,7 +348,23 @@ export const ColumnProfileT6 = styled.div`
   width: 100%;
   justify-content: flex-start;
   align-items: center;
+  flex-direction: row;
+
 `;
+
+export const SelectDiaChi = styled.select`
+  border: 1px solid #ccc;
+  padding: 5px;
+  border-radius: 5px;
+  background-color: #f5f5f5;
+  color: #333;
+  margin-right: 10px;
+  &:focus {
+    outline: none;
+    border: 1px solid #007bff; /* Màu viền khi ô select được focus */
+  }
+`;
+
 export const ColumnProfileT7 = styled.div`
   flex: 16; 
   background-color: #f0f0f0;
