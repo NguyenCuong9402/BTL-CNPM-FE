@@ -48,7 +48,10 @@ import {
   ColumnProfileT7,
   RadioButtonGioiTinh,
   CustomDatePicker,
-  SelectDiaChi, StyledButtonSave, ColumnProfileT8, ColumnProfile8
+  SelectDiaChi,
+  StyledButtonSave,
+  ColumnProfileT8,
+  ColumnProfile8,
 } from "./thongtinStyle";
 import "boxicons/css/boxicons.min.css";
 import axios from "axios";
@@ -116,9 +119,10 @@ function Profile() {
         setPhoneUser(formattedData.phone_number);
         setGioiTinh(formattedData.gender);
         setSelectedDate(new Date(formattedData.birthday));
-        SetTinh(formattedData.tinh)
-        SetHuyen(formattedData.huyen)
-        SetXa(formattedData.xa)
+        SetTinh(formattedData.tinh);
+        SetHuyen(formattedData.huyen);
+        SetXa(formattedData.xa);
+        fetchDiaChi(formattedData.tinh, formattedData.huyen, formattedData.xa)
       } else {
         console.error("Error fetching history data.");
       }
@@ -126,6 +130,9 @@ function Profile() {
       console.error("Error calling history API:", error);
     }
   };
+
+  console.log(DsTinh, DsHuyen, DsXa)
+
 
   const fetchDiaChi = async (tinh, huyen, xa) => {
     try {
@@ -145,9 +152,9 @@ function Profile() {
     }
   };
   // Call fetchData when the component mounts
-  useEffect(() => {
-    fetchDiaChi(tinh, huyen, xa);
-  }, [DsTinh, DsHuyen, DsXa]);
+  // useEffect(() => {
+  //   fetchDiaChi(tinh, huyen, xa);
+  // }, []);
   const handleCloseModal = () => {
     setModalOpen(false);
   };
@@ -164,7 +171,7 @@ function Profile() {
   };
 
   const handleInputAddressChange = (newAddress) => {
-    setNameUser(newAddress);
+    setAddressUser(newAddress);
   };
 
   const handleInputPhoneChange = (newPhone) => {
@@ -186,22 +193,58 @@ function Profile() {
   };
 
   const ChooseTinh = (newTinh) => {
-    SetTinh(newTinh)
-    fetchDiaChi(tinh)
-    SetHuyen("")
-    SetXa("")
+    SetTinh(newTinh);
+    fetchDiaChi(newTinh,"","");
+    SetHuyen("");
+    SetXa("");
+  };
 
-  }
+  const ChooseHuyen = (tinh, newHuyen) => {
+    SetHuyen(newHuyen);
+    fetchDiaChi(tinh, newHuyen, "");
+    SetXa("");
+  };
 
-  const ChooseHuyen = (tinh, newHuyen) =>{
-    SetHuyen(newHuyen)
-    fetchDiaChi(tinh, newHuyen)
-    SetXa("")
-  }
+  const ChangeInforUser = async () => {
+    try {
+      const access_token = localStorage.getItem("accessToken"); // Get access token from local storage
+      const response = await axios.put(
+        `http://127.0.0.1:5000/api/v1/user/update`,
+        {
+          name_user: nameUser,
+          birthday: selectedDate,
+          phone_number: phoneUser,
+          address: address,
+          gender: gioiTinh,
+          tinh: tinh,
+          huyen: huyen,
+          xa: xa,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${access_token}`,
+          },
+        }
+      );
+      if (response.data.message.status === "success") {
+        const formattedData = response.data.data;
+        setData(formattedData);
+        setNameUser(formattedData.name_user);
+        setAddressUser(formattedData.address);
+        setPhoneUser(formattedData.phone_number);
+        setGioiTinh(formattedData.gender);
+        setSelectedDate(new Date(formattedData.birthday));
+        SetTinh(formattedData.tinh);
+        SetHuyen(formattedData.huyen);
+        SetXa(formattedData.xa);
+      }
+      setModalMessage(response.data.message.text);
+      setModalOpen(true);
+    } catch (error) {
+      console.error("Error calling history API:", error);
+    }
+  };
 
-  const ChangeInforUser = () =>{
-
-  }
   return (
     <Body>
       <Header>
@@ -321,7 +364,7 @@ function Profile() {
                       Ngày sinh:
                     </p>
                   </ColumnProfile3>
-                  
+
                   <ColumnProfile5>
                     <p style={{ fontSize: "20px", marginRight: "15px" }}>
                       Giới tính:
@@ -341,7 +384,7 @@ function Profile() {
                       {data.email}
                     </p>
                   </ColumnProfileT1>
-                  
+
                   <ColumnProfileT2>
                     <input
                       type="text"
@@ -357,7 +400,10 @@ function Profile() {
                     />
                   </ColumnProfileT2>
                   <ColumnProfileT6>
-                    <SelectDiaChi value={tinh} onChange={(e) => ChooseTinh(e.target.value)}>
+                    <SelectDiaChi
+                      value={tinh}
+                      onChange={(e) => ChooseTinh(e.target.value)}
+                    >
                       <option value="" disabled selected>
                         Thành phố/Tỉnh
                       </option>
@@ -369,9 +415,12 @@ function Profile() {
                       {/* Thêm các tùy chọn cho tỉnh tại đây */}
                     </SelectDiaChi>
 
-                    <SelectDiaChi value={huyen} onChange={(e) => ChooseHuyen(tinh, e.target.value)}>
+                    <SelectDiaChi
+                      value={huyen}
+                      onChange={(e) => ChooseHuyen(tinh, e.target.value)}
+                    >
                       <option value="" disabled selected>
-                       Quận/ Huyện
+                        Quận/ Huyện
                       </option>
                       {DsHuyen.map((huyenItem) => (
                         <option key={huyenItem} value={huyenItem}>
@@ -381,9 +430,12 @@ function Profile() {
                       {/* Thêm các tùy chọn cho tỉnh tại đây */}
                     </SelectDiaChi>
 
-                    <SelectDiaChi value={xa} onChange={(e) => SetXa(e.target.value)}>
+                    <SelectDiaChi
+                      value={xa}
+                      onChange={(e) => SetXa(e.target.value)}
+                    >
                       <option value="" disabled selected>
-                       Phường/ Xã 
+                        Phường/ Xã
                       </option>
                       {DsXa.map((xaItem) => (
                         <option key={xaItem} value={xaItem}>
@@ -392,12 +444,9 @@ function Profile() {
                       ))}
                       {/* Thêm các tùy chọn cho tỉnh tại đây */}
                     </SelectDiaChi>
-                   
-
-                    
                   </ColumnProfileT6>
                   <ColumnProfileT8>
-                  <input
+                    <input
                       type="text"
                       value={address}
                       onChange={(e) => handleInputAddressChange(e.target.value)}
@@ -447,7 +496,6 @@ function Profile() {
                     </ColumnProfileT5>
                   </ColumnProfileT5>
 
-                  
                   <ColumnProfileT4>
                     <span
                       style={{
@@ -478,7 +526,9 @@ function Profile() {
                     ></RadioButtonGioiTinh>
                   </ColumnProfileT4>
                   <ColumnProfileT7>
-                    <StyledButtonSave onClick={ChangeInforUser()}>Lưu</StyledButtonSave>
+                    <StyledButtonSave onClick={() => ChangeInforUser()}>
+                      Lưu
+                    </StyledButtonSave>
                   </ColumnProfileT7>
                 </ContainerProfileB2>
                 <ContainerProfileB3></ContainerProfileB3>
@@ -494,11 +544,11 @@ function Profile() {
           )}
         </Container2>
       </Container>
-      {/* <Modal
+      <Modal
         isOpen={isModalOpen}
         message={modalMessage}
         onClose={handleCloseModal}
-      /> */}
+      />
     </Body>
   );
 }
