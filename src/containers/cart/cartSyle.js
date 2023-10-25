@@ -135,8 +135,23 @@ export const ContainerBuy = styled.div`
 
 export const Buy1 = styled.div`
   flex: 7;
-  background-color: #99cc99; /* Màu xanh lá cây là một ví dụ */
+  display: flex;
+  flex-direction: column;
 `;
+
+export const ChildBuy5 = styled.div`
+  flex: 5;
+  display: flex;
+  flex-direction: row;
+`;
+
+
+export const ChildBuy6 = styled.div`
+  flex: 5;
+  display: flex;
+`;
+
+
 
 export const Buy2 = styled.div`
   flex: 3;

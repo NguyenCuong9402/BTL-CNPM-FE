@@ -42,7 +42,7 @@ import {
   TableContainer,
   XacNhanThayDoi,
   ContainerDelete,
-  ContainerBuy, Buy1, Buy2, ChildBuy1, ChildBuy2, ChildBuy3, ChildBuy4
+  ContainerBuy, Buy1, Buy2, ChildBuy1, ChildBuy2, ChildBuy3, ChildBuy4, ChildBuy5, ChildBuy6
 } from "./cartSyle";
 import "boxicons/css/boxicons.min.css";
 import axios from "axios";
@@ -461,7 +461,12 @@ function Cart() {
             )}
           </ContainerDelete>
           <ContainerBuy>
-            <Buy1></Buy1>
+            <Buy1>
+              <ChildBuy5>
+                
+              </ChildBuy5>
+              <ChildBuy6></ChildBuy6>
+            </Buy1>
             <Buy2>
               <ChildBuy1>
               <ChildBuy4>
