@@ -68,8 +68,19 @@ function Profile() {
   const [selectedDate, setSelectedDate] = useState(null);
   const history = useHistory();
 
+
   const [data, setData] = useState({});
   const [activeButton, setActiveButton] = useState(1);
+
+  const [tinh, SetTinh] = useState("")
+  const [huyen, SetHuyen] = useState("")
+  const [xa, SetXa] = useState("")
+
+
+  const [DsTinh, SetDsTinh] = useState([])
+  const [DsHuyen, SetDsHuyen] = useState([])
+  const [DsXa, SetDsXa] = useState("")
+
   useEffect(() => {
     const userDataFromLocalStorage = JSON.parse(localStorage.getItem("user"));
     if (userDataFromLocalStorage) {
