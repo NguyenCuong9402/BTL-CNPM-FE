@@ -70,34 +70,6 @@ export const Navbar = styled.nav`
   }
 `;
 
-export const SearchBarContainer = styled.div`
-  display: flex;
-  align-items: center;
-  background-color: #f0f0f0;
-  padding: 10px;
-  border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  width: 300px;
-`;
-
-export const SearchInput = styled.input`
-  border: none;
-  padding: 10px;
-  flex: 1;
-  border-radius: 5px;
-  outline: none;
-`;
-
-export const SearchButton = styled.button`
-  background-color: black;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  padding: 10px;
-  cursor: pointer;
-`;
-
-
 export const Container = styled.div`
   flex: 1; /* Container cha chiếm 90% còn lại */
   margin-top: 90px;
@@ -168,8 +140,12 @@ export const Buy1 = styled.div`
 
 export const Buy2 = styled.div`
   flex: 3;
+  display: flex;
+  flex-direction: row;
   background-color: #66cc99; /* Màu xanh lá cây là một ví dụ */
 `;
+
+
 
 
 export const Container2 = styled.div`
