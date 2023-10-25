@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c7488130-847a-41fa-938c-605a2472ba80" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/containers/detail/detail.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/detail/detail.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/containers/detail/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/detail/style.css" afterDir="false" />
-    </list>
+    <list default="true" id="c7488130-847a-41fa-938c-605a2472ba80" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -26,7 +22,7 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "E:/shop_quan_ao/FE-ShopQuanAo"
+    "last_opened_file_path": "E:/shop_quan_ao/BE-ShopQuanAo"
   }
 }]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />

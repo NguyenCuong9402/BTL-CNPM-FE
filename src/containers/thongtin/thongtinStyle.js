@@ -1,5 +1,7 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 
 // Styled Components
 export const GlobalStyles = styled.div`
@@ -315,7 +317,22 @@ export const ColumnProfileT5 = styled.div`
   width: 100%;
   justify-content: flex-start;
   align-items: center;
+  flex-direction: row;
 `;
+
+export const CustomDatePicker = styled(DatePicker)`
+  // Định dạng kích thước của ô chọn lịch
+  width: 170px; // Điều chỉnh kích thước theo ý muốn
+  height: 50px; // Điều chỉnh kích thước theo ý muốn
+  align-items: center;
+  
+  // Định dạng kích thước của bảng chọn lịch
+  .react-datepicker {
+    font-size: 14px; // Điều chỉnh kích thước bằng cách thay đổi font size
+    padding: 10px; // Điều chỉnh kích thước bằng cách thay đổi padding
+  }
+`;
+
 export const ColumnProfileT6 = styled.div`
   flex: 14;
   background-color: #f0f0f0;

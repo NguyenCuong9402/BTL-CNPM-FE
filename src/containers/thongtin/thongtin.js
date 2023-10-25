@@ -47,6 +47,7 @@ import {
   ColumnProfileT6,
   ColumnProfileT7,
   RadioButtonGioiTinh,
+  CustomDatePicker
 } from "./thongtinStyle";
 import "boxicons/css/boxicons.min.css";
 import axios from "axios";
@@ -55,6 +56,8 @@ import logout from "./logout.png";
 import cart from "./trolley.png";
 import user from "./user.png";
 import Modal from "../../modal";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 function Profile() {
   const [isModalOpen, setModalOpen] = useState(false);
@@ -63,6 +66,7 @@ function Profile() {
   const [nameUser, setNameUser] = useState("");
   const [phoneUser, setPhoneUser] = useState("");
   const [gioiTinh, setGioiTinh] = useState(0);
+  const [selectedDate, setSelectedDate] = useState(null);
   const history = useHistory();
 
   const [data, setData] = useState({});
@@ -99,6 +103,8 @@ function Profile() {
         setNameUser(formattedData.name_user);
         setPhoneUser(formattedData.phone_number);
         setGioiTinh(formattedData.gender);
+        setSelectedDate(new Date(formattedData.birthday));
+
       } else {
         console.error("Error fetching history data.");
       }
@@ -139,6 +145,9 @@ function Profile() {
     setGioiTinh(gender);
   };
 
+  const handleDateChange = (date) => {
+    setSelectedDate(date);
+  };
   return (
     <Body>
       <Header>
@@ -314,19 +323,43 @@ function Profile() {
                     </span>
                   </ColumnProfileT3>
                   <ColumnProfileT4>
-                    <span style={{ marginRight:'5px', color:'black', fontSize: '20px'}}>Nam</span>
+                    <span
+                      style={{
+                        marginRight: "5px",
+                        color: "black",
+                        fontSize: "20px",
+                      }}
+                    >
+                      Nam
+                    </span>
                     <RadioButtonGioiTinh
                       selected={gioiTinh === 0}
                       onClick={() => handleGenderChange(0)}
                     ></RadioButtonGioiTinh>
-                    <span style={{ marginRight:'5px', color:'black', fontSize: '20px'}}>Nữ</span>
+                    <span
+                      style={{
+                        marginRight: "5px",
+                        color: "black",
+                        fontSize: "20px",
+                      }}
+                    >
+                      Nữ
+                    </span>
 
                     <RadioButtonGioiTinh
                       selected={gioiTinh === 1}
                       onClick={() => handleGenderChange(1)}
                     ></RadioButtonGioiTinh>
                   </ColumnProfileT4>
-                  <ColumnProfileT5></ColumnProfileT5>
+                  <ColumnProfileT5>
+                    <ColumnProfileT5>
+                      <CustomDatePicker
+                        selected={selectedDate}
+                        onChange={handleDateChange}
+                        dateFormat="yyyy-MM-dd" // Định dạng ngày tháng theo yêu cầu của bạn
+                      />
+                    </ColumnProfileT5>
+                  </ColumnProfileT5>
                   <ColumnProfileT6></ColumnProfileT6>
                   <ColumnProfileT7></ColumnProfileT7>
                 </ContainerProfileB2>
