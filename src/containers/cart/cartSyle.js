@@ -135,7 +135,23 @@ export const Container6 = styled.div`
 
 export const ContainerDelete = styled.div`
   flex: 1;
-  background-color: #f0f0f0; /* Màu đỏ là một ví dụ */
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: #f0f0f0;
+`;
+
+export const DeleteButton = styled.button`
+  background-color: red;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  
+  &:hover {
+    background-color: #cc0000; /* Màu đỏ đậm hơn khi hover */
+  }
 `;
 
 export const ContainerBuy = styled.div`
@@ -424,29 +440,6 @@ export const XacNhanThayDoi = styled.button`
   color: white;
   font-size: 15px;
   padding: 5px 10px;
-  border: none;
-  cursor: pointer;
-  transition: background-color 0.3s;
-  display: inline-block;
-  border-radius: 0;
-
-  &:hover {
-    background-color: #ff7700;
-  }
-`;
-
-
-
-
-
-export const DeleteButton = styled.button`
-  background-color: red;
-  color: white;
-  font-size: 30px;
-  padding: 10px 20px;
-  margin-right: 950px;
-  position: absolute;
-
   border: none;
   cursor: pointer;
   transition: background-color 0.3s;
