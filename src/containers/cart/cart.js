@@ -63,6 +63,7 @@ function Cart() {
   const [selectedRows, setSelectedRows] = useState([]);
   const [selectAll, setSelectAll] = useState(false);
   const [tong_tien, setTongTien] = useState(0);
+  const [gia_ship, setGiaShip] = useState(0)
   useEffect(() => {
     const userDataFromLocalStorage = JSON.parse(localStorage.getItem("user"));
     if (userDataFromLocalStorage) {
