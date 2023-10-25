@@ -156,7 +156,19 @@ export const DeleteButton = styled.button`
 
 export const ContainerBuy = styled.div`
   flex: 9;
-  background-color: #00ff00; /* Màu xanh là một ví dụ */
+  display: flex;
+  flex-direction: row;
+  background-color: #f0f0f0;
+`;
+
+export const Buy1 = styled.div`
+  flex: 7;
+  background-color: #99cc99; /* Màu xanh lá cây là một ví dụ */
+`;
+
+export const Buy2 = styled.div`
+  flex: 3;
+  background-color: #66cc99; /* Màu xanh lá cây là một ví dụ */
 `;
 
 

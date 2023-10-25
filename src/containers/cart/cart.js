@@ -42,7 +42,7 @@ import {
   TableContainer,
   XacNhanThayDoi,
   ContainerDelete,
-  ContainerBuy,
+  ContainerBuy, Buy1, Buy2, Buy3
 } from "./cartSyle";
 import "boxicons/css/boxicons.min.css";
 import axios from "axios";
@@ -459,8 +459,10 @@ function Cart() {
               </DeleteButton>
             )}
           </ContainerDelete>
-          <ContainerBuy></ContainerBuy>
-
+          <ContainerBuy>
+            <Buy1></Buy1>
+            <Buy2></Buy2>
+          </ContainerBuy>
           {/* <TotalText>Tổng tiền:</TotalText>
           <TotalAmount>{tong_tien} $ </TotalAmount>
           <BuyButton>Mua hàng</BuyButton> */}
