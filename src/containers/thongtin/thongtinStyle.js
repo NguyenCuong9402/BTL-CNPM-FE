@@ -27,14 +27,13 @@ export const Container = styled.div`
   background-color: white;
   width: 80%;
   display: flex;
-  flex-direction: column;
 
 `;
 
 export const Container1 = styled.div`
   flex: 2; /* Container1 chiếm 30% chiều rộng của Container cha */
   background-color: green; /* Màu nền của Container1 */
-  width: 100%; /* Chiều cao 100% */
+  height: 100%; /* Chiều cao 100% */
   display: flex;
   flex-direction: column;
 `;
