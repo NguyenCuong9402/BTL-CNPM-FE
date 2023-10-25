@@ -56,7 +56,7 @@ import {
   ContainerProfile2B2,
   ColumnProfileB1,
   ColumnProfileB2,
-  ColumnProfileB2ChuaButtonSave,
+  ColumnProfileB2ChuaButtonSave, ForgotPasswordLink
 } from "./thongtinStyle";
 import "boxicons/css/boxicons.min.css";
 import axios from "axios";
@@ -653,7 +653,9 @@ function Profile() {
                   <ColumnProfileB2ChuaButtonSave>
                   <StyledButtonSave onClick={() => ChangePassWordUser()}>
                       Lưu
-                    </StyledButtonSave></ColumnProfileB2ChuaButtonSave>
+                    </StyledButtonSave>
+                    <ForgotPasswordLink>Quên mật khẩu</ForgotPasswordLink>
+                    </ColumnProfileB2ChuaButtonSave>
                   <ColumnProfileB2></ColumnProfileB2>
                 </ContainerProfile2B1>
                 <ContainerProfile2B2></ContainerProfile2B2>

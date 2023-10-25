@@ -198,6 +198,18 @@ export const ColumnProfileB2ChuaButtonSave = styled.div`
   width: 100%;
   justify-content: center;
   align-items: center;
+  flex-direction: row;
+
+`;
+
+export const ForgotPasswordLink = styled.span`
+  margin-left: 30px;
+  transition: color 0.3s, text-decoration 0.3s;
+  color: blue;
+  &:hover {
+    color: orange;
+    text-decoration: underline;
+  }
 `;
 
 
