@@ -144,7 +144,7 @@ function Profile() {
   // Call fetchData when the component mounts
   useEffect(() => {
     fetchDiaChi(tinh, huyen, xa);
-  }, []);
+  }, [DsTinh, DsHuyen, DsXa]);
   const handleCloseModal = () => {
     setModalOpen(false);
   };
@@ -177,6 +177,7 @@ function Profile() {
   const handleDateChange = (date) => {
     setSelectedDate(date);
   };
+  console.log(DsXa)
   return (
     <Body>
       <Header>
@@ -362,6 +363,9 @@ function Profile() {
                       ))}
                       {/* Thêm các tùy chọn cho tỉnh tại đây */}
                     </SelectDiaChi>
+                   
+
+                    
                   </ColumnProfileT6>
                   <ColumnProfileT3>
                     <input
