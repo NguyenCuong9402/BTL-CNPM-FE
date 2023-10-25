@@ -77,7 +77,7 @@ function Profile() {
 
   const [DsTinh, SetDsTinh] = useState([]);
   const [DsHuyen, SetDsHuyen] = useState([]);
-  const [DsXa, SetDsXa] = useState("");
+  const [DsXa, SetDsXa] = useState([]);
 
   useEffect(() => {
     const userDataFromLocalStorage = JSON.parse(localStorage.getItem("user"));
