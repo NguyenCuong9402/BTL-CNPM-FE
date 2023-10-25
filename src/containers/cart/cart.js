@@ -42,7 +42,7 @@ import {
   TableContainer,
   XacNhanThayDoi,
   ContainerDelete,
-  ContainerBuy, Buy1, Buy2, Buy3
+  ContainerBuy, Buy1, Buy2, ChildBuy1, ChildBuy2, ChildBuy3, ChildBuy4
 } from "./cartSyle";
 import "boxicons/css/boxicons.min.css";
 import axios from "axios";
@@ -461,7 +461,35 @@ function Cart() {
           </ContainerDelete>
           <ContainerBuy>
             <Buy1></Buy1>
-            <Buy2></Buy2>
+            <Buy2>
+              <ChildBuy1>
+              <ChildBuy4>
+                <span style={{marginLeft: '10px', color: 'black'}}>Tiền hàng : </span>
+                </ChildBuy4>
+                <ChildBuy4>
+                <span style={{marginLeft: '10px', color: 'black'}}>Tiền ship :</span>
+                </ChildBuy4>
+                <ChildBuy4>
+                <span style={{marginLeft: '10px', color: 'black'}}>Tổng :</span>
+                </ChildBuy4>
+                <ChildBuy4>
+                <span></span>
+                </ChildBuy4>
+              </ChildBuy1>
+              <ChildBuy2>
+                <ChildBuy3>
+                <span  style={{color: 'orange'}}>{tong_tien}</span><span style={{fontSize: '12px', marginLeft: '5px'}}>$</span>
+                </ChildBuy3>
+                <ChildBuy3>
+                <span style={{color: 'orange'}}>2</span> <span style={{fontSize: '12px', marginLeft: '5px'}} >$</span>
+                </ChildBuy3>
+                <ChildBuy3>
+                <span style={{color: 'orange'}}>Tổng thanh toán</span> <span style={{fontSize: '12px', marginLeft: '5px'}} >$</span>
+                </ChildBuy3>
+                <ChildBuy3></ChildBuy3>
+
+              </ChildBuy2>
+            </Buy2>
           </ContainerBuy>
           {/* <TotalText>Tổng tiền:</TotalText>
           <TotalAmount>{tong_tien} $ </TotalAmount>

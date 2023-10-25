@@ -142,7 +142,41 @@ export const Buy2 = styled.div`
   flex: 3;
   display: flex;
   flex-direction: row;
-  background-color: #66cc99; /* Màu xanh lá cây là một ví dụ */
+  
+`;
+
+export const ChildBuy1 = styled.div`
+  flex: 4;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; 
+  align-items: flex-start;
+`;
+
+export const ChildBuy2 = styled.div`
+  flex: 4;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; 
+  align-items: flex-start;
+`;
+
+export const ChildBuy3 = styled.div`
+  flex: 25;
+  background-color: #f0f0f0;
+  display: flex;
+  flex-direction: row;
+  justify-content: center; /* Căn giữa theo chiều ngang */
+  align-items: center; /* Căn giữa theo chiều dọc */
+`;
+
+export const ChildBuy4 = styled.div`
+  flex: 25;
+  background-color: #f0f0f0;
+  display: flex;
+  flex-direction: row;
+  justify-content: center; /* Căn giữa theo chiều ngang */
+  align-items: center; /* Căn giữa theo chiều dọc */
 `;
 
 
