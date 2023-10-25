@@ -321,15 +321,23 @@ export const ColumnProfileT5 = styled.div`
 `;
 
 export const CustomDatePicker = styled(DatePicker)`
-  // Định dạng kích thước của ô chọn lịch
-  width: 170px; // Điều chỉnh kích thước theo ý muốn
-  height: 50px; // Điều chỉnh kích thước theo ý muốn
-  align-items: center;
+  width: 200px; // Điều chỉnh kích thước của ô chọn lịch
+  height: 50px;
+  padding: 10px;
+  font-size: 20px;
   
-  // Định dạng kích thước của bảng chọn lịch
-  .react-datepicker {
-    font-size: 14px; // Điều chỉnh kích thước bằng cách thay đổi font size
-    padding: 10px; // Điều chỉnh kích thước bằng cách thay đổi padding
+  .react-datepicker__current-month {
+    font-size: 20px; // Điều chỉnh font size của tháng
+  }
+
+  .react-datepicker__day {
+    width: 40px; // Điều chỉnh kích thước của số ngày
+    height: 40px;
+    font-size: 16px; // Điều chỉnh font size của số
+  }
+
+  .react-datepicker__day--selected {
+    background-color: #ff0000; // Đổi màu nền khi ngày được chọn
   }
 `;
 

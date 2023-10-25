@@ -56,8 +56,7 @@ import logout from "./logout.png";
 import cart from "./trolley.png";
 import user from "./user.png";
 import Modal from "../../modal";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
+
 
 function Profile() {
   const [isModalOpen, setModalOpen] = useState(false);
@@ -254,17 +253,17 @@ function Profile() {
                   </ColumnProfile2>
                   <ColumnProfile3>
                     <p style={{ fontSize: "20px", marginRight: "15px" }}>
-                      Giới tính:
+                      Ngày sinh:
                     </p>
                   </ColumnProfile3>
                   <ColumnProfile4>
                     <p style={{ fontSize: "20px", marginRight: "15px" }}>
-                      Ngày sinh:
+                      Địa chỉ:
                     </p>
                   </ColumnProfile4>
                   <ColumnProfile5>
                     <p style={{ fontSize: "20px", marginRight: "15px" }}>
-                      Địa chỉ:
+                      Giới tính:
                     </p>
                   </ColumnProfile5>
                   <ColumnProfile7></ColumnProfile7>
@@ -322,6 +321,18 @@ function Profile() {
                       👁️
                     </span>
                   </ColumnProfileT3>
+                  <ColumnProfileT5>
+                    <ColumnProfileT5>
+                      <CustomDatePicker
+                        selected={selectedDate}
+                        onChange={handleDateChange}
+                        dateFormat="dd/MM/yyyy" 
+                      />
+                    </ColumnProfileT5>
+                  </ColumnProfileT5>
+                  
+                  
+                  <ColumnProfileT6></ColumnProfileT6>
                   <ColumnProfileT4>
                     <span
                       style={{
@@ -351,16 +362,6 @@ function Profile() {
                       onClick={() => handleGenderChange(1)}
                     ></RadioButtonGioiTinh>
                   </ColumnProfileT4>
-                  <ColumnProfileT5>
-                    <ColumnProfileT5>
-                      <CustomDatePicker
-                        selected={selectedDate}
-                        onChange={handleDateChange}
-                        dateFormat="yyyy-MM-dd" // Định dạng ngày tháng theo yêu cầu của bạn
-                      />
-                    </ColumnProfileT5>
-                  </ColumnProfileT5>
-                  <ColumnProfileT6></ColumnProfileT6>
                   <ColumnProfileT7></ColumnProfileT7>
                 </ContainerProfileB2>
                 <ContainerProfileB3></ContainerProfileB3>
