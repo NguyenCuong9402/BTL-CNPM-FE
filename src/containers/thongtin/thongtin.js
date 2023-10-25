@@ -352,7 +352,7 @@ function Profile() {
                         padding: "10px", // Thêm padding để làm cho nó lớn hơn
                         border: "1px solid #ccc", // Định dạng đường viền
                         borderRadius: "5px", // Định dạng góc bo tròn
-                        fontSize: "20px", // Đặt kích thước chữ
+                        fontSize: "16px", // Đặt kích thước chữ
                       }}
                     />
                   </ColumnProfileT2>
@@ -406,7 +406,7 @@ function Profile() {
                         padding: "10px", // Thêm padding để làm cho nó lớn hơn
                         border: "1px solid #ccc", // Định dạng đường viền
                         borderRadius: "5px", // Định dạng góc bo tròn
-                        fontSize: "20px", // Đặt kích thước chữ
+                        fontSize: "13px", // Đặt kích thước chữ
                       }}
                     />
                   </ColumnProfileT8>
@@ -425,7 +425,7 @@ function Profile() {
                         padding: "10px",
                         border: "1px solid #ccc",
                         borderRadius: "5px",
-                        fontSize: "20px",
+                        fontSize: "16px",
                       }}
                     />
                     <span
