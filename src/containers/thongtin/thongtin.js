@@ -185,6 +185,12 @@ function Profile() {
     SetXa("")
 
   }
+
+  const ChooseHuyen = (tinh, newHuyen) =>{
+    SetHuyen(newHuyen)
+    fetchDiaChi(tinh, newHuyen)
+    SetXa("")
+  }
   return (
     <Body>
       <Header>
@@ -347,7 +353,7 @@ function Profile() {
                       {/* Thêm các tùy chọn cho tỉnh tại đây */}
                     </SelectDiaChi>
 
-                    <SelectDiaChi value={huyen} onChange={(e) => SetHuyen(e.target.value)}>
+                    <SelectDiaChi value={huyen} onChange={(e) => ChooseHuyen(tinh, e.target.value)}>
                       <option value="" disabled selected>
                        Quận/ Huyện
                       </option>
