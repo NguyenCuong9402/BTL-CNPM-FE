@@ -358,7 +358,7 @@ export const SelectDiaChi = styled.select`
   border-radius: 5px;
   background-color: #f5f5f5;
   color: #333;
-  margin-right: 10px;
+  margin-right: 20px;
   &:focus {
     outline: none;
     border: 1px solid #007bff; /* Màu viền khi ô select được focus */

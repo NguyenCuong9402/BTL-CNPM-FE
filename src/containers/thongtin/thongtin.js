@@ -113,6 +113,9 @@ function Profile() {
         setPhoneUser(formattedData.phone_number);
         setGioiTinh(formattedData.gender);
         setSelectedDate(new Date(formattedData.birthday));
+        SetTinh(formattedData.tinh)
+        SetHuyen(formattedData.huyen)
+        SetXa(formattedData.xa)
       } else {
         console.error("Error fetching history data.");
       }
@@ -141,8 +144,7 @@ function Profile() {
   // Call fetchData when the component mounts
   useEffect(() => {
     fetchDiaChi(tinh, huyen, xa);
-  }, [DsTinh, DsHuyen, DsXa]);
-
+  }, []);
   const handleCloseModal = () => {
     setModalOpen(false);
   };
@@ -360,31 +362,40 @@ function Profile() {
                   </ColumnProfileT5>
 
                   <ColumnProfileT6>
-                    <SelectDiaChi>
-                      <option value="placeholder" disabled selected>
+                    <SelectDiaChi value={tinh} onChange={(e) => SetTinh(e.target.value)}>
+                      <option value="" disabled selected>
                         Thành phố/Tỉnh
                       </option>
-                      <option value="tinh1">Tỉnh 1</option>
-                      <option value="tinh2">Tỉnh 2</option>
+                      {DsTinh.map((tinhItem) => (
+                        <option key={tinhItem} value={tinhItem}>
+                          {tinhItem}
+                        </option>
+                      ))}
                       {/* Thêm các tùy chọn cho tỉnh tại đây */}
                     </SelectDiaChi>
 
-                    <SelectDiaChi>
-                      <option value="placeholder" disabled selected>
-                        Quận/Huyện
+                    <SelectDiaChi value={huyen} onChange={(e) => SetHuyen(e.target.value)}>
+                      <option value="" disabled selected>
+                       Quận/ Huyện
                       </option>
-                      <option value="huyen1">Huyện 1</option>
-                      <option value="huyen2">Huyện 2</option>
-                      {/* Thêm các tùy chọn cho huyện tại đây */}
+                      {DsHuyen.map((huyenItem) => (
+                        <option key={huyenItem} value={huyenItem}>
+                          {huyenItem}
+                        </option>
+                      ))}
+                      {/* Thêm các tùy chọn cho tỉnh tại đây */}
                     </SelectDiaChi>
 
-                    <SelectDiaChi>
-                      <option value="placeholder" disabled selected>
-                        Phường/Xã
+                    <SelectDiaChi value={xa} onChange={(e) => SetXa(e.target.value)}>
+                      <option value="" disabled selected>
+                       Phường/ Xã 
                       </option>
-                      <option value="phuong1">Phường 1</option>
-                      <option value="phuong2">Phường 2</option>
-                      {/* Thêm các tùy chọn cho Phường tại đây */}
+                      {DsXa.map((xaItem) => (
+                        <option key={xaItem} value={xaItem}>
+                          {xaItem}
+                        </option>
+                      ))}
+                      {/* Thêm các tùy chọn cho tỉnh tại đây */}
                     </SelectDiaChi>
                   </ColumnProfileT6>
                   <ColumnProfileT4>
