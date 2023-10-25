@@ -51,7 +51,12 @@ import {
   SelectDiaChi,
   StyledButtonSave,
   ColumnProfileT8,
-  ColumnProfile8, ContainerProfile2B1, ContainerProfile2B2, ColumnProfileB1
+  ColumnProfile8,
+  ContainerProfile2B1,
+  ContainerProfile2B2,
+  ColumnProfileB1,
+  ColumnProfileB2,
+  ColumnProfileB2ChuaButtonSave,
 } from "./thongtinStyle";
 import "boxicons/css/boxicons.min.css";
 import axios from "axios";
@@ -122,7 +127,7 @@ function Profile() {
         SetTinh(formattedData.tinh);
         SetHuyen(formattedData.huyen);
         SetXa(formattedData.xa);
-        fetchDiaChi(formattedData.tinh, formattedData.huyen, formattedData.xa)
+        fetchDiaChi(formattedData.tinh, formattedData.huyen, formattedData.xa);
       } else {
         console.error("Error fetching history data.");
       }
@@ -131,8 +136,7 @@ function Profile() {
     }
   };
 
-  console.log(DsTinh, DsHuyen, DsXa)
-
+  console.log(DsTinh, DsHuyen, DsXa);
 
   const fetchDiaChi = async (tinh, huyen, xa) => {
     try {
@@ -194,7 +198,7 @@ function Profile() {
 
   const ChooseTinh = (newTinh) => {
     SetTinh(newTinh);
-    fetchDiaChi(newTinh,"","");
+    fetchDiaChi(newTinh, "", "");
     SetHuyen("");
     SetXa("");
   };
@@ -204,6 +208,10 @@ function Profile() {
     fetchDiaChi(tinh, newHuyen, "");
     SetXa("");
   };
+
+  const [password, SetPassWord] = useState("");
+  const [new_password, SetNewPassWord] = useState("");
+  const [confirm_password, SetConfirmPassWord] = useState("");
 
   const ChangeInforUser = async () => {
     try {
@@ -237,6 +245,34 @@ function Profile() {
         SetTinh(formattedData.tinh);
         SetHuyen(formattedData.huyen);
         SetXa(formattedData.xa);
+      }
+      setModalMessage(response.data.message.text);
+      setModalOpen(true);
+    } catch (error) {
+      console.error("Error calling history API:", error);
+    }
+  };
+
+  const ChangePassWordUser = async () =>{
+    try {
+      const access_token = localStorage.getItem("accessToken"); // Get access token from local storage
+      const response = await axios.put(
+        `http://127.0.0.1:5000/api/v1/user/change-password`,
+        {
+          password: password,
+          new_password: new_password,
+          confirm_password: confirm_password
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${access_token}`,
+          },
+        }
+      );
+      if (response.data.message.status === "success") {
+        SetPassWord("")
+        SetNewPassWord("")
+        SetConfirmPassWord("")
       }
       setModalMessage(response.data.message.text);
       setModalOpen(true);
@@ -535,8 +571,9 @@ function Profile() {
               </ContainerProfileB>
             </React.Fragment>
           )}
-          {activeButton === 2 && <React.Fragment>
-            <ContainerProfileA>
+          {activeButton === 2 && (
+            <React.Fragment>
+              <ContainerProfileA>
                 <h2
                   style={{
                     marginLeft: "25px",
@@ -552,26 +589,77 @@ function Profile() {
               </ContainerProfileA>
               <ContainerProfileB>
                 <ContainerProfile2B1>
-                  <ColumnProfileB1></ColumnProfileB1>
                   <ColumnProfileB1>
-                  <p style={{ fontSize: "20px", marginRight: "15px" }}>
+                    <p style={{ fontSize: "20px", marginRight: "15px" }}>
                       Mật khẩu hiện tại:
                     </p>
-                    </ColumnProfileB1>
+                  </ColumnProfileB1>
                   <ColumnProfileB1>
-                  <p style={{ fontSize: "20px", marginRight: "15px" }}>
+                    <p style={{ fontSize: "20px", marginRight: "15px" }}>
                       Mật khẩu mới:
-                    </p></ColumnProfileB1>
+                    </p>
+                  </ColumnProfileB1>
                   <ColumnProfileB1>
-                  <p style={{ fontSize: "20px", marginRight: "15px" }}>
+                    <p style={{ fontSize: "20px", marginRight: "15px" }}>
                       Xác nhận mật khẩu:
-                    </p></ColumnProfileB1>
+                    </p>
+                  </ColumnProfileB1>
+                  <ColumnProfileB1></ColumnProfileB1>
                   <ColumnProfileB1></ColumnProfileB1>
                 </ContainerProfile2B1>
-                <ContainerProfile2B1></ContainerProfile2B1>
+                <ContainerProfile2B1>
+                  <ColumnProfileB2>
+                    <input
+                      type="password"
+                      value={password}
+                      onChange={(e) => SetPassWord(e.target.value)}
+                      style={{
+                        width: "97%", // Đặt chiều rộng của ô Input
+                        padding: "10px", // Thêm padding để làm cho nó lớn hơn
+                        border: "1px solid #ccc", // Định dạng đường viền
+                        borderRadius: "5px", // Định dạng góc bo tròn
+                        fontSize: "13px", // Đặt kích thước chữ
+                      }}
+                    />
+                  </ColumnProfileB2>
+                  <ColumnProfileB2>
+                    <input
+                      type="password"
+                      value={new_password}
+                      onChange={(e) => SetNewPassWord(e.target.value)}
+                      style={{
+                        width: "97%", // Đặt chiều rộng của ô Input
+                        padding: "10px", // Thêm padding để làm cho nó lớn hơn
+                        border: "1px solid #ccc", // Định dạng đường viền
+                        borderRadius: "5px", // Định dạng góc bo tròn
+                        fontSize: "13px", // Đặt kích thước chữ
+                      }}
+                    />
+                  </ColumnProfileB2>
+                  <ColumnProfileB2>
+                    <input
+                      type="password"
+                      value={confirm_password}
+                      onChange={(e) => SetConfirmPassWord(e.target.value)}
+                      style={{
+                        width: "97%", // Đặt chiều rộng của ô Input
+                        padding: "10px", // Thêm padding để làm cho nó lớn hơn
+                        border: "1px solid #ccc", // Định dạng đường viền
+                        borderRadius: "5px", // Định dạng góc bo tròn
+                        fontSize: "13px", // Đặt kích thước chữ
+                      }}
+                    />
+                  </ColumnProfileB2>
+                  <ColumnProfileB2ChuaButtonSave>
+                  <StyledButtonSave onClick={() => ChangePassWordUser()}>
+                      Lưu
+                    </StyledButtonSave></ColumnProfileB2ChuaButtonSave>
+                  <ColumnProfileB2></ColumnProfileB2>
+                </ContainerProfile2B1>
                 <ContainerProfile2B2></ContainerProfile2B2>
               </ContainerProfileB>
-              </React.Fragment>}
+            </React.Fragment>
+          )}
           {activeButton === 3 && (
             <React.Fragment>
               <div>Oke1</div>

@@ -182,6 +182,24 @@ export const ColumnProfileB1 = styled.div`
   align-items: center;
 `;
 
+export const ColumnProfileB2 = styled.div`
+  flex: 20;
+  background-color: #f0f0f0;
+  display: flex;
+  width: 100%;
+  justify-content: flex-start;
+  align-items: center;
+`;
+
+export const ColumnProfileB2ChuaButtonSave = styled.div`
+  flex: 20;
+  background-color: #f0f0f0;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+`;
+
 
 
 export const ContainerProfile2B2 = styled.div`
