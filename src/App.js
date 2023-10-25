@@ -6,7 +6,6 @@ import Register from "./containers/register/Register";
 import NotFound from "./containers/notFound/NotFound";
 import Detail from "./containers/detail/detail"
 import Profile from './containers/thongtin/thongtin';
-import Changepass from "./containers/changepass/changpass"
 import Cart from "./containers/cart/cart"
 const App = () => {
   return (
@@ -16,7 +15,6 @@ const App = () => {
         <Route path="/index" component={Home} />
         <Route path="/register" component={Register} />
         <Route path="/detail/:id" component={Detail} />
-        <Route path="/changepass" component={Changepass} />
         <Route path="/cart" component={Cart} />
         <Route path="/profile" component={Profile} />
         <Route path="/notfound" component={NotFound} />
