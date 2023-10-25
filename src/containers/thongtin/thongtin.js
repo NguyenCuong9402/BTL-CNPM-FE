@@ -276,6 +276,11 @@ function Profile() {
                       Họ tên:
                     </p>
                   </ColumnProfile6>
+                  <ColumnProfile4>
+                    <p style={{ fontSize: "20px", marginRight: "15px" }}>
+                      Địa chỉ:
+                    </p>
+                  </ColumnProfile4>
                   <ColumnProfile2>
                     <p style={{ fontSize: "20px", marginRight: "15px" }}>
                       Số điện thoại:
@@ -286,11 +291,7 @@ function Profile() {
                       Ngày sinh:
                     </p>
                   </ColumnProfile3>
-                  <ColumnProfile4>
-                    <p style={{ fontSize: "20px", marginRight: "15px" }}>
-                      Địa chỉ:
-                    </p>
-                  </ColumnProfile4>
+                  
                   <ColumnProfile5>
                     <p style={{ fontSize: "20px", marginRight: "15px" }}>
                       Giới tính:
@@ -310,6 +311,7 @@ function Profile() {
                       {data.email}
                     </p>
                   </ColumnProfileT1>
+                  
                   <ColumnProfileT2>
                     <input
                       type="text"
@@ -324,43 +326,6 @@ function Profile() {
                       }}
                     />
                   </ColumnProfileT2>
-                  <ColumnProfileT3>
-                    <input
-                      type={isPasswordVisible ? "text" : "password"}
-                      value={phoneUser}
-                      onChange={(e) => {
-                        const numericValue = e.target.value
-                          .replace(/\D/g, "")
-                          .slice(0, 10); // Loại bỏ các ký tự không phải số và giới hạn độ dài tối đa 10 ký tự
-                        handleInputPhoneChange(numericValue);
-                      }}
-                      style={{
-                        width: "95%",
-                        padding: "10px",
-                        border: "1px solid #ccc",
-                        borderRadius: "5px",
-                        fontSize: "20px",
-                      }}
-                    />
-                    <span
-                      style={{
-                        cursor: "pointer",
-                      }}
-                      onClick={() => toggleVisibility()} // Hàm để bật/tắt hiển thị giá trị
-                    >
-                      👁️
-                    </span>
-                  </ColumnProfileT3>
-                  <ColumnProfileT5>
-                    <ColumnProfileT5>
-                      <CustomDatePicker
-                        selected={selectedDate}
-                        onChange={handleDateChange}
-                        dateFormat="dd/MM/yyyy"
-                      />
-                    </ColumnProfileT5>
-                  </ColumnProfileT5>
-
                   <ColumnProfileT6>
                     <SelectDiaChi value={tinh} onChange={(e) => SetTinh(e.target.value)}>
                       <option value="" disabled selected>
@@ -398,6 +363,44 @@ function Profile() {
                       {/* Thêm các tùy chọn cho tỉnh tại đây */}
                     </SelectDiaChi>
                   </ColumnProfileT6>
+                  <ColumnProfileT3>
+                    <input
+                      type={isPasswordVisible ? "text" : "password"}
+                      value={phoneUser}
+                      onChange={(e) => {
+                        const numericValue = e.target.value
+                          .replace(/\D/g, "")
+                          .slice(0, 10); // Loại bỏ các ký tự không phải số và giới hạn độ dài tối đa 10 ký tự
+                        handleInputPhoneChange(numericValue);
+                      }}
+                      style={{
+                        width: "95%",
+                        padding: "10px",
+                        border: "1px solid #ccc",
+                        borderRadius: "5px",
+                        fontSize: "20px",
+                      }}
+                    />
+                    <span
+                      style={{
+                        cursor: "pointer",
+                      }}
+                      onClick={() => toggleVisibility()} // Hàm để bật/tắt hiển thị giá trị
+                    >
+                      👁️
+                    </span>
+                  </ColumnProfileT3>
+                  <ColumnProfileT5>
+                    <ColumnProfileT5>
+                      <CustomDatePicker
+                        selected={selectedDate}
+                        onChange={handleDateChange}
+                        dateFormat="dd/MM/yyyy"
+                      />
+                    </ColumnProfileT5>
+                  </ColumnProfileT5>
+
+                  
                   <ColumnProfileT4>
                     <span
                       style={{
