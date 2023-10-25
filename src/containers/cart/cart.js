@@ -511,7 +511,7 @@ function Cart() {
               <ChildBuy5>
                 <ChildBuy7></ChildBuy7>
                 <ChildBuy8>
-                  <div>Đơn vị giao hàng</div> {/* Item 1 */}
+                  <div style={{fontSize:'16px', color:'black'}}>Đơn vị giao hàng</div> {/* Item 1 */}
                   <SelectDiaChi value={ship}
                       onChange={(e) => ChooseShip(e.target.value)}>
                       <option value="" disabled selected>

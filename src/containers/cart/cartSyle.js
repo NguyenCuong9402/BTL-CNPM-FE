@@ -154,8 +154,8 @@ export const ChildBuy8 = styled.div`
   flex: 3;
   display: flex;
   flex-direction: column; // Xếp theo cột
-  align-items: center; // Cân giữa theo chiều ngang
-  gap: 5px; // Khoảng cách giữa các item
+  align-items: flext-start; // Cân giữa theo chiều ngang
+  gap: 5px; 
 `;
 
 export const SelectDiaChi = styled.select`
