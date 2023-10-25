@@ -48,7 +48,7 @@ import {
   ColumnProfileT7,
   RadioButtonGioiTinh,
   CustomDatePicker,
-  SelectDiaChi,
+  SelectDiaChi, StyledButtonSave
 } from "./thongtinStyle";
 import "boxicons/css/boxicons.min.css";
 import axios from "axios";
@@ -190,6 +190,10 @@ function Profile() {
     SetHuyen(newHuyen)
     fetchDiaChi(tinh, newHuyen)
     SetXa("")
+  }
+
+  const ChangeInforUser = () =>{
+
   }
   return (
     <Body>
@@ -447,7 +451,9 @@ function Profile() {
                       onClick={() => handleGenderChange(1)}
                     ></RadioButtonGioiTinh>
                   </ColumnProfileT4>
-                  <ColumnProfileT7></ColumnProfileT7>
+                  <ColumnProfileT7>
+                    <StyledButtonSave onClick={ChangeInforUser()}>Lưu</StyledButtonSave>
+                  </ColumnProfileT7>
                 </ContainerProfileB2>
                 <ContainerProfileB3></ContainerProfileB3>
               </ContainerProfileB>

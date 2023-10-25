@@ -371,8 +371,22 @@ export const ColumnProfileT7 = styled.div`
   background-color: #f0f0f0;
   display: flex;
   width: 100%;
-  justify-content: flex-end;
+  justify-content: flex-start;
   align-items: center;
+`;
+
+export const StyledButtonSave = styled.button`
+  background-color: orange;
+  color: white;
+  border: none;
+  width: 100px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+
+  &:hover {
+    background-color: #ff6600;
+  }
 `;
 
 export const ContainerProfileB3 = styled.div`
