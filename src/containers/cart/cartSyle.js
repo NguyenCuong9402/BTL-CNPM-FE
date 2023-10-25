@@ -123,20 +123,24 @@ export const Container5 = styled.div`
 `;
 
 export const Container6 = styled.div`
-margin-top: 40px;
-flex:3;
-margin-bottom: 20px;
-height: 10%;
-justify-content: flex-end;
-background-size: cover;
-background-position: center;
-width: 60%;
-max-height: 600px;
-align-self: center;
-display: flex;
-position: relative;
-padding: 10px;
-background-color: #f0f0f0;
+  flex: 3;
+  justify-content: flex-end;
+  background-size: cover;
+  background-position: center;
+  width: 60%;
+  align-self: center;
+  display: flex;
+  background-color: #f0f0f0;
+`;
+
+export const ContainerDelete = styled.div`
+  flex: 1;
+  background-color: #ff0000; /* Màu đỏ là một ví dụ */
+`;
+
+export const ContainerBuy = styled.div`
+  flex: 1;
+  background-color: #00ff00; /* Màu xanh là một ví dụ */
 `;
 
 

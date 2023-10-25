@@ -4,11 +4,9 @@ import {
   UserInfoContainer,
   Container1,
   Container2,
-  Container3,
   Container5,
   DeleteButton,
   UserName,
-  Background,
   AvatarImage,
   AvatarContainer,
   BuyButton,
@@ -17,15 +15,12 @@ import {
   DropdownItem,
   Header,
   Navbar,
-  SearchBarContainer,
-  SearchInput,
   QuantityInput,
   Checkbox,
   Container6,
   LeftContainerProduct,
   RightContainerProduct,
   TBody,
-  SearchButton,
   QuantityColumnCell,
   TotalColumnCell,
   PriceColumnCell,
@@ -45,7 +40,7 @@ import {
   TotalText,
   TotalAmount,
   TableContainer,
-  XacNhanThayDoi,
+  XacNhanThayDoi, ContainerDelete, ContainerBuy
 } from "./cartSyle";
 import "boxicons/css/boxicons.min.css";
 import axios from "axios";
@@ -455,14 +450,16 @@ function Cart() {
           </TableContainer>
         </Container2>
         <Container6>
-        {isDeleteButtonVisible && (
+          <ContainerDelete></ContainerDelete>
+          <ContainerBuy></ContainerBuy>
+        {/* {isDeleteButtonVisible && (
             <DeleteButton onClick={handleDeleteButtonClick}>
               Xóa hàng
             </DeleteButton>
           )}
           <TotalText>Tổng tiền:</TotalText>
           <TotalAmount>{tong_tien} $ </TotalAmount>
-          <BuyButton>Mua hàng</BuyButton>
+          <BuyButton>Mua hàng</BuyButton> */}
         </Container6>
       </Container>
       <Modal
