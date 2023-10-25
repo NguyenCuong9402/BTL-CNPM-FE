@@ -179,9 +179,7 @@ const handleDetailClick = async(id) => {
 }
 
 
-  const handleChangepass = async () =>{
-    history.push(`/changepass`, { });
-  };
+
 
 
   const handleSearch = () => {
@@ -237,7 +235,6 @@ const handleDetailClick = async(id) => {
           <AvatarContainer>
             <AvatarImage src={avatarUrl} alt="Avatar" />
             <DropdownMenu>
-            <DropdownItem onClick={handleChangepass}>Đổi mật khẩu</DropdownItem>
               <DropdownItem onClick={handleProfile}>Tài Khoản</DropdownItem>
               <DropdownItem onClick={handleLogout}>
                 <img src={logout} alt="Logout" />

@@ -87,9 +87,6 @@ function Detail() {
   };
   const avatar = `http://127.0.0.1:5000/api/v1/picture/avatar/${user_id}`;
 
-  const handleChangepass = async () =>{
-    history.push(`/changepass`, { });
-  };
   const handlePlus = () => {
     setSL(sl + 1);
   };
@@ -166,7 +163,6 @@ function Detail() {
         <AvatarContainer>
         <AvatarImage src={avatar} alt="Avatar" />
         <DropdownMenu>
-          <DropdownItem onClick={handleChangepass}>Đổi mật khẩu</DropdownItem>
           <DropdownItem onClick={handleProfile}>Tài Khoản</DropdownItem>
           <DropdownItem onClick={handleLogout}>
             <img src={logout} alt="Logout" />
