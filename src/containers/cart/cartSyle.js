@@ -135,11 +135,11 @@ export const Container6 = styled.div`
 
 export const ContainerDelete = styled.div`
   flex: 1;
-  background-color: #ff0000; /* Màu đỏ là một ví dụ */
+  background-color: #f0f0f0; /* Màu đỏ là một ví dụ */
 `;
 
 export const ContainerBuy = styled.div`
-  flex: 1;
+  flex: 9;
   background-color: #00ff00; /* Màu xanh là một ví dụ */
 `;
 

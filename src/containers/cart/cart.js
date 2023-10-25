@@ -40,7 +40,9 @@ import {
   TotalText,
   TotalAmount,
   TableContainer,
-  XacNhanThayDoi, ContainerDelete, ContainerBuy
+  XacNhanThayDoi,
+  ContainerDelete,
+  ContainerBuy,
 } from "./cartSyle";
 import "boxicons/css/boxicons.min.css";
 import axios from "axios";
@@ -290,7 +292,7 @@ function Cart() {
         </UserInfoContainer>
       </Header>
       <Container>
-      <Container1>
+        <Container1>
           <h2
             style={{
               color: "#FF5722",
@@ -304,7 +306,7 @@ function Cart() {
           </h2>
         </Container1>
         <Container2>
-        <TableContainer>
+          <TableContainer>
             <TableHeader>
               <TableRow>
                 <ButtonColumn>
@@ -450,14 +452,16 @@ function Cart() {
           </TableContainer>
         </Container2>
         <Container6>
-          <ContainerDelete></ContainerDelete>
+          <ContainerDelete>
+            {isDeleteButtonVisible && (
+              <DeleteButton onClick={handleDeleteButtonClick}>
+                Xóa
+              </DeleteButton>
+            )}
+          </ContainerDelete>
           <ContainerBuy></ContainerBuy>
-        {/* {isDeleteButtonVisible && (
-            <DeleteButton onClick={handleDeleteButtonClick}>
-              Xóa hàng
-            </DeleteButton>
-          )}
-          <TotalText>Tổng tiền:</TotalText>
+
+          {/* <TotalText>Tổng tiền:</TotalText>
           <TotalAmount>{tong_tien} $ </TotalAmount>
           <BuyButton>Mua hàng</BuyButton> */}
         </Container6>
