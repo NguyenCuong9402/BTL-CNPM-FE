@@ -46,6 +46,7 @@ import {
   ColumnProfileT5,
   ColumnProfileT6,
   ColumnProfileT7,
+  RadioButtonGioiTinh,
 } from "./thongtinStyle";
 import "boxicons/css/boxicons.min.css";
 import axios from "axios";
@@ -61,7 +62,7 @@ function Profile() {
   const [user_id, setUserDataId] = useState(null);
   const [nameUser, setNameUser] = useState("");
   const [phoneUser, setPhoneUser] = useState("");
-
+  const [gioiTinh, setGioiTinh] = useState(0);
   const history = useHistory();
 
   const [data, setData] = useState({});
@@ -97,6 +98,7 @@ function Profile() {
         setData(formattedData);
         setNameUser(formattedData.name_user);
         setPhoneUser(formattedData.phone_number);
+        setGioiTinh(formattedData.gender);
       } else {
         console.error("Error fetching history data.");
       }
@@ -132,6 +134,11 @@ function Profile() {
   const toggleVisibility = () => {
     setPasswordVisible(!isPasswordVisible);
   };
+
+  const handleGenderChange = (gender) => {
+    setGioiTinh(gender);
+  };
+
   return (
     <Body>
       <Header>
@@ -306,7 +313,19 @@ function Profile() {
                       👁️
                     </span>
                   </ColumnProfileT3>
-                  <ColumnProfileT4></ColumnProfileT4>
+                  <ColumnProfileT4>
+                    <span style={{ marginRight:'5px', color:'black', fontSize: '20px'}}>Nam</span>
+                    <RadioButtonGioiTinh
+                      selected={gioiTinh === 0}
+                      onClick={() => handleGenderChange(0)}
+                    ></RadioButtonGioiTinh>
+                    <span style={{ marginRight:'5px', color:'black', fontSize: '20px'}}>Nữ</span>
+
+                    <RadioButtonGioiTinh
+                      selected={gioiTinh === 1}
+                      onClick={() => handleGenderChange(1)}
+                    ></RadioButtonGioiTinh>
+                  </ColumnProfileT4>
                   <ColumnProfileT5></ColumnProfileT5>
                   <ColumnProfileT6></ColumnProfileT6>
                   <ColumnProfileT7></ColumnProfileT7>

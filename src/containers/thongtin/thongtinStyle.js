@@ -274,7 +274,40 @@ export const ColumnProfileT4 = styled.div`
   width: 100%;
   justify-content: flex-start;
   align-items: center;  
+  flex-direction: row;
 `;
+
+export const RadioButtonGioiTinh = ({ selected, onClick }) => (
+  <div
+    style={{
+      width: "20px",
+      height: "20px",
+      borderRadius: "50%",
+      border: selected ? "2px solid #ff0000" : "2px solid #000",
+      backgroundColor: selected ? "#ff0000" : "#fff",
+      cursor: "pointer",
+      marginRight: "50px",
+      position: "relative",
+    }}
+    onClick={onClick}
+  >
+    {selected && (
+      <div
+        style={{
+          width: "8px",
+          height: "8px",
+          borderRadius: "50%",
+          backgroundColor: "#ff0000",
+          position: "absolute",
+          top: "50%",
+          left: "50%",
+          transform: "translate(-50%, -50%)",
+        }}
+      ></div>
+    )}
+  </div>
+);
+
 export const ColumnProfileT5 = styled.div`
   flex: 14;
   background-color: #f0f0f0;
