@@ -177,7 +177,14 @@ function Profile() {
   const handleDateChange = (date) => {
     setSelectedDate(date);
   };
-  console.log(DsXa)
+
+  const ChooseTinh = (newTinh) => {
+    SetTinh(newTinh)
+    fetchDiaChi(tinh)
+    SetHuyen("")
+    SetXa("")
+
+  }
   return (
     <Body>
       <Header>
@@ -328,7 +335,7 @@ function Profile() {
                     />
                   </ColumnProfileT2>
                   <ColumnProfileT6>
-                    <SelectDiaChi value={tinh} onChange={(e) => SetTinh(e.target.value)}>
+                    <SelectDiaChi value={tinh} onChange={(e) => ChooseTinh(e.target.value)}>
                       <option value="" disabled selected>
                         Thành phố/Tỉnh
                       </option>
