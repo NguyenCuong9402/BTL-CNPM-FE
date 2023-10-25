@@ -332,7 +332,7 @@ function Profile() {
                       value={nameUser}
                       onChange={(e) => handleInputNameChange(e.target.value)}
                       style={{
-                        width: "95%", // Đặt chiều rộng của ô Input
+                        width: "97%", // Đặt chiều rộng của ô Input
                         padding: "10px", // Thêm padding để làm cho nó lớn hơn
                         border: "1px solid #ccc", // Định dạng đường viền
                         borderRadius: "5px", // Định dạng góc bo tròn
@@ -391,7 +391,7 @@ function Profile() {
                         handleInputPhoneChange(numericValue);
                       }}
                       style={{
-                        width: "95%",
+                        width: "97%",
                         padding: "10px",
                         border: "1px solid #ccc",
                         borderRadius: "5px",
