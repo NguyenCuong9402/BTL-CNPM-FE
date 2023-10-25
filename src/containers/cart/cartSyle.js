@@ -99,31 +99,23 @@ export const SearchButton = styled.button`
 
 
 export const Container = styled.div`
-  display: flex;
-  position: relative;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  width: 100%;
-  flex-direction: column; 
-  margin-top: 20px;
+  flex: 1; /* Container cha chiếm 90% còn lại */
+  margin-top: 90px;
   background-color: #f0f0f0;
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
-  overflow-y: auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow-y: hidden;
+
 
 `;
 
 export const Container1 = styled.div`
+  flex: 1; /* Container1 chiếm 30% chiều rộng của Container cha */
+  background-color: white; /* Màu nền của Container1 */
   display: flex;
-  background-color: white; 
-  background-size: cover;
-  background-position: center;
-  width: 100%;
-  height: 100px;
-  justify-content: center; /* Căn giữa theo chiều ngang */
-  align-items: center; /* Căn giữa theo chiều dọc */
+  justify-content: center;
+  align-items: center;
 `;
 
 export const Container5 = styled.div`
@@ -132,6 +124,7 @@ export const Container5 = styled.div`
 
 export const Container6 = styled.div`
 margin-top: 40px;
+flex:3;
 margin-bottom: 20px;
 height: 10%;
 justify-content: flex-end;
@@ -143,6 +136,7 @@ align-self: center;
 display: flex;
 position: relative;
 padding: 10px;
+background-color: #f0f0f0;
 `;
 
 
@@ -150,12 +144,11 @@ export const Container2 = styled.div`
   background-size: cover;
   background-position: center;
   width: 60%;
-  max-height:600px;
+  flex: 6;
   display: flex;
   align-self: center;
   flex-direction: column;
   overflow-y: auto;
-
 `;
 
 
@@ -257,9 +250,12 @@ export const LogoutButton = styled.img`
 
 
 export const Body = styled.div`
-height: 97.9vh;
-width: 100%;
-background-color: #f0f0f0;
+  height: 97.9vh;
+  width: 100%;
+  background-color: #f0f0f0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 

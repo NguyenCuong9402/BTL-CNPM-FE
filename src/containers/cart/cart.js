@@ -44,7 +44,8 @@ import {
   TableHeader,
   TotalText,
   TotalAmount,
-  TableContainer, XacNhanThayDoi,
+  TableContainer,
+  XacNhanThayDoi,
 } from "./cartSyle";
 import "boxicons/css/boxicons.min.css";
 import axios from "axios";
@@ -209,7 +210,7 @@ function Cart() {
   };
   const [selectedColor, setSelectedColor] = useState("");
   const [selectedSize, setSelectedSize] = useState("");
-  console.log(selectedColor, selectedSize)
+  console.log(selectedColor, selectedSize);
   const handleConfirm = async (itemId, color, size) => {
     const access_token = localStorage.getItem("accessToken");
     try {
@@ -217,7 +218,7 @@ function Cart() {
         `http://127.0.0.1:5000/api/v1/cart_items/change/${itemId}`,
         {
           size: size,
-          color: color
+          color: color,
         },
         {
           headers: {
@@ -236,18 +237,15 @@ function Cart() {
     }
   };
 
- 
-
   const [openPopups, setOpenPopups] = useState({}); // Sử dụng một đối tượng để lưu trạng thái của popup cho từng ô
 
-  const togglePopup = (itemId, color,size) => {
+  const togglePopup = (itemId, color, size) => {
     setSelectedColor(color);
     setSelectedSize(size);
     setOpenPopups((prevPopups) => ({
       [itemId]: !prevPopups[itemId],
     }));
   };
-
 
   const handleQuantityChange = async (itemId, newQuantity) => {
     const access_token = localStorage.getItem("accessToken");
@@ -296,9 +294,8 @@ function Cart() {
           </AvatarContainer>
         </UserInfoContainer>
       </Header>
-      <Background></Background>
       <Container>
-        <Container1>
+      <Container1>
           <h2
             style={{
               color: "#FF5722",
@@ -312,7 +309,7 @@ function Cart() {
           </h2>
         </Container1>
         <Container2>
-          <TableContainer>
+        <TableContainer>
             <TableHeader>
               <TableRow>
                 <ButtonColumn>
@@ -354,8 +351,17 @@ function Cart() {
                   </ProductColumnCell>
                   <PhanLoaiColumnCell>
                     <div style={{ position: "relative" }}>
-                    <span><button onClick={() => togglePopup(item.id, item.color, item.size)}>▼</button>Loại hàng: {item.color}, {item.size}</span>
-                
+                      <span>
+                        <button
+                          onClick={() =>
+                            togglePopup(item.id, item.color, item.size)
+                          }
+                        >
+                          ▼
+                        </button>
+                        Loại hàng: {item.color}, {item.size}
+                      </span>
+
                       {openPopups[item.id] && (
                         <div
                           style={{
@@ -367,39 +373,62 @@ function Cart() {
                           }}
                         >
                           <div>
-                            <label htmlFor="colorSelect" style={{marginRight:'20px'}}>Màu:</label>
+                            <label
+                              htmlFor="colorSelect"
+                              style={{ marginRight: "20px" }}
+                            >
+                              Màu:
+                            </label>
                             <select
                               id="colorSelect"
                               value={selectedColor}
                               onChange={(e) => setSelectedColor(e.target.value)}
                               style={{
-                                width: '80px'
+                                width: "80px",
                               }}
                             >
-                               {item.cac_mau.map((mau) => (
-                                <option key={mau} value={mau}>{mau}</option>
+                              {item.cac_mau.map((mau) => (
+                                <option key={mau} value={mau}>
+                                  {mau}
+                                </option>
                               ))}
                             </select>
                           </div>
                           <div>
-                            <label htmlFor="sizeSelect" style={{marginRight:'25px'}}>Size:</label>
+                            <label
+                              htmlFor="sizeSelect"
+                              style={{ marginRight: "25px" }}
+                            >
+                              Size:
+                            </label>
                             <select
                               id="sizeSelect"
                               value={selectedSize}
                               onChange={(e) => setSelectedSize(e.target.value)}
                               style={{
-                                width: '80px'
+                                width: "80px",
                               }}
                             >
                               <option value="S">S</option>
                               <option value="M">M</option>
                               <option value="L">L</option>
                               <option value="XL">XL</option>
-                              {/* Thêm tùy chọn cho các size khác tại đây */}
                             </select>
                           </div>
-                          <div style={{ marginTop: '10px', marginLeft:'10px' }}>
-                            <XacNhanThayDoi onClick={() => handleConfirm(item.id, selectedColor, selectedSize)}>Xác nhận</XacNhanThayDoi>
+                          <div
+                            style={{ marginTop: "10px", marginLeft: "10px" }}
+                          >
+                            <XacNhanThayDoi
+                              onClick={() =>
+                                handleConfirm(
+                                  item.id,
+                                  selectedColor,
+                                  selectedSize
+                                )
+                              }
+                            >
+                              Xác nhận
+                            </XacNhanThayDoi>
                           </div>
                         </div>
                       )}
@@ -426,7 +455,7 @@ function Cart() {
           </TableContainer>
         </Container2>
         <Container6>
-          {isDeleteButtonVisible && (
+        {isDeleteButtonVisible && (
             <DeleteButton onClick={handleDeleteButtonClick}>
               Xóa hàng
             </DeleteButton>
