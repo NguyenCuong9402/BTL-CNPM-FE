@@ -50,7 +50,7 @@ import {
   ChildBuy5,
   ChildBuy6,
   ChildBuy7,
-  ChildBuy8,
+  ChildBuy8, SelectDiaChi
 } from "./cartSyle";
 import "boxicons/css/boxicons.min.css";
 import axios from "axios";
@@ -72,7 +72,8 @@ function Cart() {
   const [selectAll, setSelectAll] = useState(false);
   const [tong_tien, setTongTien] = useState(0);
   const [gia_ship, setGiaShip] = useState(0);
-  const [dsShip, SetDsShip] = useState([])
+  const [dsShip, SetDsShip] = useState([]);
+  const [ship, setShip] = useState([])
   useEffect(() => {
     const userDataFromLocalStorage = JSON.parse(localStorage.getItem("user"));
     if (userDataFromLocalStorage) {
@@ -120,8 +121,7 @@ function Cart() {
   const fetchShiper = async () => {
     try {
       const response = await axios.get(
-        `http://127.0.0.1:5000/api/v1/cart_items/shipper`,
-        
+        `http://127.0.0.1:5000/api/v1/cart_items/shipper`
       );
       if (response.data.message.status === "success") {
         const formattedData = response.data.data.map((item) => ({
@@ -140,9 +140,8 @@ function Cart() {
     tinh_tong();
     fetchShiper();
     setIsDeleteButtonVisible(selectedRows.length > 0);
-
   }, [selectedRows, tong_tien]);
-  console.log(dsShip)
+  console.log(dsShip);
   const handleProfile = async () => {
     history.push(`/profile`, {});
   };
@@ -300,6 +299,21 @@ function Cart() {
     }
   };
 
+  const ChooseShip = async (ship_id) =>{
+    setShip(ship_id)
+    try {
+      const response = await axios.get(
+        `http://127.0.0.1:5000/api/v1/cart_items/shipper/${ship_id}`
+      );
+      console.log(response.data.data)
+      if (response.data.message.status === "success") {
+        setGiaShip(response.data.data)
+      }
+    } catch (error) {
+      console.error(error);
+      alert("Có lỗi xảy ra khi gửi yêu cầu thay đổi gì đó");
+    }
+  };
   return (
     <Body>
       <Header>
@@ -492,7 +506,20 @@ function Cart() {
             <Buy1>
               <ChildBuy5>
                 <ChildBuy7></ChildBuy7>
-                <ChildBuy8></ChildBuy8>
+                <ChildBuy8>
+                  <div>Đơn vị giao hàng</div> {/* Item 1 */}
+                  <SelectDiaChi value={ship}
+                      onChange={(e) => ChooseShip(e.target.value)}>
+                      <option value="" disabled selected>
+                        Chọn đơn vị
+                      </option>
+                    {dsShip.map((item) => (
+                      <option key={item.id} value={item.id}>
+                        {item.name}
+                      </option>
+                    ))}
+                  </SelectDiaChi>
+                </ChildBuy8>
               </ChildBuy5>
               <ChildBuy6></ChildBuy6>
             </Buy1>
@@ -523,7 +550,7 @@ function Cart() {
                   <span style={{ fontSize: "12px", marginLeft: "5px" }}>$</span>
                 </ChildBuy3>
                 <ChildBuy3>
-                  <span style={{ color: "orange" }}>2</span>{" "}
+                  <span style={{ color: "orange" }}>{gia_ship}</span>{" "}
                   <span style={{ fontSize: "12px", marginLeft: "5px" }}>$</span>
                 </ChildBuy3>
                 <ChildBuy3>

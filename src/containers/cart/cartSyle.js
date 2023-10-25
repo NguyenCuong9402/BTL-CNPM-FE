@@ -153,6 +153,23 @@ export const ChildBuy7 = styled.div`
 export const ChildBuy8 = styled.div`
   flex: 3;
   display: flex;
+  flex-direction: column; // Xếp theo cột
+  align-items: center; // Cân giữa theo chiều ngang
+  gap: 5px; // Khoảng cách giữa các item
+`;
+
+export const SelectDiaChi = styled.select`
+  border: 1px solid #ccc;
+  width: 200px;
+  padding: 5px;
+  border-radius: 5px;
+  background-color: #f5f5f5;
+  color: #333;
+  margin-right: 20px;
+  &:focus {
+    outline: none;
+    border: 1px solid #007bff; /* Màu viền khi ô select được focus */
+  }
 `;
 
 
