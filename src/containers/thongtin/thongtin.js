@@ -124,7 +124,7 @@ function Profile() {
   };
 
   const handleInputPhoneChange = (newPhone) => {
-    setNameUser(newPhone);
+    setPhoneUser(newPhone);
   };
 
   const [isPasswordVisible, setPasswordVisible] = useState(false);
@@ -283,13 +283,18 @@ function Profile() {
                     <input
                       type={isPasswordVisible ? "text" : "password"}
                       value={phoneUser}
-                      onChange={(e) => handleInputPhoneChange(e.target.value)}
+                      onChange={(e) => {
+                        const numericValue = e.target.value
+                          .replace(/\D/g, "")
+                          .slice(0, 10); // Loại bỏ các ký tự không phải số và giới hạn độ dài tối đa 10 ký tự
+                        handleInputPhoneChange(numericValue);
+                      }}
                       style={{
-                        width: "100%", // Đặt chiều rộng của ô Input
-                        padding: "10px", // Thêm padding để làm cho nó lớn hơn
-                        border: "1px solid #ccc", // Định dạng đường viền
-                        borderRadius: "5px", // Định dạng góc bo tròn
-                        fontSize: "20px", // Đặt kích thước chữ
+                        width: "95%",
+                        padding: "10px",
+                        border: "1px solid #ccc",
+                        borderRadius: "5px",
+                        fontSize: "20px",
                       }}
                     />
                     <span
