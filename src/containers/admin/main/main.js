@@ -555,7 +555,7 @@ function Main() {
               </ButtonContainer6>
             </Ct3>
             <Ct4>
-            <ButtonContainer6
+              <ButtonContainer6
                 active={activeButton === 7}
                 onClick={() => setActiveButton(7)}
               >
@@ -591,65 +591,64 @@ function Main() {
               <ContainerProfileB>
                 <SanPham1>
                   <TableHeader>
-                      <ButtonColumn>
-                        <Checkbox
-                          type="checkbox"
-                          onChange={() => handleSelectAllClick()}
-                        />
-                      </ButtonColumn>
-                      <ProductColumn>Sản phẩm</ProductColumn>
-                      <PhanLoaiColumn>Mô tả</PhanLoaiColumn>
-                      <QuantityColumn>Giảm giá (%)</QuantityColumn>
-                      <PriceColumn>Đơn giá</PriceColumn>
-                      <TotalColumn>Ngày tạo</TotalColumn>
+                    <ButtonColumn>
+                      <Checkbox
+                        type="checkbox"
+                        onChange={() => handleSelectAllClick()}
+                      />
+                    </ButtonColumn>
+                    <ProductColumn>Sản phẩm</ProductColumn>
+                    <PhanLoaiColumn>Mô tả</PhanLoaiColumn>
+                    <QuantityColumn>Giảm giá (%)</QuantityColumn>
+                    <PriceColumn>Đơn giá</PriceColumn>
+                    <TotalColumn>Ngày tạo</TotalColumn>
                   </TableHeader>
                   <SanPham6></SanPham6>
                   <SanPham7>
+                    <div>
+                      <label
+                        htmlFor="pageSizeSelect"
+                        style={{ fontWeight: "bold", color: "green" }}
+                      >
+                        PageSize:{" "}
+                      </label>
+                      <select
+                        id="pageSizeSelect"
+                        value={pageSize}
+                        onChange={handlePageSizeChange}
+                      >
+                        <option value={4}>4</option>
+                        <option value={12}>12</option>
+                        <option value={20}>20</option>
+                        <option value={28}>28</option>
+                        <option value={40}>40</option>
+                      </select>
+                    </div>
 
-                  <div>
-                <label
-                  htmlFor="pageSizeSelect"
-                  style={{ fontWeight: "bold", color: "green" }}
-                >
-                  PageSize:{" "}
-                </label>
-                <select
-                  id="pageSizeSelect"
-                  value={pageSize}
-                  onChange={handlePageSizeChange}
-                >
-                  <option value={4}>4</option>
-                  <option value={12}>12</option>
-                  <option value={20}>20</option>
-                  <option value={28}>28</option>
-                  <option value={40}>40</option>
-                </select>
-              </div>
-
-              <PaginationButton
-                onClick={handlePrevPage}
-                disabled={currentPage === 1}
-              >
-                ←
-              </PaginationButton>
-              {listPage.map((page) => (
-                <PaginationButtonPage
-                  key={page}
-                  onClick={() => handlePageClick(page)}
-                  className={page === currentPage ? "active" : ""}
-                >
-                  {page}
-                </PaginationButtonPage>
-              ))}
-              <PaginationButton
-                onClick={handleNextPage}
-                disabled={currentPage === totalPages}
-              >
-                →
-              </PaginationButton>
-              <PaginationInfo>
-                Page {currentPage} of {totalPages}
-              </PaginationInfo>
+                    <PaginationButton
+                      onClick={handlePrevPage}
+                      disabled={currentPage === 1}
+                    >
+                      ←
+                    </PaginationButton>
+                    {listPage.map((page) => (
+                      <PaginationButtonPage
+                        key={page}
+                        onClick={() => handlePageClick(page)}
+                        className={page === currentPage ? "active" : ""}
+                      >
+                        {page}
+                      </PaginationButtonPage>
+                    ))}
+                    <PaginationButton
+                      onClick={handleNextPage}
+                      disabled={currentPage === totalPages}
+                    >
+                      →
+                    </PaginationButton>
+                    <PaginationInfo>
+                      Page {currentPage} of {totalPages}
+                    </PaginationInfo>
                   </SanPham7>
                 </SanPham1>
                 <SanPham2>
@@ -757,9 +756,7 @@ function Main() {
                       />
                     </InnerContainer3>
                   </SanPham3>
-                  <SanPham3>
-                  
-                  </SanPham3>
+                  <SanPham3></SanPham3>
                 </SanPham2>
               </ContainerProfileB>
             </React.Fragment>

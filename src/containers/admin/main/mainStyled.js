@@ -270,6 +270,7 @@ export const SanPham7 = styled.div`
   background-color:white;
   text-align: center;
   justify-content: center;
+  padding: 16px;
 
 `;
 
