@@ -394,6 +394,41 @@ function Cart() {
       alert("Có lỗi xảy ra khi gửi yêu cầu thay đổi gì đó");
     }
   };
+
+  const DatHang = async ()=>{
+    const access_token = localStorage.getItem("accessToken");
+    try {
+      const response = await axios.post(
+        "http://127.0.0.1:5000/api/v1/orders",
+        {
+          cart_ids: selectedRows, // Truyền dữ liệu trực tiếp
+          ship_id: ship,
+          phone_number: sdt,
+          loi_nhan: loi_nhan,
+          tinh:tinh,
+          huyen:huyen,
+          xa:xa,
+          address: address
+
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${access_token}`,
+          },
+        }
+      );
+
+      if (response.data.message.status === "success") {
+        fetchData();
+        tinh_tong(ship)
+      }
+      setModalMessage(response.data.message.text);
+      setModalOpen(true);
+    } catch (error) {
+      console.error(error);
+      alert("Có lỗi xảy ra khi gửi yêu cầu thanh toan");
+    }
+  }
   return (
     <Body>
       <Header>
@@ -753,7 +788,7 @@ function Cart() {
                   <span style={{ fontSize: "12px", marginLeft: "5px" }}>$</span>
                 </ChildBuy3>
                 <ChildBuy3>
-                  <BuyButton>Đặt hàng</BuyButton>
+                  <BuyButton onClick={DatHang}>Đặt hàng</BuyButton>
                 </ChildBuy3>
               </ChildBuy2>
             </Buy2>
