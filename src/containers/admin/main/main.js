@@ -630,7 +630,7 @@ function Main() {
                 onClick={handlePrevPage}
                 disabled={currentPage === 1}
               >
-                Previous
+                ←
               </PaginationButton>
               {listPage.map((page) => (
                 <PaginationButtonPage
@@ -645,7 +645,7 @@ function Main() {
                 onClick={handleNextPage}
                 disabled={currentPage === totalPages}
               >
-                Next
+                →
               </PaginationButton>
               <PaginationInfo>
                 Page {currentPage} of {totalPages}

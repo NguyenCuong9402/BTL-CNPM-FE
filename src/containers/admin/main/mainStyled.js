@@ -180,12 +180,15 @@ export const TableHeader = styled.div`
 export const PaginationButton = styled.button`
   padding: 8px 16px;
   margin: 0 5px;
-  background-color: #007bff;
+  background-color: orange;
   color: #fff;
   border: none;
   border-radius: 4px;
   cursor: pointer;
   outline: none;
+  height: 50%;
+  justify-content: center;
+  align-items: center;
 
   &:hover {
     background-color: #0056b3;
