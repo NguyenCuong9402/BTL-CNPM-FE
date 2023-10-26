@@ -366,10 +366,30 @@ export const SanPham7 = styled.div`
   flex: 1;
   display: flex;
   background-color:white;
-  text-align: center;
+  align-items: center;
   justify-content: center;
   padding: 16px;
+  display: flex;
+  flex-direction: row;
+`;
 
+export const ContainerSp1 = styled.div`
+  flex: 1;
+  display: flex;
+  background-color:white;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  display: flex;
+`;
+export const ContainerSp2 = styled.div`
+  flex: 9;
+  display: flex;
+  background-color:white;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  display: flex;
 `;
 
 

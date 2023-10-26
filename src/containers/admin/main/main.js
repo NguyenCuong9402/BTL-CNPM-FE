@@ -88,7 +88,7 @@ import {
   PhanLoaiColumnCell,
   PriceColumnCell,
   TotalColumnCell,
-  QuantityColumnCell,
+  QuantityColumnCell, ContainerSp1, ContainerSp2
 } from "./mainStyled";
 import "boxicons/css/boxicons.min.css";
 import axios from "axios";
@@ -678,6 +678,8 @@ function Main() {
                     ))}
                   </SanPham6>
                   <SanPham7>
+                  <ContainerSp1></ContainerSp1>
+                  <ContainerSp2>
                     <div>
                       <label
                         htmlFor="pageSizeSelect"
@@ -722,6 +724,7 @@ function Main() {
                     <PaginationInfo>
                       Page {currentPage} of {totalPages}
                     </PaginationInfo>
+                    </ContainerSp2>
                   </SanPham7>
                 </SanPham1>
                 <SanPham2>
