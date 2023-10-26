@@ -68,7 +68,7 @@ import {
   InnerContainer1,
   InnerContainer2,
   InnerContainer3,
-  SelectLoaiQuanAo,
+  SelectLoaiQuanAo,SanPham5, SanPham6, SanPham7
 } from "./mainStyled";
 import "boxicons/css/boxicons.min.css";
 import axios from "axios";
@@ -551,7 +551,11 @@ function Main() {
                 </p>
               </ContainerProfileA>
               <ContainerProfileB>
-                <SanPham1></SanPham1>
+                <SanPham1>
+                  <SanPham5></SanPham5>
+                  <SanPham6></SanPham6>
+                  <SanPham7></SanPham7>
+                </SanPham1>
                 <SanPham2>
                   <SanPham3>
                     <InnerContainer1>

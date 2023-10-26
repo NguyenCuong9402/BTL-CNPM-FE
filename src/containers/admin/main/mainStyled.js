@@ -167,10 +167,29 @@ export const ContainerProfileB = styled.div`
 
 export const SanPham1 = styled.div`
   flex: 8;
-  background-color: red;
+  background-color: white;
   display: flex;
-  
+  flex-direction: column;
 `;
+
+export const SanPham5 = styled.div`
+  flex: 1;
+  display: flex;
+  background-color:blue;
+`;
+export const SanPham6 = styled.div`
+  flex: 8;
+  display: flex;  
+`;
+
+export const SanPham7 = styled.div`
+  flex: 1;
+  display: flex;
+  background-color:blue;
+
+`;
+
+
 
 export const SanPham2 = styled.div`
   flex: 2;
