@@ -6,8 +6,9 @@ import {
   AvatarImage,
   AvatarContainer,
   Body,
-  DropdownMenu,
-  DropdownItem,
+  PaginationButton,
+  PaginationButtonPage,
+  PaginationInfo,
   Header,
   Container,
   Container1,
@@ -188,6 +189,9 @@ function Main() {
   const handleChangeSapXep = async (event) => {
     const selectedValue = event.target.value;
     SetOrderBy(selectedValue);
+  };
+  const handlePageClick = async (page) => {
+    setCurrentPage(page);
   };
 
   const handleChangePhanLoai = async (event) => {
@@ -600,7 +604,53 @@ function Main() {
                       <TotalColumn>Ngày tạo</TotalColumn>
                   </TableHeader>
                   <SanPham6></SanPham6>
-                  <SanPham7></SanPham7>
+                  <SanPham7>
+
+                  <div>
+                <label
+                  htmlFor="pageSizeSelect"
+                  style={{ fontWeight: "bold", color: "green" }}
+                >
+                  PageSize:{" "}
+                </label>
+                <select
+                  id="pageSizeSelect"
+                  value={pageSize}
+                  onChange={handlePageSizeChange}
+                >
+                  <option value={4}>4</option>
+                  <option value={12}>12</option>
+                  <option value={20}>20</option>
+                  <option value={28}>28</option>
+                  <option value={40}>40</option>
+                </select>
+              </div>
+
+              <PaginationButton
+                onClick={handlePrevPage}
+                disabled={currentPage === 1}
+              >
+                Previous
+              </PaginationButton>
+              {listPage.map((page) => (
+                <PaginationButtonPage
+                  key={page}
+                  onClick={() => handlePageClick(page)}
+                  className={page === currentPage ? "active" : ""}
+                >
+                  {page}
+                </PaginationButtonPage>
+              ))}
+              <PaginationButton
+                onClick={handleNextPage}
+                disabled={currentPage === totalPages}
+              >
+                Next
+              </PaginationButton>
+              <PaginationInfo>
+                Page {currentPage} of {totalPages}
+              </PaginationInfo>
+                  </SanPham7>
                 </SanPham1>
                 <SanPham2>
                   <SanPham3>
@@ -707,7 +757,9 @@ function Main() {
                       />
                     </InnerContainer3>
                   </SanPham3>
-                  <SanPham3></SanPham3>
+                  <SanPham3>
+                  
+                  </SanPham3>
                 </SanPham2>
               </ContainerProfileB>
             </React.Fragment>

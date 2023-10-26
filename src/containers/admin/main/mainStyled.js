@@ -177,6 +177,45 @@ export const TableHeader = styled.div`
   display: flex;
   background-color:#f0f0f0;
 `;
+export const PaginationButton = styled.button`
+  padding: 8px 16px;
+  margin: 0 5px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  outline: none;
+
+  &:hover {
+    background-color: #0056b3;
+  }
+
+  &:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+`;
+
+export const PaginationInfo = styled.div`
+  margin: 0 10px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #008000;
+`;
+
+export const PaginationButtonPage = styled.button`
+  /* CSS cho PaginationButton */
+  border: none;
+  background: none;
+  cursor: pointer;
+  outline: none;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  margin: 0 4px;
+`;
+
 
 export const ButtonColumn = styled.td`
   width: 5%;
@@ -225,7 +264,9 @@ export const SanPham6 = styled.div`
 export const SanPham7 = styled.div`
   flex: 1;
   display: flex;
-  background-color:blue;
+  background-color:white;
+  text-align: center;
+  justify-content: center;
 
 `;
 
