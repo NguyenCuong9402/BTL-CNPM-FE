@@ -163,6 +163,10 @@ function Add_item() {
       reader.readAsDataURL(file);
     }
   };
+
+  const ThemSanPham = () =>{
+    
+  }
   return (
     <Body>
       <Header>
@@ -388,7 +392,7 @@ function Add_item() {
                 />
               </AddAnh3>
               <AddAnh4>
-                <ButtonAdd>Thêm sản phẩm</ButtonAdd>
+                <ButtonAdd onClick={ThemSanPham} >Thêm sản phẩm</ButtonAdd>
               </AddAnh4>
             </AddProDuct2>
           </ContainerProfileB>
