@@ -140,7 +140,7 @@ export const Buy1 = styled.div`
 `;
 
 export const ChildBuy5 = styled.div`
-  flex: 5;
+  flex: 3;
   display: flex;
   flex-direction: row;
 `;
@@ -148,6 +148,7 @@ export const ChildBuy5 = styled.div`
 export const ChildBuy7 = styled.div`
   flex: 7;
   display: flex;
+  flex-direction: column;
 `;
 
 export const ChildBuy8 = styled.div`
@@ -175,7 +176,7 @@ export const SelectDiaChi = styled.select`
 
 
 export const ChildBuy6 = styled.div`
-  flex: 5;
+  flex: 7;
   display: flex;
 `;
 

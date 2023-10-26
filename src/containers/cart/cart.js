@@ -50,7 +50,9 @@ import {
   ChildBuy5,
   ChildBuy6,
   ChildBuy7,
-  ChildBuy8, SelectDiaChi
+  ChildBuy8,
+  SelectDiaChi,
+
 } from "./cartSyle";
 import "boxicons/css/boxicons.min.css";
 import axios from "axios";
@@ -71,10 +73,11 @@ function Cart() {
   const [selectedRows, setSelectedRows] = useState([]);
   const [selectAll, setSelectAll] = useState(false);
   const [tong_tien, setTongTien] = useState(0);
-  const [tong_thanh_toan, setThanhToan] = useState(0)
+  const [tong_thanh_toan, setThanhToan] = useState(0);
   const [gia_ship, setGiaShip] = useState(0);
   const [dsShip, SetDsShip] = useState([]);
-  const [ship, setShip] = useState("")
+  const [ship, setShip] = useState("");
+  const [loi_nhan, setLoiNhan] = useState("")
   useEffect(() => {
     const userDataFromLocalStorage = JSON.parse(localStorage.getItem("user"));
     if (userDataFromLocalStorage) {
@@ -186,7 +189,7 @@ function Cart() {
         "http://127.0.0.1:5000/api/v1/cart_items/get-total",
         {
           list_id: selectedRows, // Truyền dữ liệu trực tiếp
-          ship_id: ship
+          ship_id: ship,
         },
         {
           headers: {
@@ -197,7 +200,7 @@ function Cart() {
 
       if (response.data.message.status === "success") {
         setTongTien(response.data.data.tong);
-        setThanhToan(response.data.data.thanh_toan)
+        setThanhToan(response.data.data.thanh_toan);
       } else {
         setModalMessage(response.data.message.text);
         setModalOpen(true);
@@ -302,16 +305,16 @@ function Cart() {
     }
   };
 
-  const ChooseShip = async (ship_id) =>{
-    setShip(ship_id)
-    tinh_tong(ship_id)
+  const ChooseShip = async (ship_id) => {
+    setShip(ship_id);
+    tinh_tong(ship_id);
     try {
       const response = await axios.get(
         `http://127.0.0.1:5000/api/v1/cart_items/shipper/${ship_id}`
       );
-      console.log(response.data.data)
+      console.log(response.data.data);
       if (response.data.message.status === "success") {
-        setGiaShip(response.data.data)
+        setGiaShip(response.data.data);
       }
     } catch (error) {
       console.error(error);
@@ -509,14 +512,40 @@ function Cart() {
           <ContainerBuy>
             <Buy1>
               <ChildBuy5>
-                <ChildBuy7></ChildBuy7>
+                <ChildBuy7>
+                <span>Lời nhắn cho người bán:</span>
+                <input
+                      type="text"
+                      value={loi_nhan}
+                      onChange={(e) => setLoiNhan(e.target.value)}
+                      style={{
+                        width: "97%", // Đặt chiều rộng của ô Input
+                        padding: "10px", // Thêm padding để làm cho nó lớn hơn
+                        border: "1px solid #ccc", // Định dạng đường viền
+                        borderRadius: "5px", // Định dạng góc bo tròn
+                        fontSize: "16px", // Đặt kích thước chữ
+                      }}
+                    />
+
+                </ChildBuy7>
                 <ChildBuy8>
-                  <div style={{fontSize:'16px', color:'black'}}>Đơn vị giao hàng</div> {/* Item 1 */}
-                  <SelectDiaChi value={ship}
-                      onChange={(e) => ChooseShip(e.target.value)}>
-                      <option value="" disabled selected>
-                        Chọn đơn vị
-                      </option>
+                  <div
+                    style={{
+                      fontSize: "16px",
+                      color: "black",
+                      marginLeft: "5px",
+                    }}
+                  >
+                    Đơn vị giao hàng
+                  </div>{" "}
+                  {/* Item 1 */}
+                  <SelectDiaChi style={{marginLeft: '5px'}}
+                    value={ship}
+                    onChange={(e) => ChooseShip(e.target.value)}
+                  >
+                    <option value="" disabled selected>
+                      Chọn đơn vị
+                    </option>
                     {dsShip.map((item) => (
                       <option key={item.id} value={item.id}>
                         {item.name}
