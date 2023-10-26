@@ -230,7 +230,8 @@ export const TotalColumnCell = styled.td`
 export const FixColumnCell = styled.td`
   width: 5%;
   padding: 8px;
-  text-align: center;
+  display: flex;
+  justify-content: center;
   align-items: center;
 `;
 
@@ -308,7 +309,6 @@ export const FixColumn = styled.td`
   width: 5%;
   padding: 8px;
   display: flex;
-  justify-content: center;
   align-items: center;
 `;
 
