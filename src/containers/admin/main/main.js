@@ -88,7 +88,7 @@ import {
   PhanLoaiColumnCell,
   PriceColumnCell,
   TotalColumnCell,
-  QuantityColumnCell, ContainerSp1, ContainerSp2
+  QuantityColumnCell, ContainerSp1, ContainerSp2, DeleteButton
 } from "./mainStyled";
 import "boxicons/css/boxicons.min.css";
 import axios from "axios";
@@ -176,6 +176,10 @@ function Main() {
       setCurrentPage(nextPage);
     }
   };
+
+  const handleDeleteButtonClick = () =>{
+    
+  }
 
   const handlePageSizeChange = (e) => {
     const newSize = parseInt(e.target.value);
@@ -678,7 +682,11 @@ function Main() {
                     ))}
                   </SanPham6>
                   <SanPham7>
-                  <ContainerSp1></ContainerSp1>
+                  <ContainerSp1>
+                  {isDeleteButtonVisible && (
+                    <DeleteButton onClick={handleDeleteButtonClick}>Xóa</DeleteButton>
+                  )}
+                  </ContainerSp1>
                   <ContainerSp2>
                     <div>
                       <label

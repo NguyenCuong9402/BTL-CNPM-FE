@@ -378,9 +378,22 @@ export const ContainerSp1 = styled.div`
   display: flex;
   background-color:white;
   align-items: center;
-  justify-content: center;
   padding: 16px;
   display: flex;
+`;
+
+export const DeleteButton = styled.button`
+  background-color: red;
+  color: white;
+  border: none;
+  width: 70px;
+  height: 40px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  
+  &:hover {
+    background-color: #cc0000; /* Màu đỏ đậm hơn khi hover */
+  }
 `;
 export const ContainerSp2 = styled.div`
   flex: 9;
