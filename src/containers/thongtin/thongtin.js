@@ -359,11 +359,12 @@ function Profile() {
                     marginLeft: "25px",
                     fontWeight: "bold",
                     fontSize: "30px",
+                    fontFamily: "Arial, sans-serif"
                   }}
                 >
                   Hồ Sơ Của Tôi
                 </h2>
-                <p style={{ marginLeft: "25px", fontSize: "16px" }}>
+                <p style={{ marginLeft: "25px", fontSize: "16px", marginTop: '5px' }}>
                   Quản lý thông tin hồ sơ để bảo mật tài khoản
                 </p>
               </ContainerProfileA>
