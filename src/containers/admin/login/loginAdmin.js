@@ -10,10 +10,7 @@ import {
 } from "./loginAdminStyle";
 import "boxicons/css/boxicons.min.css";
 import axios from "axios";
-import { Link, useHistory } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlay } from "@fortawesome/free-solid-svg-icons";
-import WordSearch from "./wordsearch.png";
+import {useHistory } from "react-router-dom";
 
 function LoginAdmin() {
   const history = useHistory();
