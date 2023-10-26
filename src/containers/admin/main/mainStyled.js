@@ -207,30 +207,39 @@ export const LeftContainerProduct = styled.div`
 export const PriceColumnCell = styled.td`
   width: 10%;
   padding: 8px;
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const QuantityColumnCell = styled.td`
   width: 10%;
   padding: 8px;
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `; 
 export const TotalColumnCell = styled.td`
   width: 15%;
   padding: 8px;
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const FixColumnCell = styled.td`
   width: 5%;
   padding: 8px;
   text-align: center;
+  align-items: center;
 `;
 
 export const PhanLoaiColumnCell = styled.td`
   width: 15%;
   padding: 8px;
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const RightContainerProduct = styled.div`
@@ -239,6 +248,7 @@ export const RightContainerProduct = styled.div`
   padding: 4px;
   display: flex;
   flex-direction: column;
+  display: flex;
   justify-content: center; /* Căn giữa theo chiều ngang */
 `;
 
@@ -289,13 +299,17 @@ export const PaginationButtonPage = styled.button`
 export const ButtonColumn = styled.td`
   width: 5%;
   padding: 8px;
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const FixColumn = styled.td`
   width: 5%;
   padding: 8px;
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const Checkbox = styled.input`
@@ -306,7 +320,9 @@ export const Checkbox = styled.input`
 export const PriceColumn = styled.td`
   width: 10%;
   padding: 8px;
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const ProductColumn = styled.td`
@@ -317,18 +333,25 @@ export const ProductColumn = styled.td`
 export const QuantityColumn = styled.td`
   width: 10%;
   padding: 8px;
-  text-align: center;      
+  display: flex;
+  justify-content: center;
+  align-items: center;     
 `;
 
 export const TotalColumn = styled.td`
   width: 15%;
   padding: 8px;
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const PhanLoaiColumn = styled.td`
   width: 15%;
   padding: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const SanPham6 = styled.div`

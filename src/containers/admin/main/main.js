@@ -641,19 +641,17 @@ function Main() {
                               />
                             </LeftContainerProduct>
                             <RightContainerProduct>
-                              <span style={{ marginTop: "40px" }}>
+                              <span>
                                 {item.name}
                               </span>
                             </RightContainerProduct>
                           </ProductColumnCell>
                           <PhanLoaiColumnCell>
-                              <span style={{ marginTop: "40px" }}>
                                 {item.describe}
-                              </span>
                           </PhanLoaiColumnCell>
                           <QuantityColumnCell>{item.giam_gia}%</QuantityColumnCell>
                           <PriceColumnCell>{item.price}$</PriceColumnCell>
-                          <TotalColumnCell>{item.total}$</TotalColumnCell>
+                          <TotalColumnCell>{item.created_date}</TotalColumnCell>
                           <FixColumnCell> </FixColumnCell>
                         </TableCell>
                       ))}
