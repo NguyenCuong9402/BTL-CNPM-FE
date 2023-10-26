@@ -81,6 +81,7 @@ import {
   QuantityColumn,
   TotalColumn,
   PriceColumn,
+  FixColumn
 } from "./mainStyled";
 import "boxicons/css/boxicons.min.css";
 import axios from "axios";
@@ -602,6 +603,7 @@ function Main() {
                     <QuantityColumn>Giảm giá (%)</QuantityColumn>
                     <PriceColumn>Đơn giá</PriceColumn>
                     <TotalColumn>Ngày tạo</TotalColumn>
+                    <FixColumn> Sửa</FixColumn>
                   </TableHeader>
                   <SanPham6></SanPham6>
                   <SanPham7>

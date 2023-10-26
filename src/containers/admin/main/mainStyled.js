@@ -25,13 +25,13 @@ export const Container = styled.div`
   flex: 1; /* Container cha chiếm 90% còn lại */
   margin-top: 90px;
   background-color: white;
-  width: 80%;
+  width: 100%;
   display: flex;
 
 `;
 
 export const Container1 = styled.div`
-  flex: 2; /* Container1 chiếm 30% chiều rộng của Container cha */
+  flex: 1.5; /* Container1 chiếm 30% chiều rộng của Container cha */
   background-color: green; /* Màu nền của Container1 */
   height: 100%; /* Chiều cao 100% */
   display: flex;
@@ -136,7 +136,7 @@ export const ButtonContainer6 = styled.button`
 
 
 export const Container2 = styled.div`
-  flex: 8; /* Container2 chiếm 70% chiều rộng của Container cha */
+  flex: 8.5; /* Container2 chiếm 70% chiều rộng của Container cha */
   background-color: white; /* Màu nền của Container2 */
   height: 100%; /* Chiều cao 100% */
   display: flex;
@@ -226,6 +226,12 @@ export const ButtonColumn = styled.td`
   text-align: center;
 `;
 
+export const FixColumn = styled.td`
+  width: 5%;
+  padding: 8px;
+  text-align: center;
+`;
+
 export const Checkbox = styled.input`
   width: 18px;
   height: 18px;
@@ -238,7 +244,7 @@ export const PriceColumn = styled.td`
 `;
 
 export const ProductColumn = styled.td`
-  width: 45%;
+  width: 40%;
   padding: 8px;
 `;
 
