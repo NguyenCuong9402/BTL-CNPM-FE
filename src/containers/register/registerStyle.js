@@ -9,7 +9,7 @@ export const Body = styled.div`
   align-items: center;
   min-height: 100vh;
   width: 100vw; 
-  background: url(${logoBackground});
+  background-color: white);
   background-size: cover;
 `;
 
@@ -21,6 +21,21 @@ export const Container = styled.div`
   margin: 0 28px;
   border-radius: 10px;
   box-shadow: inset -2px 2px 2px white;
+`;
+
+export const SelectDiaChi = styled.select`
+  border: 1px solid #ccc;
+  width: 100%;
+  height: 50%;
+  padding: 5px;
+  border-radius: 15px;
+  background-color: #f5f5f5;
+  color: #333;
+  margin-right: 20px;
+  &:focus {
+    outline: none;
+    border: 1px solid #007bff; /* Màu viền khi ô select được focus */
+  }
 `;
 
 export const FormTitle = styled.h1`
@@ -44,6 +59,7 @@ export const UserInputBox = styled.div`
   display: flex;
   flex-wrap: wrap;
   width: 50%;
+  border-radius: 15px;
   padding-bottom: 15px;
 `;
 
