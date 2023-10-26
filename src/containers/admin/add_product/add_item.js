@@ -109,7 +109,7 @@ function Add_item() {
     }
   };
 
-  const [colors, setDsColor] = useState(["đỏ", "đen", "xanh", "vàng"]);
+  const [colors, setDsColor] = useState(['Be', 'Cam', 'Hồng', 'Lục', 'Nâu', 'Trắng', 'Tím', 'Vàng', 'Xanh', 'Đen', 'Đỏ']);
   const [color, setcolor] = useState("");
   const [selectedList, setSelectedList] = useState([]);
 
