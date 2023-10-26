@@ -233,6 +233,36 @@ function Main() {
     fetchDataNguoiDung();
   }, []);
 
+
+
+  const CreateNV = async () => {
+    try {
+      const access_token = localStorage.getItem("accessToken"); // Get access token from local storage
+      const response = await axios.post(
+        `http://127.0.0.1:5000/api/v1/user/created-admin`,
+        {
+          name_user: ten_nv,
+          email: email_nv,
+          phone_number: sdt_nv,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${access_token}`,
+          },
+        }
+      );
+      if (response.data.message.status === "success") {
+        SetEmailNV("");
+        Setsdtnv("");
+        set_ten_nv("");
+      }
+      setModalMessage(response.data.message.text);
+      setModalOpen(true);
+    } catch (error) {
+      console.error("Error calling history API:", error);
+    }
+  };
+
   useEffect(() => {
     fetchData(
       currentPage,
@@ -1261,7 +1291,7 @@ function Main() {
                   />
                 </ColumnProfileB2>
                 <ColumnProfileB2ChuaButtonSave>
-                  <StyledButtonSave onClick={() => ChangePassWordUser()}>
+                  <StyledButtonSave onClick={() => CreateNV()}>
                     Tạo
                   </StyledButtonSave>
                 </ColumnProfileB2ChuaButtonSave>
