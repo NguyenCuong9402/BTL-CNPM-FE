@@ -131,16 +131,7 @@
     font-size: 16px;
     margin: 20px 0;
 }
-.social-icon a i{
-    color: #fff;
-    font-size: 24px;
-    margin-left: 10px;
-    cursor: pointer;
-    transition: .5s ease;
-}
-.social-icon a:hover i{
-    transform: scale(1.2);
-}
+
 .container .login-section{
     position: absolute;
     top: 0;
