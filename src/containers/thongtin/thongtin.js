@@ -136,7 +136,6 @@ function Profile() {
     }
   };
 
-  console.log(DsTinh, DsHuyen, DsXa);
 
   const fetchDiaChi = async (tinh, huyen, xa) => {
     try {

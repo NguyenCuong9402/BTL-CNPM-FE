@@ -52,7 +52,8 @@ import {
   ChildBuy7,
   ChildBuy8,
   SelectDiaChi,
-
+  ChildBuy9,
+  ChildBuy10,
 } from "./cartSyle";
 import "boxicons/css/boxicons.min.css";
 import axios from "axios";
@@ -77,7 +78,18 @@ function Cart() {
   const [gia_ship, setGiaShip] = useState(0);
   const [dsShip, SetDsShip] = useState([]);
   const [ship, setShip] = useState("");
-  const [loi_nhan, setLoiNhan] = useState("")
+  const [loi_nhan, setLoiNhan] = useState("");
+  const [sdt, setsdt] = useState("");
+  const [tinh, SetTinh] = useState("");
+  const [huyen, SetHuyen] = useState("");
+  const [xa, SetXa] = useState("");
+
+  const [DsTinh, SetDsTinh] = useState([]);
+  const [DsHuyen, SetDsHuyen] = useState([]);
+  const [DsXa, SetDsXa] = useState([]);
+
+  const [nameUser, setNameUser] = useState("");
+  const [address, setAddressUser] = useState("");
   useEffect(() => {
     const userDataFromLocalStorage = JSON.parse(localStorage.getItem("user"));
     if (userDataFromLocalStorage) {
@@ -122,6 +134,52 @@ function Cart() {
     }
   };
 
+
+  const fetchDataNguoiDung = async () => {
+    try {
+      const access_token = localStorage.getItem("accessToken"); // Get access token from local storage
+      const response = await axios.get(`http://127.0.0.1:5000/api/v1/user`, {
+        headers: {
+          Authorization: `Bearer ${access_token}`,
+        },
+      });
+      if (response.data.message.status === "success") {
+        const formattedData = response.data.data;
+
+        setNameUser(formattedData.name_user);
+        setAddressUser(formattedData.address);
+        setsdt(formattedData.phone_number)
+        SetTinh(formattedData.tinh);
+        SetHuyen(formattedData.huyen);
+        SetXa(formattedData.xa);
+        fetchDiaChi(formattedData.tinh, formattedData.huyen, formattedData.xa);
+      } else {
+        console.error("Error fetching history data.");
+      }
+    } catch (error) {
+      console.error("Error calling history API:", error);
+    }
+  };
+
+
+  const fetchDiaChi = async (tinh, huyen, xa) => {
+    try {
+      const response = await axios.get(
+        `http://127.0.0.1:5000/api/v1/user/tim_dia_chi?tinh=${tinh}&huyen=${huyen}&xa=${xa}`
+      );
+      if (response.data.message.status === "success") {
+        const formattedData = response.data.data;
+        SetDsTinh(formattedData.tinh);
+        SetDsHuyen(formattedData.huyen);
+        SetDsXa(formattedData.xa);
+      } else {
+        console.error("Error fetching history data.");
+      }
+    } catch (error) {
+      console.error("Error calling history API:", error);
+    }
+  };
+
   const fetchShiper = async () => {
     try {
       const response = await axios.get(
@@ -139,10 +197,25 @@ function Cart() {
       console.error("Error calling history API:", error);
     }
   };
+
+  const ChooseTinh = (newTinh) => {
+    SetTinh(newTinh);
+    fetchDiaChi(newTinh, "", "");
+    SetHuyen("");
+    SetXa("");
+  };
+
+  const ChooseHuyen = (tinh, newHuyen) => {
+    SetHuyen(newHuyen);
+    fetchDiaChi(tinh, newHuyen, "");
+    SetXa("");
+  };
+
   useEffect(() => {
     fetchData();
     tinh_tong(ship);
     fetchShiper();
+    fetchDataNguoiDung();
     setIsDeleteButtonVisible(selectedRows.length > 0);
   }, [selectedRows, tong_tien]);
   console.log(dsShip);
@@ -513,20 +586,21 @@ function Cart() {
             <Buy1>
               <ChildBuy5>
                 <ChildBuy7>
-                <span style={{marginTop: "5px"}}>Lời nhắn cho người bán:</span>
-                <input
-                      type="text"
-                      value={loi_nhan}
-                      onChange={(e) => setLoiNhan(e.target.value)}
-                      style={{
-                        width: "97%", // Đặt chiều rộng của ô Input
-                        padding: "10px", // Thêm padding để làm cho nó lớn hơn
-                        border: "1px solid #ccc", // Định dạng đường viền
-                        borderRadius: "5px", // Định dạng góc bo tròn
-                        fontSize: "16px", // Đặt kích thước chữ
-                      }}
-                    />
-
+                  <span style={{ marginTop: "5px" }}>
+                    Lời nhắn cho người bán:
+                  </span>
+                  <input
+                    type="text"
+                    value={loi_nhan}
+                    onChange={(e) => setLoiNhan(e.target.value)}
+                    style={{
+                      width: "99%", // Đặt chiều rộng của ô Input
+                      padding: "10px", // Thêm padding để làm cho nó lớn hơn
+                      border: "1px solid #ccc", // Định dạng đường viền
+                      borderRadius: "5px", // Định dạng góc bo tròn
+                      fontSize: "16px", // Đặt kích thước chữ
+                    }}
+                  />
                 </ChildBuy7>
                 <ChildBuy8>
                   <div
@@ -534,13 +608,13 @@ function Cart() {
                       fontSize: "16px",
                       color: "black",
                       marginLeft: "5px",
-                      marginTop: "5px"
+                      marginTop: "5px",
                     }}
                   >
                     Đơn vị giao hàng
                   </div>{" "}
-                  {/* Item 1 */}
-                  <SelectDiaChi style={{marginLeft: '5px'}}
+                  <SelectDiaChi
+                    style={{ marginLeft: "5px" }}
                     value={ship}
                     onChange={(e) => ChooseShip(e.target.value)}
                   >
@@ -555,7 +629,48 @@ function Cart() {
                   </SelectDiaChi>
                 </ChildBuy8>
               </ChildBuy5>
-              <ChildBuy6></ChildBuy6>
+              <ChildBuy6>
+                <ChildBuy9>
+                  <input
+                    type="text"
+                    value={address}
+                    onChange={(e) => setAddressUser(e.target.value)}
+                    placeholder="Địa chỉ chi tiết"
+                    style={{
+                      width: "35%", // Đặt chiều rộng của ô Input
+                      padding: "10px", // Thêm padding để làm cho nó lớn hơn
+                      backgroundColor: "#F0FFFF", // Đặt màu nền, ví dụ màu Azure
+                      border: "1px solid #ccc", // Định dạng đường viền
+                      borderRadius: "5px", // Định dạng góc bo tròn
+                      fontSize: "16px", // Đặt kích thước chữ
+                      opacity: 0.7, // Độ trong suốt (0.7 tương đương 70%)
+                    }}
+                  />
+
+                  <input
+                    type="text"
+                    value={sdt}
+                    onChange={(e) => {
+                      const numericValue = e.target.value
+                        .replace(/\D/g, "")
+                        .slice(0, 10); // Loại bỏ các ký tự không phải số và giới hạn độ dài tối đa 10 ký tự
+                      setsdt(numericValue);
+                    }}
+                    placeholder="Số điện thoại"
+                    style={{
+                      marginLeft: "3%",
+                      width: "30%", // Đặt chiều rộng của ô Input
+                      padding: "10px", // Thêm padding để làm cho nó lớn hơn
+                      backgroundColor: "#F0FFFF", // Đặt màu nền, ví dụ màu Azure
+                      border: "1px solid #ccc", // Định dạng đường viền
+                      borderRadius: "5px", // Định dạng góc bo tròn
+                      fontSize: "16px", // Đặt kích thước chữ
+                      opacity: 0.7, // Độ trong suốt (0.7 tương đương 70%)
+                    }}
+                  />
+                </ChildBuy9>
+                <ChildBuy10></ChildBuy10>
+              </ChildBuy6>
             </Buy1>
             <Buy2>
               <ChildBuy1>

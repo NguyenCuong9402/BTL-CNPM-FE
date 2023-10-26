@@ -154,8 +154,8 @@ export const ChildBuy7 = styled.div`
 export const ChildBuy8 = styled.div`
   flex: 3;
   display: flex;
-  flex-direction: column; // Xếp theo cột
-  align-items: flext-start; // Cân giữa theo chiều ngang
+  flex-direction: column; 
+  align-items: flext-start; 
   gap: 5px; 
 `;
 
@@ -178,6 +178,20 @@ export const SelectDiaChi = styled.select`
 export const ChildBuy6 = styled.div`
   flex: 7;
   display: flex;
+  flex-direction: column; 
+`;
+
+export const ChildBuy9 = styled.div`
+  flex: 3;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+`;
+
+export const ChildBuy10 = styled.div`
+  flex: 7;
+  display: flex;
+  flex-direction: row; 
 `;
 
 
