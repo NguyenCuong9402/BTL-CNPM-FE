@@ -1,11 +1,11 @@
-import React from 'react';
-import styled, { keyframes } from 'styled-components';
-import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
+import React from "react";
+import styled, { keyframes } from "styled-components";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 // Styled Components
 export const GlobalStyles = styled.div`
-  @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;1,500&display=swap');
+  @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;1,500&display=swap");
 
   * {
     margin: 0;
@@ -19,18 +19,17 @@ export const GlobalStyles = styled.div`
     width: 100%;
     background: #000;
   }
-`;  
+`;
 
 export const Container = styled.div`
   flex: 1; /* Container cha chiếm 90% còn lại */
   margin-top: 90px;
-  background-color: white;
+  background-color: #f0f0f0;
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
 `;
-
 
 export const AvatarContainer3 = styled.img`
   border-radius: 50%; /* Tạo hình dạng bo tròn */
@@ -55,24 +54,9 @@ export const Container2 = styled.div`
   align-items: center;
 `;
 
-export const NameContainer4 = styled.div`
-  text-align: left; /* Để căn trái nội dung */
-  color: black; /* Màu chữ đen */
-  font-size: 15px; /* Font size 30px */
-  padding: 10px;
-  border-radius: 5px;
-  transition: all 0.3s ease-in-out; /* Hiệu ứng thay đổi màu nền và kích thước */
-  
-  &:hover {
-    background-color: black; /* Màu nền khi hover */
-    color: white; /* Màu chữ khi hover */
-    transform: scale(1.1); /* Hiệu ứng phóng to khi hover */
-  }
-`;
-
 export const ContainerProfileA = styled.div`
-  flex: 1; 
-  background-color: white; 
+  flex: 1;
+  background-color: white;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -88,6 +72,56 @@ export const ContainerProfileB = styled.div`
   width: 100%;
   display: flex;
   flex-direction: row;
+`;
+
+export const AddProDuct1 = styled.div`
+  flex: 6;
+  display: flex;
+  flex-direction: row;
+`;
+
+export const Add1 = styled.div`
+  flex: 3;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+`;
+export const SelectLoaiQuanAo = styled.select`
+width: 150px;
+padding: 8px;
+border: 1px solid #ccc;
+border-radius: 4px;
+background-color: white;
+font-size: 14px;
+color: #333;
+`;
+
+export const CAdd1 = styled.div`
+  flex: 2;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const Add2 = styled.div`
+  flex: 7;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+
+`;
+
+
+export const AddProDuct2 = styled.div`
+  flex: 4;
+  background-color: red;
+  display: flex;
   
 `;
 
@@ -99,7 +133,7 @@ export const Container5 = styled.div`
 `;
 
 export const IconContainer5 = styled.img`
-  margin-left:20px;
+  margin-left: 20px;
   width: 30px; /* Độ rộng của ảnh icon */
   height: 30px; /* Chiều cao của ảnh icon */
   margin-right: 10px; /* Khoảng cách giữa ảnh và dòng chữ */
@@ -116,9 +150,6 @@ export const Container6 = styled.div`
   align-items: center; /* Căn giữa dọc */
 `;
 
-
-
-
 export const Header = styled.header`
   position: fixed;
   top: 0;
@@ -126,14 +157,12 @@ export const Header = styled.header`
   width: 100%;
   height: 10%;
   padding: 25px 13%;
-  background-color:black;
+  background-color: black;
   display: flex;
   justify-content: space-between;
   align-items: center;
   z-index: 50;
 `;
-
-
 
 export const Navbar = styled.nav`
   a {
@@ -154,7 +183,7 @@ export const Navbar = styled.nav`
       border-radius: 5px;
       transform: translateY(10px);
       opacity: 0;
-      transition: .5s ease;
+      transition: 0.5s ease;
     }
 
     &:hover::after {
@@ -184,7 +213,7 @@ export const CartImage = styled.img`
   /* CSS cho CartImage */
   width: 50px;
   height: 50px;
-  cursor : pointer;
+  cursor: pointer;
   &:hover {
     filter: brightness(1.2);
     transform: scale(1.1);
@@ -197,7 +226,7 @@ export const AvatarImage = styled.img`
   border-radius: 50%;
   margin-right: 10px;
   transition: filter 0.3s ease;
-  cursor : pointer;
+  cursor: pointer;
 
   &:hover {
     filter: brightness(1.2);
@@ -205,22 +234,18 @@ export const AvatarImage = styled.img`
   }
 `;
 
-
 export const LogoutButton = styled.img`
-  width: 60px; 
-  height: 60px; 
-  border-radius: 50%; 
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
   margin-right: 10px;
   transition: filter 0.3s ease; /* Thêm hiệu ứng chuyển đổi trong 0.3 giây */
-  
+
   &:hover {
     filter: brightness(1.2); /* Tăng độ sáng lên 20% khi hover */
     transform: scale(1.1);
   }
-`
-
-
-
+`;
 
 export const Body = styled.div`
   height: 97.9vh;
