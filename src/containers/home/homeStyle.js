@@ -153,8 +153,8 @@ flex-direction: column;
 export const InnerContainer = styled.div`
   width: 100%;
   height: 20%;
-  display: flex; /* Hiển thị các phần ngang nhau */
-  align-items: flex-end; /* Đặt align-items thành 'flex-end' */
+  display: flex; 
+  align-items: flex-end;
   justify-content: center;
 `;
 

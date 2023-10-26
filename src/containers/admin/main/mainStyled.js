@@ -174,7 +174,6 @@ export const SanPham1 = styled.div`
 
 export const SanPham2 = styled.div`
   flex: 2;
-  background-color: blue;
   display: flex;
   flex-direction: column;
   
@@ -182,9 +181,9 @@ export const SanPham2 = styled.div`
 
 export const SanPham3 = styled.div`
   flex: 5;
-  background-color: blue;
+  background-color: orange;
   display: flex;
-  
+  flex-direction: column;
 `;
 
 export const SearchBarContainer = styled.div`
@@ -214,9 +213,44 @@ export const SearchButton = styled.button`
   cursor: pointer;
 `;
 
+export const InnerContainer = styled.div`
+  flex: 25;
+  display: flex; /* Hiển thị các phần ngang nhau */
+  align-items: flex-end; /* Đặt align-items thành 'flex-end' */
+  justify-content: center;
+`;
+export const SelectLoaiQuanAo = styled.select`
+width: 40%;
+padding: 8px;
+border: 1px solid #ccc;
+border-radius: 4px;
+background-color: white;
+font-size: 14px;
+color: #333;
+`;
 
+export const InnerContainer1 = styled.div`
+  display: flex; /* Hiển thị các phần ngang nhau */
+  align-items: center;
+  justify-content: center;
+  flex: 25;
 
+`;
 
+export const InnerContainer2 = styled.div`
+  display: flex; /* Hiển thị các phần ngang nhau */
+  align-items: center;
+  justify-content: center; 
+  flex: 25;
+
+`;
+
+export const InnerContainer3 = styled.div`
+  display: flex; /* Hiển thị các phần ngang nhau */
+  align-items: center;
+  justify-content: center; 
+  flex: 25;
+`;
 
 export const ContainerProfile2B1 = styled.div`
   flex: 3; /* ContainerProfileB1 chiếm 20% tỷ lệ flex của ContainerProfileB */

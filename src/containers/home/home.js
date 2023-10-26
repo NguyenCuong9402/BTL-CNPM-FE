@@ -37,7 +37,7 @@ import {
   SearchButton,
   Container,
   GridContainer,
-  GridItem,
+  GridItem, 
 } from "./homeStyle";
 import "boxicons/css/boxicons.min.css";
 import axios from "axios";
@@ -302,7 +302,7 @@ function Home() {
         <Background></Background>
         <Container>
           <Container2>
-            <InnerContainer>
+            <InnerContainer1>
               <div
                 style={{
                   fontWeight: "bold",
@@ -322,7 +322,7 @@ function Home() {
                   </option>
                 ))}
               </SelectLoaiQuanAo>
-            </InnerContainer>
+            </InnerContainer1>
 
             <InnerContainer1>
               <div
@@ -382,7 +382,6 @@ function Home() {
                 style={{
                   marginRight: "10px", // Khoảng cách giữa ô input và ô kế tiếp
                   padding: "8px", // Để làm cho ô input dễ đọc hơn
-                  width: "120px",
                 }}
               />
               <input
@@ -396,8 +395,7 @@ function Home() {
                   Setkhoangtien({ ...khoangtien, end: numericValue });
                 }}
                 style={{
-                  padding: "8px", // Để làm cho ô input dễ đọc hơn
-                  width: "120px",
+                  padding: "8px", 
                 }}
               />
             </InnerContainer3>

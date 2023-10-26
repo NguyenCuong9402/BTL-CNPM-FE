@@ -57,7 +57,18 @@ import {
   ColumnProfileB1,
   ColumnProfileB2,
   ColumnProfileB2ChuaButtonSave,
-  ForgotPasswordLink, SanPham1, SanPham2, SanPham3, SearchBarContainer, SearchInput, SearchButton
+  ForgotPasswordLink,
+  SanPham1,
+  SanPham2,
+  SanPham3,
+  SearchBarContainer,
+  SearchInput,
+  SearchButton,
+  InnerContainer,
+  InnerContainer1,
+  InnerContainer2,
+  InnerContainer3,
+  SelectLoaiQuanAo,
 } from "./mainStyled";
 import "boxicons/css/boxicons.min.css";
 import axios from "axios";
@@ -66,6 +77,21 @@ import logout from "./logout.png";
 import cart from "./trolley.png";
 import user from "./user.png";
 import Modal from "../../../modal";
+
+function formatDate(created_date) {
+  // Convert timestamp (in seconds) to milliseconds
+  const createdDate = new Date(created_date * 1000);
+  const hours = createdDate.getHours().toString().padStart(2, "0");
+  const minutes = createdDate.getMinutes().toString().padStart(2, "0");
+  const seconds = createdDate.getSeconds().toString().padStart(2, "0");
+  const day = createdDate.getDate().toString().padStart(2, "0");
+  const month = (createdDate.getMonth() + 1).toString().padStart(2, "0"); // Cộng 1 vì tháng được đếm từ 0 đến 11
+  const year = createdDate.getFullYear();
+  const formattedTime = `${hours}:${minutes}:${seconds}`;
+  const formattedDate = `${day}/${month}/${year}`;
+  const formattedCreatedDate = `${formattedTime} ${formattedDate}`;
+  return formattedCreatedDate;
+}
 
 function Main() {
   const [isModalOpen, setModalOpen] = useState(false);
@@ -80,6 +106,7 @@ function Main() {
   const [selectedDate, setSelectedDate] = useState(null);
   const history = useHistory();
 
+  const [order_by, SetOrderBy] = useState("created_date");
   const [data, setData] = useState({});
   const [activeButton, setActiveButton] = useState(1);
 
@@ -91,6 +118,33 @@ function Main() {
   const [DsHuyen, SetDsHuyen] = useState([]);
   const [DsXa, SetDsXa] = useState([]);
 
+  const [listPage, setListPage] = useState([]);
+
+  const [phanloai, SetType] = useState([]);
+  const [phan_loai_id, setPhan_loai_id] = useState("");
+  const [sortDirection, setSortDirection] = useState("desc");
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
+  const [pageSize, setpageSize] = useState(20);
+  const [khoangtien, Setkhoangtien] = useState({
+    start: null,
+    end: null,
+  });
+
+  const handleChangeSort = async (event) => {
+    const selectedValue = event.target.value;
+    setSortDirection(selectedValue);
+  };
+
+  const handleChangeSapXep = async (event) => {
+    const selectedValue = event.target.value;
+    SetOrderBy(selectedValue);
+  };
+
+  const handleChangePhanLoai = async (event) => {
+    const selectedValue = event.target.value;
+    setPhan_loai_id(selectedValue);
+  };
   useEffect(() => {
     const userDataFromLocalStorage = JSON.parse(localStorage.getItem("user"));
     if (userDataFromLocalStorage) {
@@ -102,7 +156,18 @@ function Main() {
     } else {
       window.location.href = "/login";
     }
-    fetchData();
+    fetchDataNguoiDung();
+    getType();
+    fetchData(
+      currentPage,
+      pageSize,
+      order_by,
+      sortDirection,
+      phan_loai_id,
+      text_search,
+      khoangtien
+    );
+
   }, []); // Sử dụng [] để đảm bảo useEffect chỉ chạy một lần khi component được tạo
   const avatarUrl = `http://127.0.0.1:5000/api/v1/picture/avatar/${user_id}`;
   const handleLogout = () => {
@@ -111,7 +176,7 @@ function Main() {
     localStorage.removeItem("refreshToken");
     window.location.href = "/login";
   };
-  const fetchData = async () => {
+  const fetchDataNguoiDung = async () => {
     try {
       const access_token = localStorage.getItem("accessToken"); // Get access token from local storage
       const response = await axios.get(`http://127.0.0.1:5000/api/v1/user`, {
@@ -158,21 +223,10 @@ function Main() {
       console.error("Error calling history API:", error);
     }
   };
-  // Call fetchData when the component mounts
-  // useEffect(() => {
-  //   fetchDiaChi(tinh, huyen, xa);
-  // }, []);
   const handleCloseModal = () => {
     setModalOpen(false);
   };
 
-  const handleChangepass = async () => {
-    history.push(`/changepass`, {});
-  };
-
-  const SangGioHang = () => {
-    history.push(`/cart`, {});
-  };
   const handleInputNameChange = (newName) => {
     setNameUser(newName);
   };
@@ -198,6 +252,21 @@ function Main() {
   const handleDateChange = (date) => {
     setSelectedDate(date);
   };
+  const getType = async () => {
+    try {
+      const response = await axios.get(
+        `http://127.0.0.1:5000/api/v1/product/get-type`
+      );
+
+      if (response.data.message.status === "success") {
+        SetType(response.data.data);
+      } else {
+        console.error("Error fetching history data type.");
+      }
+    } catch (error) {
+      console.error("Error calling history API:", error);
+    }
+  };
 
   const ChooseTinh = (newTinh) => {
     SetTinh(newTinh);
@@ -215,7 +284,57 @@ function Main() {
   const [password, SetPassWord] = useState("");
   const [new_password, SetNewPassWord] = useState("");
   const [confirm_password, SetConfirmPassWord] = useState("");
+  const fetchData = async (
+    page,
+    pSize,
+    order_by,
+    sortDirection,
+    phan_loai_id,
+    text_search,
+    khoangtien
+  ) => {
+    try {
+      const response = await axios.post(
+        `http://127.0.0.1:5000/api/v1/product/get-item?page=${page}&page_size=${pSize}&order_by=${order_by}&order=${sortDirection}&phan_loai_id=${phan_loai_id}&type=&text_search=${text_search}`,
+        { khoang_tien: khoangtien }
+      );
 
+      if (response.data.code === 200) {
+        const formattedData = response.data.data.items.map((item) => ({
+          ...item,
+          created_date: formatDate(item.created_date), // Format the timestamp
+        }));
+        setData(formattedData);
+        setTotalPages(response.data.data.total_pages);
+        const countpage = response.data.data.total_pages;
+        if (page - 1 === 0) {
+          if (countpage - 1 === 0) {
+            setListPage([page]);
+          } else {
+            setListPage([page, page + 1]);
+            if (page + 1 < countpage) {
+              // Nếu trang sau trang hiện tại không vượt quá tổng số trang
+              setListPage([page, page + 1, page + 2]);
+            }
+          }
+        } else {
+          setListPage([page - 1, page]);
+          if (page < countpage) {
+            // Nếu trang hiện tại không vượt quá tổng số trang
+            setListPage((prevList) => [...prevList, page + 1]);
+          } else {
+            if (page - 2 > 0) {
+              setListPage((prevList) => [page - 2, ...prevList]);
+            }
+          }
+        }
+      } else {
+        console.error("Error fetching history data.");
+      }
+    } catch (error) {
+      console.error("Error calling history API:", error);
+    }
+  };
   const ChangeInforUser = async () => {
     try {
       const access_token = localStorage.getItem("accessToken"); // Get access token from local storage
@@ -293,8 +412,8 @@ function Main() {
           </a>
         </Navbar>
         {activeButton === 1 && (
-            <React.Fragment>
-          <SearchBarContainer>
+          <React.Fragment>
+            <SearchBarContainer>
               <SearchInput
                 type="text"
                 placeholder="Search..."
@@ -305,7 +424,8 @@ function Main() {
                 <i className="bx bx-search"></i>
               </SearchButton>
             </SearchBarContainer>
-            </React.Fragment>)}
+          </React.Fragment>
+        )}
         <UserInfoContainer>
           <UserName>{data.name_user}</UserName>
           <AvatarContainer>
@@ -399,7 +519,110 @@ function Main() {
               <ContainerProfileB>
                 <SanPham1></SanPham1>
                 <SanPham2>
-                  <SanPham3></SanPham3>
+                  <SanPham3>
+                    <InnerContainer1>
+                      <div
+                        style={{
+                          fontWeight: "bold",
+                          color: "black",
+                          marginRight: "22px",
+                        }}
+                      >
+                        Phân loại
+                      </div>
+                      <SelectLoaiQuanAo
+                        onChange={handleChangePhanLoai}
+                        value={phan_loai_id}
+                      >
+                        {phanloai.map((item) => (
+                          <option key={item.id} value={item.id}>
+                            {item.name}
+                          </option>
+                        ))}
+                      </SelectLoaiQuanAo>
+                    </InnerContainer1>
+
+                    <InnerContainer1>
+                      <div
+                        style={{
+                          fontWeight: "bold",
+                          color: "black",
+                          marginRight: "30px",
+                        }}
+                      >
+                        Sắp xếp
+                      </div>
+                      <SelectLoaiQuanAo
+                        onChange={handleChangeSapXep}
+                        value={order_by}
+                      >
+                        <option key={"created_date"} value={"created_date"}>
+                          Ngày
+                        </option>
+                        <option key={"price"} value={"price"}>
+                          Giá
+                        </option>
+                        <option key={"name"} value={"name"}>
+                          Tên
+                        </option>
+                      </SelectLoaiQuanAo>
+                    </InnerContainer1>
+                    <InnerContainer2>
+                      <div
+                        style={{
+                          fontWeight: "bold",
+                          color: "black",
+                          marginRight: "22px",
+                        }}
+                      >
+                        Xếp theo
+                      </div>
+                      <SelectLoaiQuanAo
+                        onChange={handleChangeSort}
+                        value={sortDirection}
+                      >
+                        <option key={"desc"} value={"desc"}>
+                          Giảm dần
+                        </option>
+                        <option key={"asc"} value={"asc"}>
+                          Tăng dần
+                        </option>
+                      </SelectLoaiQuanAo>
+                    </InnerContainer2>
+                    <InnerContainer3>
+                      <input
+                        type="text"
+                        placeholder="Giá đầu"
+                        onChange={(e) => {
+                          const numericValue = parseInt(
+                            e.target.value.replace(/\D/g, ""),
+                            10
+                          ); // Lọc giá trị để chỉ giữ lại các ký tự số
+                          Setkhoangtien({ ...khoangtien, start: numericValue });
+                        }}
+                        style={{
+                          marginRight: "10px", // Khoảng cách giữa ô input và ô kế tiếp
+                          padding: "8px", // Để làm cho ô input dễ đọc hơn
+                          width: "120px",
+                        }}
+                      />
+                      <input
+                        type="text"
+                        placeholder="Giá cuối"
+                        onChange={(e) => {
+                          const numericValue = parseInt(
+                            e.target.value.replace(/\D/g, ""),
+                            10
+                          ); // Lọc giá trị để chỉ giữ lại các ký tự số
+                          Setkhoangtien({ ...khoangtien, end: numericValue });
+                        }}
+                        style={{
+                          padding: "8px", // Để làm cho ô input dễ đọc hơn
+                          width: "120px",
+                        }}
+                      />
+                    </InnerContainer3>
+                  </SanPham3>
                   <SanPham3></SanPham3>
                 </SanPham2>
               </ContainerProfileB>
