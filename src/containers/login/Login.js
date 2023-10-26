@@ -10,7 +10,10 @@ import {
   SocialIconItem,
   SocialLink,
   SocialIconItemHover,
-  Item1Wrapper, StyledHeading, Header, Navbar
+  Item1Wrapper,
+  StyledHeading,
+  Header,
+  Navbar,
 } from "./loginStyled";
 
 function Login() {
@@ -110,11 +113,21 @@ function Login() {
         {/* LOGIN FORM CREATION */}
         <div className="background1"></div>
         <Header>
-        <Navbar>
-          <a href="/index"  style={{ fontSize: '26px' }}>
-            <i className="bx bxl-xing"></i>Home
-          </a>
-        </Navbar>
+          <Navbar>
+            <a
+              href="/index"
+              style={{
+                fontSize: "26px",
+                display: "flex",
+                alignItems: "center",
+              }}
+            >
+              <i className="bx bxl-xing" style={{ marginRight: "5px" }}></i>
+              <span style={{ fontFamily: "Arial, sans-serif" }}>
+                Trang chính
+              </span>
+            </a>
+          </Navbar>
         </Header>
         <div className="container">
           <Item1Wrapper>
@@ -136,11 +149,11 @@ function Login() {
                 <SocialIconItem className="bx bxl-linkedin" />
               </SocialLink>
             </SocialIcon>
-            </Item1Wrapper>
+          </Item1Wrapper>
           <div className="login-section">
             <div className="form-box login">
               <form action="" onSubmit={handleSubmit}>
-                <h2>Sign In</h2>
+                <h2 style={{ fontFamily: "Arial, sans-serif" }}>Đăng nhập</h2>
                 <div className="input-box">
                   <span className="icon">
                     <i className="bx bxs-envelope"></i>
@@ -167,17 +180,17 @@ function Login() {
                 </div>
                 <div className="remember-password">
                   <label>
-                    <input type="checkbox" />
-                    Remember Me
+                    <input type="checkbox" style={{ fontFamily: "Arial, sans-serif" }} />
+                    Nhớ mật khẩu
                   </label>
                   <a onClick={handleForgotPasswordClick}>Forget Password</a>
                 </div>
                 <button className="btn">Log In</button>
                 <div className="create-account">
                   <p>
-                    Create A New Account?{" "}
-                    <Link to="/Register" className="register-link">
-                      Sign Up
+                    Bạn chưa có tài khoản?{" "}
+                    <Link to="/Register">
+                      <p style={{color: 'Orange'}}>Đăng ký</p>
                     </Link>
                   </p>
                 </div>
