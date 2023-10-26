@@ -421,6 +421,7 @@ function Cart() {
       if (response.data.message.status === "success") {
         fetchData();
         tinh_tong(ship)
+        setLoiNhan("")
       }
       setModalMessage(response.data.message.text);
       setModalOpen(true);
