@@ -1,6 +1,9 @@
 // RegisterForm.js
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
+
 
 export const Body = styled.div`
   display: flex;
@@ -8,7 +11,7 @@ export const Body = styled.div`
   align-items: center;
   min-height: 100vh;
   width: 100vw; 
-  background-color: white);
+  background-color: #f0f0f0;
   background-size: cover;
 `;
 
@@ -20,6 +23,31 @@ export const Container = styled.div`
   margin: 0 28px;
   border-radius: 10px;
   box-shadow: inset -2px 2px 2px white;
+`;
+
+export const CustomDatePicker = styled(DatePicker)`
+  width: 140%;
+  border: 1px solid #ccc;
+  height: 60%;
+  padding: 5px;
+  border-radius: 5px;
+  background-color: #f5f5f5;
+  color: #333;
+  margin-right: 20px;
+  
+  .react-datepicker__current-month {
+    font-size: 20px; // Điều chỉnh font size của tháng
+  }
+
+  .react-datepicker__day {
+    width: 40px; // Điều chỉnh kích thước của số ngày
+    height: 40px;
+    font-size: 16px; // Điều chỉnh font size của số
+  }
+
+  .react-datepicker__day--selected {
+    background-color: #ff0000; // Đổi màu nền khi ngày được chọn
+  }
 `;
 
 export const SelectDiaChi = styled.select`

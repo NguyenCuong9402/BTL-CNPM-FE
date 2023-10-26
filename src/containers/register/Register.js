@@ -15,7 +15,7 @@ import {
   GenderCategory,
   GenderTitle,
   FormSubmitButton,
-  SubmitInput,
+  SubmitInput, CustomDatePicker
 } from "./registerStyle";
 import "react-datepicker/dist/react-datepicker.css";
 import { hover } from "@testing-library/user-event/dist/hover";
@@ -38,7 +38,7 @@ const RegisterForm = () => {
     tinh: "",
     huyen: "",
     xa: "",
-    birthday: "",
+    birthday: null,
   });
   const ChooseTinh = (newTinh) => {
     setFormData({
@@ -66,6 +66,13 @@ const RegisterForm = () => {
     fetchDiaChi(formData.tinh, formData.huyen, newXa);
   };
 
+  const ChooseDate = (date) => {
+    setFormData({
+        ...formData,
+        birthday:date
+      });
+  };
+
   const [DsTinh, SetDsTinh] = useState([]);
   const [DsHuyen, SetDsHuyen] = useState([]);
   const [DsXa, SetDsXa] = useState([]);
@@ -83,19 +90,8 @@ const RegisterForm = () => {
       history.push("/index");
     }
     fetchDiaChi(formData.tinh, formData.huyen, formData.xa);
-  }, [history]);
+  }, []);
   const handleRegister = () => {
-    const requestData = {
-      fullName: formData.fullName,
-      email: formData.email,
-      phoneNumber: formData.phoneNumber,
-      address: formData.address,
-      password: formData.password,
-      confirmPassword: formData.confirmPassword,
-      gender: formData.gender,
-    };
-
-    // Gọi API /register và gửi dữ liệu requestData lên server
     axios
       .post("http://127.0.0.1:5000/api/v1/user/register", formData)
       .then(function (response) {
@@ -183,7 +179,11 @@ const RegisterForm = () => {
 
           <UserInputBox>
             <UserInputLabel>Ngày sinh</UserInputLabel>
-            
+            <CustomDatePicker
+                selected={formData.birthday}
+                onChange={ChooseDate}
+                dateFormat="dd/MM/yyyy"
+            />
           </UserInputBox>
 
           <UserInputBox>
@@ -322,16 +322,16 @@ const RegisterForm = () => {
             <Link
               to="/login"
               style={{
-                color: "red",
+                color: "orange",
                 textDecoration: "none",
                 transition: "color 0.3s",
               }}
               onMouseOver={(e) => {
-                e.target.style.color = "red";
+                e.target.style.color = "orange";
                 e.target.style.fontSize = "18px";
               }}
               onMouseOut={(e) => {
-                e.target.style.color = "darkred";
+                e.target.style.color = "orange";
                 e.target.style.fontSize = "16px";
               }}
             >
