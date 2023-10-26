@@ -8,6 +8,8 @@ import Detail from "./containers/detail/detail"
 import Profile from './containers/thongtin/thongtin';
 import Cart from "./containers/cart/cart"
 import LoginAdmin from "./containers/admin/login/loginAdmin"
+import Main from "./containers/admin/main/main"
+
 const App = () => {
   return (
     <Router>
@@ -18,6 +20,8 @@ const App = () => {
         <Route path="/detail/:id" component={Detail} />
         <Route path="/cart" component={Cart} />
         <Route path="/profile" component={Profile} />
+        <Route path="/admin/main" component={Main} />
+
         <Route path="/admin/login" component={LoginAdmin} />
         <Route path="/notfound" component={NotFound} />
         <Redirect exact from="/" to="/login" />

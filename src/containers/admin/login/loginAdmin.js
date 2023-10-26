@@ -130,7 +130,7 @@ function LoginAdmin() {
                   value={password}
                   onChange={handlePasswordChange}
                 />
-                <label>Mật khẩu</label>
+                <label>mật khẩu</label>
               </div>
               <div className="remember-password">
                 <label style={{ color:'white'}}><input type="checkbox" />Nhớ mật khẩu</label>
