@@ -513,7 +513,7 @@ function Cart() {
             <Buy1>
               <ChildBuy5>
                 <ChildBuy7>
-                <span>Lời nhắn cho người bán:</span>
+                <span style={{marginTop: "5px"}}>Lời nhắn cho người bán:</span>
                 <input
                       type="text"
                       value={loi_nhan}
@@ -534,6 +534,7 @@ function Cart() {
                       fontSize: "16px",
                       color: "black",
                       marginLeft: "5px",
+                      marginTop: "5px"
                     }}
                   >
                     Đơn vị giao hàng
