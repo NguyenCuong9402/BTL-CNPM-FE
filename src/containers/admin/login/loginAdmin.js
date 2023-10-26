@@ -4,8 +4,6 @@ import Modal from '../../../modal';
 import "boxicons/css/boxicons.min.css";
 import {
   Background,
-  Header,
-  Navbar,
   Container
 } from "./loginAdminStyle";
 import "boxicons/css/boxicons.min.css";
