@@ -586,7 +586,7 @@ function Cart() {
             <Buy1>
               <ChildBuy5>
                 <ChildBuy7>
-                  <span style={{ marginTop: "5px" }}>
+                  <span style={{ marginTop: "9%", color: 'black' }}>
                     Lời nhắn cho người bán:
                   </span>
                   <input
@@ -608,7 +608,7 @@ function Cart() {
                       fontSize: "16px",
                       color: "black",
                       marginLeft: "5px",
-                      marginTop: "5px",
+                      marginTop: "20%",
                     }}
                   >
                     Đơn vị giao hàng
@@ -669,7 +669,53 @@ function Cart() {
                     }}
                   />
                 </ChildBuy9>
-                <ChildBuy10></ChildBuy10>
+                <ChildBuy10>
+                <SelectDiaChi
+                      value={tinh}
+                      onChange={(e) => ChooseTinh(e.target.value)}
+                    >
+                      <option value="" disabled selected>
+                        Thành phố/Tỉnh
+                      </option>
+                      {DsTinh.map((tinhItem) => (
+                        <option key={tinhItem} value={tinhItem}>
+                          {tinhItem}
+                        </option>
+                      ))}
+                      {/* Thêm các tùy chọn cho tỉnh tại đây */}
+                    </SelectDiaChi>
+
+                    <SelectDiaChi
+                      value={huyen}
+                      onChange={(e) => ChooseHuyen(tinh, e.target.value)}
+                    >
+                      <option value="" disabled selected>
+                        Quận/ Huyện
+                      </option>
+                      {DsHuyen.map((huyenItem) => (
+                        <option key={huyenItem} value={huyenItem}>
+                          {huyenItem}
+                        </option>
+                      ))}
+                      {/* Thêm các tùy chọn cho tỉnh tại đây */}
+                    </SelectDiaChi>
+
+                    <SelectDiaChi
+                      value={xa}
+                      onChange={(e) => SetXa(e.target.value)}
+                    >
+                      <option value="" disabled selected>
+                        Phường/ Xã
+                      </option>
+                      {DsXa.map((xaItem) => (
+                        <option key={xaItem} value={xaItem}>
+                          {xaItem}
+                        </option>
+                      ))}
+                      {/* Thêm các tùy chọn cho tỉnh tại đây */}
+                    </SelectDiaChi>
+
+                </ChildBuy10>
               </ChildBuy6>
             </Buy1>
             <Buy2>

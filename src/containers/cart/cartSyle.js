@@ -140,7 +140,7 @@ export const Buy1 = styled.div`
 `;
 
 export const ChildBuy5 = styled.div`
-  flex: 3;
+  flex: 4;
   display: flex;
   flex-direction: row;
 `;
@@ -149,6 +149,8 @@ export const ChildBuy7 = styled.div`
   flex: 7;
   display: flex;
   flex-direction: column;
+  gap: 5px; 
+
 `;
 
 export const ChildBuy8 = styled.div`
@@ -176,22 +178,24 @@ export const SelectDiaChi = styled.select`
 
 
 export const ChildBuy6 = styled.div`
-  flex: 7;
+  flex: 6;
   display: flex;
   flex-direction: column; 
 `;
 
 export const ChildBuy9 = styled.div`
-  flex: 3;
+  flex: 5;
   display: flex;
   flex-direction: row;
   align-items: center;
 `;
 
 export const ChildBuy10 = styled.div`
-  flex: 7;
+  flex: 5;
   display: flex;
-  flex-direction: row; 
+  flex-direction: row;
+  align-items: flex-start;
+
 `;
 
 
