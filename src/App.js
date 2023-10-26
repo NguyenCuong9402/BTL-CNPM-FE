@@ -9,6 +9,7 @@ import Profile from './containers/thongtin/thongtin';
 import Cart from "./containers/cart/cart"
 import LoginAdmin from "./containers/admin/login/loginAdmin"
 import Main from "./containers/admin/main/main"
+import Add_item from "./containers/admin/add_product/add_item"
 
 const App = () => {
   return (
@@ -21,6 +22,7 @@ const App = () => {
         <Route path="/cart" component={Cart} />
         <Route path="/profile" component={Profile} />
         <Route path="/admin/main" component={Main} />
+        <Route path="/admin/add" component={Add_item} />
 
         <Route path="/admin/login" component={LoginAdmin} />
         <Route path="/notfound" component={NotFound} />
