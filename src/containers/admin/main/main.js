@@ -49,7 +49,7 @@ import {
   ColumnProfileT7,
   RadioButtonGioiTinh,
   CustomDatePicker,
-  SelectDiaChi,
+  SelectDiaChi, FixColumnCell,
   StyledButtonSave,
   ColumnProfileT8,
   ColumnProfile8,
@@ -65,7 +65,6 @@ import {
   SearchBarContainer,
   SearchInput,
   SearchButton,
-  InnerContainer,
   InnerContainer1,
   InnerContainer2,
   InnerContainer3,
@@ -73,7 +72,6 @@ import {
   TableHeader,
   SanPham6,
   SanPham7,
-  TableRow,
   ButtonColumn,
   Checkbox,
   ProductColumn,
@@ -81,7 +79,15 @@ import {
   QuantityColumn,
   TotalColumn,
   PriceColumn,
-  FixColumn
+  FixColumn,
+  TableCell,
+  ProductColumnCell,
+  LeftContainerProduct,
+  RightContainerProduct,
+  PhanLoaiColumnCell,
+  PriceColumnCell,
+  TotalColumnCell,
+  QuantityColumnCell,
 } from "./mainStyled";
 import "boxicons/css/boxicons.min.css";
 import axios from "axios";
@@ -121,6 +127,7 @@ function Main() {
 
   const [order_by, SetOrderBy] = useState("created_date");
   const [data, setData] = useState({});
+  const [data_sanpham, setDataSanPham] = useState([]);
   const [activeButton, setActiveButton] = useState(1);
 
   const [tinh, SetTinh] = useState("");
@@ -154,7 +161,7 @@ function Main() {
       setIsDeleteButtonVisible(false);
     } else {
       // If not all rows are selected, select all.
-      const allRowIds = data.map((item) => item.id);
+      const allRowIds = data_sanpham.map((item) => item.id);
       setSelectedRows(allRowIds);
       setIsDeleteButtonVisible(true);
     }
@@ -370,7 +377,7 @@ function Main() {
           ...item,
           created_date: formatDate(item.created_date), // Format the timestamp
         }));
-        setData(formattedData);
+        setDataSanPham(formattedData);
         setTotalPages(response.data.data.total_pages);
         const countpage = response.data.data.total_pages;
         if (page - 1 === 0) {
@@ -401,6 +408,17 @@ function Main() {
       console.error("Error calling history API:", error);
     }
   };
+  const handleRowSelect = (itemId) => {
+    // Check if the row is already selected
+    if (selectedRows.includes(itemId)) {
+      // If selected, remove it from the selectedRows array
+      setSelectedRows(selectedRows.filter((id) => id !== itemId));
+    } else {
+      // If not selected, add it to the selectedRows array
+      setSelectedRows([...selectedRows, itemId]);
+    }
+  };
+
   const ChangeInforUser = async () => {
     try {
       const access_token = localStorage.getItem("accessToken"); // Get access token from local storage
@@ -605,7 +623,41 @@ function Main() {
                     <TotalColumn>Ngày tạo</TotalColumn>
                     <FixColumn> Sửa</FixColumn>
                   </TableHeader>
-                  <SanPham6></SanPham6>
+                  <SanPham6>
+                      {data_sanpham.map((item) => (
+                        <TableCell>
+                          <ButtonColumn>
+                            <Checkbox
+                              type="checkbox"
+                              checked={selectedRows.includes(item.id)}
+                              onChange={() => handleRowSelect(item.id)}
+                            />
+                          </ButtonColumn>
+                          <ProductColumnCell>
+                            <LeftContainerProduct>
+                              <img
+                                src={`http://127.0.0.1:5000/api/v1/picture/${item.id}`}
+                                alt="Hình ảnh"
+                              />
+                            </LeftContainerProduct>
+                            <RightContainerProduct>
+                              <span style={{ marginTop: "40px" }}>
+                                {item.name}
+                              </span>
+                            </RightContainerProduct>
+                          </ProductColumnCell>
+                          <PhanLoaiColumnCell>
+                              <span style={{ marginTop: "40px" }}>
+                                {item.describe}
+                              </span>
+                          </PhanLoaiColumnCell>
+                          <QuantityColumnCell>{item.giam_gia}%</QuantityColumnCell>
+                          <PriceColumnCell>{item.price}$</PriceColumnCell>
+                          <TotalColumnCell>{item.total}$</TotalColumnCell>
+                          <FixColumnCell> </FixColumnCell>
+                        </TableCell>
+                      ))}
+                  </SanPham6>
                   <SanPham7>
                     <div>
                       <label

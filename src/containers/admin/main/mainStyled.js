@@ -177,6 +177,72 @@ export const TableHeader = styled.div`
   display: flex;
   background-color:#f0f0f0;
 `;
+
+export const TableCell = styled.tr`
+  background-color: white;
+  border-radius: 3px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.4); /* Điều chỉnh giá trị để đổ bóng đậm hơn */
+  flex-direction: row;
+  display: flex;
+
+`;
+
+export const ProductColumnCell = styled.td`
+  width: 40%;
+  padding: 8px;
+  display: flex;
+  flex-direction: row;
+`;
+
+export const LeftContainerProduct = styled.div`
+  width: 30%;
+  height: 100%;
+  padding: 4px; /* Điều chỉnh khoảng cách và lề bên trong container */
+  img {
+    height:120px;
+    width:100px;
+    object-fit: cover;
+  }
+`;
+export const PriceColumnCell = styled.td`
+  width: 10%;
+  padding: 8px;
+  text-align: center;
+`;
+
+export const QuantityColumnCell = styled.td`
+  width: 10%;
+  padding: 8px;
+  text-align: center;
+`; 
+export const TotalColumnCell = styled.td`
+  width: 15%;
+  padding: 8px;
+  text-align: center;
+`;
+
+export const FixColumnCell = styled.td`
+  width: 5%;
+  padding: 8px;
+  text-align: center;
+`;
+
+export const PhanLoaiColumnCell = styled.td`
+  width: 15%;
+  padding: 8px;
+  text-align: center;
+`;
+
+export const RightContainerProduct = styled.div`
+  width: 70%;
+  height: 100%;
+  padding: 4px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Căn giữa theo chiều ngang */
+`;
+
+
 export const PaginationButton = styled.button`
   padding: 8px 16px;
   margin: 0 5px;
@@ -267,7 +333,9 @@ export const PhanLoaiColumn = styled.td`
 
 export const SanPham6 = styled.div`
   flex: 8;
-  display: flex;  
+  display: flex;
+  flex-direction: column;
+  
 `;
 
 export const SanPham7 = styled.div`
