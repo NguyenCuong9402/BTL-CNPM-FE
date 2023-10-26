@@ -131,6 +131,26 @@ function Main() {
     end: null,
   });
 
+  const handleNextPage = () => {
+    if (currentPage < totalPages) {
+      const nextPage = currentPage + 1;
+      setCurrentPage(nextPage);
+    }
+  };
+
+  const handlePageSizeChange = (e) => {
+    const newSize = parseInt(e.target.value);
+    setCurrentPage(1);
+    setpageSize(newSize);
+  };
+
+  const handlePrevPage = () => {
+    if (currentPage > 1) {
+      const prevPage = currentPage - 1;
+      setCurrentPage(prevPage);
+    }
+  };
+
   const handleChangeSort = async (event) => {
     const selectedValue = event.target.value;
     setSortDirection(selectedValue);
@@ -157,7 +177,11 @@ function Main() {
       window.location.href = "/login";
     }
     fetchDataNguoiDung();
-    getType();
+    
+  }, []); 
+  
+
+  useEffect(() => {
     fetchData(
       currentPage,
       pageSize,
@@ -167,8 +191,18 @@ function Main() {
       text_search,
       khoangtien
     );
+    getType();
+  }, [
+    currentPage,
+    pageSize,
+    order_by,
+    sortDirection,
+    phan_loai_id,
+    text_search,
+    khoangtien,
+  ]);
 
-  }, []); // Sử dụng [] để đảm bảo useEffect chỉ chạy một lần khi component được tạo
+  // Sử dụng [] để đảm bảo useEffect chỉ chạy một lần khi component được tạo
   const avatarUrl = `http://127.0.0.1:5000/api/v1/picture/avatar/${user_id}`;
   const handleLogout = () => {
     localStorage.removeItem("user");
