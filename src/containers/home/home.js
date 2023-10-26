@@ -302,7 +302,7 @@ function Home() {
         <Background></Background>
         <Container>
           <Container2>
-            <InnerContainer1>
+            <InnerContainer1 style={{marginTop:"70px"}}>
               <div
                 style={{
                   fontWeight: "bold",
@@ -330,6 +330,7 @@ function Home() {
                   fontWeight: "bold",
                   color: "black",
                   marginRight: "30px",
+                  
                 }}
               >
                 Sắp xếp
@@ -382,6 +383,7 @@ function Home() {
                 style={{
                   marginRight: "10px", // Khoảng cách giữa ô input và ô kế tiếp
                   padding: "8px", // Để làm cho ô input dễ đọc hơn
+                  width:"150px"
                 }}
               />
               <input
@@ -396,6 +398,8 @@ function Home() {
                 }}
                 style={{
                   padding: "8px", 
+                  width:"150px"
+
                 }}
               />
             </InnerContainer3>

@@ -168,7 +168,7 @@ export const InnerContainer1 = styled.div`
 
 export const InnerContainer2 = styled.div`
   width: 100%;
-  height: 5%;
+  height: 10%;
   display: flex; /* Hiển thị các phần ngang nhau */
   align-items: center;
   justify-content: center; 
