@@ -15,6 +15,7 @@ import {
   Header,
   Navbar,
 } from "./loginStyled";
+import sp1 from "./shopping.png";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -149,6 +150,7 @@ function Login() {
                 <SocialIconItem className="bx bxl-linkedin" />
               </SocialLink>
             </SocialIcon>
+            <img src ={sp1}></img>
           </Item1Wrapper>
           <div className="login-section">
             <div className="form-box login">
@@ -195,6 +197,7 @@ function Login() {
                   </p>
                 </div>
               </form>
+              
             </div>
           </div>
           {showForgotPassword && (

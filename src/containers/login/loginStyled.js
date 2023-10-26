@@ -17,6 +17,8 @@ export const SocialLink = styled.a`
 
 export const SocialIconItem = styled.i`
   display: flex;
+  margin-left: 10px;
+
 `;
 
 export const SocialIconItemHover = styled(SocialIconItem)`
