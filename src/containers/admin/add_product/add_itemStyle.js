@@ -105,6 +105,42 @@ export const CAdd1 = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: row;
+
+`;
+
+export const CAdd5 = styled.div`
+  flex: 4;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+
+`;
+
+export const CAdd3 = styled.div`
+  flex: 4;
+  background-color: white;
+  display: flex;
+  justify-content: flext-start;
+  align-items: center;
+  flex-direction: row;
+  overflow-y: auto;
+  width:100%;
+  height:100%;
+  border: 1px solid #ccc; /* Thêm viền kẻ đường viền màu xám *
+`;
+
+
+export const ListContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+`;
+
+export const ListItem = styled.div`
+  margin-right: 15px;
+  margin-bottom: 10px; /* Khoảng cách giữa các ô */
 `;
 
 export const Add2 = styled.div`

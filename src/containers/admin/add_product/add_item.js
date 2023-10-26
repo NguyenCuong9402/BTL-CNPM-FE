@@ -17,7 +17,10 @@ import {
   ContainerProfileB,
   AddProDuct1,
   AddProDuct2,
-  CAdd1, SelectLoaiQuanAo
+  CAdd1,
+  SelectLoaiQuanAo,
+  ListContainer,
+  ListItem,CAdd3, CAdd5
 } from "./add_itemStyle";
 import "boxicons/css/boxicons.min.css";
 import axios from "axios";
@@ -50,8 +53,9 @@ function Add_item() {
   const history = useHistory();
   const [data, setData] = useState({});
   const [old_price, setOlde_Price] = useState(0);
-  const [giam_gia, setGiam_gia] = useState(0)
+  const [giam_gia, setGiam_gia] = useState(0);
   const [describe, setdescribe] = useState("");
+
   const handleCloseModal = () => {
     setModalOpen(false);
   };
@@ -92,7 +96,7 @@ function Add_item() {
   const getType = async () => {
     try {
       const response = await axios.get(
-        `http://127.0.0.1:5000/api/v1/product/get-type`
+        `http://127.0.0.1:5000/api/v1/product/get-type2`
       );
 
       if (response.data.message.status === "success") {
@@ -105,6 +109,25 @@ function Add_item() {
     }
   };
 
+  const [colors, setDsColor] = useState(["đỏ", "đen", "xanh", "vàng"]);
+  const [color, setcolor] = useState("");
+  const [selectedList, setSelectedList] = useState([]);
+
+  const addToSelectedList = () => {
+    if (!selectedList.includes(color)) {
+      setSelectedList([...selectedList, color]);
+    }
+  };
+
+  const handleColor = async (event) => {
+    const selectedValue = event.target.value;
+    setcolor(selectedValue);
+  };
+
+  const removeFromSelectedList = (color) => {
+    const updatedList = selectedList.filter((item) => item !== color);
+    setSelectedList(updatedList);
+  };
   return (
     <Body>
       <Header>
@@ -147,11 +170,10 @@ function Add_item() {
               <Add1>
                 <CAdd1>Tên sản phẩm:</CAdd1>
                 <CAdd1>Mô tả sản phẩm: </CAdd1>
-                <CAdd1>Giá sản phẩm</CAdd1>
-                <CAdd1>Loại sản phẩm</CAdd1>
-                <CAdd1>Chọn màu:</CAdd1>
-                <CAdd1></CAdd1>
-                <CAdd1></CAdd1>
+                <CAdd1>Giá sản phẩm:</CAdd1>
+                <CAdd1>Loại sản phẩm:</CAdd1>
+                <CAdd1>Danh sách màu:</CAdd1>
+                <CAdd5>Màu sản phẩm:</CAdd5>
               </Add1>
               <Add2>
                 <CAdd1>
@@ -198,8 +220,7 @@ function Add_item() {
                       border: "1px solid #ccc", // Định dạng đường viền
                       borderRadius: "5px", // Định dạng góc bo tròn
                       fontSize: "16px", // Đặt kích thước chữ
-                      marginRight:"10px"
-
+                      marginRight: "10px",
                     }}
                   />
                   <p>Giảm giá:</p>
@@ -218,25 +239,80 @@ function Add_item() {
                       border: "1px solid #ccc", // Định dạng đường viền
                       borderRadius: "5px", // Định dạng góc bo tròn
                       fontSize: "16px", // Đặt kích thước chữ
-                      marginLeft:"10px"
+                      marginLeft: "10px",
                     }}
                   />
                 </CAdd1>
                 <CAdd1>
-                <SelectLoaiQuanAo
-                onChange={handleChangePhanLoai}
-                value={phan_loai_id}
-              >
-                {phanloai.map((item) => (
-                  <option key={item.id} value={item.id}>
-                    {item.name}
-                  </option>
-                ))}
-              </SelectLoaiQuanAo>
+                  <SelectLoaiQuanAo
+                    onChange={handleChangePhanLoai}
+                    value={phan_loai_id}
+                  >
+                    {" "}
+                    <option value="" disabled selected>
+                      Chọn loại
+                    </option>
+                    {phanloai.map((item) => (
+                      <option key={item.id} value={item.id}>
+                        {item.name}
+                      </option>
+                    ))}
+                  </SelectLoaiQuanAo>
                 </CAdd1>
-                <CAdd1>Chọn màu:</CAdd1>
-                <CAdd1></CAdd1>
-                <CAdd1></CAdd1>
+                <CAdd1>
+                  <SelectLoaiQuanAo onChange={handleColor}>
+                    {" "}
+                    <option value="" disabled selected>
+                      Chọn màu
+                    </option>
+                    {colors.map((item) => (
+                      <option key={item} value={item}>
+                        {item}
+                      </option>
+                    ))}
+                  </SelectLoaiQuanAo>
+
+                  <button
+                    style={{ marginLeft: "5px" }}
+                    onClick={addToSelectedList}
+                  >
+                    Thêm
+                  </button>
+                </CAdd1>
+                <CAdd3>
+                  <ListContainer>
+                    {selectedList.map((color) => (
+                      <ListItem>
+                        {color}
+                        <svg
+                          onClick={() => removeFromSelectedList(color)}
+                          xmlns="http://www.w3.org/2000/svg"
+                          class="icon icon-tabler icon-tabler-backspace-filled"
+                          width="24"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          stroke-width="2"
+                          stroke="currentColor"
+                          fill="none"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          style={{ cursor: "pointer", fill: "red" }}
+                        >
+                          <path
+                            stroke="none"
+                            d="M0 0h24v24H0z"
+                            fill="none"
+                          ></path>
+                          <path
+                            d="M20 5a2 2 0 0 1 1.995 1.85l.005 .15v10a2 2 0 0 1 -1.85 1.995l-.15 .005h-11a1 1 0 0 1 -.608 -.206l-.1 -.087l-5.037 -5.04c-.809 -.904 -.847 -2.25 -.083 -3.23l.12 -.144l5 -5a1 1 0 0 1 .577 -.284l.131 -.009h11zm-7.489 4.14a1 1 0 0 0 -1.301 1.473l.083 .094l1.292 1.293l-1.292 1.293l-.083 .094a1 1 0 0 0 1.403 1.403l.094 -.083l1.293 -1.292l1.293 1.292l.094 .083a1 1 0 0 0 1.403 -1.403l-.083 -.094l-1.292 -1.293l1.292 -1.293l.083 -.094a1 1 0 0 0 -1.403 -1.403l-.094 .083l-1.293 1.292l-1.293 -1.292l-.094 -.083l-.102 -.07z"
+                            stroke-width="0"
+                            fill="currentColor"
+                          ></path>
+                        </svg>
+                      </ListItem>
+                    ))}
+                  </ListContainer>
+                </CAdd3>
               </Add2>
             </AddProDuct1>
             <AddProDuct2></AddProDuct2>
