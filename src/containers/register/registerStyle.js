@@ -1,6 +1,5 @@
 // RegisterForm.js
 import styled from 'styled-components';
-import logoBackground from './backgroundregister.png';
 import { Link } from 'react-router-dom';
 
 export const Body = styled.div`

@@ -294,7 +294,7 @@ const RegisterForm = () => {
               value="male"
               checked={formData.gender === "male"}
               onChange={handleInputChange}/>
-            Male
+            Nam
           </GenderLabel>
           <GenderLabel>
             <input
@@ -306,7 +306,7 @@ const RegisterForm = () => {
               checked={formData.gender === "female"}
               onChange={handleInputChange}
             />
-            Female
+            Nữ
           </GenderLabel>
         </GenderCategory>
         <FormSubmitButton style={{}}>
