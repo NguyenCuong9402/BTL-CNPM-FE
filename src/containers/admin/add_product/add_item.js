@@ -20,7 +20,9 @@ import {
   CAdd1,
   SelectLoaiQuanAo,
   ListContainer,
-  ListItem,CAdd3, CAdd5
+  ListItem,
+  CAdd3, AddAnh2,AddAnh3, AddAnh4,
+  CAdd5, Image, ButtonAdd
 } from "./add_itemStyle";
 import "boxicons/css/boxicons.min.css";
 import axios from "axios";
@@ -109,7 +111,19 @@ function Add_item() {
     }
   };
 
-  const [colors, setDsColor] = useState(['Be', 'Cam', 'Hồng', 'Lục', 'Nâu', 'Trắng', 'Tím', 'Vàng', 'Xanh', 'Đen', 'Đỏ']);
+  const [colors, setDsColor] = useState([
+    "Be",
+    "Cam",
+    "Hồng",
+    "Lục",
+    "Nâu",
+    "Trắng",
+    "Tím",
+    "Vàng",
+    "Xanh",
+    "Đen",
+    "Đỏ",
+  ]);
   const [color, setcolor] = useState("");
   const [selectedList, setSelectedList] = useState([]);
 
@@ -127,6 +141,22 @@ function Add_item() {
   const removeFromSelectedList = (color) => {
     const updatedList = selectedList.filter((item) => item !== color);
     setSelectedList(updatedList);
+  };
+
+  const [image, setImage] = useState(null);
+
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+
+    if (file) {
+      const reader = new FileReader();
+
+      reader.onload = (e) => {
+        setImage(e.target.result);
+      };
+
+      reader.readAsDataURL(file);
+    }
   };
   return (
     <Body>
@@ -169,11 +199,11 @@ function Add_item() {
             <AddProDuct1>
               <Add1>
                 <CAdd1>Tên sản phẩm:</CAdd1>
-                <CAdd1>Mô tả sản phẩm: </CAdd1>
                 <CAdd1>Giá sản phẩm:</CAdd1>
                 <CAdd1>Loại sản phẩm:</CAdd1>
                 <CAdd1>Danh sách màu:</CAdd1>
                 <CAdd5>Màu sản phẩm:</CAdd5>
+                <CAdd1>Mô tả sản phẩm: </CAdd1>
               </Add1>
               <Add2>
                 <CAdd1>
@@ -190,20 +220,7 @@ function Add_item() {
                     }}
                   />
                 </CAdd1>
-                <CAdd1>
-                  <input
-                    type="text"
-                    value={describe}
-                    onChange={(e) => setdescribe(e.target.value)}
-                    style={{
-                      width: "300px", // Đặt chiều rộng của ô Input
-                      padding: "10px", // Thêm padding để làm cho nó lớn hơn
-                      border: "1px solid #ccc", // Định dạng đường viền
-                      borderRadius: "5px", // Định dạng góc bo tròn
-                      fontSize: "16px", // Đặt kích thước chữ
-                    }}
-                  />
-                </CAdd1>
+
                 <CAdd1>
                   <input
                     type="text"
@@ -313,9 +330,37 @@ function Add_item() {
                     ))}
                   </ListContainer>
                 </CAdd3>
+                <CAdd1>
+                  <input
+                    type="text"
+                    value={describe}
+                    onChange={(e) => setdescribe(e.target.value)}
+                    style={{
+                      width: "300px", // Đặt chiều rộng của ô Input
+                      padding: "10px", // Thêm padding để làm cho nó lớn hơn
+                      border: "1px solid #ccc", // Định dạng đường viền
+                      borderRadius: "5px", // Định dạng góc bo tròn
+                      fontSize: "16px", // Đặt kích thước chữ
+                    }}
+                  />
+                </CAdd1>
               </Add2>
             </AddProDuct1>
-            <AddProDuct2></AddProDuct2>
+            <AddProDuct2>
+              <AddAnh2> {image && <Image src={image} alt="Selected Image" />}</AddAnh2>
+              <AddAnh3>
+                {" "}
+                <input
+                  type="file"
+                  accept="image/*"
+                  onChange={handleImageChange}
+                />
+              </AddAnh3>
+              <AddAnh4>
+                    <ButtonAdd>Thêm sản phẩm</ButtonAdd>
+
+              </AddAnh4>
+            </AddProDuct2>
           </ContainerProfileB>
         </Container2>
       </Container>

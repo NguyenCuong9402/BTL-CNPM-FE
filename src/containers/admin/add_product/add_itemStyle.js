@@ -21,6 +21,16 @@ export const GlobalStyles = styled.div`
   }
 `;
 
+export const ButtonAdd = styled.button`
+  background-color: orange;
+  width: 150px;
+  height: 50px;
+  color: white;
+  &:hover {
+    background-color: #ff7700;
+  }
+`;
+
 export const Container = styled.div`
   flex: 1; /* Container cha chiếm 90% còn lại */
   margin-top: 90px;
@@ -106,6 +116,7 @@ export const CAdd1 = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: row;
+  color: black; /* Đặt màu chữ thành đen */
 
 `;
 
@@ -116,6 +127,7 @@ export const CAdd5 = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: row;
+  color: black; /* Đặt màu chữ thành đen */
 
 `;
 
@@ -127,8 +139,8 @@ export const CAdd3 = styled.div`
   align-items: center;
   flex-direction: row;
   overflow-y: auto;
-  width:100%;
-  height:100%;
+  width:80%;
+  height:80%;
   border: 1px solid #ccc; /* Thêm viền kẻ đường viền màu xám *
 `;
 
@@ -158,8 +170,41 @@ export const AddProDuct2 = styled.div`
   flex: 4;
   background-color: red;
   display: flex;
-  
+  flex-direction: column;
+
 `;
+
+export const AddAnh2 = styled.div`
+  flex: 5;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+export const AddAnh3 = styled.div`
+  flex: 1;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+`;
+
+export const Image = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Đảm bảo hình ảnh vừa đủ bên trong phần tử con */
+`;
+
+export const AddAnh4 = styled.div`
+  flex: 4;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+
 
 export const Container5 = styled.div`
   flex: 1; /* Container5 chiếm 60% chiều rộng của Container1 */
