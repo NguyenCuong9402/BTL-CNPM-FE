@@ -172,11 +172,51 @@ export const SanPham1 = styled.div`
   flex-direction: column;
 `;
 
-export const SanPham5 = styled.div`
+export const TableHeader = styled.div`
   flex: 1;
   display: flex;
-  background-color:blue;
+  background-color:#f0f0f0;
 `;
+
+export const ButtonColumn = styled.td`
+  width: 5%;
+  padding: 8px;
+  text-align: center;
+`;
+
+export const Checkbox = styled.input`
+  width: 18px;
+  height: 18px;
+`;
+
+export const PriceColumn = styled.td`
+  width: 10%;
+  padding: 8px;
+  text-align: center;
+`;
+
+export const ProductColumn = styled.td`
+  width: 45%;
+  padding: 8px;
+`;
+
+export const QuantityColumn = styled.td`
+  width: 10%;
+  padding: 8px;
+  text-align: center;      
+`;
+
+export const TotalColumn = styled.td`
+  width: 15%;
+  padding: 8px;
+  text-align: center;
+`;
+
+export const PhanLoaiColumn = styled.td`
+  width: 15%;
+  padding: 8px;
+`;
+
 export const SanPham6 = styled.div`
   flex: 8;
   display: flex;  

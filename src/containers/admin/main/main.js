@@ -68,7 +68,18 @@ import {
   InnerContainer1,
   InnerContainer2,
   InnerContainer3,
-  SelectLoaiQuanAo,SanPham5, SanPham6, SanPham7
+  SelectLoaiQuanAo,
+  TableHeader,
+  SanPham6,
+  SanPham7,
+  TableRow,
+  ButtonColumn,
+  Checkbox,
+  ProductColumn,
+  PhanLoaiColumn,
+  QuantityColumn,
+  TotalColumn,
+  PriceColumn,
 } from "./mainStyled";
 import "boxicons/css/boxicons.min.css";
 import axios from "axios";
@@ -130,6 +141,24 @@ function Main() {
     start: null,
     end: null,
   });
+  const [selectAll, setSelectAll] = useState(false);
+  const [selectedRows, setSelectedRows] = useState([]);
+  const [isDeleteButtonVisible, setIsDeleteButtonVisible] = useState(false);
+
+  const handleSelectAllClick = () => {
+    if (selectAll) {
+      // If all rows are currently selected, deselect all.
+      setSelectedRows([]);
+      setIsDeleteButtonVisible(false);
+    } else {
+      // If not all rows are selected, select all.
+      const allRowIds = data.map((item) => item.id);
+      setSelectedRows(allRowIds);
+      setIsDeleteButtonVisible(true);
+    }
+    // Toggle the selectAll state.
+    setSelectAll(!selectAll);
+  };
 
   const handleNextPage = () => {
     if (currentPage < totalPages) {
@@ -177,9 +206,7 @@ function Main() {
       window.location.href = "/login";
     }
     fetchDataNguoiDung();
-    
-  }, []); 
-  
+  }, []);
 
   useEffect(() => {
     fetchData(
@@ -523,7 +550,14 @@ function Main() {
                 Khách hàng
               </ButtonContainer6>
             </Ct3>
-            <Ct4></Ct4>
+            <Ct4>
+            <ButtonContainer6
+                active={activeButton === 7}
+                onClick={() => setActiveButton(7)}
+              >
+                Thêm sản phẩm
+              </ButtonContainer6>
+            </Ct4>
           </Container6>
         </Container1>
         <Container2>
@@ -552,7 +586,19 @@ function Main() {
               </ContainerProfileA>
               <ContainerProfileB>
                 <SanPham1>
-                  <SanPham5></SanPham5>
+                  <TableHeader>
+                      <ButtonColumn>
+                        <Checkbox
+                          type="checkbox"
+                          onChange={() => handleSelectAllClick()}
+                        />
+                      </ButtonColumn>
+                      <ProductColumn>Sản phẩm</ProductColumn>
+                      <PhanLoaiColumn>Mô tả</PhanLoaiColumn>
+                      <QuantityColumn>Giảm giá (%)</QuantityColumn>
+                      <PriceColumn>Đơn giá</PriceColumn>
+                      <TotalColumn>Ngày tạo</TotalColumn>
+                  </TableHeader>
                   <SanPham6></SanPham6>
                   <SanPham7></SanPham7>
                 </SanPham1>
@@ -995,6 +1041,12 @@ function Main() {
           )}
 
           {activeButton === 6 && (
+            <React.Fragment>
+              <div>Nhân viên</div>
+              <div>Nhân viên</div>
+            </React.Fragment>
+          )}
+          {activeButton === 7 && (
             <React.Fragment>
               <div>Nhân viên</div>
               <div>Nhân viên</div>
