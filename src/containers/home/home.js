@@ -96,6 +96,8 @@ function Home() {
         setUserDataId(userDataFromLocalStorage.id);
         SetOnline(true);
       } else {
+        window.location.href = "/admin/main";
+
       }
     }
   }, []); // Sử dụng [] để đảm bảo useEffect chỉ chạy một lần khi component được tạo
