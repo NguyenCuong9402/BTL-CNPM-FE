@@ -154,6 +154,14 @@ function Main() {
   const [selectAll, setSelectAll] = useState(false);
   const [selectedRows, setSelectedRows] = useState([]);
   const [isDeleteButtonVisible, setIsDeleteButtonVisible] = useState(false);
+  
+  
+  const [email_nv, SetEmailNV] = useState("")
+  const [sdt_nv, Setsdtnv] = useState("")
+  const [ten_nv, set_ten_nv] = useState("")
+
+         
+
 
   const handleSelectAllClick = () => {
     if (selectAll) {
@@ -925,7 +933,7 @@ function Main() {
                       value={nameUser}
                       onChange={(e) => handleInputNameChange(e.target.value)}
                       style={{
-                        width: "97%", // Đặt chiều rộng của ô Input
+                        width: "50%", // Đặt chiều rộng của ô Input
                         padding: "10px", // Thêm padding để làm cho nó lớn hơn
                         border: "1px solid #ccc", // Định dạng đường viền
                         borderRadius: "5px", // Định dạng góc bo tròn
@@ -985,7 +993,7 @@ function Main() {
                       value={address}
                       onChange={(e) => handleInputAddressChange(e.target.value)}
                       style={{
-                        width: "97%", // Đặt chiều rộng của ô Input
+                        width: "50%", // Đặt chiều rộng của ô Input
                         padding: "10px", // Thêm padding để làm cho nó lớn hơn
                         border: "1px solid #ccc", // Định dạng đường viền
                         borderRadius: "5px", // Định dạng góc bo tròn
@@ -1004,7 +1012,7 @@ function Main() {
                         handleInputPhoneChange(numericValue);
                       }}
                       style={{
-                        width: "97%",
+                        width: "50%",
                         padding: "10px",
                         border: "1px solid #ccc",
                         borderRadius: "5px",
@@ -1175,13 +1183,97 @@ function Main() {
 
           {activeButton === 6 && (
             <React.Fragment>
-              <div>Nhân viên</div>
-              <div>Nhân viên</div>
-            </React.Fragment>
+            <ContainerProfileA>
+              <h2
+                style={{
+                  marginLeft: "25px",
+                  fontWeight: "bold",
+                  fontSize: "30px",
+                }}
+              >
+                Tạo tài khoản cho nhân viên!
+              </h2>
+              <p style={{ marginLeft: "25px", fontSize: "16px" }}>
+                
+              </p>
+            </ContainerProfileA>
+            <ContainerProfileB>
+              <ContainerProfile2B1>
+                <ColumnProfileB1>
+                  <p style={{ fontSize: "20px", marginRight: "15px" }}>
+                    Email nhân viên:
+                  </p>
+                </ColumnProfileB1>
+                <ColumnProfileB1>
+                  <p style={{ fontSize: "20px", marginRight: "15px" }}>
+                    Số điện thoại:
+                  </p>
+                </ColumnProfileB1>
+                <ColumnProfileB1>
+                  <p style={{ fontSize: "20px", marginRight: "15px" }}>
+                    Tên nhân viên:
+                  </p>
+                </ColumnProfileB1>
+                <ColumnProfileB1></ColumnProfileB1>
+                <ColumnProfileB1></ColumnProfileB1>
+              </ContainerProfile2B1>
+              <ContainerProfile2B1>
+                <ColumnProfileB2>
+                  <input
+                    type="email"
+                    value={email_nv}
+                    onChange={(e) => SetEmailNV(e.target.value)}
+                    style={{
+                      width: "97%", // Đặt chiều rộng của ô Input
+                      padding: "10px", // Thêm padding để làm cho nó lớn hơn
+                      border: "1px solid #ccc", // Định dạng đường viền
+                      borderRadius: "5px", // Định dạng góc bo tròn
+                      fontSize: "13px", // Đặt kích thước chữ
+                    }}
+                  />  
+                </ColumnProfileB2>
+                <ColumnProfileB2>
+                  <input
+                    type="text"
+                    value={sdt_nv}
+                    onChange={(e) => Setsdtnv(e.target.value)}
+                    style={{
+                      width: "97%", // Đặt chiều rộng của ô Input
+                      padding: "10px", // Thêm padding để làm cho nó lớn hơn
+                      border: "1px solid #ccc", // Định dạng đường viền
+                      borderRadius: "5px", // Định dạng góc bo tròn
+                      fontSize: "13px", // Đặt kích thước chữ
+                    }}
+                  />
+                </ColumnProfileB2>
+                <ColumnProfileB2>
+                  <input
+                    type="text"
+                    value={ten_nv}
+                    onChange={(e) => set_ten_nv(e.target.value)}
+                    style={{
+                      width: "97%", // Đặt chiều rộng của ô Input
+                      padding: "10px", // Thêm padding để làm cho nó lớn hơn
+                      border: "1px solid #ccc", // Định dạng đường viền
+                      borderRadius: "5px", // Định dạng góc bo tròn
+                      fontSize: "13px", // Đặt kích thước chữ
+                    }}
+                  />
+                </ColumnProfileB2>
+                <ColumnProfileB2ChuaButtonSave>
+                  <StyledButtonSave onClick={() => ChangePassWordUser()}>
+                    Tạo
+                  </StyledButtonSave>
+                </ColumnProfileB2ChuaButtonSave>
+                <ColumnProfileB2></ColumnProfileB2>
+              </ContainerProfile2B1>
+              <ContainerProfile2B2></ContainerProfile2B2>
+            </ContainerProfileB>
+          </React.Fragment>
           )}
           {activeButton === 7 && (
             <React.Fragment>
-              <div>Nhân viên</div>
+              <div>Nhân viên2</div>
               <div>Nhân viên</div>
             </React.Fragment>
           )}
