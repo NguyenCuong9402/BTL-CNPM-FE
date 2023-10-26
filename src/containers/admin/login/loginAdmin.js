@@ -106,19 +106,12 @@ function LoginAdmin() {
   };
   return (
     <div>
-      <Header>
-        <Navbar>
-          <a href="/admin/login">
-            <i className="bx bxl-xing"></i>Word Scamble
-          </a>
-        </Navbar>
-      </Header>
       <Background></Background>
       <Container>
       <div className="login-section">
         <div className="form-box login">
             <form action="" onSubmit={handleSubmit}>
-              <h2>Sign In</h2>
+              <h2 style={{ color:'white'}}>Đăng nhập</h2>
               <div className="input-box">
                 <span className="icon"><i className='bx bxs-envelope'></i></span>
                 <input
@@ -137,11 +130,11 @@ function LoginAdmin() {
                   value={password}
                   onChange={handlePasswordChange}
                 />
-                <label>Password</label>
+                <label>Mật khẩu</label>
               </div>
               <div className="remember-password">
-                <label><input type="checkbox" />Remember Me</label>
-                <a onClick={handleForgotPasswordClick}>Forget Password</a>
+                <label style={{ color:'white'}}><input type="checkbox" />Nhớ mật khẩu</label>
+                <a onClick={handleForgotPasswordClick}>Quên mật khẩu</a>
               </div>
               <button className="btn">Log In</button>
         
