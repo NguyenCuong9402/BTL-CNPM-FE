@@ -358,7 +358,8 @@ export const SanPham6 = styled.div`
   flex: 8;
   display: flex;
   flex-direction: column;
-  
+  overflow-y: auto;
+  max-height: 600px;
 `;
 
 export const SanPham7 = styled.div`
