@@ -383,7 +383,9 @@ function Main() {
       console.error("Error calling history API:", error);
     }
   };
-
+  const MoveAddItem = () => {
+    history.push(`/admin/add`, {});
+  };
   const ChooseTinh = (newTinh) => {
     SetTinh(newTinh);
     fetchDiaChi(newTinh, "", "");
@@ -534,7 +536,7 @@ function Main() {
     <Body>
       <Header>
         <Navbar>
-          <a href="/index" style={{ fontSize: "30px" }}>
+          <a href="/admin/main" style={{ fontSize: "30px" }}>
             <i className="bx bxl-xing"></i>Home
           </a>
         </Navbar>
@@ -618,8 +620,7 @@ function Main() {
             </Ct3>
             <Ct4>
               <ButtonContainer6
-                active={activeButton === 7}
-                onClick={() => setActiveButton(7)}
+                onClick={MoveAddItem}
               >
                 Thêm sản phẩm
               </ButtonContainer6>
@@ -1301,12 +1302,7 @@ function Main() {
             </ContainerProfileB>
           </React.Fragment>
           )}
-          {activeButton === 7 && (
-            <React.Fragment>
-              <div>Nhân viên2</div>
-              <div>Nhân viên</div>
-            </React.Fragment>
-          )}
+          
         </Container2>
       </Container>
       <Modal

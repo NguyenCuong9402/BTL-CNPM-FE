@@ -111,7 +111,7 @@ function Add_item() {
     <Body>
       <Header>
         <Navbar>
-          <a href="/index" style={{ fontSize: "30px" }}>
+          <a href="/admin/main" style={{ fontSize: "30px" }}>
             <i className="bx bxl-xing"></i>Home
           </a>
         </Navbar>
@@ -124,21 +124,6 @@ function Add_item() {
         </UserInfoContainer>
       </Header>
       <Container>
-        <Container1>
-          <Container3>
-            <AvatarContainer3 src={avatarUrl} />
-          </Container3>
-          <Container4>
-            <NameContainer4>{data.name_user}</NameContainer4>
-          </Container4>
-          <Container5>
-            <IconContainer5 src={user} />
-            <TextContainer5>Tài khoản</TextContainer5>
-          </Container5>
-          <Container6>
-            
-          </Container6>
-        </Container1>
         <Container2>
           
          
@@ -151,7 +136,7 @@ function Add_item() {
                     fontFamily: "Arial, sans-serif",
                   }}
                 >
-                  Thông tin của tài khoản
+                  Thêm sản phẩm mới.
                 </h2>
                 <p
                   style={{

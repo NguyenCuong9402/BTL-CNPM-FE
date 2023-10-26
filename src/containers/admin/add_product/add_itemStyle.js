@@ -27,23 +27,10 @@ export const Container = styled.div`
   background-color: white;
   width: 100%;
   display: flex;
-
-`;
-
-export const Container1 = styled.div`
-  flex: 1.5; /* Container1 chiếm 30% chiều rộng của Container cha */
-  background-color: green; /* Màu nền của Container1 */
-  height: 100%; /* Chiều cao 100% */
-  display: flex;
-  flex-direction: column;
-`;
-export const Container3 = styled.div`
-  flex: 2; /* Container3 chiếm 30% chiều rộng của Container1 */
-  background-color: #dcdcdc; /* Màu nền của Container3 */
-  display: flex;
   justify-content: center;
   align-items: center;
 `;
+
 
 export const AvatarContainer3 = styled.img`
   border-radius: 50%; /* Tạo hình dạng bo tròn */
@@ -60,7 +47,7 @@ export const Container4 = styled.div`
 `;
 
 export const Container2 = styled.div`
-  flex: 8.5; /* Container2 chiếm 70% chiều rộng của Container cha */
+  width: 60%;
   background-color: white; /* Màu nền của Container2 */
   height: 100%; /* Chiều cao 100% */
   display: flex;
