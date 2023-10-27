@@ -239,7 +239,7 @@ export const LoiNhanCell = styled.div`
 `;
 
 export const ChiTietSanPhamCell = styled.div`
-  flex: 3;
+  flex: 1;
   background-color: white;
   display: flex;
   align-items: center;
@@ -250,6 +250,17 @@ export const ChiTietSanPhamCell = styled.div`
   &:hover {
     background-color: orange; /* Màu cam khi hover vào */
   }
+`;
+
+export const ActionCell = styled.div`
+  flex: 1;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+
+  
 `;
 
 export const UserCell = styled.div`
@@ -264,7 +275,7 @@ export const UserCell = styled.div`
 `;
 
 export const DiaChiCell = styled.div`
-  flex: 2;
+  flex: 3;
   background-color: white;
   display: flex;
   align-items: center;
@@ -309,7 +320,16 @@ export const LoiNhan = styled.div`
 `;
 
 export const ChiTietSanPham = styled.div`
-  flex: 3;
+  flex: 1;
+  background-color: #f0f0f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+`;
+
+export const Action = styled.div`
+  flex: 1;
   background-color: #f0f0f0;
   display: flex;
   align-items: center;
@@ -327,7 +347,7 @@ export const User = styled.div`
 `;
 
 export const DiaChi = styled.div`
-  flex: 2;
+  flex: 3;
   background-color: #f0f0f0;
   display: flex;
   align-items: center;

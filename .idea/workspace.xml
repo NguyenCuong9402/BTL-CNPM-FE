@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c7488130-847a-41fa-938c-605a2472ba80" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/src/containers/admin/hoa_don/hoa_don.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/admin/hoa_don/hoa_don.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/containers/admin/hoa_don/hoa_donStyle.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/admin/hoa_don/hoa_donStyle.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

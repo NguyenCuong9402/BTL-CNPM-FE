@@ -34,7 +34,7 @@ import {
   TongThanhToanCell,
   Popup,
   CloseButton,
-  Overlay, Popup1, PopupitemColor, PopupitemSize, PopupitemQuantity, PopupitemName
+  Overlay, Popup1, PopupitemColor, PopupitemSize, PopupitemQuantity, PopupitemName, Action, ActionCell
 } from "./hoa_donStyle";
 import "boxicons/css/boxicons.min.css";
 import axios from "axios";
@@ -183,7 +183,7 @@ function HoaDon() {
                 <TongThanhToan>Tổng</TongThanhToan>
                 <CreatedDate>Ngày</CreatedDate>
                 <ChiTietSanPham>Chi tiết đơn hàng</ChiTietSanPham>
-
+                <Action>Tình trạng</Action>
                 <LoiNhan>Lời nhắn</LoiNhan>
 
               </HoaDonHeader>
@@ -205,6 +205,7 @@ function HoaDon() {
                     <ChiTietSanPhamCell onClick={() => openPopup(item.order_items)}>
                       Xem Chi Tiết
                     </ChiTietSanPhamCell>
+                    <ActionCell></ActionCell>
                     <LoiNhanCell>{item.loi_nhan}</LoiNhanCell>
 
                   </BodyHoaDon>
