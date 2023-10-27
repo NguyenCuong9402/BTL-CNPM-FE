@@ -56,12 +56,13 @@ export const Container4 = styled.div`
 `;
 
 export const Container2 = styled.div`
-  width: 60%;
+  width: 100%;
   background-color: white; /* Màu nền của Container2 */
   height: 100%; /* Chiều cao 100% */
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 10px;
 `;
 
 export const ContainerProfileA = styled.div`
@@ -83,6 +84,200 @@ export const ContainerProfileB = styled.div`
   display: flex;
   flex-direction: row;
 `;
+
+export const HoaDon1 = styled.div`
+  flex: 8;
+  background-color: blue;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+
+`;
+
+export const HoaDonHeader = styled.div`
+  flex: 1;
+  background-color: red;
+  display: flex;
+  flex-direction: row;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+
+`;
+export const HoaDonCell = styled.div`
+  flex: 8;
+  background-color: blue;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto; /* Thêm độ cuộn lăn khi cần */
+
+
+`;
+
+export const BodyHoaDon = styled.div`
+  flex: 1;
+  height: 20%;
+  width: 100%;
+  background-color: white;
+  display: flex;
+  flex-direction: row;
+`;
+
+export const CreatedDateCell = styled.div`
+  flex: 1;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+
+`;
+
+export const DonViGiaoHangCell = styled.div`
+  flex: 1;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+
+`;
+
+export const TongThanhToanCell = styled.div`
+  flex: 1;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+
+`;
+
+export const LoiNhanCell = styled.div`
+  flex: 2;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+
+`;
+
+export const ChiTietSanPhamCell = styled.div`
+  flex: 3;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+
+`;
+
+export const UserCell = styled.div`
+  flex: 2;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+
+`;
+
+
+
+export const DiaChiCell = styled.div`
+  flex: 2;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+
+`;
+
+
+
+export const CreatedDate = styled.div`
+  flex: 1;
+  background-color: #f0f0f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+
+`;
+
+export const DonViGiaoHang = styled.div`
+  flex: 1;
+  background-color: #f0f0f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+
+`;
+
+export const TongThanhToan = styled.div`
+  flex: 1;
+  background-color: #f0f0f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+
+`;
+
+export const LoiNhan = styled.div`
+  flex: 2;
+  background-color: #f0f0f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+
+`;
+
+export const ChiTietSanPham = styled.div`
+  flex: 3;
+  background-color: #f0f0f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+
+`;
+
+export const User = styled.div`
+  flex: 2;
+  background-color: #f0f0f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+
+`;
+
+
+
+export const DiaChi = styled.div`
+  flex: 2;
+  background-color: #f0f0f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+
+`;
+
+
+
+
+
+export const HoaDon2 = styled.div`
+  flex: 2;
+  background-color: red;
+  display: flex;
+  flex-direction: column;
+`;
+
 export const Container5 = styled.div`
   flex: 1; /* Container5 chiếm 60% chiều rộng của Container1 */
   background-color: white; /* Màu nền của Container5 */

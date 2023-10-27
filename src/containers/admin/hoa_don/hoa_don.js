@@ -11,17 +11,33 @@ import {
   Container2,
   Navbar,
   CartImage,
-
+  HoaDon1,
+  HoaDon2,
   ContainerProfileA,
+  BodyHoaDon,
   ContainerProfileB,
-
+  HoaDonHeader,
+  HoaDonCell,
+  User,
+  CreatedDate,
+  ChiTietSanPham,
+  TongThanhToan,
+  DonViGiaoHang,
+  LoiNhan,
+  DiaChi,
+  LoiNhanCell,
+  DiaChiCell,
+  UserCell,
+  ChiTietSanPhamCell,
+  CreatedDateCell,
+  DonViGiaoHangCell,
+  TongThanhToanCell,
 } from "./hoa_donStyle";
 import "boxicons/css/boxicons.min.css";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 import logout from "./logout.png";
 import Modal from "../../../modal";
-
 
 function formatDate(created_date) {
   // Convert timestamp (in seconds) to milliseconds
@@ -44,8 +60,7 @@ function HoaDon() {
   const [modalMessage, setModalMessage] = useState("");
   const [user_id, setUserDataId] = useState(null);
   const [user_name, setUserName] = useState("");
- 
-
+  const [data, setData] = useState([])
   const handleCloseModal = () => {
     setModalOpen(false);
   };
@@ -62,10 +77,10 @@ function HoaDon() {
     } else {
       window.location.href = "/admin/login";
     }
+    fetchData()
   }, []);
- 
-  useEffect(() => {
-  }, []);
+
+  useEffect(() => {}, []);
   const avatarUrl = `http://127.0.0.1:5000/api/v1/picture/avatar/${user_id}`;
 
   const handleLogout = () => {
@@ -75,7 +90,32 @@ function HoaDon() {
     window.location.href = "/login";
   };
 
-  
+  const fetchData = async () => {
+    try {
+      const access_token = localStorage.getItem("accessToken"); // Get access token from local storage
+      const response = await axios.get(
+        `http://127.0.0.1:5000/api/v1/orders/manage`,
+        {
+          headers: {
+            Authorization: `Bearer ${access_token}`,
+          },
+        }
+      );
+      if (response.data.message.status === "success") {
+        const formattedData = response.data.data.map((item) => ({
+          ...item,
+          created_date: formatDate(item.created_date), // Format the timestamp
+
+        }));
+        setData(formattedData);
+      } else {
+        console.error("Error fetching history data.");
+      }
+    } catch (error) {
+      console.error("Error calling history API:", error);
+    }
+  };
+
   return (
     <Body>
       <Header>
@@ -103,7 +143,7 @@ function HoaDon() {
                 fontFamily: "Arial, sans-serif",
               }}
             >
-               Quản lý đơn hàng.
+              Quản lý đơn hàng.
             </h2>
             <p
               style={{
@@ -114,7 +154,32 @@ function HoaDon() {
             ></p>
           </ContainerProfileA>
           <ContainerProfileB>
-            
+            <HoaDon2></HoaDon2>
+
+            <HoaDon1>
+              <HoaDonHeader>
+                <User>Người mua hàng</User>
+                <ChiTietSanPham>Chi tiết đơn hàng</ChiTietSanPham>
+                <LoiNhan>Lời nhắn</LoiNhan>
+                <DiaChi>Địa chỉ</DiaChi>
+                <DonViGiaoHang>Ship</DonViGiaoHang>
+                <TongThanhToan>Tổng</TongThanhToan>
+                <CreatedDate>Ngày</CreatedDate>
+              </HoaDonHeader>
+              <HoaDonCell>
+              {data.map((item) => (
+                <BodyHoaDon>
+                <UserCell> {item.user_name}</UserCell>
+                <ChiTietSanPhamCell></ChiTietSanPhamCell>
+                <LoiNhanCell>{item.loi_nhan}</LoiNhanCell>
+                <DiaChiCell>{item.address}, {item.xa}, {item.huyen}, {item.tinh}</DiaChiCell>
+                <DonViGiaoHangCell>{item.don_vi_ship} ({item.gia_ship}$)</DonViGiaoHangCell>
+                <TongThanhToanCell>{item.tong_thanh_toan}</TongThanhToanCell>
+                <CreatedDateCell>{item.created_date}</CreatedDateCell>
+              </BodyHoaDon>
+              ))}
+              </HoaDonCell>
+            </HoaDon1>
           </ContainerProfileB>
         </Container2>
       </Container>
