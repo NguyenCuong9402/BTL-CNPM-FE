@@ -91,7 +91,6 @@ export const HoaDon1 = styled.div`
   display: flex;
   flex-direction: column;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
-
 `;
 
 export const HoaDonHeader = styled.div`
@@ -100,7 +99,6 @@ export const HoaDonHeader = styled.div`
   display: flex;
   flex-direction: row;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
-
 `;
 export const HoaDonCell = styled.div`
   flex: 8;
@@ -108,8 +106,6 @@ export const HoaDonCell = styled.div`
   display: flex;
   flex-direction: column;
   overflow-y: auto; /* Thêm độ cuộn lăn khi cần */
-
-
 `;
 
 export const BodyHoaDon = styled.div`
@@ -128,7 +124,6 @@ export const CreatedDateCell = styled.div`
   align-items: center;
   justify-content: center;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
-
 `;
 
 export const Overlay = styled.div`
@@ -139,15 +134,14 @@ export const Overlay = styled.div`
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5); /* Màu đen với độ trong suốt */
   z-index: 98; /* Đặt z-index nhỏ hơn so với popup */
-  
 `;
 
 export const Popup = styled.div`
   position: fixed;
   top: 50%;
   left: 50%;
-  height:500px;
-  width:500px;
+  max-height: 500px;
+  width: 700px;
   transform: translate(-50%, -50%);
   background-color: #f0f0f0; /* Màu xanh (sửa mã màu tùy ý) */
   padding: 30px;
@@ -160,9 +154,51 @@ export const Popup = styled.div`
 `;
 
 export const Popup1 = styled.div`
-  height: 20%;
+  height: 100px;
+  display: flex;
+  flex-direction: row;
+  background-color: white;
+`;
+
+
+
+export const PopupitemName = styled.div`
+  flex:4;
   display: flex;
   background-color:white;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+
+`;
+export const PopupitemQuantity = styled.div`
+  flex:2;
+  display: flex;
+  background-color:white;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+
+`;
+
+export const PopupitemColor = styled.div`
+  flex:2;
+  display: flex;
+  background-color:white;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+
+`;
+
+export const PopupitemSize = styled.div`
+  flex:2;
+  display: flex;
+  background-color:white;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+
 `;
 
 
@@ -181,7 +217,6 @@ export const DonViGiaoHangCell = styled.div`
   align-items: center;
   justify-content: center;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
-
 `;
 
 export const TongThanhToanCell = styled.div`
@@ -191,7 +226,6 @@ export const TongThanhToanCell = styled.div`
   align-items: center;
   justify-content: center;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
-
 `;
 
 export const LoiNhanCell = styled.div`
@@ -201,7 +235,6 @@ export const LoiNhanCell = styled.div`
   align-items: center;
   justify-content: center;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
-
 `;
 
 export const ChiTietSanPhamCell = styled.div`
@@ -211,7 +244,6 @@ export const ChiTietSanPhamCell = styled.div`
   align-items: center;
   justify-content: center;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
-
 `;
 
 export const UserCell = styled.div`
@@ -221,10 +253,7 @@ export const UserCell = styled.div`
   align-items: center;
   justify-content: center;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
-
 `;
-
-
 
 export const DiaChiCell = styled.div`
   flex: 2;
@@ -233,10 +262,7 @@ export const DiaChiCell = styled.div`
   align-items: center;
   justify-content: center;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
-
 `;
-
-
 
 export const CreatedDate = styled.div`
   flex: 1;
@@ -245,7 +271,6 @@ export const CreatedDate = styled.div`
   align-items: center;
   justify-content: center;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
-
 `;
 
 export const DonViGiaoHang = styled.div`
@@ -255,7 +280,6 @@ export const DonViGiaoHang = styled.div`
   align-items: center;
   justify-content: center;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
-
 `;
 
 export const TongThanhToan = styled.div`
@@ -265,7 +289,6 @@ export const TongThanhToan = styled.div`
   align-items: center;
   justify-content: center;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
-
 `;
 
 export const LoiNhan = styled.div`
@@ -275,7 +298,6 @@ export const LoiNhan = styled.div`
   align-items: center;
   justify-content: center;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
-
 `;
 
 export const ChiTietSanPham = styled.div`
@@ -285,7 +307,6 @@ export const ChiTietSanPham = styled.div`
   align-items: center;
   justify-content: center;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
-
 `;
 
 export const User = styled.div`
@@ -295,10 +316,7 @@ export const User = styled.div`
   align-items: center;
   justify-content: center;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
-
 `;
-
-
 
 export const DiaChi = styled.div`
   flex: 2;
@@ -307,12 +325,7 @@ export const DiaChi = styled.div`
   align-items: center;
   justify-content: center;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
-
 `;
-
-
-
-
 
 export const HoaDon2 = styled.div`
   flex: 2;

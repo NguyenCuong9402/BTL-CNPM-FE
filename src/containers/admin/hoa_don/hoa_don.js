@@ -12,7 +12,7 @@ import {
   Navbar,
   CartImage,
   HoaDon1,
-  HoaDon2,
+  HoaDon2, 
   ContainerProfileA,
   BodyHoaDon,
   ContainerProfileB,
@@ -34,7 +34,7 @@ import {
   TongThanhToanCell,
   Popup,
   CloseButton,
-  Overlay, Popup1
+  Overlay, Popup1, PopupitemColor, PopupitemSize, PopupitemQuantity, PopupitemName
 } from "./hoa_donStyle";
 import "boxicons/css/boxicons.min.css";
 import axios from "axios";
@@ -230,9 +230,18 @@ function HoaDon() {
                     <path d="M6 6l12 12"></path>
                   </svg>
                 </CloseButton>
+                <Popup1>
+                    <PopupitemName>Tên</PopupitemName>
+                    <PopupitemColor>Màu</PopupitemColor>
+                    <PopupitemQuantity>SL</PopupitemQuantity>
+                    <PopupitemSize>Size</PopupitemSize>
+                  </Popup1>
                 {orderItems.map((item) => ( 
                   <Popup1>
-                    oke
+                    <PopupitemName>{item.product_name}</PopupitemName>
+                    <PopupitemColor>{item.color}</PopupitemColor>
+                    <PopupitemQuantity>{item.size}</PopupitemQuantity>
+                    <PopupitemSize>{item.quantity}</PopupitemSize>
                   </Popup1>
                 ))}         
               </Popup>
