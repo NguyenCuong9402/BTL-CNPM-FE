@@ -522,7 +522,8 @@ function Main() {
   const Thayavatar = async () => {
     try {
       const access_token = localStorage.getItem("accessToken");
-
+      const formData = new FormData();
+      formData.append("file", image);
       const response = await axios.post(
         `http://127.0.0.1:5000/api/v1/product`,
         formData,

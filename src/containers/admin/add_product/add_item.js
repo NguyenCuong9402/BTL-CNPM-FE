@@ -167,8 +167,6 @@ function Add_item() {
     formData.append("name", name);
     try {
       const access_token = localStorage.getItem("accessToken");
-      const formData = new FormData();
-      formData.append("file", image);
       const response = await axios.post(
         `http://127.0.0.1:5000/api/v1/avatar`,
         formData,
