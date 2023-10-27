@@ -407,6 +407,10 @@ function Main() {
   const MoveAddItem = () => {
     history.push(`/admin/add`, {});
   };
+
+  const MoveDonHang = () => {
+    history.push(`/admin/order`, {});
+  };
   const ChooseTinh = (newTinh) => {
     SetTinh(newTinh);
     fetchDiaChi(newTinh, "", "");
@@ -697,8 +701,7 @@ function Main() {
             </Ct2>
             <Ct3>
               <ButtonContainer6
-                active={activeButton === 3}
-                onClick={() => setActiveButton(3)}
+                onClick={MoveDonHang}
               >
                 Đơn hàng
               </ButtonContainer6>
@@ -1337,12 +1340,6 @@ function Main() {
                 </ContainerProfile2B1>
                 <ContainerProfile2B2></ContainerProfile2B2>
               </ContainerProfileB>
-            </React.Fragment>
-          )}
-          {activeButton === 3 && (
-            <React.Fragment>
-              <div>Oke1</div>
-              <div>Oke1</div>
             </React.Fragment>
           )}
           {activeButton === 5 && (

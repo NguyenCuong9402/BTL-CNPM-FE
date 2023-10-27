@@ -11,24 +11,11 @@ import {
   Container2,
   Navbar,
   CartImage,
-  Add1,
-  Add2,
+
   ContainerProfileA,
   ContainerProfileB,
-  AddProDuct1,
-  AddProDuct2,
-  CAdd1,
-  SelectLoaiQuanAo,
-  ListContainer,
-  ListItem,
-  CAdd3,
-  AddAnh2,
-  AddAnh3,
-  AddAnh4,
-  CAdd5,
-  Image,
-  ButtonAdd,
-} from "./fixStyle";
+
+} from "./hoa_donStyle";
 import "boxicons/css/boxicons.min.css";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
