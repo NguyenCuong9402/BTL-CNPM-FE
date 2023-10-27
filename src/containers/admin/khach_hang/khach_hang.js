@@ -45,7 +45,7 @@ import {
   ToggleSwitchIndicator,
   ToggleSwitchSlider,
   ToggleSwitchInput,
-  ToggleSwitchWrapper,
+  ToggleSwitchWrapper, SearchBarContainer, SearchButton, SearchInput
 } from "./khach_hangStyle";
 import "boxicons/css/boxicons.min.css";
 import axios from "axios";
@@ -79,12 +79,15 @@ const ToggleSwitch = ({ isOn, onToggle }) => {
 
 function Khach_Hang() {
   const [isModalOpen, setModalOpen] = useState(false);
-
+  const [text_search, setTextSearch] = useState("");
+  const [text_search1, setTextSearch1] = useState("");
   const [modalMessage, setModalMessage] = useState("");
   const [user_id, setUserDataId] = useState(null);
   const [user_name, setUserName] = useState("");
   const [data, setData] = useState([]);
-
+  const handleSearch = () => {
+    setTextSearch(text_search1);
+  };
   const [orderItems, setOrderItems] = useState([]);
   const handleCloseModal = () => {
     setModalOpen(false);
@@ -104,11 +107,9 @@ function Khach_Hang() {
 
   const [order_by, setOrder_by] = useState("desc"); // Mặc định là desc
 
- 
-
   const toggleOrder = () => {
     // Khi người dùng bấm, thay đổi trạng thái từ 'desc' sang 'asc' hoặc ngược lại
-    const newOrder = order_by === 'desc' ? 'asc' : 'desc';
+    const newOrder = order_by === "desc" ? "asc" : "desc";
     setOrder_by(newOrder);
   };
 
@@ -124,8 +125,8 @@ function Khach_Hang() {
     } else {
       window.location.href = "/admin/login";
     }
-    fetchData(order_by);
-  }, [order_by]);
+    fetchData(order_by, text_search);
+  }, [order_by, text_search]);
 
   useEffect(() => {}, []);
   const avatarUrl = `http://127.0.0.1:5000/api/v1/picture/avatar/${user_id}`;
@@ -137,11 +138,11 @@ function Khach_Hang() {
     window.location.href = "/login";
   };
 
-  const fetchData = async (order_by) => {
+  const fetchData = async (order_by, text_search) => {
     try {
       const access_token = localStorage.getItem("accessToken"); // Get access token from local storage
       const response = await axios.get(
-        `http://127.0.0.1:5000/api/v1/user/list-user?order_by=${order_by}`,
+        `http://127.0.0.1:5000/api/v1/user/list-user?order_by=${order_by}&text_search=${text_search}`,
         {
           headers: {
             Authorization: `Bearer ${access_token}`,
@@ -204,8 +205,6 @@ function Khach_Hang() {
     return lines.join("\n");
   }
 
-  
-
   return (
     <Body>
       <Header>
@@ -214,6 +213,18 @@ function Khach_Hang() {
             <i className="bx bxl-xing"></i>Home
           </a>
         </Navbar>
+        <SearchBarContainer>
+          <SearchInput
+            type="text"
+            placeholder="Search..."
+            value={text_search1}
+            onChange={(e) => setTextSearch1(e.target.value)}
+          />
+          <SearchButton onClick={handleSearch}>
+            <i className="bx bx-search"></i>
+          </SearchButton>
+        </SearchBarContainer>
+
         <UserInfoContainer>
           <UserName>{user_name}</UserName>
           <AvatarContainer>
@@ -254,45 +265,46 @@ function Khach_Hang() {
                 <ChiTietSanPham>Giới tính</ChiTietSanPham>
                 <Action onClick={toggleOrder}>
                   Đã tiêu ($)
-                  {order_by === 'desc' ? (
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    class="icon icon-tabler icon-tabler-circle-arrow-down-filled"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    stroke-width="2"
-                    stroke="currentColor"
-                    fill="none"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  >
-                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                    <path
-                      d="M17 3.34a10 10 0 1 1 -14.995 8.984l-.005 -.324l.005 -.324a10 10 0 0 1 14.995 -8.336zm-5 3.66a1 1 0 0 0 -1 1v5.585l-2.293 -2.292l-.094 -.083a1 1 0 0 0 -1.32 1.497l4 4c.028 .028 .057 .054 .094 .083l.092 .064l.098 .052l.081 .034l.113 .034l.112 .02l.117 .006l.115 -.007l.114 -.02l.142 -.044l.113 -.054l.111 -.071a.939 .939 0 0 0 .112 -.097l4 -4l.083 -.094a1 1 0 0 0 -1.497 -1.32l-2.293 2.291v-5.584l-.007 -.117a1 1 0 0 0 -.993 -.883z"
-                      stroke-width="0"
-                      fill="currentColor"
-                    ></path>
-                  </svg>):(
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    class="icon icon-tabler icon-tabler-circle-arrow-up-filled"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    stroke-width="2"
-                    stroke="currentColor"
-                    fill="none"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  >
-                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                    <path
-                      d="M17 3.34a10 10 0 1 1 -14.995 8.984l-.005 -.324l.005 -.324a10 10 0 0 1 14.995 -8.336zm-4.98 3.66l-.163 .01l-.086 .016l-.142 .045l-.113 .054l-.07 .043l-.095 .071l-.058 .054l-4 4l-.083 .094a1 1 0 0 0 1.497 1.32l2.293 -2.293v5.586l.007 .117a1 1 0 0 0 1.993 -.117v-5.585l2.293 2.292l.094 .083a1 1 0 0 0 1.32 -1.497l-4 -4l-.082 -.073l-.089 -.064l-.113 -.062l-.081 -.034l-.113 -.034l-.112 -.02l-.098 -.006z"
-                      stroke-width="0"
-                      fill="currentColor"
-                    ></path>
-                  </svg>
+                  {order_by === "desc" ? (
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="icon icon-tabler icon-tabler-circle-arrow-down-filled"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      stroke-width="2"
+                      stroke="currentColor"
+                      fill="none"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                      <path
+                        d="M17 3.34a10 10 0 1 1 -14.995 8.984l-.005 -.324l.005 -.324a10 10 0 0 1 14.995 -8.336zm-5 3.66a1 1 0 0 0 -1 1v5.585l-2.293 -2.292l-.094 -.083a1 1 0 0 0 -1.32 1.497l4 4c.028 .028 .057 .054 .094 .083l.092 .064l.098 .052l.081 .034l.113 .034l.112 .02l.117 .006l.115 -.007l.114 -.02l.142 -.044l.113 -.054l.111 -.071a.939 .939 0 0 0 .112 -.097l4 -4l.083 -.094a1 1 0 0 0 -1.497 -1.32l-2.293 2.291v-5.584l-.007 -.117a1 1 0 0 0 -.993 -.883z"
+                        stroke-width="0"
+                        fill="currentColor"
+                      ></path>
+                    </svg>
+                  ) : (
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="icon icon-tabler icon-tabler-circle-arrow-up-filled"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      stroke-width="2"
+                      stroke="currentColor"
+                      fill="none"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                      <path
+                        d="M17 3.34a10 10 0 1 1 -14.995 8.984l-.005 -.324l.005 -.324a10 10 0 0 1 14.995 -8.336zm-4.98 3.66l-.163 .01l-.086 .016l-.142 .045l-.113 .054l-.07 .043l-.095 .071l-.058 .054l-4 4l-.083 .094a1 1 0 0 0 1.497 1.32l2.293 -2.293v5.586l.007 .117a1 1 0 0 0 1.993 -.117v-5.585l2.293 2.292l.094 .083a1 1 0 0 0 1.32 -1.497l-4 -4l-.082 -.073l-.089 -.064l-.113 -.062l-.081 -.034l-.113 -.034l-.112 -.02l-.098 -.006z"
+                        stroke-width="0"
+                        fill="currentColor"
+                      ></path>
+                    </svg>
                   )}
                 </Action>
                 <LoiNhan>Email</LoiNhan>

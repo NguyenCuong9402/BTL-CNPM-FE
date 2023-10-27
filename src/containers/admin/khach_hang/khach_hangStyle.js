@@ -102,7 +102,7 @@ export const HoaDonHeader = styled.div`
 `;
 export const HoaDonCell = styled.div`
   flex: 8;
-  background-color: blue;
+  background-color: white;
   display: flex;
   flex-direction: column;
   overflow-y: auto; /* Thêm độ cuộn lăn khi cần */
@@ -111,6 +111,7 @@ export const HoaDonCell = styled.div`
 export const BodyHoaDon = styled.div`
   flex: 1;
   height: 20%;
+  max-height: 200px;
   width: 100%;
   background-color: white;
   display: flex;
@@ -239,6 +240,33 @@ export const LoiNhanCell = styled.div`
   white-space: pre-wrap;
   word-wrap: break-word;
   overflow-wrap: break-word;
+`;
+
+export const SearchBarContainer = styled.div`
+  display: flex;
+  align-items: center;
+  background-color: #f0f0f0;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 300px;
+`;
+
+export const SearchInput = styled.input`
+  border: none;
+  padding: 10px;
+  flex: 1;
+  border-radius: 5px;
+  outline: none;
+`;
+
+export const SearchButton = styled.button`
+  background-color: black;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  cursor: pointer;
 `;
 
 export const ChiTietSanPhamCell = styled.div`
