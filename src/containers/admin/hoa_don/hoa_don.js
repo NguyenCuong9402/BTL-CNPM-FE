@@ -12,7 +12,7 @@ import {
   Navbar,
   CartImage,
   HoaDon1,
-  HoaDon2, 
+  HoaDon2,
   ContainerProfileA,
   BodyHoaDon,
   ContainerProfileB,
@@ -34,7 +34,18 @@ import {
   TongThanhToanCell,
   Popup,
   CloseButton,
-  Overlay, Popup1, PopupitemColor, PopupitemSize, PopupitemQuantity, PopupitemName, Action, ActionCell
+  Overlay,
+  Popup1,
+  PopupitemColor,
+  PopupitemSize,
+  PopupitemQuantity,
+  PopupitemName,
+  Action,
+  ActionCell,
+  ToggleSwitchIndicator,
+  ToggleSwitchSlider,
+  ToggleSwitchInput,
+  ToggleSwitchWrapper,
 } from "./hoa_donStyle";
 import "boxicons/css/boxicons.min.css";
 import axios from "axios";
@@ -57,6 +68,16 @@ function formatDate(created_date) {
   return formattedCreatedDate;
 }
 
+const ToggleSwitch = ({ isOn, onToggle }) => {
+  return (
+    <ToggleSwitchWrapper>
+      <ToggleSwitchInput type="checkbox" checked={isOn} onChange={onToggle} />
+      <ToggleSwitchSlider className="slider" isOn={isOn} />
+      <ToggleSwitchIndicator isOn={isOn} />
+    </ToggleSwitchWrapper>
+  );
+};
+
 function HoaDon() {
   const [isModalOpen, setModalOpen] = useState(false);
 
@@ -74,13 +95,12 @@ function HoaDon() {
 
   function openPopup(list) {
     setShowPopup(true);
-    setOrderItems(list)
+    setOrderItems(list);
   }
 
   function closePopup() {
     setShowPopup(false);
-    setOrderItems([])
-
+    setOrderItems([]);
   }
 
   useEffect(() => {
@@ -133,6 +153,40 @@ function HoaDon() {
     }
   };
 
+  const handleToggle = async (trang_thai, id) => {
+    if (trang_thai) {
+      setModalMessage("Đơn hàng đã được xếp!");
+      setModalOpen(true);
+    } else {
+      try {
+        const access_token = localStorage.getItem("accessToken");
+        const response = await axios.put(
+          `http://127.0.0.1:5000/api/v1/orders/${id}`,
+          {},
+          {
+            headers: {
+              Authorization: `Bearer ${access_token}`,
+            },
+          }
+        );
+  
+        if (response.data.message.status === "success") {
+          setModalMessage(response.data.message.text);
+          setModalOpen(true);
+          fetchData()
+        }
+        setModalMessage(response.data.message.text);
+        setModalOpen(true);
+  
+        console.log("Dữ liệu đã được gửi thành công:", response.data);
+      } catch (error) {
+        // Xử lý lỗi ở đây nếu cần.
+  
+        console.error("Lỗi khi gửi dữ liệu:", error);
+      }
+    }
+  };
+
   console.log(data);
 
   return (
@@ -173,8 +227,6 @@ function HoaDon() {
             ></p>
           </ContainerProfileA>
           <ContainerProfileB>
-            <HoaDon2></HoaDon2>
-
             <HoaDon1>
               <HoaDonHeader>
                 <User>Người mua hàng</User>
@@ -185,13 +237,11 @@ function HoaDon() {
                 <ChiTietSanPham>Chi tiết đơn hàng</ChiTietSanPham>
                 <Action>Tình trạng</Action>
                 <LoiNhan>Lời nhắn</LoiNhan>
-
               </HoaDonHeader>
               <HoaDonCell>
-                {data.map((item) => (   
+                {data.map((item) => (
                   <BodyHoaDon>
                     <UserCell>{item.user_name} </UserCell>
-                    
                     <DiaChiCell>
                       {item.address}, {item.xa}, {item.huyen}, {item.tinh}
                     </DiaChiCell>
@@ -202,12 +252,18 @@ function HoaDon() {
                       {item.tong_thanh_toan}
                     </TongThanhToanCell>
                     <CreatedDateCell>{item.created_date}</CreatedDateCell>
-                    <ChiTietSanPhamCell onClick={() => openPopup(item.order_items)}>
+                    <ChiTietSanPhamCell
+                      onClick={() => openPopup(item.order_items)}
+                    >
                       Xem Chi Tiết
                     </ChiTietSanPhamCell>
-                    <ActionCell></ActionCell>
+                    <ActionCell>
+                      <ToggleSwitch
+                        isOn={item.trang_thai}
+                        onToggle={() => handleToggle(item.trang_thai, item.id)}
+                      />
+                    </ActionCell>{" "}
                     <LoiNhanCell>{item.loi_nhan}</LoiNhanCell>
-
                   </BodyHoaDon>
                 ))}
               </HoaDonCell>
@@ -236,19 +292,19 @@ function HoaDon() {
                   </svg>
                 </CloseButton>
                 <Popup1>
-                    <PopupitemName>Tên</PopupitemName>
-                    <PopupitemColor>Màu</PopupitemColor>
-                    <PopupitemQuantity>SL</PopupitemQuantity>
-                    <PopupitemSize>Size</PopupitemSize>
-                  </Popup1>
-                {orderItems.map((item) => ( 
+                  <PopupitemName>Tên</PopupitemName>
+                  <PopupitemColor>Màu</PopupitemColor>
+                  <PopupitemQuantity>SL</PopupitemQuantity>
+                  <PopupitemSize>Size</PopupitemSize>
+                </Popup1>
+                {orderItems.map((item) => (
                   <Popup1>
                     <PopupitemName>{item.product_name}</PopupitemName>
                     <PopupitemColor>{item.color}</PopupitemColor>
                     <PopupitemQuantity>{item.size}</PopupitemQuantity>
                     <PopupitemSize>{item.quantity}</PopupitemSize>
                   </Popup1>
-                ))}         
+                ))}
               </Popup>
             </>
           )}

@@ -56,7 +56,7 @@ export const Container4 = styled.div`
 `;
 
 export const Container2 = styled.div`
-  width: 100%;
+  width: 70%;
   background-color: white; /* Màu nền của Container2 */
   height: 100%; /* Chiều cao 100% */
   display: flex;
@@ -492,3 +492,43 @@ export const Body = styled.div`
   flex-direction: column;
   align-items: center;
 `;
+
+export const ToggleSwitchWrapper = styled.label`
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+`;
+
+export const ToggleSwitchInput = styled.input`
+  opacity: 0;
+  width: 0;
+  height: 0;
+`;
+
+export const ToggleSwitchSlider = styled.span`
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: ${(props) => (props.isOn ? '#00f' : '#ccc')}; /* Đổi màu nền dựa trên isOn */
+  transition: 0.4s;
+  border-radius: 34px;
+  transform: translateX(${(props) => (props.isOn ? '26px' : '0')}); /* Thay đổi vị trí dựa trên isOn */
+`;
+
+export const ToggleSwitchIndicator = styled.span`
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: ${(props) => (props.isOn ? '30px' : '4px')}; /* Thay đổi vị trí dựa trên isOn */
+  bottom: 4px;
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 50%;
+  transform: translateX(${(props) => (props.isOn ? '26px' : '0')}); /* Thay đổi vị trí dựa trên isOn */
+`;
+
