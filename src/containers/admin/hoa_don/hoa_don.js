@@ -230,8 +230,9 @@ function HoaDon() {
                     <path d="M6 6l12 12"></path>
                   </svg>
                 </CloseButton>
-                {data.map((item) => ( 
+                {orderItems.map((item) => ( 
                   <Popup1>
+                    oke
                   </Popup1>
                 ))}         
               </Popup>
