@@ -340,8 +340,9 @@ function Nhan_Vien() {
                 <DonViGiaoHang>Số điện thoại</DonViGiaoHang>
                 <CreatedDate>Ngày Sinh</CreatedDate>
                 <ChiTietSanPham>Giới tính</ChiTietSanPham>
-                <Action>Đã tiêu ($)</Action>
                 <LoiNhan>Email</LoiNhan>
+
+                <Action></Action>
               </HoaDonHeader>
               <HoaDonCell>
                 {data.map((item) => (
@@ -407,16 +408,17 @@ function Nhan_Vien() {
                         </svg>
                       )}
                     </ChiTietSanPhamCell>
+                    <LoiNhanCell>
+                      {" "}
+                      {splitEmailIntoLines(item.email, 20)}
+                    </LoiNhanCell>
                     <ActionCell>
                       <ToggleSwitch
                         isOn={item.is_active}
                         onToggle={() => handleToggle(item.id)}
                       />
                     </ActionCell>{" "}
-                    <LoiNhanCell>
-                      {" "}
-                      {splitEmailIntoLines(item.email, 20)}
-                    </LoiNhanCell>
+                    
                   </BodyHoaDon>
                 ))}
               </HoaDonCell>
