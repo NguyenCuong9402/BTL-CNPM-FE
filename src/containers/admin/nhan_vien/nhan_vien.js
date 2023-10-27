@@ -196,15 +196,11 @@ function Nhan_Vien() {
     }
   };
 
-  const handleToggle = async (trang_thai, id) => {
-    if (trang_thai) {
-      setModalMessage("Đơn hàng đã được xếp!");
-      setModalOpen(true);
-    } else {
+  const handleToggle = async (id) => {
       try {
         const access_token = localStorage.getItem("accessToken");
         const response = await axios.put(
-          `http://127.0.0.1:5000/api/v1/orders/${id}`,
+          `http://127.0.0.1:5000/api/v1/user/change-active/${id}`,
           {},
           {
             headers: {
@@ -214,9 +210,7 @@ function Nhan_Vien() {
         );
 
         if (response.data.message.status === "success") {
-          setModalMessage(response.data.message.text);
-          setModalOpen(true);
-          fetchData();
+          fetchData(order_by, text_search);
         }
         setModalMessage(response.data.message.text);
         setModalOpen(true);
@@ -227,7 +221,6 @@ function Nhan_Vien() {
 
         console.error("Lỗi khi gửi dữ liệu:", error);
       }
-    }
   };
 
   function splitEmailIntoLines(email, maxLineLength) {
@@ -415,11 +408,10 @@ function Nhan_Vien() {
                       )}
                     </ChiTietSanPhamCell>
                     <ActionCell>
-                      {/* <ToggleSwitch
-                        isOn={item.trang_thai}
-                        onToggle={() => handleToggle(item.trang_thai, item.id)}
-                      /> */}
-                      {item.count_money_buy}
+                      <ToggleSwitch
+                        isOn={item.is_active}
+                        onToggle={() => handleToggle(item.id)}
+                      />
                     </ActionCell>{" "}
                     <LoiNhanCell>
                       {" "}

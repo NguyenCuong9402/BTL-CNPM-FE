@@ -181,8 +181,7 @@ function Khach_Hang() {
         );
 
         if (response.data.message.status === "success") {
-          setModalMessage(response.data.message.text);
-          setModalOpen(true);
+          
           fetchData();
         }
         setModalMessage(response.data.message.text);
