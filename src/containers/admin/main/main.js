@@ -355,6 +355,10 @@ function Main() {
     setAddressUser(newAddress);
   };
 
+  const handleEditClick = (itemId) => {
+    history.push(`/admin/fix/${itemId}`);
+  };
+
   const handleInputPhoneChange = (newPhone) => {
     setPhoneUser(newPhone);
   };
@@ -781,6 +785,7 @@ function Main() {
                         <TotalColumnCell>{item.created_date}</TotalColumnCell>
                         <FixColumnCell>
                           <svg
+                            onClick={() => handleEditClick(item.id)}
                             xmlns="http://www.w3.org/2000/svg"
                             class="icon icon-tabler icon-tabler-edit"
                             width="24"

@@ -192,6 +192,8 @@ export const AddAnh3 = styled.div`
 
 export const Image = styled.img`
   width: 100%;
+  max-height:600px;
+  max-width: 500px;
   height: 100%;
   object-fit: cover; /* Đảm bảo hình ảnh vừa đủ bên trong phần tử con */
 `;
