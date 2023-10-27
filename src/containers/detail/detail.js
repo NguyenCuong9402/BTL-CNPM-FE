@@ -192,7 +192,7 @@ function Detail() {
         <div class="product-content">
           {/* <p class="product-subtitle">Nike Company</p> */}
           <div class="h4 product-title">
-            <h4>{product_data.name}</h4>
+            <h4 style={{fontFamily: "Arial, sans-serif"}}>{product_data.name}</h4>
           </div>
           <p class="product-text">{product_data.describe}</p>
           <div class="wrapper">
