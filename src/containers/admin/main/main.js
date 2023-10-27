@@ -412,6 +412,10 @@ function Main() {
   const MoveDonHang = () => {
     history.push(`/admin/order`, {});
   };
+
+  const MoveKhachHang = () => {
+    history.push(`/admin/user`, {});
+  };
   const ChooseTinh = (newTinh) => {
     SetTinh(newTinh);
     fetchDiaChi(newTinh, "", "");
@@ -707,8 +711,7 @@ function Main() {
                 Đơn hàng
               </ButtonContainer6>
               <ButtonContainer6
-                active={activeButton === 5}
-                onClick={() => setActiveButton(5)}
+                onClick={MoveKhachHang}
               >
                 Khách hàng
               </ButtonContainer6>

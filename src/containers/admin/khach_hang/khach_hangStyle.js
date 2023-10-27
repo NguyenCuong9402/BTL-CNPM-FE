@@ -56,7 +56,7 @@ export const Container4 = styled.div`
 `;
 
 export const Container2 = styled.div`
-  width: 70%;
+  width: 90%;
   background-color: white; /* Màu nền của Container2 */
   height: 100%; /* Chiều cao 100% */
   display: flex;
@@ -236,6 +236,9 @@ export const LoiNhanCell = styled.div`
   align-items: center;
   justify-content: center;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 `;
 
 export const ChiTietSanPhamCell = styled.div`
@@ -246,10 +249,7 @@ export const ChiTietSanPhamCell = styled.div`
   justify-content: center;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
 
-   
-  &:hover {
-    background-color: orange; /* Màu cam khi hover vào */
-  }
+  
 `;
 
 export const ActionCell = styled.div`
