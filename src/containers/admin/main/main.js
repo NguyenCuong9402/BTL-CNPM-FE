@@ -416,6 +416,11 @@ function Main() {
   const MoveKhachHang = () => {
     history.push(`/admin/user`, {});
   };
+
+  const MoveNhanVien = () => {
+    history.push(`/admin/nhan_vien`, {});
+  };
+  
   const ChooseTinh = (newTinh) => {
     SetTinh(newTinh);
     fetchDiaChi(newTinh, "", "");
@@ -719,6 +724,9 @@ function Main() {
             <Ct4>
               <ButtonContainer6 onClick={MoveAddItem}>
                 Thêm sản phẩm
+              </ButtonContainer6>
+              <ButtonContainer6 onClick={MoveNhanVien}>
+                Nhân viên
               </ButtonContainer6>
             </Ct4>
           </Container6>

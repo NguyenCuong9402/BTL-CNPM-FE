@@ -142,7 +142,7 @@ function Nhan_Vien() {
     try {
       const access_token = localStorage.getItem("accessToken"); // Get access token from local storage
       const response = await axios.get(
-        `http://127.0.0.1:5000/api/v1/user/list-user?order_by=${order_by}&text_search=${text_search}`,
+        `http://127.0.0.1:5000/api/v1/user/list-nhan-vien?order_by=${order_by}&text_search=${text_search}`,
         {
           headers: {
             Authorization: `Bearer ${access_token}`,
@@ -244,7 +244,7 @@ function Nhan_Vien() {
                 fontFamily: "Arial, sans-serif",
               }}
             >
-              Danh sách khách hàng.
+              Danh sách quản lý cửa hàng.
             </h2>
             <p
               style={{
@@ -257,16 +257,13 @@ function Nhan_Vien() {
           <ContainerProfileB>
             <HoaDon1>
               <HoaDonHeader>
-                <User>Tên</User>
-                <DiaChi>Địa chỉ</DiaChi>
-                <DonViGiaoHang>Số điện thoại</DonViGiaoHang>
                 <TongThanhToan>Đăng ký</TongThanhToan>
-                <CreatedDate>Ngày Sinh</CreatedDate>
-                <ChiTietSanPham>Giới tính</ChiTietSanPham>
-                <Action onClick={toggleOrder}>
-                  Đã tiêu ($)
-                  {order_by === "desc" ? (
+
+                <User onClick={toggleOrder} >Tên  
+                {order_by === "desc" ? (
                     <svg
+
+                      style={{marginLeft:'15px'}}
                       xmlns="http://www.w3.org/2000/svg"
                       class="icon icon-tabler icon-tabler-circle-arrow-down-filled"
                       width="24"
@@ -287,6 +284,7 @@ function Nhan_Vien() {
                     </svg>
                   ) : (
                     <svg
+                      style={{marginLeft:'15px'}}
                       xmlns="http://www.w3.org/2000/svg"
                       class="icon icon-tabler icon-tabler-circle-arrow-up-filled"
                       width="24"
@@ -305,19 +303,27 @@ function Nhan_Vien() {
                         fill="currentColor"
                       ></path>
                     </svg>
-                  )}
+                  )}</User>
+                <DiaChi>Địa chỉ</DiaChi>
+                <DonViGiaoHang>Số điện thoại</DonViGiaoHang>
+                <CreatedDate>Ngày Sinh</CreatedDate>
+                <ChiTietSanPham>Giới tính</ChiTietSanPham>
+                <Action >
+                  Đã tiêu ($)
+                  
                 </Action>
                 <LoiNhan>Email</LoiNhan>
               </HoaDonHeader>
               <HoaDonCell>
                 {data.map((item) => (
                   <BodyHoaDon>
+                    <TongThanhToanCell>{item.created_date}</TongThanhToanCell>
+
                     <UserCell>{item.name_user} </UserCell>
                     <DiaChiCell>
                       {item.address}, {item.xa}, {item.huyen}, {item.tinh}
                     </DiaChiCell>
                     <DonViGiaoHangCell>{item.phone_number}</DonViGiaoHangCell>
-                    <TongThanhToanCell>{item.created_date}</TongThanhToanCell>
                     <CreatedDateCell>{item.birthday}</CreatedDateCell>
                     <ChiTietSanPhamCell>
                       {item.gender === 0 ? (
