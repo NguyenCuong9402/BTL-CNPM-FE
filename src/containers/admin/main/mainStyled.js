@@ -164,6 +164,57 @@ export const ContainerProfileB = styled.div`
   flex-direction: row;
   
 `;
+export const Phan2 = styled.div`
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+
+  justify-content: center;
+  align-items: center;
+
+`;
+
+export const Phan3 = styled.div`
+  flex: 1;
+  display: flex;
+  background-color: blue;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+`;
+
+export const AddAnh2 = styled.div`
+  flex: 4;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+export const AddAnh3 = styled.div`
+  flex: 1;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+`;
+
+export const Image = styled.img`
+ max-width: 500px;
+ max-height: 500px;
+  object-fit: cover;
+`;
+
+export const AddAnh4 = styled.div`
+  flex: 5;
+  width: 100%;
+
+  background-color: white;
+  display: flex;
+  justify-content: center;
+`;
 
 export const SanPham1 = styled.div`
   flex: 8;
@@ -251,6 +302,16 @@ export const RightContainerProduct = styled.div`
   flex-direction: column;
   display: flex;
   justify-content: center; /* Căn giữa theo chiều ngang */
+`;
+
+export const ButtonAdd = styled.button`
+  background-color: orange;
+  width: 150px;
+  height: 50px;
+  color: white;
+  &:hover {
+    background-color: #ff7700;
+  }
 `;
 
 
@@ -796,9 +857,12 @@ export const StyledButtonSave = styled.button`
 `;
 
 export const ContainerProfileB3 = styled.div`
-  flex: 5; /* ContainerProfileB3 chiếm 20% tỷ lệ flex của ContainerProfileB */
-  background-color: blue; /* Màu nền của ContainerProfileB3 */
-  width: 20%;
+  flex: 5;
+  display: flex;
+  justify-content:center;
+  align-items: center;
+  flex-direction: column;
+
 `;
 
 export const Header = styled.header`

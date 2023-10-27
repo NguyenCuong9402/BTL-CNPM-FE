@@ -24,6 +24,10 @@ import {
   Ct1,
   Ct2,
   Ct3,
+  AddAnh2,
+  AddAnh3,
+  AddAnh4,
+  Image,
   Ct4,
   TextContainer5,
   IconContainer5,
@@ -88,7 +92,13 @@ import {
   PhanLoaiColumnCell,
   PriceColumnCell,
   TotalColumnCell,
-  QuantityColumnCell, ContainerSp1, ContainerSp2, DeleteButton
+  QuantityColumnCell,
+  ContainerSp1,
+  ContainerSp2,
+  DeleteButton,
+  ButtonAdd,
+  Phan2,
+  Phan3,
 } from "./mainStyled";
 import "boxicons/css/boxicons.min.css";
 import axios from "axios";
@@ -154,14 +164,10 @@ function Main() {
   const [selectAll, setSelectAll] = useState(false);
   const [selectedRows, setSelectedRows] = useState([]);
   const [isDeleteButtonVisible, setIsDeleteButtonVisible] = useState(false);
-  
-  
-  const [email_nv, SetEmailNV] = useState("")
-  const [sdt_nv, Setsdtnv] = useState("")
-  const [ten_nv, set_ten_nv] = useState("")
 
-         
-
+  const [email_nv, SetEmailNV] = useState("");
+  const [sdt_nv, Setsdtnv] = useState("");
+  const [ten_nv, set_ten_nv] = useState("");
 
   const handleSelectAllClick = () => {
     if (selectAll) {
@@ -185,9 +191,7 @@ function Main() {
     }
   };
 
-  const handleDeleteButtonClick = () =>{
-    
-  }
+  const handleDeleteButtonClick = () => {};
 
   const handlePageSizeChange = (e) => {
     const newSize = parseInt(e.target.value);
@@ -232,8 +236,6 @@ function Main() {
     }
     fetchDataNguoiDung();
   }, []);
-
-
 
   const CreateNV = async () => {
     try {
@@ -368,6 +370,19 @@ function Main() {
   const handleDateChange = (date) => {
     setSelectedDate(date);
   };
+
+  const [image, setImage] = useState(null);
+
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+
+  if (file) {
+    setImage(file);
+  } else {
+    setImage(null); // Đặt `image` thành null nếu không có file được chọn
+  }
+  };
+
   const getType = async () => {
     try {
       const response = await axios.get(
@@ -504,6 +519,8 @@ function Main() {
     }
   };
 
+  const Thayavatar = async () => {};
+
   const ChangePassWordUser = async () => {
     try {
       const access_token = localStorage.getItem("accessToken"); // Get access token from local storage
@@ -619,9 +636,7 @@ function Main() {
               </ButtonContainer6>
             </Ct3>
             <Ct4>
-              <ButtonContainer6
-                onClick={MoveAddItem}
-              >
+              <ButtonContainer6 onClick={MoveAddItem}>
                 Thêm sản phẩm
               </ButtonContainer6>
             </Ct4>
@@ -721,56 +736,58 @@ function Main() {
                     ))}
                   </SanPham6>
                   <SanPham7>
-                  <ContainerSp1>
-                  {isDeleteButtonVisible && (
-                    <DeleteButton onClick={handleDeleteButtonClick}>Xóa</DeleteButton>
-                  )}
-                  </ContainerSp1>
-                  <ContainerSp2>
-                    <div>
-                      <label
-                        htmlFor="pageSizeSelect"
-                        style={{ fontWeight: "bold", color: "green" }}
-                      >
-                        PageSize:{" "}
-                      </label>
-                      <select
-                        id="pageSizeSelect"
-                        value={pageSize}
-                        onChange={handlePageSizeChange}
-                      >
-                        <option value={4}>4</option>
-                        <option value={12}>12</option>
-                        <option value={20}>20</option>
-                        <option value={28}>28</option>
-                        <option value={40}>40</option>
-                      </select>
-                    </div>
+                    <ContainerSp1>
+                      {isDeleteButtonVisible && (
+                        <DeleteButton onClick={handleDeleteButtonClick}>
+                          Xóa
+                        </DeleteButton>
+                      )}
+                    </ContainerSp1>
+                    <ContainerSp2>
+                      <div>
+                        <label
+                          htmlFor="pageSizeSelect"
+                          style={{ fontWeight: "bold", color: "green" }}
+                        >
+                          PageSize:{" "}
+                        </label>
+                        <select
+                          id="pageSizeSelect"
+                          value={pageSize}
+                          onChange={handlePageSizeChange}
+                        >
+                          <option value={4}>4</option>
+                          <option value={12}>12</option>
+                          <option value={20}>20</option>
+                          <option value={28}>28</option>
+                          <option value={40}>40</option>
+                        </select>
+                      </div>
 
-                    <PaginationButton
-                      onClick={handlePrevPage}
-                      disabled={currentPage === 1}
-                    >
-                      ←
-                    </PaginationButton>
-                    {listPage.map((page) => (
-                      <PaginationButtonPage
-                        key={page}
-                        onClick={() => handlePageClick(page)}
-                        className={page === currentPage ? "active" : ""}
+                      <PaginationButton
+                        onClick={handlePrevPage}
+                        disabled={currentPage === 1}
                       >
-                        {page}
-                      </PaginationButtonPage>
-                    ))}
-                    <PaginationButton
-                      onClick={handleNextPage}
-                      disabled={currentPage === totalPages}
-                    >
-                      →
-                    </PaginationButton>
-                    <PaginationInfo>
-                      Page {currentPage} of {totalPages}
-                    </PaginationInfo>
+                        ←
+                      </PaginationButton>
+                      {listPage.map((page) => (
+                        <PaginationButtonPage
+                          key={page}
+                          onClick={() => handlePageClick(page)}
+                          className={page === currentPage ? "active" : ""}
+                        >
+                          {page}
+                        </PaginationButtonPage>
+                      ))}
+                      <PaginationButton
+                        onClick={handleNextPage}
+                        disabled={currentPage === totalPages}
+                      >
+                        →
+                      </PaginationButton>
+                      <PaginationInfo>
+                        Page {currentPage} of {totalPages}
+                      </PaginationInfo>
                     </ContainerSp2>
                   </SanPham7>
                 </SanPham1>
@@ -1104,7 +1121,55 @@ function Main() {
                     </StyledButtonSave>
                   </ColumnProfileT7>
                 </ContainerProfileB2>
-                <ContainerProfileB3></ContainerProfileB3>
+                <ContainerProfileB3>
+                  <Phan2>
+                    <AddAnh2>
+                      {" "}
+                      {image ? (
+                        <Image
+                          src={URL.createObjectURL(image)}
+                          alt="Selected Image"
+                        />
+                      ) : (
+                        <svg
+                          style={{ width: "1000%", height: "100%" }}
+                          xmlns="http://www.w3.org/2000/svg"
+                          class="icon icon-tabler icon-tabler-photo-filled"
+                          width="24"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          stroke-width="2"
+                          stroke="currentColor"
+                          fill="none"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        >
+                          <path
+                            stroke="none"
+                            d="M0 0h24v24H0z"
+                            fill="none"
+                          ></path>
+                          <path
+                            d="M8.813 11.612c.457 -.38 .918 -.38 1.386 .011l.108 .098l4.986 4.986l.094 .083a1 1 0 0 0 1.403 -1.403l-.083 -.094l-1.292 -1.293l.292 -.293l.106 -.095c.457 -.38 .918 -.38 1.386 .011l.108 .098l4.674 4.675a4 4 0 0 1 -3.775 3.599l-.206 .005h-12a4 4 0 0 1 -3.98 -3.603l6.687 -6.69l.106 -.095zm9.187 -9.612a4 4 0 0 1 3.995 3.8l.005 .2v9.585l-3.293 -3.292l-.15 -.137c-1.256 -1.095 -2.85 -1.097 -4.096 -.017l-.154 .14l-.307 .306l-2.293 -2.292l-.15 -.137c-1.256 -1.095 -2.85 -1.097 -4.096 -.017l-.154 .14l-5.307 5.306v-9.585a4 4 0 0 1 3.8 -3.995l.2 -.005h12zm-2.99 5l-.127 .007a1 1 0 0 0 0 1.986l.117 .007l.127 -.007a1 1 0 0 0 0 -1.986l-.117 -.007z"
+                            stroke-width="0"
+                            fill="currentColor"
+                          ></path>
+                        </svg>
+                      )}
+                    </AddAnh2>
+                    <AddAnh3>
+                      {" "}
+                      <input
+                        type="file"
+                        accept="image/*"
+                        onChange={handleImageChange}
+                      />
+                    </AddAnh3>
+                    <AddAnh4>
+                      <ButtonAdd onClick={Thayavatar}>Thay avatar</ButtonAdd>
+                    </AddAnh4>
+                  </Phan2>
+                </ContainerProfileB3>
               </ContainerProfileB>
             </React.Fragment>
           )}
@@ -1214,95 +1279,92 @@ function Main() {
 
           {activeButton === 6 && (
             <React.Fragment>
-            <ContainerProfileA>
-              <h2
-                style={{
-                  marginLeft: "25px",
-                  fontWeight: "bold",
-                  fontSize: "30px",
-                }}
-              >
-                Tạo tài khoản cho nhân viên!
-              </h2>
-              <p style={{ marginLeft: "25px", fontSize: "16px" }}>
-                
-              </p>
-            </ContainerProfileA>
-            <ContainerProfileB>
-              <ContainerProfile2B1>
-                <ColumnProfileB1>
-                  <p style={{ fontSize: "20px", marginRight: "15px" }}>
-                    Email nhân viên:
-                  </p>
-                </ColumnProfileB1>
-                <ColumnProfileB1>
-                  <p style={{ fontSize: "20px", marginRight: "15px" }}>
-                    Số điện thoại:
-                  </p>
-                </ColumnProfileB1>
-                <ColumnProfileB1>
-                  <p style={{ fontSize: "20px", marginRight: "15px" }}>
-                    Tên nhân viên:
-                  </p>
-                </ColumnProfileB1>
-                <ColumnProfileB1></ColumnProfileB1>
-                <ColumnProfileB1></ColumnProfileB1>
-              </ContainerProfile2B1>
-              <ContainerProfile2B1>
-                <ColumnProfileB2>
-                  <input
-                    type="email"
-                    value={email_nv}
-                    onChange={(e) => SetEmailNV(e.target.value)}
-                    style={{
-                      width: "97%", // Đặt chiều rộng của ô Input
-                      padding: "10px", // Thêm padding để làm cho nó lớn hơn
-                      border: "1px solid #ccc", // Định dạng đường viền
-                      borderRadius: "5px", // Định dạng góc bo tròn
-                      fontSize: "13px", // Đặt kích thước chữ
-                    }}
-                  />  
-                </ColumnProfileB2>
-                <ColumnProfileB2>
-                  <input
-                    type="text"
-                    value={sdt_nv}
-                    onChange={(e) => Setsdtnv(e.target.value)}
-                    style={{
-                      width: "97%", // Đặt chiều rộng của ô Input
-                      padding: "10px", // Thêm padding để làm cho nó lớn hơn
-                      border: "1px solid #ccc", // Định dạng đường viền
-                      borderRadius: "5px", // Định dạng góc bo tròn
-                      fontSize: "13px", // Đặt kích thước chữ
-                    }}
-                  />
-                </ColumnProfileB2>
-                <ColumnProfileB2>
-                  <input
-                    type="text"
-                    value={ten_nv}
-                    onChange={(e) => set_ten_nv(e.target.value)}
-                    style={{
-                      width: "97%", // Đặt chiều rộng của ô Input
-                      padding: "10px", // Thêm padding để làm cho nó lớn hơn
-                      border: "1px solid #ccc", // Định dạng đường viền
-                      borderRadius: "5px", // Định dạng góc bo tròn
-                      fontSize: "13px", // Đặt kích thước chữ
-                    }}
-                  />
-                </ColumnProfileB2>
-                <ColumnProfileB2ChuaButtonSave>
-                  <StyledButtonSave onClick={() => CreateNV()}>
-                    Tạo
-                  </StyledButtonSave>
-                </ColumnProfileB2ChuaButtonSave>
-                <ColumnProfileB2></ColumnProfileB2>
-              </ContainerProfile2B1>
-              <ContainerProfile2B2></ContainerProfile2B2>
-            </ContainerProfileB>
-          </React.Fragment>
+              <ContainerProfileA>
+                <h2
+                  style={{
+                    marginLeft: "25px",
+                    fontWeight: "bold",
+                    fontSize: "30px",
+                  }}
+                >
+                  Tạo tài khoản cho nhân viên!
+                </h2>
+                <p style={{ marginLeft: "25px", fontSize: "16px" }}></p>
+              </ContainerProfileA>
+              <ContainerProfileB>
+                <ContainerProfile2B1>
+                  <ColumnProfileB1>
+                    <p style={{ fontSize: "20px", marginRight: "15px" }}>
+                      Email nhân viên:
+                    </p>
+                  </ColumnProfileB1>
+                  <ColumnProfileB1>
+                    <p style={{ fontSize: "20px", marginRight: "15px" }}>
+                      Số điện thoại:
+                    </p>
+                  </ColumnProfileB1>
+                  <ColumnProfileB1>
+                    <p style={{ fontSize: "20px", marginRight: "15px" }}>
+                      Tên nhân viên:
+                    </p>
+                  </ColumnProfileB1>
+                  <ColumnProfileB1></ColumnProfileB1>
+                  <ColumnProfileB1></ColumnProfileB1>
+                </ContainerProfile2B1>
+                <ContainerProfile2B1>
+                  <ColumnProfileB2>
+                    <input
+                      type="email"
+                      value={email_nv}
+                      onChange={(e) => SetEmailNV(e.target.value)}
+                      style={{
+                        width: "97%", // Đặt chiều rộng của ô Input
+                        padding: "10px", // Thêm padding để làm cho nó lớn hơn
+                        border: "1px solid #ccc", // Định dạng đường viền
+                        borderRadius: "5px", // Định dạng góc bo tròn
+                        fontSize: "13px", // Đặt kích thước chữ
+                      }}
+                    />
+                  </ColumnProfileB2>
+                  <ColumnProfileB2>
+                    <input
+                      type="text"
+                      value={sdt_nv}
+                      onChange={(e) => Setsdtnv(e.target.value)}
+                      style={{
+                        width: "97%", // Đặt chiều rộng của ô Input
+                        padding: "10px", // Thêm padding để làm cho nó lớn hơn
+                        border: "1px solid #ccc", // Định dạng đường viền
+                        borderRadius: "5px", // Định dạng góc bo tròn
+                        fontSize: "13px", // Đặt kích thước chữ
+                      }}
+                    />
+                  </ColumnProfileB2>
+                  <ColumnProfileB2>
+                    <input
+                      type="text"
+                      value={ten_nv}
+                      onChange={(e) => set_ten_nv(e.target.value)}
+                      style={{
+                        width: "97%", // Đặt chiều rộng của ô Input
+                        padding: "10px", // Thêm padding để làm cho nó lớn hơn
+                        border: "1px solid #ccc", // Định dạng đường viền
+                        borderRadius: "5px", // Định dạng góc bo tròn
+                        fontSize: "13px", // Đặt kích thước chữ
+                      }}
+                    />
+                  </ColumnProfileB2>
+                  <ColumnProfileB2ChuaButtonSave>
+                    <StyledButtonSave onClick={() => CreateNV()}>
+                      Tạo
+                    </StyledButtonSave>
+                  </ColumnProfileB2ChuaButtonSave>
+                  <ColumnProfileB2></ColumnProfileB2>
+                </ContainerProfile2B1>
+                <ContainerProfile2B2></ContainerProfile2B2>
+              </ContainerProfileB>
+            </React.Fragment>
           )}
-          
         </Container2>
       </Container>
       <Modal
