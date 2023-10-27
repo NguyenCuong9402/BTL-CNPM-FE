@@ -32,6 +32,9 @@ import {
   CreatedDateCell,
   DonViGiaoHangCell,
   TongThanhToanCell,
+  Popup,
+  CloseButton,
+  Overlay, Popup1
 } from "./hoa_donStyle";
 import "boxicons/css/boxicons.min.css";
 import axios from "axios";
@@ -60,10 +63,25 @@ function HoaDon() {
   const [modalMessage, setModalMessage] = useState("");
   const [user_id, setUserDataId] = useState(null);
   const [user_name, setUserName] = useState("");
-  const [data, setData] = useState([])
+  const [data, setData] = useState([]);
+
+  const [orderItems, setOrderItems] = useState([]);
   const handleCloseModal = () => {
     setModalOpen(false);
   };
+
+  const [showPopup, setShowPopup] = useState(false);
+
+  function openPopup(list) {
+    setShowPopup(true);
+    setOrderItems(list)
+  }
+
+  function closePopup() {
+    setShowPopup(false);
+    setOrderItems([])
+
+  }
 
   useEffect(() => {
     const userDataFromLocalStorage = JSON.parse(localStorage.getItem("user"));
@@ -77,7 +95,7 @@ function HoaDon() {
     } else {
       window.location.href = "/admin/login";
     }
-    fetchData()
+    fetchData();
   }, []);
 
   useEffect(() => {}, []);
@@ -105,7 +123,6 @@ function HoaDon() {
         const formattedData = response.data.data.map((item) => ({
           ...item,
           created_date: formatDate(item.created_date), // Format the timestamp
-
         }));
         setData(formattedData);
       } else {
@@ -115,6 +132,8 @@ function HoaDon() {
       console.error("Error calling history API:", error);
     }
   };
+
+  console.log(data);
 
   return (
     <Body>
@@ -167,20 +186,57 @@ function HoaDon() {
                 <CreatedDate>Ngày</CreatedDate>
               </HoaDonHeader>
               <HoaDonCell>
-              {data.map((item) => (
-                <BodyHoaDon>
-                <UserCell> {item.user_name}</UserCell>
-                <ChiTietSanPhamCell></ChiTietSanPhamCell>
-                <LoiNhanCell>{item.loi_nhan}</LoiNhanCell>
-                <DiaChiCell>{item.address}, {item.xa}, {item.huyen}, {item.tinh}</DiaChiCell>
-                <DonViGiaoHangCell>{item.don_vi_ship} ({item.gia_ship}$)</DonViGiaoHangCell>
-                <TongThanhToanCell>{item.tong_thanh_toan}</TongThanhToanCell>
-                <CreatedDateCell>{item.created_date}</CreatedDateCell>
-              </BodyHoaDon>
-              ))}
+                {data.map((item) => (   
+                  <BodyHoaDon>
+                    <UserCell> {item.user_name}</UserCell>
+                    <ChiTietSanPhamCell onClick={() => openPopup(item.order_items)}>
+                      Xem Chi Tiết
+                    </ChiTietSanPhamCell>
+                    <LoiNhanCell>{item.loi_nhan}</LoiNhanCell>
+                    <DiaChiCell>
+                      {item.address}, {item.xa}, {item.huyen}, {item.tinh}
+                    </DiaChiCell>
+                    <DonViGiaoHangCell>
+                      {item.don_vi_ship} ({item.gia_ship}$)
+                    </DonViGiaoHangCell>
+                    <TongThanhToanCell>
+                      {item.tong_thanh_toan}
+                    </TongThanhToanCell>
+                    <CreatedDateCell>{item.created_date}</CreatedDateCell>
+                  </BodyHoaDon>
+                ))}
               </HoaDonCell>
             </HoaDon1>
           </ContainerProfileB>
+          {showPopup && (
+            <>
+              <Overlay />
+              <Popup>
+                <CloseButton onClick={closePopup}>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="icon icon-tabler icon-tabler-x"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    stroke-width="2"
+                    stroke="currentColor"
+                    fill="none"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                    <path d="M18 6l-12 12"></path>
+                    <path d="M6 6l12 12"></path>
+                  </svg>
+                </CloseButton>
+                {data.map((item) => ( 
+                  <Popup1>
+                  </Popup1>
+                ))}         
+              </Popup>
+            </>
+          )}
         </Container2>
       </Container>
       <Modal

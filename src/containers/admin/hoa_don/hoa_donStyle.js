@@ -131,6 +131,49 @@ export const CreatedDateCell = styled.div`
 
 `;
 
+export const Overlay = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Màu đen với độ trong suốt */
+  z-index: 98; /* Đặt z-index nhỏ hơn so với popup */
+  
+`;
+
+export const Popup = styled.div`
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  height:500px;
+  width:500px;
+  transform: translate(-50%, -50%);
+  background-color: #f0f0f0; /* Màu xanh (sửa mã màu tùy ý) */
+  padding: 30px;
+  z-index: 99;
+  // Thêm các thuộc tính CSS khác cho popup tại đây
+
+  overflow-y: auto; /* Thêm độ cuộn lăn khi cần */
+  display: flex;
+  flex-direction: column;
+`;
+
+export const Popup1 = styled.div`
+  height: 20%;
+  display: flex;
+  background-color:white;
+`;
+
+
+export const CloseButton = styled.button`
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  // Thêm các thuộc tính CSS cho nút đóng tại đây
+`;
+
 export const DonViGiaoHangCell = styled.div`
   flex: 1;
   background-color: white;
