@@ -10,7 +10,7 @@ import Cart from "./containers/cart/cart"
 import LoginAdmin from "./containers/admin/login/loginAdmin"
 import Main from "./containers/admin/main/main"
 import Add_item from "./containers/admin/add_product/add_item"
-
+import Fix_item from "./containers/admin/fix_product/fix_item"
 const App = () => {
   return (
     <Router>
@@ -23,6 +23,7 @@ const App = () => {
         <Route path="/profile" component={Profile} />
         <Route path="/admin/main" component={Main} />
         <Route path="/admin/add" component={Add_item} />
+        <Route path="/admin/fix/:id" component={Fix_item} />
 
         <Route path="/admin/login" component={LoginAdmin} />
         <Route path="/notfound" component={NotFound} />

@@ -473,10 +473,53 @@ export const StyledButtonSave = styled.button`
   }
 `;
 
+export const AddAnh2 = styled.div`
+  flex: 5;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+export const AddAnh3 = styled.div`
+  flex: 1;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+`;
+
+export const ButtonAdd = styled.button`
+  background-color: orange;
+  width: 150px;
+  height: 50px;
+  color: white;
+  &:hover {
+    background-color: #ff7700;
+  }
+`;
+
+export const Image = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Đảm bảo hình ảnh vừa đủ bên trong phần tử con */
+`;
+
+export const AddAnh4 = styled.div`
+  flex: 4;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
 export const ContainerProfileB3 = styled.div`
   flex: 3; /* ContainerProfileB3 chiếm 20% tỷ lệ flex của ContainerProfileB */
   background-color: blue; /* Màu nền của ContainerProfileB3 */
   width: 20%;
+  display: flex;
+  flex-direction: column;
+
 `;
 
 export const Header = styled.header`
