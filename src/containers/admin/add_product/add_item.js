@@ -58,7 +58,6 @@ function Add_item() {
   const [user_name, setUserName] = useState("");
   const [name, SetName] = useState("");
   const history = useHistory();
-  const [data, setData] = useState({});
   const [old_price, setOlde_Price] = useState(0);
   const [giam_gia, setGiam_gia] = useState(0);
   const [describe, setdescribe] = useState("");

@@ -34,6 +34,8 @@ import axios from "axios";
 import { useHistory } from "react-router-dom";
 import logout from "./logout.png";
 import Modal from "../../../modal";
+import { useParams } from 'react-router-dom';
+
 
 function formatDate(created_date) {
   // Convert timestamp (in seconds) to milliseconds
@@ -52,12 +54,15 @@ function formatDate(created_date) {
 
 function Fix_item() {
   const [isModalOpen, setModalOpen] = useState(false);
+
   const [modalMessage, setModalMessage] = useState("");
   const [user_id, setUserDataId] = useState(null);
   const [user_name, setUserName] = useState("");
-  const [name, SetName] = useState("");
   const history = useHistory();
-  const [data, setData] = useState({});
+  const { id } = useParams();
+
+
+  const [name, SetName] = useState("");
   const [old_price, setOlde_Price] = useState(0);
   const [giam_gia, setGiam_gia] = useState(0);
   const [describe, setdescribe] = useState("");
@@ -88,15 +93,38 @@ function Fix_item() {
   };
   useEffect(() => {
     getType();
+    fetchData(id)
   }, []);
 
   // Sử dụng [] để đảm bảo useEffect chỉ chạy một lần khi component được tạo
   const avatarUrl = `http://127.0.0.1:5000/api/v1/picture/avatar/${user_id}`;
+  const anhProduct = `http://127.0.0.1:5000/api/v1/picture/${id}`;
   const handleLogout = () => {
     localStorage.removeItem("user");
     localStorage.removeItem("accessToken");
     localStorage.removeItem("refreshToken");
     window.location.href = "/login";
+  };
+
+  const fetchData = async (id) => {
+    try {
+      const response = await axios.get(
+        `http://127.0.0.1:5000/api/v1/product/${id}`
+      );
+
+      if (response.data.message.status === "success") {
+        const du_lieu = response.data.data.data
+        SetName(du_lieu.name)
+        setOlde_Price(du_lieu.old_price)
+        setGiam_gia(du_lieu.giam_gia)
+        setdescribe(du_lieu.describe)
+        setPhan_loai_id(du_lieu.phan_loai_id)
+        setSelectedList(du_lieu.cac_mau)
+
+      }
+    } catch (error) {
+      console.error("Error calling history API:", error);
+    }
   };
 
   const getType = async () => {
@@ -166,7 +194,7 @@ function Fix_item() {
     formData.append("name", name);
     try {
       const access_token = localStorage.getItem("accessToken");
-      const response = await axios.post(
+      const response = await axios.put(
         `http://127.0.0.1:5000/api/v1/product`,
         formData,
         {
@@ -395,26 +423,7 @@ function Fix_item() {
                     alt="Selected Image"
                   />
                 ) : (
-                  <svg
-                    style={{ width: "100%", height: "100%" }}
-                    xmlns="http://www.w3.org/2000/svg"
-                    class="icon icon-tabler icon-tabler-photo-filled"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    stroke-width="2"
-                    stroke="currentColor"
-                    fill="none"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  >
-                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                    <path
-                      d="M8.813 11.612c.457 -.38 .918 -.38 1.386 .011l.108 .098l4.986 4.986l.094 .083a1 1 0 0 0 1.403 -1.403l-.083 -.094l-1.292 -1.293l.292 -.293l.106 -.095c.457 -.38 .918 -.38 1.386 .011l.108 .098l4.674 4.675a4 4 0 0 1 -3.775 3.599l-.206 .005h-12a4 4 0 0 1 -3.98 -3.603l6.687 -6.69l.106 -.095zm9.187 -9.612a4 4 0 0 1 3.995 3.8l.005 .2v9.585l-3.293 -3.292l-.15 -.137c-1.256 -1.095 -2.85 -1.097 -4.096 -.017l-.154 .14l-.307 .306l-2.293 -2.292l-.15 -.137c-1.256 -1.095 -2.85 -1.097 -4.096 -.017l-.154 .14l-5.307 5.306v-9.585a4 4 0 0 1 3.8 -3.995l.2 -.005h12zm-2.99 5l-.127 .007a1 1 0 0 0 0 1.986l.117 .007l.127 -.007a1 1 0 0 0 0 -1.986l-.117 -.007z"
-                      stroke-width="0"
-                      fill="currentColor"
-                    ></path>
-                  </svg>
+                  <Image src={anhProduct} />
                 )}
               </AddAnh2>
               <AddAnh3>
