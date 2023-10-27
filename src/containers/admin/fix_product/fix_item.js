@@ -63,8 +63,8 @@ function Fix_item() {
 
 
   const [name, SetName] = useState("");
-  const [old_price, setOlde_Price] = useState(0);
-  const [giam_gia, setGiam_gia] = useState(0);
+  const [old_price, setOlde_Price] = useState("");
+  const [giam_gia, setGiam_gia] = useState("");
   const [describe, setdescribe] = useState("");
 
   const handleCloseModal = () => {
@@ -115,7 +115,7 @@ function Fix_item() {
       if (response.data.message.status === "success") {
         const du_lieu = response.data.data.data
         SetName(du_lieu.name)
-        setOlde_Price(du_lieu.old_price)
+        setOlde_Price(du_lieu.old_price);
         setGiam_gia(du_lieu.giam_gia)
         setdescribe(du_lieu.describe)
         setPhan_loai_id(du_lieu.phan_loai_id)
@@ -126,7 +126,7 @@ function Fix_item() {
       console.error("Error calling history API:", error);
     }
   };
-
+  console.log(old_price)
   const getType = async () => {
     try {
       const response = await axios.get(
@@ -195,7 +195,7 @@ function Fix_item() {
     try {
       const access_token = localStorage.getItem("accessToken");
       const response = await axios.put(
-        `http://127.0.0.1:5000/api/v1/product`,
+        `http://127.0.0.1:5000/api/v1/product/${id}`,
         formData,
         {
           headers: {
@@ -207,16 +207,9 @@ function Fix_item() {
       );
 
       if (response.data.message.status === "success") {
+        // window.location.reload()
         setModalMessage(response.data.message.text);
         setModalOpen(true);
-        // Sau khi xóa thành công, cập nhật lại danh sách sản phẩm
-        setGiam_gia(0);
-        setImage(null); // Đặt lại selectedRows sau khi xóa
-        setdescribe(""); // Đặt lại selectAll sau khi xóa
-        setSelectedList([]);
-        SetName("");
-        setOlde_Price(0);
-        setPhan_loai_id("");
       }
       setModalMessage(response.data.message.text);
       setModalOpen(true);
@@ -293,6 +286,7 @@ function Fix_item() {
 
                 <CAdd1>
                   <input
+                    value={old_price}
                     type="number"
                     onChange={(e) => {
                       const numericValue = parseInt(e.target.value, 10);
@@ -311,6 +305,7 @@ function Fix_item() {
                   />
                   <p>Giảm giá:</p>
                   <input
+                    value={giam_gia}
                     type="number"
                     onChange={(e) => {
                       const numericValue = parseInt(e.target.value, 10);
@@ -435,7 +430,7 @@ function Fix_item() {
                 />
               </AddAnh3>
               <AddAnh4>
-                <ButtonAdd onClick={ThemSanPham}>Thêm sản phẩm</ButtonAdd>
+                <ButtonAdd onClick={ThemSanPham}>Sửa sản phẩm</ButtonAdd>
               </AddAnh4>
             </AddProDuct2>
           </ContainerProfileB>
