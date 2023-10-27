@@ -519,7 +519,36 @@ function Main() {
     }
   };
 
-  const Thayavatar = async () => {};
+  const Thayavatar = async () => {
+    try {
+      const access_token = localStorage.getItem("accessToken");
+
+      const response = await axios.post(
+        `http://127.0.0.1:5000/api/v1/product`,
+        formData,
+        {
+          headers: {
+            Authorization: `Bearer ${access_token}`,
+            "Content-Type": "multipart/form-data", // Đảm bảo set header 'Content-Type' là 'multipart/form-data'
+          },
+        }
+      );
+
+      if (response.data.message.status === "success") {
+        setImage(null)
+        // Sau khi xóa thành công, cập nhật lại danh sách sản phẩm
+      }
+      setModalMessage(response.data.message.text);
+      setModalOpen(true);
+
+      console.log("Dữ liệu đã được gửi thành công:", response.data);
+    } catch (error) {
+      // Xử lý lỗi ở đây nếu cần.
+
+      console.error("Lỗi khi gửi dữ liệu:", error);
+    }
+
+  };
 
   const ChangePassWordUser = async () => {
     try {
