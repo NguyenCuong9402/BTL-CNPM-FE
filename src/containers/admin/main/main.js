@@ -138,6 +138,7 @@ function Main() {
 
   const [order_by, SetOrderBy] = useState("created_date");
   const [data, setData] = useState({});
+  console.log(data)
   const [data_sanpham, setDataSanPham] = useState([]);
   const [activeButton, setActiveButton] = useState(1);
 
