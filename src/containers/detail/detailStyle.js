@@ -516,7 +516,7 @@ export const CloseButtonStyled = styled.button`
 
 
 export const Container2 = styled.div`
-    max-width: 100%;
+    width: 100%;
     display: flex;
     align-items: center;
     margin-top: 50px; 
@@ -536,5 +536,22 @@ export const Body = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  overflow-y: auto;
+
 `;
+
+export const Body1 = styled.div`
+    height: 10000px;
+    width: 100%;
+    display: flex;
+    
+`;
+
+export const Body2 = styled.div`
+    margin-top: 1000px;
+    height: 1500px;
+    width: 100%;
+    display: flex;
+`;
+
 

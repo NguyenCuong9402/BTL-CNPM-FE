@@ -9,7 +9,7 @@ import {
   DropdownMenu,
   DropdownItem,
   Header, Container2,
-  Navbar, Body,
+  Navbar, Body, Body1,Body2
   
 } from "./detailStyle";
 import "boxicons/css/boxicons.min.css";
@@ -150,6 +150,8 @@ function Detail() {
   }
   return (
 < Body>
+
+<Body1>
       <Header>
         <Navbar>
           <a href="/index"  style={{ fontSize: '20px' }}>
@@ -239,8 +241,9 @@ function Detail() {
         </div>
       </div>
     </section>
- 
-  {/* <Container2>
+    </Body1>
+    <Body2>
+    <Container2>
   {product_lien_quan.map((item) => (
     <GridItem key={item.id} onClick={() => handleDetailClick(item.id)}>
       <img src={`http://127.0.0.1:5000/api/v1/picture/${item.id}`} alt="Hình ảnh" />
@@ -259,7 +262,10 @@ function Detail() {
       </ItemInfo>
     </GridItem>
   ))}
-  </Container2> */}
+  </Container2>     
+
+    </Body2>
+  
   <Modal isOpen={isModalOpen} message={modalMessage} onClose={handleCloseModal} />
   </Body>
   );
