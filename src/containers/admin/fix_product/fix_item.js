@@ -207,9 +207,7 @@ function Fix_item() {
       );
 
       if (response.data.message.status === "success") {
-        // window.location.reload()
-        setModalMessage(response.data.message.text);
-        setModalOpen(true);
+        window.location.reload()
       }
       setModalMessage(response.data.message.text);
       setModalOpen(true);
@@ -248,7 +246,7 @@ function Fix_item() {
                 fontFamily: "Arial, sans-serif",
               }}
             >
-              Thêm sản phẩm mới.
+               Thay đổi thông tin sản phẩm.
             </h2>
             <p
               style={{
