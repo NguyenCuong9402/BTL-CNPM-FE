@@ -149,24 +149,59 @@ function Add_item() {
   };
 
   const [image, setImage] = useState(null);
+  const [imagePreview, setImagePreview] = useState(null);
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
-
-    if (file) {
-      const reader = new FileReader();
-
-      reader.onload = (e) => {
-        setImage(e.target.result);
-      };
-
-      reader.readAsDataURL(file);
-    }
+    setImage(file);
   };
 
-  const ThemSanPham = () =>{
-    
-  }
+  const ThemSanPham = async () => {
+    const formData = new FormData();
+    formData.append("file", image);
+    formData.append("cac_mau", selectedList);
+    formData.append("phan_loai_id", phan_loai_id);
+    formData.append("old_price", old_price);
+    formData.append("giam_gia", giam_gia);
+    formData.append("describe", describe);
+    formData.append("name", name);
+    try {
+      const access_token = localStorage.getItem("accessToken");
+
+      const response = await axios.post(
+        `http://127.0.0.1:5000/api/v1/product`,
+        formData,
+        {
+          headers: {
+            Authorization: `Bearer ${access_token}`,
+
+            "Content-Type": "multipart/form-data", // Đảm bảo set header 'Content-Type' là 'multipart/form-data'
+          },
+        }
+      );
+
+      if (response.data.message.status === "success") {
+        setModalMessage(response.data.message.text);
+        setModalOpen(true);
+        // Sau khi xóa thành công, cập nhật lại danh sách sản phẩm
+        setGiam_gia(0);
+        setImage(null); // Đặt lại selectedRows sau khi xóa
+        setdescribe(""); // Đặt lại selectAll sau khi xóa
+        setSelectedList([]);
+        SetName("");
+        setOlde_Price(0);
+        setPhan_loai_id("");
+      }
+      setModalMessage(response.data.message.text);
+      setModalOpen(true);
+
+      console.log("Dữ liệu đã được gửi thành công:", response.data);
+    } catch (error) {
+      // Xử lý lỗi ở đây nếu cần.
+
+      console.error("Lỗi khi gửi dữ liệu:", error);
+    }
+  };
   return (
     <Body>
       <Header>
@@ -232,13 +267,12 @@ function Add_item() {
 
                 <CAdd1>
                   <input
-                    type="text"
+                    type="number"
                     onChange={(e) => {
-                      const numericValue = parseInt(
-                        e.target.value.replace(/\D/g, ""),
-                        10
-                      ); // Lọc giá trị để chỉ giữ lại các ký tự số
-                      setOlde_Price(numericValue);
+                      const numericValue = parseInt(e.target.value, 10);
+                      if (!isNaN(numericValue)) {
+                        setOlde_Price(numericValue);
+                      }
                     }}
                     style={{
                       width: "150px", // Đặt chiều rộng của ô Input
@@ -251,16 +285,15 @@ function Add_item() {
                   />
                   <p>Giảm giá:</p>
                   <input
-                    type="text"
+                    type="number"
                     onChange={(e) => {
-                      const numericValue = parseInt(
-                        e.target.value.replace(/\D/g, ""),
-                        10
-                      ); // Lọc giá trị để chỉ giữ lại các ký tự số
-                      setGiam_gia(numericValue);
+                      const numericValue = parseInt(e.target.value, 10);
+                      if (!isNaN(numericValue)) {
+                        setGiam_gia(numericValue);
+                      }
                     }}
                     style={{
-                      width: "50px", // Đặt chiều rộng của ô Input
+                      width: "70px", // Đặt chiều rộng của ô Input
                       padding: "10px", // Thêm padding để làm cho nó lớn hơn
                       border: "1px solid #ccc", // Định dạng đường viền
                       borderRadius: "5px", // Định dạng góc bo tròn
@@ -359,10 +392,13 @@ function Add_item() {
               <AddAnh2>
                 {" "}
                 {image ? (
-                  <Image src={image} alt="Selected Image" />
+                  <Image
+                    src={URL.createObjectURL(image)}
+                    alt="Selected Image"
+                  />
                 ) : (
                   <svg
-                    style={{width:'100%', height:"100%"}}
+                    style={{ width: "100%", height: "100%" }}
                     xmlns="http://www.w3.org/2000/svg"
                     class="icon icon-tabler icon-tabler-photo-filled"
                     width="24"
@@ -392,7 +428,7 @@ function Add_item() {
                 />
               </AddAnh3>
               <AddAnh4>
-                <ButtonAdd onClick={ThemSanPham} >Thêm sản phẩm</ButtonAdd>
+                <ButtonAdd onClick={ThemSanPham}>Thêm sản phẩm</ButtonAdd>
               </AddAnh4>
             </AddProDuct2>
           </ContainerProfileB>
