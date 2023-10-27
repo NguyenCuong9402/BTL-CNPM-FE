@@ -178,21 +178,20 @@ function HoaDon() {
             <HoaDon1>
               <HoaDonHeader>
                 <User>Người mua hàng</User>
-                <ChiTietSanPham>Chi tiết đơn hàng</ChiTietSanPham>
-                <LoiNhan>Lời nhắn</LoiNhan>
                 <DiaChi>Địa chỉ</DiaChi>
                 <DonViGiaoHang>Ship</DonViGiaoHang>
                 <TongThanhToan>Tổng</TongThanhToan>
                 <CreatedDate>Ngày</CreatedDate>
+                <ChiTietSanPham>Chi tiết đơn hàng</ChiTietSanPham>
+
+                <LoiNhan>Lời nhắn</LoiNhan>
+
               </HoaDonHeader>
               <HoaDonCell>
                 {data.map((item) => (   
                   <BodyHoaDon>
-                    <UserCell> {item.user_name}</UserCell>
-                    <ChiTietSanPhamCell onClick={() => openPopup(item.order_items)}>
-                      Xem Chi Tiết
-                    </ChiTietSanPhamCell>
-                    <LoiNhanCell>{item.loi_nhan}</LoiNhanCell>
+                    <UserCell>{item.user_name} </UserCell>
+                    
                     <DiaChiCell>
                       {item.address}, {item.xa}, {item.huyen}, {item.tinh}
                     </DiaChiCell>
@@ -203,6 +202,11 @@ function HoaDon() {
                       {item.tong_thanh_toan}
                     </TongThanhToanCell>
                     <CreatedDateCell>{item.created_date}</CreatedDateCell>
+                    <ChiTietSanPhamCell onClick={() => openPopup(item.order_items)}>
+                      Xem Chi Tiết
+                    </ChiTietSanPhamCell>
+                    <LoiNhanCell>{item.loi_nhan}</LoiNhanCell>
+
                   </BodyHoaDon>
                 ))}
               </HoaDonCell>

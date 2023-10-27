@@ -115,6 +115,7 @@ export const BodyHoaDon = styled.div`
   background-color: white;
   display: flex;
   flex-direction: row;
+ 
 `;
 
 export const CreatedDateCell = styled.div`
@@ -244,6 +245,11 @@ export const ChiTietSanPhamCell = styled.div`
   align-items: center;
   justify-content: center;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+
+   
+  &:hover {
+    background-color: orange; /* Màu cam khi hover vào */
+  }
 `;
 
 export const UserCell = styled.div`
@@ -253,6 +259,8 @@ export const UserCell = styled.div`
   align-items: center;
   justify-content: center;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+
+
 `;
 
 export const DiaChiCell = styled.div`
