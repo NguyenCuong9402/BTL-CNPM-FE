@@ -199,6 +199,7 @@ export const GridItem = styled.div`
   height: 300px;
   width: 10%;
   position: relative;
+  background-color: white;
 
   &:hover {
     transform: scale(1.05);
@@ -527,3 +528,13 @@ export const Container2 = styled.div`
   & > *:first-child {
     margin-left: 8px; /* Khoảng cách bên trái cho phần tử đầu tiên */
 `;
+
+export const Body = styled.div`
+  height: 97.9vh;
+  width: 100%;
+  background-color: #f0f0f0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
