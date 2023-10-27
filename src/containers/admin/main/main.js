@@ -191,7 +191,6 @@ function Main() {
     }
   };
 
-  const handleDeleteButtonClick = () => {};
 
   const handlePageSizeChange = (e) => {
     const newSize = parseInt(e.target.value);
@@ -276,6 +275,8 @@ function Main() {
       khoangtien
     );
     getType();
+    setIsDeleteButtonVisible(selectedRows.length > 0);
+
   }, [
     currentPage,
     pageSize,
@@ -284,6 +285,7 @@ function Main() {
     phan_loai_id,
     text_search,
     khoangtien,
+    selectedRows
   ]);
 
   // Sử dụng [] để đảm bảo useEffect chỉ chạy một lần khi component được tạo
@@ -481,6 +483,37 @@ function Main() {
     } else {
       // If not selected, add it to the selectedRows array
       setSelectedRows([...selectedRows, itemId]);
+    }
+  };
+
+  const handleDeleteButtonClick = async () => {
+    const access_token = localStorage.getItem("accessToken");
+    try {
+      const response = await axios.delete(
+        "http://127.0.0.1:5000/api/v1/product",
+        {
+          data: { list_id: selectedRows },
+          headers: {
+            Authorization: `Bearer ${access_token}`,
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      if (response.data.message.status === "success") {
+        setModalMessage(response.data.message.text);
+        setModalOpen(true);
+        // Sau khi xóa thành công, cập nhật lại danh sách sản phẩm
+        fetchData();
+        setSelectedRows([]); // Đặt lại selectedRows sau khi xóa
+        setSelectAll(false); // Đặt lại selectAll sau khi xóa
+      } else {
+        setModalMessage(response.data.message.text);
+        setModalOpen(true);
+      }
+    } catch (error) {
+      console.error(error);
+      alert("Có lỗi xảy ra khi gửi yêu cầu xóa");
     }
   };
 
