@@ -176,7 +176,7 @@ function Main() {
       setIsDeleteButtonVisible(false);
     } else {
       // If not all rows are selected, select all.
-      const allRowIds = data_sanpham.map((item) => item.id);
+      const allRowIds = fullProduct.map((item) => item.id);
       setSelectedRows(allRowIds);
       setIsDeleteButtonVisible(true);
     }
@@ -417,6 +417,7 @@ function Main() {
   const [password, SetPassWord] = useState("");
   const [new_password, SetNewPassWord] = useState("");
   const [confirm_password, SetConfirmPassWord] = useState("");
+  const [fullProduct, setFullProduct] = useState([])
   const fetchData = async (
     page,
     pSize,
@@ -438,6 +439,10 @@ function Main() {
           created_date: formatDate(item.created_date), // Format the timestamp
         }));
         setDataSanPham(formattedData);
+        const formattedData1 = response.data.data.all_product.map((item) => ({
+          ...item,
+        }));
+        setFullProduct(formattedData1)
         setTotalPages(response.data.data.total_pages);
         const countpage = response.data.data.total_pages;
         if (page - 1 === 0) {
