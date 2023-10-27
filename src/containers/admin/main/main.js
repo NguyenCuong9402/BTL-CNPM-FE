@@ -518,14 +518,14 @@ function Main() {
       console.error("Error calling history API:", error);
     }
   };
-
+  const avatarSrc = `http://127.0.0.1:5000/api/v1/picture/avatar/${user_id}`
   const Thayavatar = async () => {
     try {
       const access_token = localStorage.getItem("accessToken");
       const formData = new FormData();
       formData.append("file", image);
       const response = await axios.post(
-        `http://127.0.0.1:5000/api/v1/avatar`,
+        `http://127.0.0.1:5000/api/v1/picture/avatar`,
         formData,
         {
           headers: {
@@ -537,6 +537,8 @@ function Main() {
 
       if (response.data.message.status === "success") {
         setImage(null)
+        window.location.reload();
+        
         // Sau khi xóa thành công, cập nhật lại danh sách sản phẩm
       }
       setModalMessage(response.data.message.text);
@@ -605,7 +607,7 @@ function Main() {
         <UserInfoContainer>
           <UserName>{data.name_user}</UserName>
           <AvatarContainer>
-            <AvatarImage src={avatarUrl} alt="Avatar" />
+            <AvatarImage src={avatarSrc} alt="Avatar" />
           </AvatarContainer>
           <CartImage src={logout} alt="logout" onClick={handleLogout} />
         </UserInfoContainer>
@@ -613,7 +615,7 @@ function Main() {
       <Container>
         <Container1>
           <Container3>
-            <AvatarContainer3 src={avatarUrl} />
+            <AvatarContainer3 src={avatarSrc} />
           </Container3>
           <Container4>
             <NameContainer4>{data.name_user}</NameContainer4>
