@@ -13,6 +13,7 @@ import {
   CartImage,
   HoaDon1,
   HoaDon2,
+  Checkbox,
   ContainerProfileA,
   BodyHoaDon,
   ContainerProfileB,
@@ -45,7 +46,10 @@ import {
   ToggleSwitchIndicator,
   ToggleSwitchSlider,
   ToggleSwitchInput,
-  ToggleSwitchWrapper, SearchBarContainer, SearchButton, SearchInput
+  ToggleSwitchWrapper,
+  SearchBarContainer,
+  SearchButton,
+  SearchInput,
 } from "./nhan_vienStyle";
 import "boxicons/css/boxicons.min.css";
 import axios from "axios";
@@ -127,6 +131,35 @@ function Nhan_Vien() {
     }
     fetchData(order_by, text_search);
   }, [order_by, text_search]);
+  const [isDeleteButtonVisible, setIsDeleteButtonVisible] = useState(false);
+  const [selectedRows, setSelectedRows] = useState([]);
+  const [selectAll, setSelectAll] = useState(false);
+
+  const handleSelectAllClick = () => {
+    if (selectAll) {
+      // If all rows are currently selected, deselect all.
+      setSelectedRows([]);
+      setIsDeleteButtonVisible(false);
+    } else {
+      // If not all rows are selected, select all.
+      const allRowIds = data.map((item) => item.id);
+      setSelectedRows(allRowIds);
+      setIsDeleteButtonVisible(true);
+    }
+    // Toggle the selectAll state.
+    setSelectAll(!selectAll);
+  };
+
+  const handleRowSelect = (itemId) => {
+    // Check if the row is already selected
+    if (selectedRows.includes(itemId)) {
+      // If selected, remove it from the selectedRows array
+      setSelectedRows(selectedRows.filter((id) => id !== itemId));
+    } else {
+      // If not selected, add it to the selectedRows array
+      setSelectedRows([...selectedRows, itemId]);
+    }
+  };
 
   useEffect(() => {}, []);
   const avatarUrl = `http://127.0.0.1:5000/api/v1/picture/avatar/${user_id}`;
@@ -257,13 +290,18 @@ function Nhan_Vien() {
           <ContainerProfileB>
             <HoaDon1>
               <HoaDonHeader>
-                <TongThanhToan>Đăng ký</TongThanhToan>
+                <TongThanhToan>
+                  <Checkbox
+                    type="checkbox"
+                    onChange={() => handleSelectAllClick()}
+                  />
+                </TongThanhToan>
 
-                <User onClick={toggleOrder} >Tên  
-                {order_by === "desc" ? (
+                <User onClick={toggleOrder}>
+                  Tên
+                  {order_by === "desc" ? (
                     <svg
-
-                      style={{marginLeft:'15px'}}
+                      style={{ marginLeft: "15px" }}
                       xmlns="http://www.w3.org/2000/svg"
                       class="icon icon-tabler icon-tabler-circle-arrow-down-filled"
                       width="24"
@@ -284,7 +322,7 @@ function Nhan_Vien() {
                     </svg>
                   ) : (
                     <svg
-                      style={{marginLeft:'15px'}}
+                      style={{ marginLeft: "15px" }}
                       xmlns="http://www.w3.org/2000/svg"
                       class="icon icon-tabler icon-tabler-circle-arrow-up-filled"
                       width="24"
@@ -303,22 +341,25 @@ function Nhan_Vien() {
                         fill="currentColor"
                       ></path>
                     </svg>
-                  )}</User>
+                  )}
+                </User>
                 <DiaChi>Địa chỉ</DiaChi>
                 <DonViGiaoHang>Số điện thoại</DonViGiaoHang>
                 <CreatedDate>Ngày Sinh</CreatedDate>
                 <ChiTietSanPham>Giới tính</ChiTietSanPham>
-                <Action >
-                  Đã tiêu ($)
-                  
-                </Action>
+                <Action>Đã tiêu ($)</Action>
                 <LoiNhan>Email</LoiNhan>
               </HoaDonHeader>
               <HoaDonCell>
                 {data.map((item) => (
                   <BodyHoaDon>
-                    <TongThanhToanCell>{item.created_date}</TongThanhToanCell>
-
+                    <TongThanhToanCell>
+                      <Checkbox
+                        type="checkbox"
+                        checked={selectedRows.includes(item.id)}
+                        onChange={() => handleRowSelect(item.id)}
+                      />
+                    </TongThanhToanCell>
                     <UserCell>{item.name_user} </UserCell>
                     <DiaChiCell>
                       {item.address}, {item.xa}, {item.huyen}, {item.tinh}
@@ -389,45 +430,6 @@ function Nhan_Vien() {
               </HoaDonCell>
             </HoaDon1>
           </ContainerProfileB>
-          {showPopup && (
-            <>
-              <Overlay />
-              <Popup>
-                <CloseButton onClick={closePopup}>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    class="icon icon-tabler icon-tabler-x"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    stroke-width="2"
-                    stroke="currentColor"
-                    fill="none"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  >
-                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                    <path d="M18 6l-12 12"></path>
-                    <path d="M6 6l12 12"></path>
-                  </svg>
-                </CloseButton>
-                <Popup1>
-                  <PopupitemName>Tên</PopupitemName>
-                  <PopupitemColor>Màu</PopupitemColor>
-                  <PopupitemQuantity>SL</PopupitemQuantity>
-                  <PopupitemSize>Size</PopupitemSize>
-                </Popup1>
-                {orderItems.map((item) => (
-                  <Popup1>
-                    <PopupitemName>{item.product_name}</PopupitemName>
-                    <PopupitemColor>{item.color}</PopupitemColor>
-                    <PopupitemQuantity>{item.size}</PopupitemQuantity>
-                    <PopupitemSize>{item.quantity}</PopupitemSize>
-                  </Popup1>
-                ))}
-              </Popup>
-            </>
-          )}
         </Container2>
       </Container>
       <Modal

@@ -20,6 +20,10 @@ export const GlobalStyles = styled.div`
     background: #000;
   }
 `;
+export const Checkbox = styled.input`
+  width: 18px;
+  height: 18px;
+`;
 
 export const ButtonAdd = styled.button`
   background-color: orange;
@@ -111,7 +115,7 @@ export const HoaDonCell = styled.div`
 export const BodyHoaDon = styled.div`
   flex: 1;
   height: 20%;
-  max-height: 200px;
+  max-height: 150px;
   width: 100%;
   background-color: white;
   display: flex;
