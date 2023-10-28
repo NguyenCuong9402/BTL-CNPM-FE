@@ -322,6 +322,29 @@ function Profile() {
 
   };
 
+  const QuenPass = async () => {
+    try {
+      const access_token = localStorage.getItem("accessToken"); // Get access token from local storage
+      const response = await axios.get(
+        `http://127.0.0.1:5000/api/v1/user/quen_pass`,
+        {
+          headers: {
+            Authorization: `Bearer ${access_token}`,
+          },
+        }
+      );
+      if (response.data.message.status === "success") {
+        setModalMessage(response.data.message.text);
+        setModalOpen(true);
+      } else {
+        setModalMessage(response.data.message.text);
+        setModalOpen(true);
+      }
+    } catch (error) {
+      console.error("Error calling history API:", error);
+    }
+  };
+
   const MoveDonHang = () => {
     history.push(`/order`, {});
   };
@@ -741,7 +764,7 @@ function Profile() {
                   <StyledButtonSave onClick={() => ChangePassWordUser()}>
                       Lưu
                     </StyledButtonSave>
-                    <ForgotPasswordLink>Quên mật khẩu</ForgotPasswordLink>
+                    <ForgotPasswordLink onClick={QuenPass}>Quên mật khẩu</ForgotPasswordLink>
                     </ColumnProfileB2ChuaButtonSave>
                   <ColumnProfileB2></ColumnProfileB2>
                 </ContainerProfile2B1>
