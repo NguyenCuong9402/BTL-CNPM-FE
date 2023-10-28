@@ -163,6 +163,8 @@ function Nhan_Vien() {
       window.location.href = "/admin/login";
     }
     fetchData(order_by, text_search);
+    setIsDeleteButtonVisible(selectedRows.length > 0);
+
   }, [order_by, text_search]);
   const [isDeleteButtonVisible, setIsDeleteButtonVisible] = useState(false);
   const [selectedRows, setSelectedRows] = useState([]);
@@ -194,7 +196,10 @@ function Nhan_Vien() {
     }
   };
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    setIsDeleteButtonVisible(selectedRows.length > 0);
+
+  }, [selectedRows]);
   const avatarUrl = `http://127.0.0.1:5000/api/v1/picture/avatar/${user_id}`;
 
   const handleLogout = () => {

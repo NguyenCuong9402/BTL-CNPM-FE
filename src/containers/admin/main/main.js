@@ -98,7 +98,7 @@ import {
   DeleteButton,
   ButtonAdd,
   Phan2,
-  Phan3,
+  Phan3, ExportButton
 } from "./mainStyled";
 import "boxicons/css/boxicons.min.css";
 import axios from "axios";
@@ -377,6 +377,10 @@ function Main() {
   const handleDateChange = (date) => {
     setSelectedDate(date);
   };
+
+  const HandleExport = ()=>{
+    
+  }
 
   const [image, setImage] = useState(null);
 
@@ -986,7 +990,9 @@ function Main() {
                       />
                     </InnerContainer3>
                   </SanPham3>
-                  <SanPham3></SanPham3>
+                  <SanPham3>
+                    <ExportButton onClick={HandleExport}>Export</ExportButton>
+                  </SanPham3>
                 </SanPham2>
               </ContainerProfileB>
             </React.Fragment>

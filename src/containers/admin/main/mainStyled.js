@@ -456,6 +456,21 @@ export const DeleteButton = styled.button`
     background-color: #cc0000; /* Màu đỏ đậm hơn khi hover */
   }
 `;
+
+export const ExportButton = styled.button`
+  background-color: red;
+  color: white;
+  border: none;
+  width: 100px;
+  height: 40px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  
+  &:hover {
+    background-color: #cc0000; /* Màu đỏ đậm hơn khi hover */
+  }
+`;
+
 export const ContainerSp2 = styled.div`
   flex: 9;
   display: flex;
