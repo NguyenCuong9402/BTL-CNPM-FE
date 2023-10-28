@@ -458,7 +458,8 @@ export const DeleteButton = styled.button`
 `;
 
 export const ExportButton = styled.button`
-  background-color: red;
+  background-color: black;
+  margin-top: 80px;
   color: white;
   border: none;
   width: 100px;
@@ -495,6 +496,14 @@ export const SanPham3 = styled.div`
   background-color: orange;
   display: flex;
   flex-direction: column;
+`;
+
+export const SanPham5 = styled.div`
+  flex: 5;
+  background-color: orange;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 export const SearchBarContainer = styled.div`

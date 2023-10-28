@@ -20,7 +20,7 @@ import {
   Container5,
   NameContainer4,
   AvatarContainer3,
-  Container6,
+  Container6, SanPham5,
   Ct1,
   Ct2,
   Ct3,
@@ -378,9 +378,7 @@ function Main() {
     setSelectedDate(date);
   };
 
-  const HandleExport = ()=>{
-    
-  }
+  const HandleExport = ()=>{}
 
   const [image, setImage] = useState(null);
 
@@ -990,9 +988,9 @@ function Main() {
                       />
                     </InnerContainer3>
                   </SanPham3>
-                  <SanPham3>
+                  <SanPham5>
                     <ExportButton onClick={HandleExport}>Export</ExportButton>
-                  </SanPham3>
+                  </SanPham5>
                 </SanPham2>
               </ContainerProfileB>
             </React.Fragment>
