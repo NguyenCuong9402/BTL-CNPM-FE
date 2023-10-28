@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "boxicons/css/boxicons.min.css";
+import cart from "./trolley.png";
+
 import {
   UserInfoContainer,
   UserName,
@@ -22,7 +24,7 @@ import {
   CreatedDate,
   ChiTietSanPham,
   TongThanhToan,
-  DonViGiaoHang,
+  DonViGiaoHang, DropdownMenu,
   LoiNhan,
   DiaChi,
   LoiNhanCell,
@@ -45,13 +47,13 @@ import {
   ToggleSwitchIndicator,
   ToggleSwitchSlider,
   ToggleSwitchInput,
-  ToggleSwitchWrapper,
+  ToggleSwitchWrapper, DropdownItem
 } from "./don_hangStyle";
 import "boxicons/css/boxicons.min.css";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 import logout from "./logout.png";
-import Modal from "../../../modal";
+import Modal from "../../modal";
 
 function formatDate(created_date) {
   // Convert timestamp (in seconds) to milliseconds
@@ -80,6 +82,7 @@ const ToggleSwitch = ({ isOn, onToggle }) => {
 
 function DonHang() {
   const [isModalOpen, setModalOpen] = useState(false);
+  const history = useHistory();
 
   const [modalMessage, setModalMessage] = useState("");
   const [user_id, setUserDataId] = useState(null);
@@ -89,6 +92,10 @@ function DonHang() {
   const [orderItems, setOrderItems] = useState([]);
   const handleCloseModal = () => {
     setModalOpen(false);
+  };
+
+  const SangGioHang = () => {
+    history.push(`/cart`, {});
   };
 
   const [showPopup, setShowPopup] = useState(false);
@@ -127,6 +134,10 @@ function DonHang() {
     localStorage.removeItem("accessToken");
     localStorage.removeItem("refreshToken");
     window.location.href = "/login";
+  };
+
+  const handleProfile = async () => {
+    history.push(`/profile`, {});
   };
 
   const fetchData = async () => {
@@ -198,13 +209,26 @@ function DonHang() {
             <i className="bx bxl-xing"></i>Home
           </a>
         </Navbar>
+        
+
         <UserInfoContainer>
-          <UserName>{user_name}</UserName>
-          <AvatarContainer>
-            <AvatarImage src={avatarUrl} alt="Avatar" />
-          </AvatarContainer>
-          <CartImage src={logout} alt="logout" onClick={handleLogout} />
-        </UserInfoContainer>
+              <UserName>{user_name}</UserName>
+              <AvatarContainer>
+                <AvatarImage src={avatarUrl} alt="Avatar" />
+                <DropdownMenu>
+                  <DropdownItem onClick={handleProfile}>Tài Khoản</DropdownItem>
+                  <DropdownItem onClick={handleLogout}>
+                    <img src={logout} alt="Logout" />
+                  </DropdownItem>
+                </DropdownMenu>
+              </AvatarContainer>
+              <CartImage
+                src={cart}
+                alt="Cart"
+                className="cart"
+                onClick={SangGioHang}
+              />
+            </UserInfoContainer>
       </Header>
       <Container>
         <Container2>
@@ -217,7 +241,7 @@ function DonHang() {
                 fontFamily: "Arial, sans-serif",
               }}
             >
-              Quản lý đơn hàng.
+              Lịch Sử Mua Hàng
             </h2>
             <p
               style={{
@@ -230,10 +254,10 @@ function DonHang() {
           <ContainerProfileB>
             <HoaDon1>
               <HoaDonHeader>
-                <User>Người mua hàng</User>
+                <User>Số điện thoại</User>
                 <DiaChi>Địa chỉ</DiaChi>
                 <DonViGiaoHang>Ship</DonViGiaoHang>
-                <TongThanhToan>Tổng</TongThanhToan>
+                <TongThanhToan>Tổng ($)</TongThanhToan>
                 <CreatedDate>Ngày</CreatedDate>
                 <ChiTietSanPham>Chi tiết đơn hàng</ChiTietSanPham>
                 <Action>Tình trạng</Action>
@@ -242,7 +266,7 @@ function DonHang() {
               <HoaDonCell>
                 {data.map((item) => (
                   <BodyHoaDon>
-                    <UserCell>{item.user_name} </UserCell>
+                    <UserCell>{item.phone_number} </UserCell>
                     <DiaChiCell>
                       {item.address}, {item.xa}, {item.huyen}, {item.tinh}
                     </DiaChiCell>
@@ -261,7 +285,6 @@ function DonHang() {
                     <ActionCell>
                       <ToggleSwitch
                         isOn={item.trang_thai}
-                        onToggle={() => handleToggle(item.trang_thai, item.id)}
                       />
                     </ActionCell>{" "}
                     <LoiNhanCell>{item.loi_nhan}</LoiNhanCell>

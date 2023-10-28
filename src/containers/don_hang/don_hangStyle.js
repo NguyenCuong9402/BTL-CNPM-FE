@@ -47,6 +47,53 @@ export const AvatarContainer3 = styled.img`
   max-height: 80%;
 `;
 
+export const DropdownItem = styled.div`
+  padding: 10px;
+  color: #333;
+  text-decoration: none;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #f2f2f2;
+  }
+  img {
+    width: 40px; 
+    height: 40px; 
+    border-radius: 50%; 
+    margin-right: 10px;
+    transition: filter 0.3s ease; /* Thêm hiệu ứng chuyển đổi trong 0.3 giây */
+  
+  &:hover {
+    filter: brightness(1.2); /* Tăng độ sáng lên 20% khi hover */
+    transform: scale(1.1);
+  }
+  }
+`;
+
+export const AvatarContainer = styled.div`
+  position: relative;
+  display: inline-block;
+  margin-right: 20px;
+`;
+
+export const DropdownMenu = styled.div`
+  position: absolute;
+  width:100px;
+  top: 100%;
+  right: 0;
+  display: none;
+  flex-direction: column;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+
+  ${AvatarContainer}:hover & {
+    display: block;
+  }
+`;
+
 export const Container4 = styled.div`
   flex: 1; /* Container4 chiếm 10% chiều rộng của Container1 */
   background-color: #dcdcdc; /* Màu nền của Container4 */
@@ -441,11 +488,7 @@ export const UserName = styled.h4`
   color: #fff; /* Màu chữ cho tên người dùng */
 `;
 
-export const AvatarContainer = styled.div`
-  position: relative;
-  display: inline-block;
-  margin-right: 20px;
-`;
+
 export const CartImage = styled.img`
   /* CSS cho CartImage */
   width: 50px;
