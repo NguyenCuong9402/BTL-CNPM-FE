@@ -73,7 +73,7 @@ function Home() {
   const [sortDirection, setSortDirection] = useState("desc");
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
-  const [pageSize, setpageSize] = useState(20);
+  const [pageSize, setpageSize] = useState(18);
   const [text_search, setTextSearch] = useState("");
   const [text_search1, setTextSearch1] = useState("");
   const [online, SetOnline] = useState(false);
