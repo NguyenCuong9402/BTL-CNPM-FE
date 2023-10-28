@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch, Redirect  } from 'react-router-dom';
 import Home from "./containers/home/home";
+import DonHang from "./containers/don_hang/don_hang"
 import Login from "./containers/login/Login";
 import Register from "./containers/register/Register";
 import NotFound from "./containers/notFound/NotFound";
@@ -21,7 +22,10 @@ const App = () => {
       <Switch>
         <Route path="/login" component={Login} />
         <Route path="/index" component={Home} />
+
         <Route path="/register" component={Register} />
+        <Route path="/order" component={DonHang} />
+
         <Route path="/detail/:id" component={Detail} />
         <Route path="/cart" component={Cart} />
         <Route path="/profile" component={Profile} />

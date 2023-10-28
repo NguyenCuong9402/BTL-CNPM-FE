@@ -322,6 +322,10 @@ function Profile() {
 
   };
 
+  const MoveDonHang = () => {
+    history.push(`/order`, {});
+  };
+
 
   return (
     <Body>
@@ -382,8 +386,7 @@ function Profile() {
             </Ct2>
             <Ct3>
               <ButtonContainer6
-                active={activeButton === 3}
-                onClick={() => setActiveButton(3)}
+                onClick={MoveDonHang}
               >
                 Đơn hàng
               </ButtonContainer6>
@@ -746,12 +749,7 @@ function Profile() {
               </ContainerProfileB>
             </React.Fragment>
           )}
-          {activeButton === 3 && (
-            <React.Fragment>
-              <div>Oke1</div>
-              <div>Oke1</div>
-            </React.Fragment>
-          )}
+          
         </Container2>
       </Container>
       <Modal

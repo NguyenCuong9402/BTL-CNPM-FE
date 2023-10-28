@@ -78,7 +78,7 @@ const ToggleSwitch = ({ isOn, onToggle }) => {
   );
 };
 
-function HoaDon() {
+function DonHang() {
   const [isModalOpen, setModalOpen] = useState(false);
 
   const [modalMessage, setModalMessage] = useState("");
@@ -133,7 +133,7 @@ function HoaDon() {
     try {
       const access_token = localStorage.getItem("accessToken"); // Get access token from local storage
       const response = await axios.get(
-        `http://127.0.0.1:5000/api/v1/orders/manage`,
+        `http://127.0.0.1:5000/api/v1/orders`,
         {
           headers: {
             Authorization: `Bearer ${access_token}`,
@@ -320,4 +320,4 @@ function HoaDon() {
   );
 }
 
-export default HoaDon;
+export default DonHang;
