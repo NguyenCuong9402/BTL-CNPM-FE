@@ -115,7 +115,7 @@ function Nhan_Vien() {
     const access_token = localStorage.getItem("accessToken");
     try {
       const response = await axios.delete(
-        "http://127.0.0.1:5000/api/v1/cart_items",
+        "http://127.0.0.1:5000/api/v1/user",
         {
           data: { list_id: selectedRows },
           headers: {
@@ -129,7 +129,7 @@ function Nhan_Vien() {
         setModalMessage(response.data.message.text);
         setModalOpen(true);
         // Sau khi xóa thành công, cập nhật lại danh sách sản phẩm
-        fetchData();
+        fetchData(order_by, text_search);
         setSelectedRows([]); // Đặt lại selectedRows sau khi xóa
         setSelectAll(false); // Đặt lại selectAll sau khi xóa
       } else {
