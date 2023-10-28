@@ -96,7 +96,7 @@ function Add_item() {
     localStorage.removeItem("user");
     localStorage.removeItem("accessToken");
     localStorage.removeItem("refreshToken");
-    window.location.href = "/login";
+    window.location.href = "/admin/login";
   };
 
   const getType = async () => {
