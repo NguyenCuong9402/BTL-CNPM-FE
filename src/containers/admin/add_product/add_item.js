@@ -117,6 +117,7 @@ function Add_item() {
 
   const [colors, setDsColor] = useState([
     "Be",
+    "Xám",
     "Cam",
     "Hồng",
     "Lục",
