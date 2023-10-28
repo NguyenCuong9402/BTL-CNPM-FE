@@ -259,8 +259,8 @@ function DonHang() {
                 <DonViGiaoHang>Ship</DonViGiaoHang>
                 <TongThanhToan>Tổng ($)</TongThanhToan>
                 <CreatedDate>Ngày</CreatedDate>
-                <ChiTietSanPham>Chi tiết đơn hàng</ChiTietSanPham>
-                <Action>Tình trạng</Action>
+                <ChiTietSanPham>Đơn hàng</ChiTietSanPham>
+                <Action>Đã xuất kho</Action>
                 <LoiNhan>Lời nhắn</LoiNhan>
               </HoaDonHeader>
               <HoaDonCell>
