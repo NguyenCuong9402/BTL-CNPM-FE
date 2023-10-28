@@ -97,15 +97,29 @@ export const HoaDon1 = styled.div`
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
 `;
 
+export const DeleteButton = styled.button`
+  background-color: red;
+  color: white;
+  padding: 10px 20px;
+  width: 100px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  
+  &:hover {
+    background-color: #cc0000; /* Màu đỏ đậm hơn khi hover */
+  }
+`;
+
 export const HoaDonHeader = styled.div`
   flex: 1;
-  background-color: red;
+  background-color: white;
   display: flex;
   flex-direction: row;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
 `;
 export const HoaDonCell = styled.div`
-  flex: 8;
+  flex: 7;
   background-color: white;
   display: flex;
   flex-direction: column;

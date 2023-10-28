@@ -32,7 +32,7 @@ import {
   ChiTietSanPhamCell,
   CreatedDateCell,
   DonViGiaoHangCell,
-  TongThanhToanCell,
+  TongThanhToanCell, DeleteButton,
   Popup,
   CloseButton,
   Overlay,
@@ -81,6 +81,8 @@ const ToggleSwitch = ({ isOn, onToggle }) => {
   );
 };
 
+
+
 function Nhan_Vien() {
   const [isModalOpen, setModalOpen] = useState(false);
   const [text_search, setTextSearch] = useState("");
@@ -108,6 +110,37 @@ function Nhan_Vien() {
     setShowPopup(false);
     setOrderItems([]);
   }
+
+  const handleDeleteButtonClick = async () => {
+    const access_token = localStorage.getItem("accessToken");
+    try {
+      const response = await axios.delete(
+        "http://127.0.0.1:5000/api/v1/cart_items",
+        {
+          data: { list_id: selectedRows },
+          headers: {
+            Authorization: `Bearer ${access_token}`,
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      if (response.data.message.status === "success") {
+        setModalMessage(response.data.message.text);
+        setModalOpen(true);
+        // Sau khi xóa thành công, cập nhật lại danh sách sản phẩm
+        fetchData();
+        setSelectedRows([]); // Đặt lại selectedRows sau khi xóa
+        setSelectAll(false); // Đặt lại selectAll sau khi xóa
+      } else {
+        setModalMessage(response.data.message.text);
+        setModalOpen(true);
+      }
+    } catch (error) {
+      console.error(error);
+      alert("Có lỗi xảy ra khi gửi yêu cầu xóa");
+    }
+  };
 
   const [order_by, setOrder_by] = useState("desc"); // Mặc định là desc
 
@@ -342,7 +375,11 @@ function Nhan_Vien() {
                 <ChiTietSanPham>Giới tính</ChiTietSanPham>
                 <LoiNhan>Email</LoiNhan>
 
-                <Action></Action>
+                <Action>
+                {isDeleteButtonVisible && (
+              <DeleteButton onClick={handleDeleteButtonClick}>Xóa</DeleteButton>
+            )}
+                </Action>
               </HoaDonHeader>
               <HoaDonCell>
                 {data.map((item) => (
@@ -422,6 +459,7 @@ function Nhan_Vien() {
                   </BodyHoaDon>
                 ))}
               </HoaDonCell>
+            
             </HoaDon1>
           </ContainerProfileB>
         </Container2>
