@@ -1,3 +1,5 @@
+import { saveAs } from "file-saver";
+
 import React, { useState, useEffect } from "react";
 import "boxicons/css/boxicons.min.css";
 import {
@@ -20,7 +22,8 @@ import {
   Container5,
   NameContainer4,
   AvatarContainer3,
-  Container6, SanPham5,
+  Container6,
+  SanPham5,
   Ct1,
   Ct2,
   Ct3,
@@ -98,7 +101,8 @@ import {
   DeleteButton,
   ButtonAdd,
   Phan2,
-  Phan3, ExportButton
+  Phan3,
+  ExportButton,
 } from "./mainStyled";
 import "boxicons/css/boxicons.min.css";
 import axios from "axios";
@@ -138,7 +142,7 @@ function Main() {
 
   const [order_by, SetOrderBy] = useState("created_date");
   const [data, setData] = useState({});
-  console.log(data)
+  console.log(data);
   const [data_sanpham, setDataSanPham] = useState([]);
   const [activeButton, setActiveButton] = useState(1);
 
@@ -191,7 +195,6 @@ function Main() {
       setCurrentPage(nextPage);
     }
   };
-
 
   const handlePageSizeChange = (e) => {
     const newSize = parseInt(e.target.value);
@@ -277,7 +280,6 @@ function Main() {
     );
     getType();
     setIsDeleteButtonVisible(selectedRows.length > 0);
-
   }, [
     currentPage,
     pageSize,
@@ -286,7 +288,7 @@ function Main() {
     phan_loai_id,
     text_search,
     khoangtien,
-    selectedRows
+    selectedRows,
   ]);
 
   // Sử dụng [] để đảm bảo useEffect chỉ chạy một lần khi component được tạo
@@ -378,18 +380,47 @@ function Main() {
     setSelectedDate(date);
   };
 
-  const HandleExport = ()=>{}
+  const HandleExport = async () => {
+    try {
+      const access_token = localStorage.getItem("accessToken");
+
+      const response = await axios.get(
+        `http://127.0.0.1:5000/api/v1/report/export`,
+        {
+          headers: {
+            Authorization: `Bearer ${access_token}`,
+          },
+          responseType: "blob", // Đảm bảo phản hồi là dạng blob
+        }
+      );
+
+      if (response.status === 200) {
+        // Lấy tên tệp từ phản hồi hoặc có thể tự đặt tên tệp Excel
+        const contentDisposition = response.headers["content-disposition"];
+        const match = /filename=([^;]+)/.exec(contentDisposition);
+        const fileName = match ? match[1] : "ThongKe.xlsx";
+
+        // Tải tệp xuống bằng file-saver
+        saveAs(new Blob([response.data]), fileName);
+      } else {
+        setModalMessage(response.data.message.text);
+        setModalOpen(true);
+      }
+    } catch (error) {
+      console.error("Error calling history API:", error);
+    }
+  };
 
   const [image, setImage] = useState(null);
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
 
-  if (file) {
-    setImage(file);
-  } else {
-    setImage(null); // Đặt `image` thành null nếu không có file được chọn
-  }
+    if (file) {
+      setImage(file);
+    } else {
+      setImage(null); // Đặt `image` thành null nếu không có file được chọn
+    }
   };
 
   const getType = async () => {
@@ -422,7 +453,7 @@ function Main() {
   const MoveNhanVien = () => {
     history.push(`/admin/nhan_vien`, {});
   };
-  
+
   const ChooseTinh = (newTinh) => {
     SetTinh(newTinh);
     fetchDiaChi(newTinh, "", "");
@@ -439,7 +470,7 @@ function Main() {
   const [password, SetPassWord] = useState("");
   const [new_password, SetNewPassWord] = useState("");
   const [confirm_password, SetConfirmPassWord] = useState("");
-  const [fullProduct, setFullProduct] = useState([])
+  const [fullProduct, setFullProduct] = useState([]);
   const fetchData = async (
     page,
     pSize,
@@ -464,7 +495,7 @@ function Main() {
         const formattedData1 = response.data.data.all_product.map((item) => ({
           ...item,
         }));
-        setFullProduct(formattedData1)
+        setFullProduct(formattedData1);
         setTotalPages(response.data.data.total_pages);
         const countpage = response.data.data.total_pages;
         if (page - 1 === 0) {
@@ -576,7 +607,7 @@ function Main() {
       console.error("Error calling history API:", error);
     }
   };
-  const avatarSrc = `http://127.0.0.1:5000/api/v1/picture/avatar/${user_id}`
+  const avatarSrc = `http://127.0.0.1:5000/api/v1/picture/avatar/${user_id}`;
   const Thayavatar = async () => {
     try {
       const access_token = localStorage.getItem("accessToken");
@@ -594,9 +625,9 @@ function Main() {
       );
 
       if (response.data.message.status === "success") {
-        setImage(null)
+        setImage(null);
         window.location.reload();
-        
+
         // Sau khi xóa thành công, cập nhật lại danh sách sản phẩm
       }
       setModalMessage(response.data.message.text);
@@ -608,7 +639,6 @@ function Main() {
 
       console.error("Lỗi khi gửi dữ liệu:", error);
     }
-
   };
 
   const ChangePassWordUser = async () => {
@@ -712,14 +742,10 @@ function Main() {
               </ButtonContainer6>
             </Ct2>
             <Ct3>
-              <ButtonContainer6
-                onClick={MoveDonHang}
-              >
+              <ButtonContainer6 onClick={MoveDonHang}>
                 Đơn hàng
               </ButtonContainer6>
-              <ButtonContainer6
-                onClick={MoveKhachHang}
-              >
+              <ButtonContainer6 onClick={MoveKhachHang}>
                 Khách hàng
               </ButtonContainer6>
             </Ct3>
