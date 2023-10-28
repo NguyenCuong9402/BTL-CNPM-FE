@@ -446,7 +446,6 @@ function Home() {
                   value={pageSize}
                   onChange={handlePageSizeChange}
                 >
-                  <option value={4}>4</option>
                   <option value={12}>12</option>
                   <option value={20}>20</option>
                   <option value={28}>28</option>
