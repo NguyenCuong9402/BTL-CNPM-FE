@@ -110,7 +110,7 @@ function HoaDon() {
         setUserDataId(userDataFromLocalStorage.id);
         setUserName(userDataFromLocalStorage.name_user);
       } else {
-        window.location.href = "/admin/index";
+        window.location.href = "/admin/main";
 
       }
     } else {
