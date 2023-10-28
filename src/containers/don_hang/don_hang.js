@@ -320,6 +320,8 @@ function DonHang() {
                   <PopupitemColor>Màu</PopupitemColor>
                   <PopupitemQuantity>SL</PopupitemQuantity>
                   <PopupitemSize>Size</PopupitemSize>
+                  <PopupitemSize>Giá</PopupitemSize>
+
                 </Popup1>
                 {orderItems.map((item) => (
                   <Popup1>
@@ -327,6 +329,8 @@ function DonHang() {
                     <PopupitemColor>{item.color}</PopupitemColor>
                     <PopupitemQuantity>{item.size}</PopupitemQuantity>
                     <PopupitemSize>{item.quantity}</PopupitemSize>
+                    <PopupitemSize>{item.count}</PopupitemSize>
+
                   </Popup1>
                 ))}
               </Popup>
