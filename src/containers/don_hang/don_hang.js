@@ -164,43 +164,6 @@ function DonHang() {
       console.error("Error calling history API:", error);
     }
   };
-
-  const handleToggle = async (trang_thai, id) => {
-    if (trang_thai) {
-      setModalMessage("Đơn hàng đã được xếp!");
-      setModalOpen(true);
-    } else {
-      try {
-        const access_token = localStorage.getItem("accessToken");
-        const response = await axios.put(
-          `http://127.0.0.1:5000/api/v1/orders/${id}`,
-          {},
-          {
-            headers: {
-              Authorization: `Bearer ${access_token}`,
-            },
-          }
-        );
-  
-        if (response.data.message.status === "success") {
-          setModalMessage(response.data.message.text);
-          setModalOpen(true);
-          fetchData()
-        }
-        setModalMessage(response.data.message.text);
-        setModalOpen(true);
-  
-        console.log("Dữ liệu đã được gửi thành công:", response.data);
-      } catch (error) {
-        // Xử lý lỗi ở đây nếu cần.
-  
-        console.error("Lỗi khi gửi dữ liệu:", error);
-      }
-    }
-  };
-
-  console.log(data);
-
   return (
     <Body>
       <Header>
