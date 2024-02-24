@@ -124,15 +124,7 @@ function Home() {
     }
   };
 
-  const fetchData = async (
-    page,
-    pSize,
-    order_by,
-    sortDirection,
-    phan_loai_id,
-    text_search,
-    khoangtien
-  ) => {
+  const fetchData = async (page, pSize, order_by, sortDirection, phan_loai_id, text_search, khoangtien) => {
     try {
       const response = await axios.post(
         `http://127.0.0.1:5000/api/v1/product/get-item?page=${page}&page_size=${pSize}&order_by=${order_by}&order=${sortDirection}&phan_loai_id=${phan_loai_id}&type=&text_search=${text_search}`,
