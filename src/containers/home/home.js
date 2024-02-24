@@ -73,7 +73,7 @@ function Home() {
   const [sortDirection, setSortDirection] = useState("desc");
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
-  const [pageSize, setpageSize] = useState(12);
+  const [pageSize, setpageSize] = useState(18);
   const [text_search, setTextSearch] = useState("");
   const [text_search1, setTextSearch1] = useState("");
   const [online, SetOnline] = useState(false);
@@ -438,9 +438,9 @@ function Home() {
                   value={pageSize}
                   onChange={handlePageSizeChange}
                 >
-                  <option value={12}>12</option>
-                  <option value={24}>24</option>
-                  <option value={48}>48</option>
+                  <option value={18}>18</option>
+                  <option value={36}>36</option>
+                  <option value={72}>72</option>
                 </select>
               </div>
 
